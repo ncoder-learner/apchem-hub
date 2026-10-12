@@ -1,26 +1,108 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-bg: #0a0e16;
+  --color-sidebar: #0b0f1a;
+  --color-card: #0f1420;
+  --color-border: #1c2433;
+  --color-accent: #34d399;
+  --color-accent-soft: #34d39926;
+  --color-ink: #e6ecf5;
+  --color-ink-dim: #93a1b7;
+
+  --color-amber: #f5c454;
+  --color-amber-soft: #f5c45426;
+  --color-blue: #5aa9ff;
+  --color-blue-soft: #5aa9ff26;
+  --color-rose: #f5718a;
+  --color-rose-soft: #f5718a26;
+  --color-emerald: #34d399;
+  --color-emerald-soft: #34d39926;
+
+  --font-sans: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+/* MDX prose defaults. Kept deliberately explicit here rather than relying on
+   a typography plugin, so lesson pages don't silently break when a plugin's
+   defaults shift between Tailwind versions. */
+.lesson-prose h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-ink);
+}
+
+.lesson-prose h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-ink);
+}
+
+.lesson-prose p {
+  line-height: 1.75;
+  margin-bottom: 1.1rem;
+  color: var(--color-ink);
+}
+
+.lesson-prose ul,
+.lesson-prose ol {
+  margin-bottom: 1.1rem;
+  padding-left: 1.5rem;
+  line-height: 1.7;
+}
+
+.lesson-prose ul {
+  list-style-type: disc;
+}
+
+.lesson-prose ol {
+  list-style-type: decimal;
+}
+
+.lesson-prose li {
+  margin-bottom: 0.4rem;
+}
+
+.lesson-prose strong {
+  color: var(--color-ink);
+  font-weight: 700;
+}
+
+.lesson-prose em {
+  font-style: italic;
+  color: var(--color-ink-dim);
+}
+
+.lesson-prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.lesson-prose code {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 0.3rem;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.875em;
+}
+
+.lesson-prose blockquote {
+  border-left: 3px solid var(--color-border);
+  padding-left: 1rem;
+  color: var(--color-ink-dim);
+  margin-bottom: 1.1rem;
 }

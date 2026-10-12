@@ -1,0 +1,262 @@
+---
+title: "VSEPR and Hybridization"
+unit: 2
+topicNumber: "2.7"
+slug: "2-7-vsepr-and-hybridization"
+summary: "Why molecules take the 3D shapes they do, how to predict every shape from a Lewis structure, and what that shape has to do with polarity."
+---
+
+A Lewis structure is flat. Real molecules are not. Every molecule you've drawn so far in this unit has electrons arranged on a piece of paper, all in one plane, with bond angles that look suspiciously like 90° or 180° just because that's easy to draw. None of that is real. This lesson is about closing the gap between the flat diagram and the actual three-dimensional object, and it does that in three stages: first by looking at what a bond actually *is* physically, then by figuring out how one atom can form more bonds than its electron configuration seems to allow, and finally by predicting the real shape the molecule settles into and what that shape does to the molecule's behavior.
+
+## Stage 1: What a bond looks like up close
+
+Go back to orbitals for a second. An atomic orbital is a region of space where an electron is likely to be found. When two atoms bond, they're not just "sharing electrons" in the abstract — two orbitals, one from each atom, are physically overlapping, and the shared electron pair lives in that overlap region.
+
+There are two fundamentally different ways two orbitals can overlap, and they produce two different kinds of bonds.
+
+**Head-on overlap.** If both orbitals point directly at each other along the line connecting the two nuclei, they overlap right on that axis. This is called a **sigma (σ) bond**, and it's the strongest, most direct kind of overlap because the electron density is concentrated exactly where both nuclei can grab onto it. Every single covalent bond, no matter what it's made of, is a sigma bond. This matters: it means you can always find the sigma bond count by just counting the lines in a Lewis structure, because every line, no matter how many times you draw it for a double or triple bond, contains exactly one sigma bond.
+
+**Side-by-side overlap.** Now imagine two unhybridized p orbitals, both perpendicular to the bond axis, sitting parallel to each other above and below it. They can also overlap, but not on the axis — above and below it, in two separate lobes. This is a **pi (π) bond**. It's weaker than a sigma bond because the overlap is off-axis and less direct, but it's still a real, electron-sharing bond.
+
+<BondDiagram order={1} leftLabel="C" rightLabel="C" />
+
+A single bond is just one sigma bond. Nothing else is happening between those two atoms. But what does a double bond actually consist of? You can't have two sigma bonds between the same pair of atoms — there's only one direct head-on path between two nuclei, so only one sigma bond is possible there. The second bond in a double bond has to be something else: it's a pi bond, stacked above the sigma bond.
+
+<BondDiagram order={2} leftLabel="C" rightLabel="C" />
+
+Push this one step further. A triple bond needs *three* bonds crammed between two atoms, but again, only one of them can be the direct, on-axis sigma bond. The other two have to be pi bonds, occupying two different perpendicular planes around the sigma bond — picture one pi bond's lobes pointing up and down, and a second pi bond's lobes pointing front and back, at 90° to the first pair.
+
+<BondDiagram order={3} leftLabel="C" rightLabel="N" />
+
+This gives you a rule you can apply to any bond you'll ever see on the AP exam:
+
+- A **single bond** = 1 sigma bond, 0 pi bonds.
+- A **double bond** = 1 sigma bond, 1 pi bond.
+- A **triple bond** = 1 sigma bond, 2 pi bonds.
+
+<Lightbulb title="Why bond length and bond strength move in opposite directions">
+Think about what each additional pi bond does: it adds more shared electron density between the same two nuclei, and more shared electron density pulls the nuclei closer together and holds them there more tightly. That's the entire explanation for two facts you'll be expected to know without hesitating: triple bonds are the **shortest** and **strongest**, single bonds are the **longest** and **weakest**, and double bonds sit in between. You don't need to memorize this as a separate fact — it falls directly out of "more shared electrons between the same two nuclei pulls them closer."
+</Lightbulb>
+
+<WorkedExample title="Counting σ and π bonds in HCN">
+Hydrogen cyanide, H–C≡N, has two bonds to analyze: the H–C single bond and the C≡N triple bond.
+
+1. **H–C bond:** it's a single bond → 1 sigma, 0 pi.
+2. **C≡N bond:** it's a triple bond → 1 sigma, 2 pi.
+3. **Total:** 2 sigma bonds, 2 pi bonds.
+
+Notice you never had to think about where the electrons "really" are in 3D to get this answer. Bond order (single, double, triple) tells you the sigma/pi breakdown directly. That's the whole method.
+</WorkedExample>
+
+<WorkedExample title="A busier molecule: acrylonitrile, CH2=CH–C≡N">
+This molecule has three bonds between heavy atoms worth checking, plus several C–H single bonds. Go bond by bond instead of trying to see the whole molecule at once.
+
+1. **C=C (the double bond):** 1 sigma, 1 pi.
+2. **C–C (the single bond connecting the two carbon fragments):** 1 sigma, 0 pi.
+3. **C≡N (the triple bond):** 1 sigma, 2 pi.
+4. **Three C–H single bonds:** 3 sigma, 0 pi.
+
+Add the sigma bonds: 1 + 1 + 1 + 3 = **6 sigma bonds**. Add the pi bonds: 1 + 0 + 2 + 0 = **3 pi bonds**.
+
+The move that makes this manageable: never try to count sigma and pi bonds for the whole structure in one glance. Go bond by bond, classify each one as single/double/triple, convert using the rule above, then add at the end.
+</WorkedExample>
+
+<Mistake title="\"A double bond is just two bonds, so it's 2 sigma bonds\"">
+This is the single most common error in sigma/pi counting, and it comes from treating "double bond" as meaning "two of the same thing" instead of "two *different* things stacked together." A double bond is **one** sigma bond plus **one** pi bond — never two sigma bonds. The reason is purely geometric: there is exactly one straight-line, head-on path between two nuclei, so only one bond can ever be a sigma bond between any given pair of atoms. Every additional bond beyond the first, for that same atom pair, has to be a pi bond, because there's no second axis left for it to form head-on. If you ever count more than one sigma bond between two specific atoms, stop — that's the signal something went wrong.
+</Mistake>
+
+## Stage 2: Hybridization — resolving a contradiction
+
+Here's a problem. Look at carbon's ground-state electron configuration: 1s² 2s² 2p². The valence electrons — the ones available for bonding — are the four in the second shell: 2s² 2p².
+
+If you draw those four electrons into an orbital diagram following Hund's rule, you get the 2s orbital fully paired (both electrons spoken for, unavailable for bonding) and the 2p orbitals holding two unpaired electrons, each alone in its own orbital. Unpaired electrons are the ones available to form bonds. By that count, carbon should only be able to form **two** bonds.
+
+But methane, CH₄, exists. Carbon forms **four** bonds in it, not two, and all four of those bonds are identical in length and strength. Something in the simple orbital-diagram picture is wrong, or at least incomplete.
+
+The resolution is **hybridization**: before bonding, the one 2s orbital and the three 2p orbitals on that carbon atom mix together mathematically into four new orbitals, each one part s character and three parts p character. These are called **sp³ hybrid orbitals**, and critically, all four of them are identical to each other and each holds exactly one electron, giving carbon four unpaired electrons instead of two. That's what makes four equivalent bonds possible. The "s and p orbitals being separate" picture was only ever an approximation for an isolated, unbonded atom — the moment that atom is about to bond to more partners than its unhybridized orbitals allow, it reshapes its own orbitals to match the bonding it's about to do.
+
+<Lightbulb title="A shortcut for finding hybridization without drawing orbital diagrams every time">
+You don't need to re-derive the orbital-mixing argument for every atom you check. There's a mechanical shortcut: count the number of things attached to the central atom, where "things" means **sigma bonds plus lone pairs**. This number is called the **steric number**, and it tells you the hybridization directly.
+
+| Steric number | Hybridization | Geometry it produces |
+|---|---|---|
+| 2 | sp | linear |
+| 3 | sp² | trigonal planar family |
+| 4 | sp³ | tetrahedral family |
+| 5 | sp³d | trigonal bipyramidal family |
+| 6 | sp³d² | octahedral family |
+
+The logic behind the shortcut is just a count of "how many separate regions of electron density does this atom need to point an orbital toward" — one hybrid orbital gets created for each sigma bond and each lone pair, because each of those needs its own spot in space.
+</Lightbulb>
+
+<Mistake title="Counting pi bonds toward the steric number">
+A double or triple bond still only counts as **one** attachment for steric-number purposes, because the sigma bond is what defines "one region pointing at one neighboring atom" — the pi bond(s) riding along with it don't add a new direction in space, they just add bond order to the direction that's already there. If a central atom has one double bond and two single bonds and no lone pairs, its steric number is 3 (one for each sigma bond: the one in the double bond, plus the two singles), not 4. Forgetting this is the most common way people get hybridization wrong even after they've mastered sigma/pi counting from Stage 1.
+</Mistake>
+
+<WorkedExample title="Finding steric number and hybridization for three different central atoms">
+**Carbon in HCN (H–C≡N):** the carbon has one sigma bond to H and one sigma bond to N (the pi bonds in the triple bond don't count separately). Sigma bonds: 2. Lone pairs: 0. Steric number = 2 → **sp hybridized**, which produces a linear arrangement.
+
+**Oxygen in H₂O:** oxygen has two sigma bonds, one to each hydrogen. It also has two lone pairs. Sigma bonds: 2. Lone pairs: 2. Steric number = 4 → **sp³ hybridized**.
+
+**Nitrogen in the nitrate ion, NO₃⁻:** nitrogen has three sigma bonds (one to each oxygen — even in the resonance structure where one N–O bond is drawn as a double bond, that's still one sigma bond to that oxygen, same as the others). No lone pairs on nitrogen. Sigma bonds: 3. Lone pairs: 0. Steric number = 3 → **sp² hybridized**.
+</WorkedExample>
+
+<Connects title="What the AP exam actually expects here">
+You're responsible for naming sp, sp², and sp³ hybridization and connecting each one to its steric number. You are **not** expected to justify sp³d or sp³d² using d-orbital involvement — modern bonding theory doesn't actually support real d-orbital participation in most of those "expanded octet" cases anyway, which is part of why the exam backs off this specific claim. You'll still need to predict the *shapes* that come from steric numbers 5 and 6 (trigonal bipyramidal, octahedral, and everything derived from them) — you just won't be asked to name their hybridization.
+</Connects>
+
+## Stage 3: VSEPR — predicting the actual 3D shape
+
+Now that you can count how many regions of electron density surround a central atom (that's the steric number from Stage 2 again — same number, same count), you can predict the molecule's real shape. The logic is almost embarrassingly simple:
+
+> Electron pairs — whether they're in a bond or sitting alone as a lone pair — are all negatively charged, and negative charges repel each other. Every region of electron density around a central atom arranges itself as far away from every other region as geometry allows.
+
+That one sentence is the entire content of **VSEPR theory** (Valence Shell Electron Pair Repulsion). Everything else in this section is just working out what "as far apart as possible" looks like for different numbers of regions.
+
+One distinction matters a lot here: **electron geometry** counts every region, bonds and lone pairs alike. **Molecular geometry** only describes where the *atoms* are — lone pairs are real, and they do push bonds around, but they're invisible when you look at the molecule's actual shape, because there's no atom sitting out there, just electron density. Two molecules can share the same electron geometry and have completely different molecular geometries, depending on how many of those regions are lone pairs instead of bonds. That's the whole reason water looks bent instead of looking like oxygen's actual tetrahedral electron arrangement.
+
+### Two regions: linear
+
+With only two regions of density, as far apart as possible means on exact opposite sides of the central atom — a straight line.
+
+<GeometryDiagram shape="linear" />
+
+**Bond angle: 180°.** CO₂ is the standard example: two double bonds, no lone pairs on carbon, steric number 2.
+
+### Three regions, no lone pairs: trigonal planar
+
+Three regions spread out evenly in a flat plane end up 120° apart — think of a Mercedes-Benz logo.
+
+<GeometryDiagram shape="trigonal-planar" />
+
+**Bond angle: 120°.** BF₃ is the classic example.
+
+### Three regions, one of them a lone pair: bent
+
+Start from the same three-region arrangement, but make one of those regions a lone pair instead of a bond. The underlying electron geometry is still trigonal planar — three regions still arrange themselves 120° apart from each other — but now only two of those regions have an atom attached, so the *molecule* looks bent, not trigonal.
+
+<GeometryDiagram shape="bent-120" />
+
+**Bond angle: slightly less than 120°, around 117°.** This is where a detail from the top of this section matters: lone pairs and bonding pairs don't repel equally. A lone pair is held by only one nucleus, so its electron cloud is a little more spread out and pushes a little harder on its neighbors than a bonding pair does, which is shared and pulled taut between two nuclei. That extra push is what squeezes the angle down from a clean 120° to about 117°. SO₂ is the standard example.
+
+### Four regions, no lone pairs: tetrahedral
+
+Four regions spreading out as far as possible in 3D space do **not** form a flat square — a flat square only maximizes separation in 2D. In three dimensions, four regions settle into a **tetrahedral** arrangement, which is why this one surprises people who try to predict it from a flat Lewis structure.
+
+<GeometryDiagram shape="tetrahedral" />
+
+**Bond angle: 109.5°.** This number is worth sitting with for a second, because it's not a "nice" number like 90° or 120° — it's what four points pushing apart from each other in 3D actually settle on, and it's the single most important bond angle in all of organic and general chemistry. CH₄ is the reference example: four sigma bonds, no lone pairs, steric number 4.
+
+### Four regions, one lone pair: trigonal pyramidal
+
+<GeometryDiagram shape="trigonal-pyramidal" />
+
+**Bond angle: approximately 107°.** Same logic as the trigonal-planar-to-bent step: start from tetrahedral electron geometry, swap one bond for a lone pair, and the extra repulsion from that lone pair squeezes the remaining three bond angles down from 109.5° to about 107°. NH₃ is the standard example — nitrogen has three sigma bonds and one lone pair.
+
+### Four regions, two lone pairs: bent
+
+<GeometryDiagram shape="bent-109" />
+
+**Bond angle: approximately 104.5°.** Two lone pairs instead of one means even more extra repulsion pushing the remaining two bonds together, squeezing the angle down further still. H₂O is the example you already know from Stage 2 — oxygen has two sigma bonds and two lone pairs, steric number 4, sp³ hybridized, and a bent *molecular* shape even though its *electron* geometry is tetrahedral.
+
+<Lightbulb title="Why the angle keeps shrinking as lone pairs increase, every single time">
+Notice the pattern across tetrahedral-derived shapes: 109.5° with zero lone pairs, ~107° with one, ~104.5° with two. Every time you trade a bonding pair for a lone pair, you're trading something whose electron density is shared (and therefore pulled in, tighter, by two nuclei) for something whose electron density belongs to one atom alone (and therefore spreads out more, taking up more angular space and pushing its neighbors). That's not three separate facts to remember — it's one mechanism, applied repeatedly.
+</Lightbulb>
+
+<Mistake title="Assuming water is linear or 109.5° because oxygen is \"tetrahedral\"">
+Oxygen's **electron geometry** in water genuinely is tetrahedral — there are four regions of density around it. But the question "what shape is the molecule" is asking about **molecular geometry**, which only counts atoms, and water only has two atoms attached to its central oxygen. The two lone pairs are real, they do the squeezing described above, but they are invisible in the final molecular shape. Always answer "electron geometry" and "molecular geometry" as two separate questions, even when a problem only seems to be asking about one of them, because mixing them up is the single most common VSEPR error on the exam.
+</Mistake>
+
+### Five regions: trigonal bipyramidal and its relatives
+
+Steric number 5 is where things stop being a single, uniform shape, because five regions around a point are *not* all equally spaced from each other the way 2, 3, 4, and 6 are. The best arrangement five regions can find is **two different angle types at once**: three regions in a flat triangle around the "equator" of the central atom (120° apart from each other), and two more regions directly above and below that plane (90° from every equatorial position).
+
+<GeometryDiagram shape="trigonal-bipyramidal" />
+
+**Bond angles: 90° and 120°, both present in the same molecule.** PCl₅ is the reference example, with five sigma bonds and no lone pairs on phosphorus.
+
+Because the two "axial" positions (top and bottom) and the three "equatorial" positions (the triangle) aren't equivalent to each other, where you put a lone pair *matters* here in a way it didn't for the shapes above. Lone pairs always go equatorial first, because the equatorial position only has two close 90° neighbors (the axial ones), while an axial position has three close 90° neighbors (the whole equatorial triangle) — and a lone pair, with its wider spread and stronger repulsion, wants to minimize how many close neighbors it's crowding.
+
+**One lone pair (equatorial): seesaw.**
+
+<GeometryDiagram shape="seesaw" />
+
+Four atoms remain, with angles distorted below 90° and 120° by the lone pair's extra push. SF₄ is the standard example.
+
+**Two lone pairs (both equatorial): T-shaped.**
+
+<GeometryDiagram shape="t-shaped" />
+
+Three atoms remain, roughly in a T. ClF₃ is the standard example.
+
+**Three lone pairs (all equatorial): linear.**
+
+With three equatorial lone pairs and only the two axial bonds remaining, the molecule looks linear again — just like the two-region case, but arrived at from a completely different steric number. XeF₂ is the standard example: two bonds, three lone pairs, steric number 5.
+
+### Six regions: octahedral and its relatives
+
+Six regions around a central atom all end up equivalent to each other, each 90° from its four nearest neighbors (and 180° from the one directly opposite it). Picture it as pointing toward the center of each face of a cube, or equivalently, toward the six vertices of a shape with eight triangular faces — which is where the name comes from.
+
+<GeometryDiagram shape="octahedral" />
+
+**Bond angle: 90°** (between adjacent positions). SF₆ is the reference example: six sigma bonds, no lone pairs.
+
+Unlike the five-region case, all six positions in an octahedral arrangement are equivalent to each other, so there's no "which spot does the lone pair prefer" question for the first lone pair — any position is equally good.
+
+**One lone pair: square pyramidal.**
+
+<GeometryDiagram shape="square-pyramidal" />
+
+Five atoms remain, slightly pushed away from the lone pair. BrF₅ is the standard example.
+
+**Two lone pairs: square planar.** Once a second lone pair is added, *now* position matters again — the two lone pairs push each other apart as much as possible, which means landing on exact opposite sides of the central atom (180° from each other) rather than next to each other.
+
+<GeometryDiagram shape="square-planar" />
+
+Four atoms remain, all in one flat plane. XeF₄ is the standard example.
+
+<WorkedExample title="Going from a formula straight to a predicted shape: SF4">
+1. **Draw the Lewis structure (from Section 2.5/2.6 of this unit):** sulfur is the central atom, bonded to four fluorines, with one lone pair remaining on sulfur after distributing the rest of the valence electrons.
+2. **Find the steric number on sulfur:** 4 sigma bonds + 1 lone pair = steric number 5.
+3. **Steric number 5 → trigonal bipyramidal electron geometry**, from the table in Stage 2.
+4. **Place the lone pair:** with one lone pair at steric number 5, it goes equatorial (fewer close neighbors, less crowding, lower overall repulsion).
+5. **Read off the molecular geometry:** four bonds remaining, one lone pair equatorial → **seesaw**.
+
+Every VSEPR prediction on the exam follows exactly this five-step path: Lewis structure → steric number → electron geometry from the steric number → lone pair placement if relevant → molecular geometry. Memorizing the final shapes is far less useful than being able to rebuild them through this chain every time.
+</WorkedExample>
+
+### Simulation: explore the shapes yourself
+
+Static diagrams flatten something that's genuinely three-dimensional. Use the simulation below to build molecules with different numbers of bonding and lone pairs and rotate them freely — pay particular attention to how adding a lone pair visibly pushes the remaining bonds closer together, which is the exact effect described above for every shape derived from tetrahedral and trigonal-bipyramidal geometry.
+
+<PhetSim
+  src="https://phet.colorado.edu/sims/html/molecule-shapes/latest/molecule-shapes_en.html"
+  title="PhET Molecule Shapes simulation"
+  caption="Switch to “Real Molecules” mode once you're comfortable with the model mode, to see these shapes on actual molecules rather than generic electron-pair placeholders."
+/>
+
+## Stage 4: Polarity — what the shape is actually for
+
+Knowing a molecule's shape isn't just a geometry exercise — it's the key to predicting how the molecule behaves, and the first big payoff is **polarity**.
+
+A bond is polar when the two atoms sharing it don't pull equally on the shared electrons (different electronegativities), which creates a small separation of charge along that bond. But a whole **molecule** being polar is a separate question from any individual bond being polar, and this is where shape comes in: if a molecule's polar bonds are arranged symmetrically enough, their individual pulls can cancel each other out, leaving the molecule nonpolar overall, even though every bond in it is individually polar.
+
+The test is whether the molecule has an **unbalanced region of electron density** — somewhere that charge is piling up without an equal and opposite pile-up to cancel it.
+
+<Mistake title="Using \"symmetry\" as the test for polarity">
+You'll see this shortcut everywhere, and it's not quite right. A molecule can be perfectly symmetric on paper and still be polar, and the real test was never about symmetry — it's about whether electron density is balanced. The cleanest way to check: does the molecule have exactly one lone pair sitting on the central atom with nothing to balance it? If so, it's almost certainly polar, because one unshared pair of electrons is, by definition, an unbalanced pile of negative charge with nothing opposite it to cancel it out. Molecules with zero lone pairs on a symmetric central atom (like CO₂ or SF₆), or with lone pairs arranged in a perfectly opposing pattern (like XeF₄'s two lone pairs on opposite sides), end up balanced and nonpolar — but check the actual charge distribution, not just whether the shape "looks" symmetric.
+</Mistake>
+
+<WorkedExample title="Polar or nonpolar: working through four molecules">
+**CO₂ (linear, no lone pairs on carbon):** the two C=O bond dipoles point in exactly opposite directions and are equal in magnitude, so they cancel completely. **Nonpolar.**
+
+**NF₃ (trigonal pyramidal, one lone pair on nitrogen):** one unbalanced lone pair on the central atom, with nothing opposite it to cancel the charge buildup it creates. **Polar.**
+
+**PCl₅ (trigonal bipyramidal, no lone pairs):** five identical bond dipoles arranged symmetrically around phosphorus, each one's pull canceled by the overall arrangement. **Nonpolar.**
+
+**XeF₄ (square planar, two lone pairs on xenon):** two lone pairs, but they sit on exact opposite sides of the central atom (180° apart), so they cancel each other the same way two equal, opposing bond dipoles would. **Nonpolar**, despite having lone pairs — proof that "has lone pairs" alone isn't the test; *balanced* versus *unbalanced* is.
+</WorkedExample>
+
+<Connects title="Where this goes next">
+Polarity determined here is the foundation for Unit 3 (Intermolecular Forces): whether a molecule is polar or nonpolar directly determines which intermolecular forces it can participate in, which in turn determines boiling point, solubility, and nearly everything else in that unit. If you walk into Unit 3 shaky on reading polarity off a VSEPR shape, that entire unit gets harder than it needs to be — this is worth being genuinely solid on, not just exam-ready on.
+</Connects>
