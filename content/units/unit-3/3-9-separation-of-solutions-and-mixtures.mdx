@@ -3,36 +3,278 @@ title: "Separation of Solutions and Mixtures"
 unit: 3
 topicNumber: "3.9"
 slug: "3-9-separation-of-solutions-and-mixtures"
-summary: "Choose separation methods based on differences in volatility, solubility, particle size, or attraction to a stationary phase."
+summary: "Explain why chromatography and distillation separate mixtures, interpret chromatograms, calculate Rf values, and connect separation results to intermolecular interactions."
 ---
 
-# Separation methods exploit physical differences
+A separation method works only when the mixture's components behave differently in some measurable way. The key question is not “Which method do I memorize?” It is **“What physical difference lets this method separate the particles?”**
 
-Mixtures can often be separated without changing the chemical identity of their components. Choose the method by identifying the physical property that differs.
+Unit 3 accounts for about 18–22% of the AP Chemistry multiple-choice section. The College Board's Topic 3.9 expects students to explain separation results using intermolecular interactions, including chromatography and distillation. The goal is to understand the mechanism well enough to predict an unfamiliar experiment.
 
-<LessonSection title="1. Match method to property" description="What physical difference makes separation possible?" defaultOpen>
+<LessonSection title="1. Start with the mixture" description="Distinguish dissolved particles from suspended particles" defaultOpen>
 
-- **Filtration:** separates insoluble solid particles from a fluid based on particle size and the filter's pores.
-- **Distillation:** separates components by differences in volatility or boiling point. The more volatile component tends to enter the vapor more readily; the vapor is then condensed.
-- **Chromatography:** separates substances because they partition differently between a mobile phase and a stationary phase. Stronger attraction to the stationary phase usually means slower movement under the same conditions.
-- **Crystallization / evaporation:** can recover a dissolved solid as solvent is removed or conditions change, depending on solubility.
+A **solution** is uniform at the particle level. Dissolved salt water contains hydrated ions distributed among water molecules; a dye solution contains dye molecules dispersed among solvent molecules. A **suspension** contains larger particles that are not dissolved at the molecular or ionic level.
 
-<QuickCheck question="A mixture contains two dissolved dyes that interact differently with a paper stationary phase and a moving solvent. Which method is most appropriate?" options={["Filtration","Chromatography","Magnetic separation","Decanting only"]} correctIndex={1} explanation="Chromatography separates dissolved components through differing interactions with stationary and mobile phases."/>
+This explains why a filter does not remove dissolved salt from salt water. The dissolved ions are not chunks caught between filter fibers; they are individual hydrated ions moving with the water. Both water and ions pass through ordinary filter paper. To separate them, use a property that differs between water and the dissolved substance, such as volatility or solubility.
 
-</LessonSection>
-
-<LessonSection title="2. Interpret a chromatogram" description="Use relative travel, not color alone">
-
-In paper chromatography, the retention factor is commonly defined as:
-
-**Rᶠ = distance traveled by solute / distance traveled by solvent front**
-
-Measure both distances from the origin line. Under the same conditions, a larger Rf indicates that the substance traveled farther relative to the solvent front. Rf values are not universal identifiers; solvent, stationary phase, and experimental conditions matter.
+<QuickCheck question="A student filters a clear sodium chloride solution. The filtrate still conducts electricity. Why?" options={["The filter paper creates new ions","Dissolved ions pass through the filter with the water","Salt has a lower boiling point than water","The salt reacted with the paper"]} correctIndex={1} explanation="Dissolved ions are dispersed at the particle level. Ordinary filtration separates suspended particles, not dissolved ions." />
 
 </LessonSection>
 
-<LessonSection title="3. Explain the mechanism" description="Connect the observation to intermolecular interactions">
+<LessonSection title="2. Chromatography: why components separate" description="Understand both phases before memorizing the procedure" defaultOpen>
 
-A complete answer does not merely name the technique. It explains why the components behave differently: one dye spends more time interacting with the stationary phase, another is carried more effectively by the mobile phase, or one liquid vaporizes more readily than another.
+## The central model
+
+Chromatography has two phases:
+
+- The **mobile phase** moves. In paper chromatography, it is the solvent traveling through the paper.
+- The **stationary phase** stays in place. In paper chromatography, the paper and stationary material associated with it provide the fixed phase.
+
+A dissolved component is not permanently attached to either phase. As the solvent moves, each component repeatedly interacts with the moving solvent and the stationary phase. Imagine someone walking on a moving walkway while repeatedly stopping to talk to people standing beside it. Someone who spends more time on the walkway gets carried farther; someone who repeatedly stops spends less time moving forward.
+
+That is the core of chromatography:
+
+- A component that interacts more strongly with the **stationary phase** spends more time retained and usually travels a shorter distance.
+- A component better accommodated by the **mobile phase** spends more time being carried along and usually travels farther.
+- Components separate because their relative interactions differ, not because the solvent sorts them by color or mass.
+
+<Lightbulb title="The reasoning chain">
+Different intermolecular interactions → different distribution between mobile and stationary phases → different average movement → separated spots or bands. On an AP question, explain this chain rather than stopping at “the dyes have different polarities.”
+</Lightbulb>
+
+## What the experiment looks like
+
+<Unit3Visual kind="chromatography" />
+
+For a real demonstration of the setup, solvent movement, and separated spots, see the [Royal Society of Chemistry paper chromatography practical video](https://edu.rsc.org/mixtures-and-separation/paper-chromatography-practical-videos-14-16-years/4018537.article). The diagram above is a schematic model, not experimental data.
+
+In paper chromatography, a small sample spot is placed on a pencil origin line above the solvent level. The solvent rises through the paper by capillary action. As the solvent front travels, each component partitions between the moving solvent and the stationary phase. At the end, the separated spots form a **chromatogram**.
+
+**Why must the starting spots be above the solvent?** If a spot begins submerged, the sample can dissolve directly into the solvent reservoir and wash off the paper instead of traveling with the solvent front.
+
+**Why use pencil for the origin line?** Graphite does not dissolve and travel like many pen dyes can. A pen line could become another component and contaminate the result.
+
+## Predict what happens
+
+Assume the same paper, solvent, temperature, and experimental setup.
+
+- Component A interacts strongly with the stationary phase and weakly with the mobile phase. A travels a shorter distance.
+- Component B interacts more favorably with the mobile phase and is less strongly retained by the stationary phase. B travels farther.
+- If the solvent changes, the relative interactions may change, so the same substances may travel different distances.
+
+Do not use a blanket rule like “polar substances always travel farther.” Whether a substance travels far depends on **both phases**. A polar compound may be retained strongly by a polar stationary phase; a different solvent can change how well that compound is carried. State which phase the component favors.
+
+<QuickCheck question="Two dyes begin at the same origin. Dye X interacts more strongly with the stationary phase than Dye Y does, while both are carried by the same mobile phase. What is the best prediction?" options={["X travels farther because it is more strongly attracted","X travels a shorter distance because it spends more time retained","X and Y must travel exactly the same distance","X evaporates and cannot be separated"]} correctIndex={1} explanation="Stronger retention by the stationary phase reduces the time the component spends moving with the mobile phase, so it usually travels less far." />
 
 </LessonSection>
+
+<LessonSection title="3. Read a chromatogram and calculate Rf" description="Measure from the same origin and interpret the ratio">
+
+## What the measurements mean
+
+The **solvent front** is the furthest point reached by the moving solvent. The **origin** is the starting line. Measure both distances from the origin:
+
+**Rf = distance traveled by the center of the component spot ÷ distance traveled by the solvent front**
+
+The units cancel because the numerator and denominator are both distances. Rf therefore has **no units**. In a typical ascending paper chromatogram, a spot does not move beyond the solvent front, so its Rf lies between 0 and 1.
+
+Measure the center of a spot, not its upper edge. If the spot is wide or stretched, the center is the consistent reference point.
+
+<WorkedExample title="Worked example 1: calculate Rf">
+A solvent front moves 8.0 cm from the origin. The center of a blue spot moves 5.2 cm.
+
+1. Set up the ratio: Rf = 5.2 cm / 8.0 cm.
+2. Divide: Rf = 0.65.
+3. Report **Rf = 0.65**, with no units.
+
+Interpretation: the spot traveled 65% of the distance traveled by the solvent front. It does not mean that the dye is 65% pure or 65% soluble.
+</WorkedExample>
+
+<WorkedExample title="Worked example 2: compare two components">
+The solvent front moves 10.0 cm. Spot A moves 2.5 cm, and spot B moves 7.0 cm.
+
+- Rf(A) = 2.5 / 10.0 = 0.25
+- Rf(B) = 7.0 / 10.0 = 0.70
+
+B traveled farther relative to the solvent front. Under these conditions, B was less strongly retained by the stationary phase, or was more favorably carried by the mobile phase, than A. Rf lets us compare movement even if two runs have different solvent-front distances.
+</WorkedExample>
+
+## Use the chromatogram as evidence
+
+- **How many components are visible?** One spot suggests one detectable component under those conditions; multiple spots suggest multiple components. This is not absolute proof of purity because compounds can overlap or a component may be invisible.
+- **Which samples may contain the same component?** Spots at matching positions, or matching Rf values, are evidence of a possible match only when the stationary phase, mobile phase, and conditions are the same.
+- **Which component traveled farther?** Compare distances from the origin, or compare Rf values if solvent-front distances differ.
+- **Which component is more strongly retained?** Under the same conditions, the component with the smaller Rf is generally retained more strongly by the stationary phase relative to its interaction with the mobile phase.
+
+<QuickCheck question="The solvent front traveled 9.0 cm. A component's spot center traveled 3.6 cm. What is its Rf value?" options={["0.40","2.5","5.4 cm","0.60"]} correctIndex={0} explanation="Rf = 3.6 cm / 9.0 cm = 0.40. Both distances start at the origin, and the units cancel." />
+
+<Mistake title="Using the distance between the spot and the solvent front">
+Rf is not the untraveled gap between the spot and solvent front divided by the solvent distance. Both distances in the ratio begin at the origin. If the front travels 8 cm and the spot travels 5 cm, use 5/8, not (8 − 5)/8.
+</Mistake>
+
+<Mistake title="Treating Rf as a universal fingerprint">
+An Rf value depends on the experiment. Change the solvent, stationary phase, or other conditions and the same substance can have a different Rf. A match is meaningful when unknown and reference substances are tested under comparable conditions; one matching value alone is not conclusive proof of identity.
+</Mistake>
+
+</LessonSection>
+
+<LessonSection title="4. Paper, thin-layer, and column chromatography" description="Same principle, different physical setup">
+
+The technique changes the format, but the reasoning remains the same: components interact differently with mobile and stationary phases.
+
+| Technique | Stationary phase | Mobile phase | What you observe |
+|---|---|---|---|
+| Paper chromatography | Paper-associated stationary material | Liquid solvent | Spots at different heights on paper |
+| Thin-layer chromatography (TLC) | Thin coating, commonly silica or alumina, on a plate | Liquid solvent | Spots at different heights on the plate |
+| Column chromatography | Stationary material packed in a column | Solvent flowing through the column | Bands move at different rates; components can be collected separately |
+
+In paper chromatography and TLC, the result is often interpreted by comparing spots and Rf values. In column chromatography, components that travel through the column at different rates can emerge at different times and be collected in separate fractions.
+
+Do not assume a spot that moves farther is always less polar in every setup. For example, in common normal-phase TLC, the stationary silica surface is polar, so compounds that interact more strongly with silica are retained longer and tend to have lower Rf values under the same solvent conditions. A different stationary phase or solvent can change the trend. Explain the interactions in the specific setup given.
+
+<QuickCheck question="In TLC using a polar silica stationary phase, compound P interacts more strongly with silica than compound Q. The mobile phase is unchanged. Which result is most likely?" options={["P has a lower Rf than Q","P must have an Rf of exactly 1","P travels farther because silica pulls it upward","P and Q cannot separate on a plate"]} correctIndex={0} explanation="Stronger interactions with the stationary phase retain P, so it generally travels less far and has a lower Rf under the same conditions." />
+
+</LessonSection>
+
+<LessonSection title="5. Distillation: separate by volatility" description="Use vapor pressure and intermolecular attractions to predict what happens">
+
+Chromatography separates components through their different distributions between two phases. **Distillation** uses a different physical difference: how readily each component enters the vapor phase.
+
+A liquid with higher vapor pressure at a given temperature is more volatile: more of it tends to enter the vapor. When a mixture is heated, the vapor is generally enriched in the more volatile component. That vapor is cooled and condensed into a liquid that can be collected separately.
+
+Why does this connect to intermolecular forces? Molecules must escape the liquid to enter the vapor. For comparable liquids, stronger intermolecular attractions generally make molecules harder to separate, giving a lower vapor pressure at the same temperature and a higher boiling point. The exact comparison still depends on molecular structure and mixture composition.
+
+<WorkedExample title="Worked example 3: predict the distillate">
+At 25°C, liquid A has a higher vapor pressure than liquid B. A mixture is distilled.
+
+1. Higher vapor pressure means A enters the vapor phase more readily at that temperature.
+2. The vapor is therefore enriched in A relative to the original liquid mixture.
+3. After condensation, the collected distillate is enriched in A. It is not necessarily pure A after one distillation.
+
+This explanation connects the observation to vapor pressure and relative volatility, rather than merely repeating “lower boiling point.”
+</WorkedExample>
+
+<QuickCheck question="At a fixed temperature, liquid X has a lower vapor pressure than liquid Y. Which conclusion is best supported?" options={["X is more volatile and distills first","Y is more volatile and tends to be enriched in the vapor","X must have weaker intermolecular attractions","X and Y have identical boiling points"]} correctIndex={1} explanation="The higher-vapor-pressure liquid Y enters the vapor phase more readily at that temperature, so the vapor is enriched in Y." />
+
+<Lightbulb title="Simple versus fractional distillation">
+Simple distillation is useful when components have sufficiently different volatilities. Fractional distillation provides repeated vaporization-condensation steps and is more effective when boiling points are closer. In either case, the separation relies on differences in vapor-liquid behavior; the components do not need to chemically react.
+</Lightbulb>
+
+</LessonSection>
+
+<LessonSection title="6. Choose a method from the evidence" description="Reason from the property that differs">
+
+| Mixture or goal | Useful method | Why it works |
+|---|---|---|
+| Insoluble solid mixed with a liquid | Filtration | Suspended solid particles are retained by the filter while fluid passes through |
+| Two dissolved dyes with different phase interactions | Chromatography | Components partition differently between mobile and stationary phases |
+| Two miscible liquids with different volatilities | Distillation | Vapor composition differs from liquid composition |
+| A dissolved solid that can crystallize as solvent is removed or conditions change | Evaporation / crystallization | Solvent is removed or solubility changes, leaving solid behind |
+
+A good AP answer starts from the evidence in the prompt. If a question gives a chromatogram, interpret the spots. If it gives vapor-pressure data, use those data. Do not select a method from a memorized keyword without connecting it to the physical property that differs.
+
+<WorkedExample title="Worked example 4: diagnose a separation">
+A mixture contains dissolved blue and yellow dyes. Filtration produces a clear-looking filtrate but both dyes remain in it. The dyes then form two spots in paper chromatography.
+
+**Why filtration failed:** both dyes were dissolved. Their molecules passed through the filter with the solvent instead of being trapped as suspended particles.
+
+**Why chromatography worked:** the dyes interacted differently with the mobile solvent and stationary phase, so they traveled different distances and formed separate spots.
+
+**What the evidence supports:** the original sample contained at least two detectable components under the experiment's conditions. Spot positions can be compared with reference dyes only if the experimental conditions are comparable.
+</WorkedExample>
+
+</LessonSection>
+
+<LessonSection title="7. AP-style practice" description="Interpret, calculate, and explain; try before revealing the reasoning" defaultOpen>
+
+These are original practice questions written for the College Board's Topic 3.9 learning objective. They are not copied from an official AP exam.
+
+## Question 1 — Multiple choice
+
+A student separates a mixture of compounds A and B using the same paper and solvent. A has an Rf of 0.22; B has an Rf of 0.76. Which statement is best supported?
+
+<QuickCheck question="Choose the best conclusion." options={["A must be less polar than B","B traveled farther relative to the solvent front and was less strongly retained under these conditions","B has a greater molar mass than A","A is definitely more pure than B"]} correctIndex={1} explanation="Rf describes relative movement under the stated conditions. It does not by itself establish polarity, molar mass, or purity." />
+
+## Question 2 — Calculate and compare
+
+In one run, the solvent front moves 7.5 cm from the origin. Spot X moves 4.5 cm, and spot Y moves 1.5 cm.
+
+- **Part A:** Calculate the Rf value for X and Y.
+- **Part B:** Which component is retained more strongly by the stationary phase, assuming the same experimental conditions?
+
+<QuickCheck question="What is the Rf value of X?" options={["0.20","0.60","1.67","3.0"]} correctIndex={1} explanation="Rf(X) = 4.5/7.5 = 0.60. Rf(Y) = 1.5/7.5 = 0.20, so Y is retained more strongly under these conditions." />
+
+## Question 3 — Short free response
+
+A mixture contains two dissolved molecular dyes. In paper chromatography, dye A moves 1.8 cm and dye B moves 6.3 cm. The solvent front moves 7.0 cm.
+
+**(a)** Calculate the Rf value for each dye.
+
+**(b)** Explain, using intermolecular interactions, why the dyes separate.
+
+**(c)** A student claims that dye B must be less polar than dye A because B traveled farther. Evaluate the claim.
+
+<LessonSection title="Reveal a high-scoring reasoning path" description="Check the chemistry logic, not just the final numbers">
+
+**(a) Calculations**
+
+- Dye A: Rf = 1.8/7.0 ≈ 0.26.
+- Dye B: Rf = 6.3/7.0 = 0.90.
+
+Both values are dimensionless.
+
+**(b) Explanation**
+
+The dyes have different relative interactions with the moving solvent and stationary phase. Dye B spends a greater fraction of its movement associated with the mobile phase, or is less strongly retained by the stationary phase, so it travels farther. Dye A is retained more strongly under these conditions and travels less far.
+
+**(c) Evaluate the claim**
+
+The claim is not justified by the chromatogram alone. The larger Rf shows that B traveled farther under this specific setup. Polarity may influence the interactions, but the direction depends on the chemistry of both phases. A defensible answer must identify the stationary phase and solvent before making a polarity claim.
+
+**Why a vague answer loses the reasoning point:** “The dyes have different polarities” names a possible difference but does not explain how that difference produces different movement. Link the interaction to retention and travel distance.
+</LessonSection>
+
+## Question 4 — Distillation data
+
+At 25°C, liquid M has a vapor pressure of 95 torr and liquid N has a vapor pressure of 38 torr. A mixture is heated and distilled.
+
+**(a)** Which component is expected to be enriched in the vapor at 25°C?
+
+**(b)** Explain why the vapor and collected distillate may contain a different ratio of M to N than the original liquid.
+
+**(c)** State one reason a single distillation may not produce a pure component.
+
+<LessonSection title="Reveal a high-scoring reasoning path" description="Use the data to support each claim">
+
+**(a)** M is expected to be enriched in the vapor because it has the higher vapor pressure at the stated temperature.
+
+**(b)** M enters the vapor phase more readily than N. Condensing that vapor therefore produces a distillate with a larger proportion of M than the original mixture, assuming the stated volatility relationship applies.
+
+**(c)** Both components can enter the vapor phase, so one vaporization-condensation step may enrich one component without completely separating them. Their volatilities may be insufficiently different for one step to produce a pure sample.
+</LessonSection>
+
+</LessonSection>
+
+<LessonSection title="8. Check your readiness" description="Use this checklist to find gaps before moving on">
+
+- [ ] Explain the difference between a solution and a suspension, and predict why filtration does or does not work.
+- [ ] Identify the mobile phase, stationary phase, origin, solvent front, spots, and chromatogram.
+- [ ] Explain chromatography using the relative interactions of each component with both phases.
+- [ ] Calculate Rf using distances measured from the same origin and report no units.
+- [ ] Interpret a chromatogram without overclaiming identity or purity.
+- [ ] Explain distillation using volatility, vapor pressure, and enrichment of the vapor.
+- [ ] Compare chromatography and distillation by identifying the physical property each method exploits.
+- [ ] Connect evidence → intermolecular interaction or volatility → observed separation in a complete explanation.
+
+If any item is difficult, revisit that section and redo its example without looking at the explanation. Then explain the mechanism aloud in one or two precise sentences.
+
+</LessonSection>
+
+## Learn from source material
+
+Use these as supplements to the guided lesson, not replacements for working through the reasoning.
+
+- [College Board: AP Chemistry Course and Exam Description](https://apcentral.collegeboard.org/media/pdf/ap-chemistry-course-and-exam-description.pdf) — official course scope and learning objectives. Topic 3.9 includes chromatography and distillation.
+- [College Board: AP Chemistry course and exam resources](https://apcentral.collegeboard.org/courses/ap-chemistry) — course framework, exam information, and official resources.
+- [Royal Society of Chemistry: Paper chromatography practical video](https://edu.rsc.org/mixtures-and-separation/paper-chromatography-practical-videos-14-16-years/4018537.article) — watch the procedure and connect each visible step to the mobile and stationary phases.
+- [College Board Topic 3.9 video: Separation of Solutions and Mixtures](https://www.youtube.com/watch?v=cdBgiJPC09I) — supplementary review.
+- [Official AP Chemistry past free-response questions and scoring information](https://apcentral.collegeboard.org/courses/ap-chemistry/exam) — use public released questions and scoring guidelines to practice applying the same explanation skills to unfamiliar prompts.

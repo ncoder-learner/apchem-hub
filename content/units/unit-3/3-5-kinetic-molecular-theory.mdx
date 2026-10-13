@@ -3,39 +3,150 @@ title: "Kinetic Molecular Theory"
 unit: 3
 topicNumber: "3.5"
 slug: "3-5-kinetic-molecular-theory"
-summary: "Use the ideal-gas particle model to explain pressure, temperature, average kinetic energy, and molecular speed."
+summary: "Use the kinetic molecular theory model to explain gas pressure, temperature, particle speed, and ideal behavior."
 ---
 
-# Kinetic molecular theory connects particles to gas behavior
+Kinetic molecular theory (KMT) connects what we can measure about a gas—pressure, temperature, and volume—to the motion of particles we cannot see. It is a model: deliberately simple assumptions that explain many gas behaviors and also help us predict when real gases will differ.
 
-The ideal-gas model treats particles as tiny objects in constant random motion. Their collisions with container walls produce pressure. The model assumes particle volume is negligible compared with container volume, attractions between particles are negligible, and collisions are elastic.
+<LessonSection title="1. Build the ideal-gas particle model" description="What the model assumes" defaultOpen>
 
 <Unit3Visual kind="kinetic" />
 
-<LessonSection title="1. Temperature and average kinetic energy" description="Use kelvin, not Celsius" defaultOpen>
+For an ideal gas, the kinetic molecular theory model assumes:
 
-The average translational kinetic energy of ideal-gas particles is proportional to absolute temperature:
+1. Gas particles are in constant, random motion.
+2. The particles' individual volumes are negligible compared with the volume of the container.
+3. Particles exert no significant attractive or repulsive forces on one another except during collisions.
+4. Collisions between particles and with the container walls are elastic: total kinetic energy is conserved in a collision.
+5. The average translational kinetic energy of the particles is proportional to the absolute temperature in kelvin.
 
-**Average translational KE = (3/2) k_B T**
+These assumptions are not perfectly true for real gases. They are useful when particles are far apart and moving with enough kinetic energy that attractions matter relatively little.
 
-Here, k_B is Boltzmann's constant and T is absolute temperature in kelvin.
+## Why a gas has pressure
 
-At the same kelvin temperature, all ideal gases have the same average translational kinetic energy. They do **not** have the same average speed: lighter particles move faster on average than heavier particles at the same temperature.
+A gas particle travels through the container and collides with a wall. During a collision, its momentum changes, so it exerts a force on the wall. A huge number of collisions produce the pressure we measure. Pressure is force per unit area.
 
-<QuickCheck question="At the same temperature, which sample has the greater average translational kinetic energy per particle, He(g) or Xe(g)?" options={["He(g)","Xe(g)","They are equal","It depends only on pressure"]} correctIndex={2} explanation="For ideal gases, average translational kinetic energy depends on absolute temperature, not particle identity."/>
+This particle picture predicts:
+- More particles in the same volume and at the same temperature → more wall collisions per second → higher pressure.
+- Higher temperature at the same volume and amount → higher average kinetic energy and typically more forceful wall collisions → higher pressure.
+- Larger volume at the same amount and temperature → fewer collisions with each unit area of wall per unit time → lower pressure.
+
+<QuickCheck question="A sealed rigid container is heated. Why does its gas pressure increase in the ideal-gas model?" options={["The particles grow larger","The particles gain average kinetic energy and collide with the walls more forcefully","The container creates additional gas particles","The particles stop colliding with one another"]} correctIndex={1} explanation="At fixed volume and amount, heating increases average translational kinetic energy. More forceful wall collisions increase pressure." />
 
 </LessonSection>
 
-<LessonSection title="2. Pressure and collisions" description="Predict changes from particle motion">
+<LessonSection title="2. Temperature and average kinetic energy" description="The meaning of temperature at the particle level">
 
-Pressure results from momentum transfer when particles collide with the walls. At constant volume, increasing temperature raises average speed and collision energy, increasing pressure. At constant temperature and fixed amount of gas, reducing volume causes more frequent wall collisions per unit area and raises pressure.
+For an ideal gas, the average translational kinetic energy depends only on kelvin temperature. A higher temperature means greater average kinetic energy. At the same temperature, different ideal gases have the same average translational kinetic energy per particle.
+
+That last statement surprises students. A helium atom and a xenon atom at the same temperature do **not** have the same average speed. They have the same average translational kinetic energy, but xenon is much more massive. Since kinetic energy depends on both mass and speed, a lighter particle must move faster on average to have the same kinetic energy.
+
+Conceptually:
+
+**Average kinetic energy ∝ temperature in kelvin**
+
+For an ideal gas, the average translational kinetic energy per particle is (3/2)kT, where k is Boltzmann's constant. You usually do not need this expression to answer a conceptual AP question, but it explains why kelvin temperature—not Celsius—is the relevant scale.
+
+<QuickCheck question="Two ideal gases are at the same temperature. Gas A particles are much lighter than gas B particles. Which statement is correct?" options={["A has greater average translational kinetic energy","B has greater average translational kinetic energy","They have the same average translational kinetic energy, but A particles have a greater typical speed","They have identical particle speeds"]} correctIndex={2} explanation="At the same temperature, the gases have the same average translational kinetic energy. The lighter particles must move faster on average to have the same kinetic energy." />
 
 </LessonSection>
 
-<LessonSection title="3. When the ideal model fails" description="Real particles have size and attractions">
+<LessonSection title="3. Particle speeds form a distribution" description="Why one average speed does not describe every particle">
 
-Real gases deviate most when particles are crowded together (high pressure) or attractions become important (often lower temperature). The ideal model is generally most useful at relatively low pressure and high temperature. At very low temperatures, attractions can lead to condensation, a behavior the ideal model does not describe.
+Gas particles do not all move at one exact speed. At a given temperature, some particles move more slowly than average and others move more quickly. A speed-distribution graph represents how many particles have different speeds.
 
-<QuickCheck question="Which condition most strongly favors ideal-gas behavior?" options={["High pressure and low temperature","Low pressure and high temperature","Near condensation","Very small volume with many particles"]} correctIndex={1} explanation="Low pressure reduces particle crowding and high temperature makes intermolecular attractions less significant relative to kinetic energy."/>
+When temperature increases:
+- The distribution spreads toward higher speeds.
+- The most probable speed increases.
+- The average kinetic energy increases.
+
+The curve does not mean that every particle's speed rises by exactly the same amount. Particles continue to collide and exchange energy, so their individual speeds constantly change.
+
+At the same temperature, a lighter gas has a speed distribution shifted toward higher speeds than a heavier gas. The average kinetic energies remain equal, but the masses differ.
+
+<QuickCheck question="A gas sample is heated while the amount of gas stays fixed. What happens to its molecular speed distribution?" options={["It shifts toward higher speeds and becomes broader","Every particle obtains exactly the same speed","The particles stop moving randomly","The distribution remains identical because the number of particles is fixed"]} correctIndex={0} explanation="Increasing temperature raises average kinetic energy and shifts the distribution toward higher speeds; individual particles still have a range of speeds." />
+
+</LessonSection>
+
+<LessonSection title="4. Connect KMT to the gas laws" description="Derive the trends from particle collisions">
+
+KMT gives a particle-level explanation for the ideal gas law relationships.
+
+- **Increase temperature at fixed volume and amount:** particles move faster on average and collide with the walls more forcefully, so pressure increases.
+- **Decrease volume at fixed temperature and amount:** particles travel a shorter distance between wall collisions and strike the walls more frequently, so pressure increases.
+- **Add gas particles at fixed temperature and volume:** there are more particles available to collide with the walls, so pressure increases.
+- **Increase volume at fixed temperature and pressure:** the gas can occupy more space, allowing the same amount of gas to maintain the same collision rate per unit wall area.
+
+These are different ways of describing the same relationship. The equation PV = nRT summarizes the macroscopic result; KMT explains why the relationship makes sense.
+
+<WorkedExample title="Worked example 1: two containers">
+Two rigid containers have the same volume and temperature. Container A holds twice as many moles of ideal gas as container B.
+
+At the same temperature, the average kinetic energy per particle is the same in both containers. But container A has twice as many particles in the same volume, so there are more wall collisions per unit time. Its pressure is twice as high under the ideal-gas model.
+</WorkedExample>
+
+<WorkedExample title="Worked example 2: same temperature, different gases">
+A sealed container contains equal numbers of helium and xenon atoms at the same temperature.
+
+The atoms have the same average translational kinetic energy because the temperature is the same. Helium atoms have much less mass, so their typical speeds are greater. Their speeds differ even though their average kinetic energies do not.
+</WorkedExample>
+
+</LessonSection>
+
+<LessonSection title="5. What the model does not say" description="Avoid common reasoning traps">
+
+<Mistake title="“At the same temperature, every gas has the same speed”">
+Temperature determines average translational kinetic energy, not average speed by itself. Particle mass also matters. Lighter particles move faster on average at the same temperature.
+</Mistake>
+
+<Mistake title="“Gas particles have no forces under all real conditions”">
+The no-significant-attractions assumption belongs to the ideal-gas model. Real particles attract one another. Those attractions become more important at lower temperatures and higher pressures, which is why real gases deviate from ideal behavior.
+</Mistake>
+
+<Mistake title="“The particles themselves expand when heated”">
+The particles do not become larger in the KMT model. Heating increases their average kinetic energy. If pressure is held constant, the gas expands because the container volume increases, not because each particle grows.
+</Mistake>
+
+</LessonSection>
+
+<LessonSection title="6. AP-style practice" description="Use the model to justify a prediction">
+
+A rigid container holds 0.20 mol of an ideal gas at 250 K. A second identical container holds 0.40 mol of the same ideal gas at 250 K.
+
+**(a)** Compare the average translational kinetic energy per particle in the two containers.
+
+**(b)** Compare their pressures and explain your prediction using particle collisions.
+
+**(c)** The gas in the second container is heated to 500 K without changing its volume or amount. Predict the new pressure relative to the first container's original pressure.
+
+<LessonSection title="Reveal the reasoning" description="Connect temperature, number of particles, and wall collisions">
+
+**(a)** The average translational kinetic energy per particle is the same because both gases are at 250 K.
+
+**(b)** The second container has twice as many moles at the same temperature and volume, so it has twice the pressure. There are twice as many particles producing wall collisions in the same space.
+
+**(c)** The second container originally has twice the first container's pressure. Doubling its kelvin temperature at fixed amount and volume doubles its own pressure again. Its final pressure is four times the first container's original pressure.
+</LessonSection>
+
+</LessonSection>
+
+<LessonSection title="7. External review" description="Watch or read a second explanation, then test yourself">
+
+- [College Board AP Chemistry Course and Exam Description](https://apcentral.collegeboard.org/media/pdf/ap-chemistry-course-and-exam-description.pdf) — official Unit 3 learning objectives.
+- [Khan Academy: AP Chemistry gas laws and molecular behavior](https://www.khanacademy.org/science/ap-chemistry) — supplementary explanation and practice.
+- [OpenStax Chemistry 2e: The Kinetic-Molecular Theory](https://openstax.org/books/chemistry-2e/pages/9-2-relating-pressure-volume-amount-and-temperature-the-ideal-gas-law) — background on how particle motion connects to macroscopic gas properties.
+- [Official AP Chemistry exam and scoring resources](https://apcentral.collegeboard.org/courses/ap-chemistry/exam) — practice using models to justify conclusions.
+
+</LessonSection>
+
+<LessonSection title="8. Check your readiness" description="Explain these without notes">
+
+- [ ] State the key assumptions of the ideal-gas KMT model.
+- [ ] Explain gas pressure as collisions with container walls.
+- [ ] Connect kelvin temperature to average translational kinetic energy.
+- [ ] Distinguish average kinetic energy from average speed.
+- [ ] Explain why lighter gas particles move faster on average at the same temperature.
+- [ ] Predict how temperature, volume, and amount affect pressure at fixed conditions.
+- [ ] Explain why real gases deviate when attractions and particle volume become important.
 
 </LessonSection>

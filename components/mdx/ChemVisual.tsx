@@ -24,7 +24,7 @@ const labels: Record<ChemVisualKind, { title: string; caption: string }> = {
   composition: { title: "Mass data become a mole ratio", caption: "Convert each element’s measured mass to moles before comparing the amounts. Empirical formulas report the simplest whole-number atom ratio." },
   "atomic-model": { title: "Inside an atom", caption: "The nucleus contains protons and neutrons; electrons occupy quantized energy levels around it. The drawing is a model, not a scale diagram." },
   isotope: { title: "Same element, different isotope", caption: "Isotopes have the same proton count but different neutron counts. Changing the neutron count changes mass, not atomic number." },
-  "mass-spectrum": { title: "Reading a simplified mass spectrum", caption: "Each peak represents ions with a particular mass-to-charge ratio. Peak height or area reflects relative abundance, depending on the instrument." },
+  "mass-spectrum": { title: "Magnesium isotope mass spectrum (illustrative)", caption: "Magnesium has three naturally abundant isotopes: ²⁴Mg (78.99%), ²⁵Mg (10.00%), and ²⁶Mg (11.01%). Peak positions show m/z for singly charged ions; peak heights are normalized so the tallest peak is 100. This is a schematic based on NIST abundance data, not a measured instrument trace." },
   mixture: { title: "Pure substance vs. mixture", caption: "A pure substance contains one chemical species; a mixture contains two or more species physically combined." },
   "electron-configuration": { title: "Electrons fill orbitals in an energy order", caption: "Use the Aufbau principle, Pauli exclusion principle, and Hund’s rule together. Orbital-box diagrams show occupancy, not literal paths." },
   pes: { title: "Photoelectron spectroscopy (PES)", caption: "Higher binding energy means electrons are held more tightly. Peak area tracks how many electrons occupy a subshell." },
@@ -90,12 +90,12 @@ export function ChemVisual({ kind, children }: { kind: ChemVisualKind; children?
           <text x="410" y="195" textAnchor="middle" fill="#93a1b7" fontSize="12">4 neutrons</text>
         </>}
         {kind === "mass-spectrum" && <>
-          <line x1="55" y1="180" x2="560" y2="180" stroke="#93a1b7" strokeWidth="1.5" />
-          <line x1="55" y1="30" x2="55" y2="180" stroke="#93a1b7" strokeWidth="1.5" />
-          {[{x:145,h:55,l:"20"},{x:285,h:120,l:"21"},{x:425,h:35,l:"22"}].map(p=><g key={p.l}><rect x={p.x-15} y={180-p.h} width="30" height={p.h} rx="3" fill="#5aa9ff" /><text x={p.x} y="201" textAnchor="middle" fill="#93a1b7" fontSize="12">{p.l}</text></g>)}
-          <text x="18" y="34" fill="#93a1b7" fontSize="11">Relative</text><text x="18" y="48" fill="#93a1b7" fontSize="11">abundance</text>
-          <text x="330" y="218" textAnchor="middle" fill="#93a1b7" fontSize="12">Mass-to-charge ratio (m/z)</text>
-          <text x="285" y="48" textAnchor="middle" fill="#34d399" fontSize="12">Base peak = 100%</text>
+          <line x1="70" y1="180" x2="560" y2="180" stroke="#93a1b7" strokeWidth="1.5" />
+          <line x1="70" y1="30" x2="70" y2="180" stroke="#93a1b7" strokeWidth="1.5" />
+          {[{x:190,h:120,l:"24",v:"100"},{x:320,h:15.2,l:"25",v:"12.7"},{x:450,h:16.7,l:"26",v:"13.9"}].map(p=><g key={p.l}><line x1={p.x} y1={180-p.h} x2={p.x} y2="180" stroke="#5aa9ff" strokeWidth="5"/><text x={p.x} y="199" textAnchor="middle" fill="#93a1b7" fontSize="12">{p.l}</text><text x={p.x} y={170-p.h} textAnchor="middle" fill="#34d399" fontSize="10">{p.v}</text></g>)}
+          <text x="75" y="22" fill="#93a1b7" fontSize="11">Relative abundance (%)</text>
+          <text x="320" y="218" textAnchor="middle" fill="#93a1b7" fontSize="12">Mass-to-charge ratio (m/z)</text>
+          <text x="190" y="43" textAnchor="middle" fill="#34d399" fontSize="11">Base peak</text>
         </>}
         {kind === "mixture" && <>
           <text x="145" y="25" textAnchor="middle" fill="#e6ecf5" fontSize="13" fontWeight="600">Pure compound</text>

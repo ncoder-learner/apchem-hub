@@ -3,35 +3,172 @@ title: "Properties of Photons"
 unit: 3
 topicNumber: "3.12"
 slug: "3-12-properties-of-photons"
-summary: "Use photon energy and work function to explain electron ejection and distinguish light intensity from frequency."
+summary: "Calculate photon energy from frequency or wavelength and connect absorption or emission to electronic energy changes."
 ---
 
-# Properties of photons and the photoelectric effect
+A photon is a packet of electromagnetic energy. When an atom or molecule absorbs a photon, its energy increases by exactly the photon's energy. When it emits a photon, its energy decreases by that amount. The photon energy must match the energy change involved in the transition.
 
-In the photoelectric effect, light striking a material can eject electrons. The photon energy is E = hν. A material has a work function, the minimum energy required to eject an electron from its surface.
+<LessonSection title="1. The two relationships you need" description="Connect wavelength, frequency, and photon energy" defaultOpen>
 
-<Unit3Visual kind="photoelectric" />
+<Unit3Visual kind="spectroscopy" />
 
-<LessonSection title="1. Threshold frequency" description="Intensity cannot replace photon energy" defaultOpen>
+Two equations connect the properties of a photon:
 
-If photon energy is below the work function, individual photons cannot eject electrons in the basic photoelectric model, even if intensity increases. At or above the threshold frequency, photons can eject electrons; excess photon energy becomes kinetic energy of the emitted electron.
+**c = λν**
 
-**KEₘₐₓ = hν − φ**
+- c = speed of light in a vacuum, approximately 3.00 × 10⁸ m/s
+- λ = wavelength in meters
+- ν = frequency in hertz (Hz)
 
-Here φ is the work function. Increasing frequency above threshold increases the maximum kinetic energy. Increasing intensity at a fixed above-threshold frequency generally increases the number of emitted electrons, not the maximum kinetic energy per electron.
+**E = hν**
 
-<QuickCheck question="Light below the threshold frequency produces no photoelectrons. What happens if the intensity is increased while frequency stays below threshold?" options={["Each photon gains enough energy to eject an electron","No photoelectrons are produced in the ideal model","The work function becomes zero","The electrons' maximum kinetic energy increases"]} correctIndex={1} explanation="Intensity changes photon flux, not energy per photon. Below threshold, each photon still lacks the required energy."/>
+- E = energy of one photon in joules (J)
+- h = Planck's constant, approximately 6.626 × 10⁻³⁴ J·s
+- ν = frequency in Hz
+
+Combine the equations by replacing ν with c/λ:
+
+**E = hc / λ**
+
+This combined form makes the inverse relationship obvious: for light traveling at the same speed, a shorter wavelength means a higher frequency and a higher-energy photon. A longer wavelength means a lower frequency and a lower-energy photon.
+
+<QuickCheck question="Which photon has greater energy?" options={["A photon with wavelength 700 nm","A photon with wavelength 400 nm","Both have the same energy because both are visible light","Energy depends only on the brightness of the light"]} correctIndex={1} explanation="The 400 nm photon has the shorter wavelength, so it has the higher frequency and higher energy: E = hc/λ." />
 
 </LessonSection>
 
-<LessonSection title="2. Graph-based reasoning" description="Interpret kinetic energy versus frequency">
+<LessonSection title="2. Absorption and emission are opposite energy changes" description="Track the atom or molecule, not just the light">
 
-A graph of maximum kinetic energy versus frequency is linear above threshold, with slope h and a frequency-axis intercept at the threshold frequency. A higher work function shifts the threshold to a higher frequency. Explain these features from the equation rather than memorizing the graph shape.
+An atom or molecule has allowed energy states. If it absorbs a photon, the energy of the species increases by the photon's energy. If it emits a photon, the energy of the species decreases by the photon's energy.
+
+- **Absorption:** photon enters; the atom or molecule gains energy and can move to a higher allowed energy state.
+- **Emission:** photon leaves; the atom or molecule loses energy and can move to a lower allowed energy state.
+
+The magnitude of the energy change equals the photon energy. If a transition requires an energy increase of 4.0 × 10⁻¹⁹ J, the absorbed photon must have that energy. The reverse transition emits a photon of the same energy.
+
+<WorkedExample title="Worked example 1: connect a transition to a photon">
+An atom absorbs a photon with energy 3.2 × 10⁻¹⁹ J.
+
+The atom's energy increases by 3.2 × 10⁻¹⁹ J. If the atom later returns through the exact reverse transition, it emits a photon with energy 3.2 × 10⁻¹⁹ J. The emitted and absorbed photons have the same energy magnitude because the energy-level difference is the same.
+</WorkedExample>
+
+<QuickCheck question="An atom emits a photon with energy 5.0 × 10⁻¹⁹ J. What happens to the atom's energy during that emission?" options={["It increases by 5.0 × 10⁻¹⁹ J","It decreases by 5.0 × 10⁻¹⁹ J","It remains unchanged because photons have no energy","It decreases by an amount determined only by wavelength units"]} correctIndex={1} explanation="Emission transfers energy away from the atom or molecule. Its energy decreases by an amount equal to the emitted photon's energy." />
 
 </LessonSection>
 
-<LessonSection title="3. Common confusion" description="Frequency and intensity are not interchangeable">
+<LessonSection title="3. Calculate photon energy from wavelength" description="Convert first, substitute second">
 
-Frequency determines energy per photon. Intensity determines how many photons arrive over a given time and area (for monochromatic light). When explaining experimental results, state which quantity changed and which remained fixed.
+For wavelength-based problems, use **E = hc/λ**. The wavelength must be in meters, because c is in m/s and h is in J·s.
+
+Useful conversion: **1 nm = 1 × 10⁻⁹ m**.
+
+<WorkedExample title="Worked example 2: energy of a 400 nm photon">
+Calculate the energy of one photon with wavelength 400 nm.
+
+**Step 1: Convert wavelength.** 400 nm = 400 × 10⁻⁹ m = 4.00 × 10⁻⁷ m.
+
+**Step 2: Choose the equation.** E = hc/λ.
+
+**Step 3: Substitute.** E = [(6.626 × 10⁻³⁴ J·s)(3.00 × 10⁸ m/s)] / (4.00 × 10⁻⁷ m).
+
+**Step 4: Calculate.** E ≈ **4.97 × 10⁻¹⁹ J per photon**.
+
+The units reduce to joules: (J·s)(m/s)/m = J.
+</WorkedExample>
+
+<WorkedExample title="Worked example 3: compare two wavelengths without calculating both energies">
+Photon A has a wavelength of 500 nm; photon B has a wavelength of 250 nm.
+
+B has half the wavelength of A. Since E = hc/λ, halving wavelength doubles photon energy. Photon B therefore has twice the energy of photon A. This ratio reasoning is faster than calculating both energies separately.
+</WorkedExample>
+
+<QuickCheck question="A photon has wavelength 600 nm. Which setup correctly calculates its energy?" options={["E = hλ/c, with λ = 600 m","E = hc/λ, with λ = 600 × 10⁻⁹ m","E = c/(hλ), with λ in nm","E = hν, using wavelength directly as ν"]} correctIndex={1} explanation="Use E = hc/λ and convert 600 nm to 600 × 10⁻⁹ m before substituting." />
+
+</LessonSection>
+
+<LessonSection title="4. Use frequency when it is given" description="Keep the units consistent">
+
+If frequency is given, use **E = hν** directly. Since 1 Hz = 1 s⁻¹, multiplying h (J·s) by frequency (s⁻¹) leaves joules.
+
+<WorkedExample title="Worked example 4: calculate energy from frequency">
+A photon has frequency 8.0 × 10¹⁴ Hz.
+
+E = hν = (6.626 × 10⁻³⁴ J·s)(8.0 × 10¹⁴ s⁻¹).
+
+E ≈ **5.3 × 10⁻¹⁹ J per photon** to two significant figures.
+
+This photon has higher energy than one with a lower frequency. The speed of light does not change from one vacuum wavelength to another; wavelength changes because frequency changes.
+</WorkedExample>
+
+<QuickCheck question="If the frequency of electromagnetic radiation doubles, what happens to the energy of each photon?" options={["It is halved","It doubles","It stays the same","It becomes four times as large"]} correctIndex={1} explanation="Planck's equation E = hν shows that photon energy is directly proportional to frequency." />
+
+</LessonSection>
+
+<LessonSection title="5. Connect photon energy to wavelength and transitions" description="Make predictions without a calculator">
+
+Use these relationships together:
+
+| If... | Then... | Reason |
+|---|---|---|
+| Wavelength decreases | Frequency increases | c = λν and c is constant |
+| Frequency increases | Photon energy increases | E = hν |
+| Wavelength decreases | Photon energy increases | E = hc/λ |
+| A photon is absorbed | Species energy increases by E | Energy enters the atom or molecule |
+| A photon is emitted | Species energy decreases by E | Energy leaves the atom or molecule |
+
+The energy gap between allowed states determines which photon can be absorbed or emitted. A larger gap corresponds to a higher-energy photon, which has a higher frequency and shorter wavelength. A smaller gap corresponds to a lower-energy photon, with lower frequency and longer wavelength.
+
+<Mistake title="Mixing up wavelength and energy">
+The relationship is inverse: shorter wavelength means higher photon energy. If a student says “red light has more energy because its wavelength is longer,” the relationship has been reversed. Red light has a longer wavelength than violet light, so an individual violet photon has more energy than an individual red photon.
+</Mistake>
+
+<Mistake title="Using wavelength as frequency">
+E = hν uses frequency, not wavelength. If wavelength is supplied, either calculate ν = c/λ first and then use E = hν, or use the combined equation E = hc/λ. Do not substitute a number in nanometers directly into the frequency variable.
+</Mistake>
+
+</LessonSection>
+
+<LessonSection title="6. AP-style practice" description="Calculate and interpret the energy change">
+
+An atom absorbs a photon with a wavelength of 300 nm.
+
+**(a)** Calculate the frequency of the photon.
+
+**(b)** Calculate the energy of one photon.
+
+**(c)** State how the atom's energy changes during absorption.
+
+**(d)** A second photon has a wavelength of 600 nm. Compare its energy with the first photon without repeating the full calculation.
+
+<LessonSection title="Reveal the reasoning" description="Check units, powers of ten, and energy direction">
+
+**(a)** Convert 300 nm to 3.00 × 10⁻⁷ m. Then ν = c/λ = (3.00 × 10⁸)/(3.00 × 10⁻⁷) = **1.00 × 10¹⁵ Hz**.
+
+**(b)** E = hν = (6.626 × 10⁻³⁴)(1.00 × 10¹⁵) = **6.63 × 10⁻¹⁹ J per photon**.
+
+**(c)** The atom's energy increases by 6.63 × 10⁻¹⁹ J.
+
+**(d)** 600 nm is twice the wavelength of 300 nm. Since E = hc/λ, the 600 nm photon has half the energy of the 300 nm photon.
+</LessonSection>
+
+</LessonSection>
+
+<LessonSection title="7. External review" description="Use the official course framework and a visual explanation">
+
+- [College Board AP Chemistry Course and Exam Description, Topic 3.12](https://apcentral.collegeboard.org/media/pdf/ap-chemistry-course-and-exam-description.pdf) — official learning objective and required equations.
+- [NASA: Electromagnetic spectrum diagram](https://imagine.gsfc.nasa.gov/science/toolbox/emspectrum2.html) — compare wavelength, frequency, and photon-energy scales.
+- [Khan Academy: AP Chemistry photon energy and electromagnetic radiation](https://www.khanacademy.org/science/ap-chemistry) — supplementary practice and explanations.
+- [Official AP Chemistry exam and scoring resources](https://apcentral.collegeboard.org/courses/ap-chemistry/exam) — use released questions to practice mathematical routines.
+
+</LessonSection>
+
+<LessonSection title="8. Check your readiness" description="Try these without notes">
+
+- [ ] State c = λν and E = hν and define every symbol.
+- [ ] Calculate frequency from wavelength and convert nm to m.
+- [ ] Calculate energy per photon from frequency or wavelength.
+- [ ] Explain why shorter wavelength means higher photon energy.
+- [ ] Explain how absorption and emission change the energy of an atom or molecule.
+- [ ] Connect photon energy to the size of an electronic energy-level transition.
+- [ ] Check units and significant figures in multi-step calculations.
 
 </LessonSection>

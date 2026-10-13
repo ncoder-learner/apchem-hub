@@ -1,34 +1,38 @@
-﻿---
+---
 title: "Atomic Structure and Electron Configuration"
 unit: 1
 topicNumber: "1.5"
 slug: "1-5-atomic-structure-and-electron-configuration"
-summary: "Connect atomic number, isotopes, orbitals, and electron configurations using the quantum model."
+summary: "Connect atomic number, isotopes, ions, orbitals, and electron configurations using the quantum model."
 ---
 
-# Electrons occupy quantized states
+An atom's identity comes from its nucleus, while its chemical behavior depends strongly on its electrons. Electron configurations describe how electrons occupy allowed quantum states. To solve problems, keep three questions separate: how many protons and neutrons are present, how many electrons are present, and how those electrons occupy orbitals.
 
-The modern atomic model does not describe electrons as tiny planets following exact circular paths. It describes electrons using quantum states and orbitals: regions of space associated with high probability of finding an electron. Electron configurations summarize how electrons occupy these states.
+<LessonSection title="1. Protons, neutrons, and electrons" description="Read atomic number, mass number, and charge" defaultOpen>
 
-<LessonSection title="1. Protons, neutrons, and electrons" description="Use nuclear charge and mass number to identify an atom or ion." defaultOpen>
+The **atomic number (Z)** is the number of protons and identifies the element. The **mass number (A)** is the total number of protons and neutrons in one isotope.
 
-The **atomic number** (Z) equals the number of protons and identifies the element. The **mass number** (A) equals protons plus neutrons for one isotope.
+**Number of neutrons = A − Z**
 
-neutrons=A-Z
-
-A neutral atom has equal numbers of protons and electrons. An ion has gained or lost electrons: a cation is positive because it has fewer electrons than protons, and an anion is negative because it has more electrons than protons.
+A neutral atom has equal numbers of protons and electrons. An ion has gained or lost electrons:
+- A **cation** is positive because it has fewer electrons than protons.
+- An **anion** is negative because it has more electrons than protons.
 
 <ChemVisual kind="isotope" />
 
-For example, (Â²Â³Na^+) has 11 protons, 12 neutrons, and 10 electrons. The + charge does not mean it has one proton; it means it has one fewer electron than the neutral sodium atom.
+For example, sodium-23 has 11 protons and 12 neutrons. A Na⁺ ion still has 11 protons and 12 neutrons, but it has 10 electrons because it has lost one electron. The + charge does not mean it gained a proton.
 
-<QuickCheck question="How many neutrons are in an atom of chlorine-37? (Chlorine has atomic number 17.)" options={["17","20","37","54"]} correctIndex={1} explanation="Neutrons = mass number âˆ’ atomic number = 37 âˆ’ 17 = 20." />
+<QuickCheck question="How many neutrons are in an atom of chlorine-37? Chlorine has atomic number 17." options={["17","20","37","54"]} correctIndex={1} explanation="Neutrons = mass number − atomic number = 37 − 17 = 20." />
+
+<QuickCheck question="How many electrons are in an Al³⁺ ion? Aluminum has atomic number 13." options={["10","13","16","3"]} correctIndex={0} explanation="Neutral aluminum has 13 electrons. A 3+ ion has lost three, leaving 10 electrons." />
 
 </LessonSection>
 
-<LessonSection title="2. Orbitals and quantum numbers" description="Know what s, p, d, and f describe.">
+<LessonSection title="2. The quantum model and orbitals" description="An orbital is a probability model, not a planet-like path">
 
-An orbital is a quantum state that can hold up to two electrons with opposite spins. Subshells contain orbitals:
+The modern atomic model does not describe electrons as tiny planets following exact circular paths. It uses quantum states and **orbitals**, regions of space associated with a high probability of finding an electron. The energy and shape of the orbital depend on quantum numbers.
+
+Each orbital can hold up to two electrons, and those electrons must have opposite spins. A **subshell** is a set of orbitals with the same subshell type and principal energy level.
 
 | Subshell | Number of orbitals | Maximum electrons |
 |---|---:|---:|
@@ -37,34 +41,129 @@ An orbital is a quantum state that can hold up to two electrons with opposite sp
 | d | 5 | 10 |
 | f | 7 | 14 |
 
-The principal quantum number (n) describes the main energy level and is related to orbital size. The angular-momentum quantum number identifies the subshell type. Magnetic quantum numbers distinguish orbitals within a subshell, and spin quantum number distinguishes the two allowed spin states.
+The principal quantum number n labels the main energy level and is related to orbital size and energy. The subshell label (s, p, d, f) distinguishes orbital types. You generally use these labels to write electron configurations rather than calculating quantum numbers from scratch.
 
-These are not decorative labels: the allowed quantum states constrain electron occupancy and help explain periodic structure.
+<QuickCheck question="How many electrons can occupy a complete p subshell?" options={["2","3","6","10"]} correctIndex={2} explanation="A p subshell contains three orbitals, and each orbital can hold two electrons, so the maximum is six." />
 
 </LessonSection>
 
-<LessonSection title="3. Fill electron configurations" description="Apply three rules consistently.">
+<LessonSection title="3. Fill electron configurations" description="Apply Aufbau, Pauli, and Hund together">
 
-**Aufbau principle:** fill lower-energy orbitals before higher-energy orbitals in the usual ground-state ordering. **Pauli exclusion principle:** an orbital holds at most two electrons, and they must have opposite spins. **Hund's rule:** orbitals of equal energy fill singly with parallel spins before pairing.
+An electron configuration records how many electrons occupy each subshell. Three rules guide the filling of orbitals:
+
+- **Aufbau principle:** fill lower-energy orbitals before higher-energy orbitals in the usual ground-state ordering.
+- **Pauli exclusion principle:** each orbital holds at most two electrons, with opposite spins.
+- **Hund's rule:** orbitals of equal energy fill singly with parallel spins before electrons pair.
 
 <ChemVisual kind="electron-configuration" />
 
-A common filling sequence begins (1s, 2s, 2p, 3s, 3p, 4s, 3d, 4p). The energy ordering has exceptions for some atoms, especially transition metals, so use the configuration convention taught for the problem and know the common exceptions if required.
+A common filling order for the first several subshells is:
 
-**Example: sulfur, Z = 16**
+**1s → 2s → 2p → 3s → 3p → 4s → 3d → 4p**
 
-1s^2 2s^2 2p^6 3s^2 3p^4
+The superscripts show electron counts. The sum of the superscripts must equal the total number of electrons in the atom or ion. For example, 1s² 2s² 2p⁶ contains 2 + 2 + 6 = 10 electrons.
 
-The superscripts add to 16 electrons. A noble-gas shorthand is ([Ne]3s^2 3p^4). For transition-metal cations, electrons are generally removed from the highest principal energy level first; for example, 4s electrons are removed before 3d electrons when forming common first-row transition-metal cations.
+<WorkedExample title="Worked example 1: sulfur">
+Sulfur has atomic number 16, so a neutral sulfur atom has 16 electrons.
 
-<QuickCheck question="Which rule explains why electrons occupy separate equal-energy p orbitals before pairing?" options={["Pauli exclusion principle","Hundâ€™s rule","Law of conservation of mass","Coulombâ€™s law only"]} correctIndex={1} explanation="Hundâ€™s rule favors singly occupying degenerate orbitals with parallel spins before pairing." />
+Fill the subshells in order:
+- 1s² accounts for 2 electrons.
+- 2s² brings the total to 4.
+- 2p⁶ brings the total to 10.
+- 3s² brings the total to 12.
+- 3p⁴ brings the total to 16.
+
+The electron configuration is **1s² 2s² 2p⁶ 3s² 3p⁴**, or **[Ne] 3s² 3p⁴** in noble-gas shorthand. The shorthand replaces the inner-electron configuration with the previous noble gas.
+</WorkedExample>
+
+<WorkedExample title="Worked example 2: an ion's electron configuration">
+A neutral magnesium atom has 12 electrons: 1s² 2s² 2p⁶ 3s². A Mg²⁺ ion has lost two electrons, so it has 10 electrons and the configuration **1s² 2s² 2p⁶ = [Ne]**.
+
+The nucleus has not changed during ordinary ion formation: Mg²⁺ still has 12 protons. Only the electron count changes.
+</WorkedExample>
+
+<QuickCheck question="Which rule explains why electrons occupy separate equal-energy p orbitals before pairing?" options={["Pauli exclusion principle","Hund's rule","Conservation of mass","Coulomb's law only"]} correctIndex={1} explanation="Hund's rule favors singly occupying degenerate orbitals with parallel spins before pairing." />
 
 </LessonSection>
 
-<LessonSection title="4. Ions, isotopes, and notation" description="Do not confuse mass number, charge, and atomic number.">
+<LessonSection title="4. Electron configurations of ions" description="Adjust the electron count before filling orbitals">
 
-For notation (^A_ZX^q), (Z) is the proton count, (A) is protons plus neutrons, and (q) indicates electron imbalance. A 2âˆ’ ion has gained two electrons relative to its neutral atom. Isotopes of an element share (Z) but differ in (A), because their neutron counts differ.
+For a neutral atom, electron count = atomic number. For an ion, adjust the electron count by the charge:
+- For a 1+ ion, subtract one electron.
+- For a 2+ ion, subtract two electrons.
+- For a 1− ion, add one electron.
+- For a 2− ion, add two electrons.
 
-For an electron configuration, count electrons after adjusting for charge. For a neutral atom, the electron count equals (Z); for a 3+ ion, subtract three; for a 2âˆ’ ion, add two.
+For main-group ions, this often gives a noble-gas electron configuration. For transition-metal cations, remove electrons from the highest principal energy level first. For example, the 4s electrons are removed before 3d electrons when forming common first-row transition-metal cations, even though 4s fills before 3d in the usual neutral-atom filling sequence.
+
+<WorkedExample title="Worked example 3: iron(III), Fe³⁺">
+Neutral Fe has 26 electrons and a commonly written ground-state configuration [Ar] 4s² 3d⁶. To form Fe³⁺, remove three electrons. Remove the two 4s electrons first, then one 3d electron.
+
+Fe³⁺ is **[Ar] 3d⁵**.
+
+Check: the ion has 26 − 3 = 23 electrons. Do not remove three electrons from the 3d subshell first while leaving 4s² occupied.
+</WorkedExample>
+
+</LessonSection>
+
+<LessonSection title="5. Isotopes, ions, and notation" description="Do not confuse mass number, charge, and atomic number">
+
+For isotope notation, the superscript at the upper left is mass number A, the subscript at the lower left is atomic number Z, and the charge appears at the upper right when the species is an ion.
+
+- Z tells you the proton count.
+- A − Z tells you the neutron count.
+- Charge tells you the electron imbalance relative to the neutral atom.
+
+Isotopes of an element have the same Z but different A because they have different neutron counts. Ions of an element have the same proton count but different electron counts.
+
+<Mistake title="Changing the proton count when an atom becomes an ion">
+Ordinary ion formation changes electrons, not the nucleus. Na and Na⁺ both have 11 protons. If the proton count changes, the element identity changes.
+</Mistake>
+
+<Mistake title="Using the mass number to find electrons">
+Mass number is protons plus neutrons. It does not give the electron count. Use atomic number for protons, then adjust electrons according to the charge.
+</Mistake>
+
+</LessonSection>
+
+<LessonSection title="6. AP-style practice" description="Combine isotope notation and electron configuration">
+
+A species is written as ²⁷Al³⁺. Aluminum has atomic number 13.
+
+**(a)** Determine the number of protons, neutrons, and electrons.
+
+**(b)** Write the electron configuration of Al³⁺.
+
+**(c)** Explain why forming Al³⁺ does not change the number of neutrons.
+
+<LessonSection title="Reveal the reasoning" description="Check the nucleus separately from the electrons">
+
+**(a)** Protons = 13. Neutrons = 27 − 13 = 14. Electrons = 13 − 3 = 10.
+
+**(b)** Ten electrons give the configuration **1s² 2s² 2p⁶**, or [Ne].
+
+**(c)** The 3+ charge means aluminum has lost three electrons. The nucleus is unchanged during ordinary ion formation, so the number of neutrons remains 14.
+</LessonSection>
+
+</LessonSection>
+
+<LessonSection title="7. External review" description="Use the official scope and another explanation">
+
+- [College Board AP Chemistry Course and Exam Description](https://apcentral.collegeboard.org/media/pdf/ap-chemistry-course-and-exam-description.pdf) — official Unit 1 scope.
+- [Khan Academy: Isotopes and mass spectrometry](https://www.khanacademy.org/science/chemistry/ap-chemistry/atoms-compounds-ions-ap/introduction-to-the-atom-ap/a/isotopes-and-mass-spectrometry) — isotope notation and atomic structure.
+- [Khan Academy: AP Chemistry atomic structure and electron configuration](https://www.khanacademy.org/science/ap-chemistry) — supplementary explanations and practice.
+- [Official AP Chemistry exam and scoring resources](https://apcentral.collegeboard.org/courses/ap-chemistry/exam) — practice applying the model to unfamiliar questions.
+
+</LessonSection>
+
+<LessonSection title="8. Check your readiness" description="Try these without notes">
+
+- [ ] Calculate protons, neutrons, and electrons from isotope and ion notation.
+- [ ] Explain the difference between an orbital and an electron path.
+- [ ] State the maximum electron capacity of s, p, d, and f subshells.
+- [ ] Apply Aufbau, Pauli, and Hund when writing configurations.
+- [ ] Write configurations for neutral atoms and ions.
+- [ ] Explain why transition-metal cations lose 4s electrons before 3d electrons.
+- [ ] Distinguish isotope changes from ion formation.
 
 </LessonSection>

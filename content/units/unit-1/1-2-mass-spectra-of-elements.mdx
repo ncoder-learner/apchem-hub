@@ -1,66 +1,178 @@
-﻿---
+---
 title: "Mass Spectra of Elements"
 unit: 1
 topicNumber: "1.2"
 slug: "1-2-mass-spectra-of-elements"
-summary: "Interpret isotope peaks and use relative abundance to determine an elementâ€™s average atomic mass."
+summary: "Interpret isotope peaks, calculate relative abundance, and determine average atomic mass using a weighted mean."
 ---
 
-# An element can have multiple masses
+An element is defined by its number of protons, not by one exact mass. Many elements occur naturally as mixtures of isotopes: atoms with the same number of protons but different numbers of neutrons. A mass spectrum gives experimental evidence about the masses of those isotopes and how abundant each one is.
 
-An element is defined by its proton count, not by one exact mass. Naturally occurring samples can contain different isotopes of the same element. A mass spectrometer separates ions by their mass-to-charge ratio, producing peaks that provide evidence about isotopic masses and relative abundances.
+<LessonSection title="1. Read a mass spectrum" description="Position gives mass-to-charge ratio; peak size gives abundance" defaultOpen>
 
-<LessonSection title="1. Read the spectrum" description="Understand the axes and what a peak represents." defaultOpen>
-
-A simplified mass spectrum plots relative abundance against mass-to-charge ratio, often written (m/z). The instrument ionizes particles and separates them according to how they respond to electric or magnetic fields. In common introductory examples, ions have a +1 charge, so (m/z) is numerically close to the isotope's mass.
+A simplified mass spectrum plots **mass-to-charge ratio (m/z)** on the horizontal axis and **relative abundance** on the vertical axis. In the usual introductory AP Chemistry isotope questions, the detected ions have a +1 charge, so m/z is approximately the isotope's mass.
 
 <ChemVisual kind="mass-spectrum" />
 
-- **Horizontal position:** the mass-to-charge ratio of the detected ion.
-- **Peak height or area:** relative abundance, depending on how the spectrum is represented.
-- **Base peak:** the most abundant detected ion, normalized to 100% in a relative-intensity spectrum.
+This schematic uses **magnesium** as a real-data example. NIST reports natural abundances of approximately 78.99% for magnesium-24, 10.00% for magnesium-25, and 11.01% for magnesium-26. Because the peak heights are normalized to the tallest peak, the smaller peaks appear at about 12.7% and 13.9% relative abundance—not at 10% and 11% on the normalized scale. See [NIST's magnesium isotope composition data](https://physics.nist.gov/cgi-bin/Compositions/stand_alone.pl?ele=Mg).
 
-A peak at (m/z=24) does not mean every atom of the element has mass 24. It indicates a detected isotope or ion with that mass-to-charge ratio. Real spectra may also contain molecular fragments or multiply charged ions, so interpret the context given in the question.
+Here is the same evidence as a data table. The isotopic masses are more precise than the integer mass numbers shown on the schematic x-axis.
 
-<QuickCheck question="A spectrum has isotope peaks at m/z 10 and 11. What is the strongest conclusion?" options={["The element has atomic number 10","The element has at least two isotopes with different masses","Every atom has an average mass of 10.5","The larger peak must have the larger mass"]} correctIndex={1} explanation="Separate peaks at different isotope masses indicate isotopes. Atomic number is proton count and cannot be read directly from the mass axis." />
+| Magnesium isotope | Isotopic mass (u) | Natural abundance |
+|---|---:|---:|
+| ²⁴Mg | 23.98504 | 78.99% |
+| ²⁵Mg | 24.98584 | 10.00% |
+| ²⁶Mg | 25.98259 | 11.01% |
+
+Use fractional abundances in the weighted mean:
+
+**Average mass** = (23.98504 × 0.7899) + (24.98584 × 0.1000) + (25.98259 × 0.1101)
+
+= 18.9463 + 2.4986 + 2.8607
+
+= **24.3056 u ≈ 24.306 u**
+
+The result is near the periodic-table atomic mass of magnesium (about 24.305 u). Small differences in the last digits reflect the precision and rounding of the displayed masses and abundances. The tallest peak is not necessarily at the average mass: the average is calculated from all isotope masses weighted by their abundances.
+
+For a second explanation with a spectrum, see [Khan Academy: Isotopes and mass spectrometry](https://www.khanacademy.org/science/chemistry/ap-chemistry/atoms-compounds-ions-ap/introduction-to-the-atom-ap/a/isotopes-and-mass-spectrometry).
+
+Read the spectrum in two separate ways:
+
+- **Peak position:** tells you the mass-to-charge ratio of the detected ion. For a +1 isotope ion, this identifies the isotope's approximate mass.
+- **Peak height or area:** indicates relative abundance, depending on how the instrument's spectrum is represented. A taller isotope peak means that isotope is more abundant in the sample.
+
+The number of distinct isotope peaks shows how many isotopes are detected in the simplified spectrum. The peak at m/z 37 does not mean chlorine has 37 protons; it indicates an isotope with mass number 37 and 17 protons.
+
+<QuickCheck question="A simplified element spectrum has two peaks at m/z 10 and m/z 11. What is the strongest conclusion?" options={["The element has atomic number 10","The element has at least two isotopes with different masses","Every atom has an average mass of 10.5","The taller peak must have the larger mass"]} correctIndex={1} explanation="Separate peaks at different isotope masses indicate isotopes. Atomic number is the proton count and cannot be read directly from the mass axis." />
 
 </LessonSection>
 
-<LessonSection title="2. Calculate average atomic mass" description="Use a weighted average, not a simple mean.">
+<LessonSection title="2. Why isotopes have different masses" description="Same protons, different neutrons">
 
-The atomic mass shown on a periodic table is generally a **weighted average** of the naturally occurring isotopes. More abundant isotopes contribute more to the average.
+Isotopes of the same element have:
+- the same number of protons, so they are the same element;
+- different numbers of neutrons, so they have different mass numbers;
+- nearly the same chemical behavior in ordinary reactions, because their electron structures are the same.
 
-average atomic mass=sum(isotope mass)(fractional abundance)
+For example, chlorine-35 and chlorine-37 each have 17 protons. Chlorine-35 has 18 neutrons; chlorine-37 has 20 neutrons. Both are chlorine, but their masses differ.
 
-Convert percent abundance to a decimal fraction before multiplying. The fractions should sum to 1.00, or the percentages should sum to 100%.
+The mass spectrum is experimental evidence for this isotope mixture. It does not imply that one isotope is a different element.
 
-<WorkedExample title="An element has two isotopes">
-Isotope A has mass 10.0 amu and abundance 20.0%; isotope B has mass 11.0 amu and abundance 80.0%.
+</LessonSection>
 
-(10.0)(0.200)+(11.0)(0.800)=10.8 amu
+<LessonSection title="3. Calculate average atomic mass" description="Use a weighted average, not a simple mean">
 
-The average is closer to 11.0 amu because isotope B is much more abundant. A simple average of 10.0 and 11.0 would incorrectly assume equal abundance.
+The atomic mass on the periodic table is generally a weighted average of the masses of naturally occurring isotopes. A more abundant isotope contributes more to the average.
+
+**Average atomic mass = Σ(isotope mass × fractional abundance)**
+
+Convert each percentage to a decimal before multiplying. For example, 75% becomes 0.75. All fractional abundances should add to 1.00, or all percentage abundances should add to 100%.
+
+<WorkedExample title="Worked example 1: calculate chlorine's average atomic mass">
+Suppose chlorine has two isotopes:
+- Cl-35: mass 34.97 u, abundance 75.8%
+- Cl-37: mass 36.97 u, abundance 24.2%
+
+Convert percentages to decimals and calculate:
+
+Average mass = (34.97)(0.758) + (36.97)(0.242)
+
+= 26.51 + 8.95 = **35.46 u** (rounded).
+
+The answer is closer to 34.97 u because chlorine-35 is more abundant. A simple average of the two isotope masses would incorrectly assume they occur in equal amounts.
+</WorkedExample>
+
+<QuickCheck question="An element has isotopes of mass 20 u at 90% abundance and 22 u at 10% abundance. What is its average atomic mass?" options={["20.0 u","20.2 u","21.0 u","22.0 u"]} correctIndex={1} explanation="Average mass = (20)(0.90) + (22)(0.10) = 18.0 + 2.2 = 20.2 u." />
+
+</LessonSection>
+
+<LessonSection title="4. Work backward from the average" description="Solve for an unknown isotope abundance">
+
+If an element has two isotopes and the abundance of one is x, the other isotope's abundance is 1 − x. Use the weighted-average equation:
+
+Average mass = (mass A)(x) + (mass B)(1 − x)
+
+Then solve for x. If you use percentages instead, make sure they add to 100%.
+
+<WorkedExample title="Worked example 2: find an unknown abundance">
+An element has isotopes with masses 10.0 u and 11.0 u. Its average atomic mass is 10.8 u. Find the abundance of the 10.0 u isotope.
+
+Let x be the fraction of the 10.0 u isotope. The other fraction is 1 − x.
+
+10.8 = (10.0)x + (11.0)(1 − x)
+
+10.8 = 10.0x + 11.0 − 11.0x
+
+−0.2 = −1.0x, so x = 0.20.
+
+The 10.0 u isotope is **20% abundant**, and the 11.0 u isotope is 80% abundant. The average is closer to 11.0 u, so the heavier isotope must be more abundant.
 </WorkedExample>
 
 </LessonSection>
 
-<LessonSection title="3. Work backward from average mass" description="Set the isotope fractions before solving.">
+<LessonSection title="5. Common traps" description="Separate mass, abundance, and element identity">
 
-For a two-isotope element, let (x) be the fractional abundance of isotope A. Then isotope B has fraction (1-x).
+<Mistake title="Using a simple average">
+If two isotopes are present in unequal amounts, averaging their masses equally is wrong. Multiply each isotope's mass by its fractional abundance first, then add the contributions.
+</Mistake>
 
-average mass=m_Ax+m_B(1-x)
+<Mistake title="Reading peak height as mass">
+The horizontal position gives m/z; peak height or area gives relative abundance. A taller peak means more of that isotope was detected, not that it has a greater mass.
+</Mistake>
 
-Expand, solve for (x), and convert the fraction to a percentage. Check that the result lies between 0 and 1. If the average mass is closer to isotope A's mass, isotope A must be the more abundant isotope.
+<Mistake title="Confusing mass number and atomic number">
+Mass number = protons + neutrons. Atomic number = protons only. Isotopes have the same atomic number but different mass numbers.
+</Mistake>
 
-**Common error:** treating percent abundance as a whole number. If abundance is 35%, use 0.35 in the weighted-average equation, not 35.
+<Mistake title="Forgetting that fractions must add to one">
+If one isotope has abundance x, the other has abundance 1 − x. If you use percentages, the total must be 100%. A calculation that produces a negative abundance or a value above 100% signals an error.
+</Mistake>
+
 </LessonSection>
 
-<LessonSection title="4. Exam reasoning" description="Explain what the data support, without overclaiming.">
+<LessonSection title="6. AP-style practice" description="Read a spectrum and calculate the weighted average">
 
-- Isotopes have the same number of protons and different numbers of neutrons.
-- A larger peak generally indicates greater relative abundance, not a greater charge or stronger bond.
-- Average atomic mass may be non-integer because it averages isotope masses and abundances.
-- If isotope abundances change between samples, the measured average can change even though the element identity does not.
+A simplified mass spectrum of element Q has two isotope peaks:
 
-When explaining a spectrum, refer to peak positions for isotope masses and relative peak sizes for abundance.
+| Isotope | Approximate mass | Relative abundance |
+|---|---:|---:|
+| Q-10 | 10.0 u | 30.0% |
+| Q-11 | 11.0 u | 70.0% |
+
+**(a)** Calculate the average atomic mass of Q.
+
+**(b)** Explain why the average atomic mass is not 10.5 u.
+
+**(c)** A second sample has the same two isotopes, but the Q-10 peak is taller relative to Q-11. Predict how the sample's average atomic mass compares with the first sample.
+
+<LessonSection title="Reveal the reasoning" description="Check the calculation and the evidence">
+
+**(a)** Average mass = (10.0)(0.300) + (11.0)(0.700) = 3.00 + 7.70 = **10.70 u**.
+
+**(b)** 10.5 u is the simple average that would apply only if the isotopes were equally abundant. Q-11 makes up 70% of the sample, so it contributes more to the weighted average.
+
+**(c)** The second sample's average atomic mass is lower than the first sample's because the lighter isotope Q-10 is more abundant. The isotope identities do not change; only their relative amounts change.
+</LessonSection>
+
+</LessonSection>
+
+<LessonSection title="7. External visual and interactive review" description="Compare the spectrum with the underlying isotope data">
+
+- [Khan Academy: Isotopes and mass spectrometry](https://www.khanacademy.org/science/chemistry/ap-chemistry/atoms-compounds-ions-ap/introduction-to-the-atom-ap/a/isotopes-and-mass-spectrometry) — an explanation of how mass spectrometry measures isotope masses and abundances.
+- [NIST: Magnesium isotope masses and natural abundances](https://physics.nist.gov/cgi-bin/Compositions/stand_alone.pl?ele=Mg) — primary reference data used for the illustrative spectrum above.
+- [Interactive mass spectrometer simulation](https://dmccreary.github.io/chemistry/sims/mass-spectrometer-sim/) — change the element and connect ion deflection to isotope peaks and relative abundance.
+- [College Board AP Chemistry Course and Exam Description](https://apcentral.collegeboard.org/media/pdf/ap-chemistry-course-and-exam-description.pdf) — official Unit 1 scope.
+- [Official AP Chemistry exam and scoring resources](https://apcentral.collegeboard.org/courses/ap-chemistry/exam) — released assessment materials.
+
+</LessonSection>
+
+<LessonSection title="8. Check your readiness" description="Try these without notes">
+
+- [ ] Define isotopes using proton and neutron counts.
+- [ ] Interpret the horizontal and vertical axes of a mass spectrum.
+- [ ] Calculate average atomic mass using fractional abundances.
+- [ ] Determine an unknown isotope abundance from an average mass.
+- [ ] Explain why a periodic-table atomic mass is often not an integer.
+- [ ] Avoid confusing isotope mass, relative abundance, and atomic number.
+
 </LessonSection>

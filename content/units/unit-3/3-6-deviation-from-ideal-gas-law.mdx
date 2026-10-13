@@ -1,34 +1,120 @@
 ---
-title: "Deviations from the Ideal Gas Law"
+title: "Deviation from the Ideal Gas Law"
 unit: 3
 topicNumber: "3.6"
 slug: "3-6-deviation-from-ideal-gas-law"
-summary: "Explain when and why real gases deviate from the assumptions of the ideal-gas model."
+summary: "Explain why real gases depart from PV = nRT when particle volume and intermolecular attractions become important."
 ---
 
-# Ideal gases are a model, not a perfect description
+The ideal gas law works well because it simplifies the behavior of gas particles. But real particles have size, and they attract one another. When those facts begin to matter, a real gas no longer behaves exactly as the ideal model predicts.
 
-The ideal-gas model assumes gas particles have negligible volume and no intermolecular attractions. Real particles have finite size and attract one another, so measured pressure or volume can differ from ideal predictions.
+The useful question is **which ideal-gas assumption is failing, and under what conditions?**
 
-<LessonSection title="1. Two assumptions and their limits" description="Name the failed assumption" defaultOpen>
+<LessonSection title="1. Two assumptions that real gases violate" description="Finite particle volume and intermolecular attractions" defaultOpen>
 
-- **Particle volume:** at high pressure, particles occupy a meaningful fraction of the container volume. The free space available for motion is less than the container's full volume.
-- **Intermolecular attractions:** at lower temperatures, attractions can reduce the force and frequency of wall impacts compared with the ideal model, lowering measured pressure under some conditions.
+<Unit3Visual kind="kinetic" />
 
-Deviations become important when particles are crowded (high pressure) or when thermal motion is not large compared with attractions (low temperature). Real gases approach ideal behavior at low pressure and high temperature.
+The ideal-gas model makes two simplifications:
 
-<QuickCheck question="Why can a real gas exert a lower pressure than the ideal prediction at moderate density and sufficiently low temperature?" options={["Attractions can pull particles away from the walls and reduce momentum transfer","Real particles have no kinetic energy","The gas constant changes for every gas","All gas particles become ions"]} correctIndex={0} explanation="Intermolecular attractions can alter trajectories and reduce wall impacts compared with the idealized no-attraction model."/>
+1. **Particle volume is negligible.** Real atoms and molecules occupy space. At low pressure, particles are far apart and their own volume is small compared with the container. At high pressure, particles are crowded and their finite volume becomes important.
+2. **Intermolecular attractions are negligible.** Real particles attract one another. At high temperature, their kinetic energy makes attractions less influential relative to their motion. At low temperature, particles move more slowly and attractions have more time to affect their behavior.
 
-</LessonSection>
+The model is most reliable at **high temperature and low pressure**. It becomes less reliable at low temperature and high pressure, especially near condensation.
 
-<LessonSection title="2. Explain a model's limitation" description="Connect assumptions to evidence">
-
-When asked to evaluate a model, state the assumption, explain how the real system violates it, and predict the direction of the effect only when the conditions justify that prediction. Avoid claiming that every real gas always has a lower pressure than an ideal gas; finite particle volume and attractions can affect behavior in competing ways.
+<QuickCheck question="Which conditions generally make a real gas behave most ideally?" options={["High pressure and low temperature","Low pressure and high temperature","High pressure and high temperature only","Near the condensation point"]} correctIndex={1} explanation="At low pressure, particles are far apart and their own volume matters less. At high temperature, intermolecular attractions matter less relative to particle kinetic energy." />
 
 </LessonSection>
 
-<LessonSection title="3. AP-style response" description="Use conditional reasoning">
+<LessonSection title="2. How attractions affect measured pressure" description="Why particles do not hit the walls exactly as the ideal model predicts">
 
-A complete response might say: “At high pressure, the finite volume of gas particles is no longer negligible relative to the container volume, so the ideal model's point-particle assumption becomes less accurate.” That is stronger than simply saying “real gases are different,” because it identifies the assumption and the physical cause.
+Imagine a gas particle moving toward a container wall. In the ideal model, other particles do not attract it, so it travels as though no intermolecular forces are acting. In a real gas, neighboring particles can attract the particle toward the interior of the gas. This can reduce the momentum it transfers to the wall compared with the ideal-gas prediction.
+
+At conditions where attractions are important, the measured pressure can therefore be lower than the ideal model predicts for the same amount, volume, and temperature.
+
+This is especially important at lower temperatures, because particles move more slowly and attractions have a greater relative effect. It also becomes important when particles are close enough to interact frequently.
+
+<QuickCheck question="At the same temperature, amount, and container volume, why can attractions cause a real gas to exert less pressure than an ideal gas predicts?" options={["Attractions pull particles inward, reducing some of their momentum transfer to the walls","Attractions make particles disappear","Attractions make the container volume infinite","Attractions cause every collision to create new particles"]} correctIndex={0} explanation="Intermolecular attractions can pull particles away from the wall or alter their motion, reducing the pressure compared with the ideal prediction." />
+
+</LessonSection>
+
+<LessonSection title="3. How finite particle volume matters" description="Why crowding matters at high pressure">
+
+Real gas particles are not point-like. They occupy finite space, so the volume available for their motion is smaller than the full container volume. At low pressure, the particles are far apart and this correction is usually small. At high pressure, the particles are crowded, and their own volume becomes a meaningful fraction of the container.
+
+When a gas is compressed, the ideal model treats particles as if their individual volume were negligible no matter how close they are. A real gas cannot be compressed indefinitely in that way. The excluded volume becomes increasingly important, and the ideal prediction becomes inaccurate.
+
+<QuickCheck question="Why does finite particle volume become more important at high pressure?" options={["Particles become chemically larger when pressure rises","Particles are closer together, so the space they themselves occupy is no longer negligible","High pressure removes all intermolecular attractions","The number of moles automatically decreases"]} correctIndex={1} explanation="Compression brings particles closer together, making their finite size a more significant fraction of the container volume." />
+
+</LessonSection>
+
+<LessonSection title="4. Predict when and why deviation increases" description="Use temperature and pressure together">
+
+| Condition | What becomes more important? | Why |
+|---|---|---|
+| Low pressure | Neither correction is usually large | Particles are far apart |
+| High temperature | Attractions matter less relative to motion | Particles have greater average kinetic energy |
+| Low temperature | Intermolecular attractions | Particles move more slowly and can be influenced more by attractions |
+| High pressure | Finite particle volume; also frequent interactions | Particles are crowded |
+
+Do not memorize “high pressure means deviation” without explaining why. High pressure matters because it crowds the particles and makes their finite volume important. Low temperature matters because it makes intermolecular attractions more consequential.
+
+<WorkedExample title="Worked example 1: choose the more ideal condition">
+A sample of gas is compared at 1 atm and 400 K versus 20 atm and 250 K.
+
+The 1 atm, 400 K condition is expected to be more ideal. Its lower pressure means the particles are farther apart, so their finite volume and attractions matter less. Its higher temperature means particle kinetic energy is larger relative to intermolecular attractions. Both conditions favor ideal behavior.
+</WorkedExample>
+
+<WorkedExample title="Worked example 2: explain a lower-than-predicted pressure">
+A real gas is held at fixed amount, volume, and temperature. Its measured pressure is lower than the ideal-gas calculation.
+
+One reasonable explanation is that intermolecular attractions are significant. Attractions between particles can pull them away from the container walls or reduce the momentum they transfer to the walls. Fewer or less forceful wall collisions lower the measured pressure relative to the ideal prediction.
+</WorkedExample>
+
+</LessonSection>
+
+<LessonSection title="5. Link the model to condensation" description="Why low temperature and attractions are connected">
+
+A gas condenses when particles come close enough and lose enough kinetic energy for attractions to keep them together as a liquid. Near condensation, the assumptions of negligible attractions and negligible particle volume become poor approximations. That is why gases near their condensation conditions show substantial deviations from ideal behavior.
+
+This also links back to intermolecular forces: gases whose particles attract one another strongly can often be condensed more readily than comparable gases with weaker attractions. Do not infer an exact condensation temperature from the IMF label alone; molecular structure and the conditions matter.
+
+</LessonSection>
+
+<LessonSection title="6. AP-style practice" description="Explain which ideal-gas assumption breaks down">
+
+**Question 1.** A student measures a gas at low temperature and finds that its pressure is lower than the ideal-gas law predicts at the same n, V, and T.
+
+**(a)** Identify the ideal-gas assumption most likely responsible for this result.
+
+**(b)** Explain how the particles' behavior changes the pressure.
+
+**Question 2.** Two samples of the same real gas are measured: sample A at 2 atm and 500 K, sample B at 25 atm and 250 K. Which sample is expected to deviate more from ideal behavior? Explain both relevant conditions.
+
+<LessonSection title="Reveal the reasoning" description="Name the assumption and connect it to the evidence">
+
+**Question 1:** The assumption of negligible intermolecular attractions is failing. At low temperature, particles move more slowly and attractions can influence their motion. Those attractions can reduce momentum transfer to the container walls, lowering pressure compared with the ideal prediction.
+
+**Question 2:** Sample B is expected to deviate more. Its higher pressure crowds particles, making their finite volume and interactions more significant. Its lower temperature makes attractions more influential relative to particle kinetic energy. Both conditions move the gas away from ideal behavior.
+</LessonSection>
+
+</LessonSection>
+
+<LessonSection title="7. External review" description="Review the ideal model, then look for its limits">
+
+- [College Board AP Chemistry Course and Exam Description](https://apcentral.collegeboard.org/media/pdf/ap-chemistry-course-and-exam-description.pdf) — official Unit 3 scope.
+- [OpenStax Chemistry 2e: The Kinetic-Molecular Theory](https://openstax.org/books/chemistry-2e/pages/9-5-the-kinetic-molecular-theory) — supplementary background on the assumptions behind the ideal-gas model.
+- [Official AP Chemistry exam and scoring resources](https://apcentral.collegeboard.org/courses/ap-chemistry/exam) — practice supporting a prediction with a particle-level model.
+
+</LessonSection>
+
+<LessonSection title="8. Check your readiness" description="Try these without notes">
+
+- [ ] State the two main ideal-gas assumptions that real gases violate.
+- [ ] Explain why low pressure reduces the importance of particle volume.
+- [ ] Explain why high pressure makes finite particle volume important.
+- [ ] Explain why low temperature makes intermolecular attractions more important.
+- [ ] Connect attractions to pressure being lower than the ideal prediction.
+- [ ] Identify why high temperature and low pressure favor ideal behavior.
+- [ ] Use the particle model to explain why gases near condensation are nonideal.
 
 </LessonSection>

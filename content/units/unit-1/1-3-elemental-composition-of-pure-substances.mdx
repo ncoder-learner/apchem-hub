@@ -1,73 +1,187 @@
-﻿---
+---
 title: "Elemental Composition of Pure Substances"
 unit: 1
 topicNumber: "1.3"
 slug: "1-3-elemental-composition-of-pure-substances"
-summary: "Calculate mass percent and determine empirical formulas from experimental composition data."
+summary: "Calculate mass percent and determine empirical and molecular formulas from composition data."
 ---
 
-# A formula is a ratio of atoms
+A chemical formula is a ratio of atoms, but laboratory data often begin with masses. To recover the formula, convert those masses into moles, then compare the mole amounts. The essential pathway is:
 
-A compound's formula describes the relative numbers of atoms in its chemical composition. Experimental data often begin with masses, while a formula requires a ratio of particles. The conversion path is usually **mass â†’ moles â†’ simplest whole-number ratio**.
+**mass → moles → simplest whole-number ratio → empirical formula**
+
+<LessonSection title="1. Percent composition by mass" description="Calculate how much of a compound's mass comes from each element" defaultOpen>
 
 <ChemVisual kind="composition" />
 
-<LessonSection title="1. Percent composition by mass" description="Find what fraction of a compoundâ€™s mass comes from each element." defaultOpen>
+Mass percent tells you what percentage of a compound's total mass is contributed by a particular element.
 
-Mass percent is the mass contributed by one element divided by the total compound mass, multiplied by 100%.
+**Mass percent of an element = (mass of that element in 1 mol of compound ÷ molar mass of compound) × 100%**
 
-Mass percent = (mass of element in 1 mol of compound Ã· molar mass of compound) Ã— 100%
+For a compound, use the formula to count how many atoms of each element occur in one formula unit or molecule. Multiply each element's atomic mass by that atom count, then divide by the compound's total molar mass.
 
-For water, Hâ‚‚O has a molar mass of approximately 18.02 g/mol. Hydrogen contributes about 2.016 g/mol, so hydrogen's mass percent is 2.016 Ã· 18.02 Ã— 100% = 11.2%. Oxygen accounts for the remaining 88.8%.
+<WorkedExample title="Worked example 1: calculate the mass percent of hydrogen in water">
+Water is H₂O.
 
-Check that the percentages of all elements add to approximately 100%; small differences can result from rounding.
+- Hydrogen contribution: 2 × 1.008 = 2.016 g/mol
+- Oxygen contribution: 1 × 16.00 = 16.00 g/mol
+- Total molar mass: 18.016 g/mol
 
-<QuickCheck question="In COâ‚‚, which element contributes the greater mass percent?" options={["Carbon, because there is one carbon atom","Oxygen, because two oxygen atoms contribute most of the molar mass","They contribute equal mass","It cannot be determined from the formula"]} correctIndex={1} explanation="Each oxygen atom has an atomic mass of about 16.00, so the two oxygen atoms contribute about 32.00 g per mole compared with 12.01 g from carbon." />
+Hydrogen mass percent = (2.016 / 18.016) × 100% ≈ **11.2%**.
+
+Oxygen contributes the remaining approximately 88.8%. Check that the percentages add to about 100%; small differences can result from rounding.
+</WorkedExample>
+
+<QuickCheck question="In CO₂, which element contributes the greater mass percent?" options={["Carbon, because there is one carbon atom","Oxygen, because two oxygen atoms contribute most of the molar mass","They contribute equal mass","It cannot be determined from the formula"]} correctIndex={1} explanation="The two oxygen atoms contribute about 32.00 g/mol, compared with 12.01 g/mol from carbon, so oxygen contributes the greater mass percent." />
 
 </LessonSection>
 
-<LessonSection title="2. Determine an empirical formula" description="Convert each elementâ€™s mass to moles, then divide by the smallest.">
+<LessonSection title="2. Find an empirical formula from masses or percentages" description="Convert each element to moles before comparing ratios">
 
-The **empirical formula** is the simplest whole-number ratio of atoms. If you are given percentages, assume a 100 g sample: each percentage becomes the same numerical mass in grams. If actual masses are given, use those values directly.
+The **empirical formula** is the simplest whole-number ratio of atoms in a compound. It does not necessarily give the actual number of atoms in one molecule.
 
-Procedure:
+If a problem gives percentages, assume a 100 g sample. For example, 40.0% carbon becomes 40.0 g carbon in an assumed 100 g sample. This assumption is useful because percent means “per 100,” and it does not change the element ratios.
 
-1. Convert each element's mass to moles using its molar mass.
+Use this procedure:
+
+1. Convert each element's mass to moles using its atomic molar mass.
 2. Divide every mole amount by the smallest mole amount.
-3. If ratios are close to whole numbers, round appropriately.
-4. If ratios are near familiar fractions, multiply all ratios by a common integer to obtain whole numbers.
+3. If the ratios are close to whole numbers, round to those numbers only when justified by the data.
+4. If a ratio is near a simple fraction, multiply **all** ratios by the same integer to get whole numbers.
+5. Write the empirical formula using the resulting whole-number ratio.
 
-<WorkedExample title="Find the empirical formula from 40.0% C, 6.7% H, and 53.3% O">
-Assume 100.0 g: 40.0 g C, 6.7 g H, 53.3 g O.
+<WorkedExample title="Worked example 2: empirical formula from percent composition">
+A compound is 40.0% C, 6.7% H, and 53.3% O by mass.
 
-- C: 40.0 Ã· 12.01 = 3.33 mol
-- H: 6.7 Ã· 1.008 = 6.65 mol
-- O: 53.3 Ã· 16.00 = 3.33 mol
+**Step 1: Assume 100.0 g.** This gives 40.0 g C, 6.7 g H, and 53.3 g O.
 
-Divide by 3.33: C : H : O â‰ˆ 1 : 2 : 1. The empirical formula is CHâ‚‚O.
+**Step 2: Convert grams to moles.**
+- C: 40.0 g ÷ 12.01 g/mol = 3.33 mol
+- H: 6.7 g ÷ 1.008 g/mol = 6.65 mol
+- O: 53.3 g ÷ 16.00 g/mol = 3.33 mol
+
+**Step 3: Divide by the smallest amount, 3.33 mol.**
+- C: 3.33 / 3.33 = 1.00
+- H: 6.65 / 3.33 ≈ 2.00
+- O: 3.33 / 3.33 = 1.00
+
+The simplest ratio is 1:2:1, so the empirical formula is **CH₂O**.
+</WorkedExample>
+
+<QuickCheck question="After converting a compound's elements to moles, the ratio is C : H : O = 1.00 : 1.50 : 1.00. What should you do next?" options={["Round 1.50 down to 1 and write CHO","Multiply every ratio by 2 to obtain whole numbers","Multiply only hydrogen by 2","Use the mole values as subscripts without changing them"]} correctIndex={1} explanation="A ratio of 1.5 is a half-integer. Multiplying every ratio by 2 gives 2:3:2, the whole-number ratio C₂H₃O₂." />
+
+</LessonSection>
+
+<LessonSection title="3. What if the ratio is not a whole number?" description="Recognize simple fractions instead of rounding blindly">
+
+Mole ratios can come out near values such as 1.50, 1.33, or 1.25 because the empirical formula requires whole-number atom counts.
+
+| Ratio after dividing by the smallest | Likely fraction | Multiply all ratios by |
+|---:|---:|---:|
+| 1.50 | 3/2 | 2 |
+| 1.33 | 4/3 | 3 |
+| 1.25 | 5/4 | 4 |
+| 1.67 | 5/3 | 3 |
+| 1.20 | 6/5 | 5 |
+
+These are guides, not permission to force every number into a convenient fraction. Keep extra digits during calculations and consider the precision of the original data. If the ratio is far from a plausible simple fraction, recheck arithmetic, molar masses, and the given measurements.
+
+<Mistake title="Rounding 1.50 to 2">
+A ratio of 1.50 is not close enough to 2 to round directly. It represents 3/2, so multiply all element ratios by 2. If C:H:O is 1:1.5:1, the whole-number ratio is 2:3:2, not 1:2:1.
+</Mistake>
+
+</LessonSection>
+
+<LessonSection title="4. Empirical formula versus molecular formula" description="Use molar mass to find the actual multiple">
+
+The **molecular formula** tells you the actual number of each atom in a molecule. It must be a whole-number multiple of the empirical formula.
+
+1. Calculate the empirical-formula mass.
+2. Divide the compound's measured molar mass by the empirical-formula mass.
+3. Round to a positive whole number only if the ratio is consistent with the data.
+4. Multiply every empirical-formula subscript by that integer.
+
+**n = molecular molar mass ÷ empirical-formula mass**
+
+<WorkedExample title="Worked example 3: from empirical formula to molecular formula">
+The empirical formula is CH₂O, with empirical-formula mass about 30.03 g/mol. The measured molar mass of the compound is 180.2 g/mol.
+
+n = 180.2 ÷ 30.03 ≈ 6.00.
+
+Multiply every empirical subscript by 6: the molecular formula is **C₆H₁₂O₆**.
+
+Check: its molar mass is approximately 6 × 30.03 = 180.18 g/mol, consistent with the measured value.
+</WorkedExample>
+
+<QuickCheck question="A compound has empirical formula CH₂ and molar mass approximately 56.1 g/mol. The empirical-formula mass is about 14.0 g/mol. What is the molecular formula?" options={["CH₂","C₂H₄","C₄H₈","C₈H₁₆"]} correctIndex={2} explanation="56.1 ÷ 14.0 ≈ 4. The molecular formula is four times the empirical formula: C₄H₈." />
+
+</LessonSection>
+
+<LessonSection title="5. Combustion analysis: infer the elements from products" description="Use CO₂ to count carbon and H₂O to count hydrogen">
+
+In a common combustion-analysis problem, a compound containing carbon and hydrogen is burned in excess oxygen. The carbon in the sample becomes CO₂, and the hydrogen becomes H₂O.
+
+- Moles of C atoms = moles of CO₂, because each CO₂ contains one C atom.
+- Moles of H atoms = 2 × moles of H₂O, because each H₂O contains two H atoms.
+- If the original compound contains oxygen as well, determine the oxygen amount from the original sample mass after finding the carbon and hydrogen masses, unless the problem gives another method.
+
+<WorkedExample title="Worked example 4: use combustion products">
+A 1.00 g sample containing only C and H produces 2.93 g CO₂ and 1.20 g H₂O.
+
+**Step 1: Find moles of carbon.** Moles CO₂ = 2.93 g ÷ 44.01 g/mol = 0.0666 mol. Therefore, C = 0.0666 mol.
+
+**Step 2: Find moles of hydrogen.** Moles H₂O = 1.20 g ÷ 18.02 g/mol = 0.0666 mol. Each water molecule contains 2 H atoms, so H = 0.133 mol.
+
+**Step 3: Compare the mole amounts.** Divide by 0.0666: C:H ≈ 1:2. The empirical formula is **CH₂**.
+
+The sample is specified to contain only C and H, so there is no oxygen amount to determine. In a compound that also contains oxygen, subtract the calculated C and H masses from the original sample mass to find the oxygen mass.
 </WorkedExample>
 
 </LessonSection>
 
-<LessonSection title="3. Empirical formula vs. molecular formula" description="The molecular formula is a whole-number multiple of the empirical formula.">
+<LessonSection title="6. AP-style practice" description="Show the conversion pathway and justify the formula">
 
-The empirical formula gives the simplest ratio; the molecular formula gives the actual atom count in a molecule. Determine the empirical-formula mass, then compare it with the compound's measured molar mass.
+A pure compound contains 52.2% C, 13.0% H, and 34.8% O by mass. Its measured molar mass is approximately 46.0 g/mol.
 
-n = molecular molar mass Ã· empirical-formula mass
+**(a)** Determine its empirical formula.
 
-The ratio n should be a positive whole number within experimental uncertainty. Multiply every empirical-formula subscript by n.
+**(b)** Calculate the empirical-formula mass.
 
-For example, empirical formula CHâ‚‚O has mass about 30.03 g/mol. If the measured molar mass is about 180.2 g/mol, (napprox6), so the molecular formula is Câ‚†Hâ‚â‚‚Oâ‚†.
+**(c)** Determine the molecular formula using the measured molar mass.
+
+<LessonSection title="Reveal the reasoning" description="Follow mass → moles → ratio → molecular multiple">
+
+**(a)** Assume 100 g: 52.2 g C, 13.0 g H, 34.8 g O.
+
+- C: 52.2/12.01 ≈ 4.35 mol
+- H: 13.0/1.008 ≈ 12.90 mol
+- O: 34.8/16.00 ≈ 2.175 mol
+
+Divide by 2.175: C:H:O ≈ 2:6:1. Empirical formula = **C₂H₆O**.
+
+**(b)** Empirical-formula mass = 2(12.01) + 6(1.008) + 16.00 ≈ **46.07 g/mol**.
+
+**(c)** n = 46.0/46.07 ≈ 1, so the molecular formula is also **C₂H₆O**.
+</LessonSection>
 
 </LessonSection>
 
-<LessonSection title="4. Check the chemistry and the math" description="Avoid rounding too early.">
+<LessonSection title="7. Reliable review" description="Use official scope and another worked explanation">
 
-- Keep several digits during mole calculations; round the final ratio only when the data support it.
-- A ratio of 1.50 is not 1.5 atoms. Multiply all ratios by 2 to obtain a 3:2 ratio.
-- An empirical formula does not always identify one unique molecule.
-- Mass percentages should total about 100%.
-- The molecular formula must be an integer multiple of the empirical formula.
+- [College Board AP Chemistry Course and Exam Description](https://apcentral.collegeboard.org/media/pdf/ap-chemistry-course-and-exam-description.pdf) — official Unit 1 learning objectives.
+- [Khan Academy: AP Chemistry atomic structure and composition](https://www.khanacademy.org/science/ap-chemistry) — supplementary lessons and practice.
+- [Official AP Chemistry exam and scoring resources](https://apcentral.collegeboard.org/courses/ap-chemistry/exam) — use released questions and scoring guidelines to test your calculations.
 
-If a ratio is far from a plausible whole-number or simple fractional ratio, recheck arithmetic, molar masses, units, and the experimental data before forcing it to an integer.
+</LessonSection>
+
+<LessonSection title="8. Check your readiness" description="Try these without notes">
+
+- [ ] Calculate mass percent from a chemical formula.
+- [ ] Convert mass or percent composition to moles.
+- [ ] Reduce mole amounts to the simplest whole-number ratio.
+- [ ] Handle fractional ratios such as 1.50 or 1.33 correctly.
+- [ ] Distinguish empirical and molecular formulas.
+- [ ] Use a measured molar mass to find the molecular-formula multiple.
+- [ ] Use CO₂ and H₂O from combustion to infer carbon and hydrogen amounts.
+
 </LessonSection>
