@@ -9,6 +9,7 @@ interface LessonViewProps {
   activeSlug: string;
   title: string;
   topicNumber: string;
+  summary?: string;
   children: ReactNode;
 }
 
@@ -19,6 +20,7 @@ export function LessonView({
   activeSlug,
   title,
   topicNumber,
+  summary,
   children,
 }: LessonViewProps) {
   const activeIndex = topics.findIndex((t) => t.slug === activeSlug);
@@ -26,9 +28,9 @@ export function LessonView({
   const next = activeIndex >= 0 && activeIndex < topics.length - 1 ? topics[activeIndex + 1] : undefined;
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-6xl gap-8 px-6 py-8">
+    <div className="mx-auto flex min-h-screen max-w-7xl gap-8 px-5 py-6 sm:px-8 sm:py-8">
       {/* Sidebar: topic list for this unit */}
-      <aside className="sticky top-8 h-fit w-64 shrink-0 rounded-xl border border-border bg-sidebar p-4">
+      <aside className="sticky top-6 h-fit w-60 shrink-0 rounded-xl border border-border bg-sidebar/80 p-4">
         <Link href="/" className="mb-4 block text-xs text-ink-dim hover:text-accent">
           ← All units
         </Link>
