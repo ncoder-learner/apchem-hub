@@ -43,7 +43,7 @@ Every line bond represents two electrons; every lone-pair dot represents one. If
 
 **Step 5 — Check.** Total electrons remain 16. Each atom has an octet, and the formal charges are zero in this structure.
 
-<box className="my-5 rounded-xl border border-border bg-card/60 p-5">
+<div className="my-5 rounded-xl border border-border bg-card/60 p-5">
   <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-ink-dim">Final Lewis structure</p>
   <svg viewBox="0 0 420 110" className="mx-auto block w-full max-w-lg" role="img" aria-label="Lewis structure of carbon dioxide, O double bond C double bond O, with two lone pairs on each oxygen">
     <text x="66" y="59" fontSize="32" textAnchor="middle" fill="var(--color-ink)">O</text>
@@ -56,7 +56,7 @@ Every line bond represents two electrons; every lone-pair dot represents one. If
     {[[58,20],[74,20],[58,78],[74,78],[346,20],[362,20],[346,78],[362,78]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="2.5" fill="var(--color-amber)" />)}
   </svg>
   <p className="mt-2 text-center text-xs text-ink-dim">Each oxygen has two lone pairs; each C=O double bond contains two shared pairs.</p>
-</box>
+</div>
 
 <QuickCheck question="How many valence electrons must appear in the Lewis diagram for CO₂?" options={["8","12","16","18"]} correctIndex={2} explanation="Carbon contributes 4 and two oxygens contribute 12, for a total of 16 valence electrons." />
 
