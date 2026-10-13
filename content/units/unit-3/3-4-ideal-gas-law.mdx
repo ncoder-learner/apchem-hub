@@ -3,47 +3,189 @@ title: "The Ideal Gas Law"
 unit: 3
 topicNumber: "3.4"
 slug: "3-4-ideal-gas-law"
-summary: "Solve PV = nRT problems, convert units, and reason about gas-variable relationships."
+summary: "Use PV = nRT to calculate gas variables and explain how pressure, volume, temperature, and amount are connected."
 ---
 
-# The ideal gas law links four measurable quantities
+The ideal gas law is more than a formula to plug numbers into. It summarizes how gas pressure, volume, temperature, and amount depend on one another. If you understand what each variable means and which variables are held constant, you can predict how a gas responds before doing any arithmetic.
 
-**PV = nRT**
-
-P is pressure, V is volume, n is amount in moles, T is absolute temperature in kelvin, and R is the gas constant. With P in atm and V in liters, use R = 0.08206 L·atm·mol⁻¹·K⁻¹. Match the value of R to the units in the problem.
+<LessonSection title="1. What the variables mean" description="Read the model before choosing numbers" defaultOpen>
 
 <Unit3Visual kind="gas-law" />
 
-<LessonSection title="1. Solve with units" description="A repeatable calculation method" defaultOpen>
+The ideal gas law is:
 
-**Example:** What volume does 0.500 mol of an ideal gas occupy at 298 K and 1.00 atm?
+**PV = nRT**
 
-**Calculation:** V = (n × R × T) / P = (0.500 × 0.08206 × 298) / 1.00 = **12.2 L**
+- **P** = pressure of the gas
+- **V** = volume occupied by the gas
+- **n** = amount of gas in moles
+- **R** = ideal gas constant
+- **T** = absolute temperature in kelvin
 
-1. Write the known variables with units.
-2. Convert temperature to kelvin: K = °C + 273.15.
-3. Choose R consistent with pressure and volume units.
-4. Rearrange algebraically before substituting.
-5. Check whether the result is physically reasonable and report units.
+The equation links the macroscopic quantities you can measure to the amount and thermal motion of gas particles. Pressure comes from particles colliding with the container walls. Temperature is related to the particles' average translational kinetic energy. Volume describes the space available to the gas, and n describes how many particles are present.
 
-<QuickCheck question="A gas sample has n = 0.250 mol, T = 300 K, and P = 1.00 atm. Which expression gives its volume in liters?" options={["(0.250)(0.08206)(300) / 1.00","(1.00)(0.250) / (0.08206)(300)","(0.250)(300) / (1.00)(0.08206)","(1.00)(0.08206)(300) / 0.250"]} correctIndex={0} explanation="Rearrange PV = nRT to V = nRT/P. The chosen R matches L, atm, mol, and K."/>
+## Units must match the value of R
+
+For pressure in atmospheres and volume in liters, use:
+
+**R = 0.08206 L·atm·mol⁻¹·K⁻¹**
+
+Then use P in atm, V in L, n in mol, and T in K. If pressure is given in kPa or volume in mL, convert it or use a matching gas constant. Do not mix units accidentally.
+
+**Always convert Celsius to kelvin:** T(K) = temperature in °C + 273.15. The equation requires absolute temperature. A temperature of 0°C is not zero thermal energy, so it cannot be entered as T = 0.
+
+<QuickCheck question="A gas is at 27°C. Which temperature belongs in PV = nRT?" options={["27 K","246 K","300 K approximately","0 K"]} correctIndex={2} explanation="Convert to kelvin: 27 + 273.15 = 300.15 K, approximately 300 K." />
 
 </LessonSection>
 
-<LessonSection title="2. Combined gas relationships" description="Hold the correct variables constant">
+<LessonSection title="2. Derive the trends instead of memorizing them" description="Hold the other variables constant">
 
-For a fixed amount of gas, PV/T is constant. This produces familiar relationships: at constant T, P and V are inversely proportional; at constant P, V is proportional to T; at constant V, P is proportional to T. Always use kelvin for temperature ratios.
+Start with PV = nRT. The key move in any prediction is to identify which variables are fixed.
+
+## Pressure and volume
+
+If n and T remain constant, nRT is constant, so P × V must stay constant. If volume decreases, pressure increases. The same number of particles has less room, so wall collisions occur more frequently per unit area. This is an inverse relationship: doubling V halves P, under the ideal-gas assumptions.
+
+## Pressure and temperature
+
+If n and V remain constant, P/T is constant. Increasing the kelvin temperature increases average particle kinetic energy. Particles hit the walls more forcefully, so pressure increases. P is directly proportional to **kelvin** temperature when n and V are fixed.
+
+## Volume and temperature
+
+If n and P remain constant, V/T is constant. Heating increases particle kinetic energy; the gas expands until the wall-collision pressure matches the external pressure again. V is directly proportional to kelvin temperature when n and P are fixed.
+
+## Amount and volume or pressure
+
+At fixed T and P, volume is directly proportional to the amount of gas: doubling n doubles V. At fixed T and V, pressure is directly proportional to n: adding twice as many gas particles doubles P under the ideal-gas model.
+
+| Conditions held constant | Relationship | If one variable doubles... |
+|---|---|---|
+| n, T | P and V are inversely related | V doubles → P halves |
+| n, V | P is directly proportional to T(K) | T doubles → P doubles |
+| n, P | V is directly proportional to T(K) | T doubles → V doubles |
+| T, P | V is directly proportional to n | n doubles → V doubles |
+| T, V | P is directly proportional to n | n doubles → P doubles |
+
+<QuickCheck question="A sealed rigid container holds a fixed amount of ideal gas. The kelvin temperature doubles. What happens to the pressure?" options={["It is halved","It doubles","It stays the same","It becomes zero"]} correctIndex={1} explanation="The container is rigid, so V is fixed; the amount n is fixed. From PV = nRT, pressure is directly proportional to kelvin temperature." />
+
+<Mistake title="Using Celsius for gas-law ratios">
+A change from 20°C to 40°C is not a doubling of absolute temperature. In kelvin, the temperatures are about 293 K and 313 K. Proportional gas-law reasoning uses kelvin, not Celsius.
+</Mistake>
 
 </LessonSection>
 
-<LessonSection title="3. Density and molar mass" description="Derive, do not memorize blindly">
+<LessonSection title="3. Solve a single-state problem step by step" description="Choose the equation form from the unknown">
 
-From n = m/M and PV = nRT, gas density d = m/V can be related to molar mass:
+A good calculation follows the same order every time:
 
-**d = (P × M) / (R × T)**
+1. List the known variables with units.
+2. Convert temperature to kelvin and make units consistent with R.
+3. Rearrange PV = nRT to isolate the unknown.
+4. Substitute values with units.
+5. Calculate and check whether the magnitude makes physical sense.
 
-Use consistent units. At the same P and T, a gas with larger molar mass has greater density. This relationship assumes ideal behavior.
+<WorkedExample title="Worked example 1: calculate pressure">
+A sample contains 0.500 mol of ideal gas in a 10.0 L container at 300 K. Find the pressure in atm.
 
-<QuickCheck question="At the same pressure and temperature, which gas has the greater density?" options={["The gas with the lower molar mass","The gas with the higher molar mass","Both always have equal density","The gas with the smaller sample volume only"]} correctIndex={1} explanation="For ideal gases at fixed P and T, density is proportional to molar mass."/>
+**Known:** n = 0.500 mol, V = 10.0 L, T = 300 K, R = 0.08206 L·atm·mol⁻¹·K⁻¹.
+
+Rearrange: P = nRT / V.
+
+Substitute: P = (0.500 mol)(0.08206 L·atm·mol⁻¹·K⁻¹)(300 K) / 10.0 L.
+
+The units cancel to atm, and P ≈ **1.23 atm**.
+
+Check: half a mole at room temperature in 10 L should produce a pressure on the order of 1 atm, so the result is reasonable.
+</WorkedExample>
+
+<WorkedExample title="Worked example 2: solve for the amount of gas">
+A gas occupies 4.00 L at 1.20 atm and 298 K. How many moles are present?
+
+Rearrange PV = nRT to n = PV / RT.
+
+Substitute: n = (1.20 atm)(4.00 L) / [(0.08206 L·atm·mol⁻¹·K⁻¹)(298 K)].
+
+The result is approximately **0.196 mol**. The pressure-volume units cancel with the units in R, leaving moles.
+</WorkedExample>
+
+<QuickCheck question="A gas has P = 2.00 atm, V = 5.00 L, and T = 300 K. Which expression correctly calculates n using R = 0.08206 L·atm·mol⁻¹·K⁻¹?" options={["n = (2.00)(5.00) / [(0.08206)(300)]","n = (0.08206)(300) / [(2.00)(5.00)]","n = (2.00)(300) / [(0.08206)(5.00)]","n = (5.00)(300) / [(2.00)(0.08206)]"]} correctIndex={0} explanation="Rearrange PV = nRT to n = PV/(RT), then substitute pressure, volume, R, and absolute temperature." />
+
+</LessonSection>
+
+<LessonSection title="4. Compare two states without finding every variable" description="Use the combined gas law when the amount stays constant">
+
+If the amount of gas does not change, PV/T is constant. For two states:
+
+**P₁V₁/T₁ = P₂V₂/T₂**
+
+This form is useful when a gas changes pressure, volume, and temperature but no gas enters or leaves. Temperature must be in kelvin.
+
+<WorkedExample title="Worked example 3: a gas is compressed">
+A fixed amount of gas initially occupies 3.00 L at 1.00 atm and 300 K. It is compressed to 1.50 L while the temperature remains 300 K. Find the final pressure.
+
+Since T and n are constant, P₁V₁ = P₂V₂.
+
+P₂ = P₁V₁/V₂ = (1.00 atm)(3.00 L)/(1.50 L) = **2.00 atm**.
+
+The volume is halved, so pressure doubles. This agrees with the particle model: the same particles collide with the container walls more frequently per unit area in the smaller volume.
+</WorkedExample>
+
+<QuickCheck question="A fixed amount of gas has its volume doubled while its kelvin temperature stays constant. What happens to pressure?" options={["It doubles","It is halved","It stays the same","It becomes four times as large"]} correctIndex={1} explanation="At constant amount and temperature, P₁V₁ = P₂V₂. Doubling volume halves pressure." />
+
+</LessonSection>
+
+<LessonSection title="5. What the ideal-gas model assumes" description="Know what the equation represents and when it can fail">
+
+An ideal gas is a simplified model with two central assumptions:
+
+- Gas particles have negligible volume compared with the container volume.
+- There are no significant intermolecular attractions or repulsions between particles except during collisions.
+
+Real gases behave most ideally at **high temperature and low pressure**. At high temperature, particle kinetic energy makes attractions less important relative to motion. At low pressure, particles are farther apart, so their own volume and intermolecular attractions matter less.
+
+Real gases deviate more at low temperature, when attractions matter more, and at high pressure, when particles are crowded and their finite volume matters. This is the bridge to Topic 3.6.
+
+<QuickCheck question="Under which conditions is a real gas generally closest to ideal behavior?" options={["Low temperature and high pressure","High temperature and low pressure","Low temperature and low volume only","Near condensation"]} correctIndex={1} explanation="High temperature makes attractions less important relative to kinetic energy, and low pressure keeps particles far apart." />
+
+</LessonSection>
+
+<LessonSection title="6. AP-style practice: calculate and explain" description="Do the reasoning before revealing the worked response">
+
+A rigid 2.00 L container holds 0.100 mol of ideal gas at 300 K.
+
+**(a)** Calculate the pressure in atm.
+
+**(b)** The temperature is increased to 450 K while the container remains rigid and sealed. Predict the new pressure and explain the relationship.
+
+**(c)** Explain why the pressure increase is not caused by the gas particles becoming larger.
+
+<LessonSection title="Reveal a complete solution" description="Check arithmetic, units, and the particle explanation">
+
+**(a)** P = nRT/V = (0.100)(0.08206)(300)/(2.00) ≈ **1.23 atm**.
+
+**(b)** At fixed n and V, pressure is proportional to kelvin temperature. P₂ = P₁(T₂/T₁) = (1.23 atm)(450/300) ≈ **1.85 atm**.
+
+**(c)** The gas particles do not become larger. Their average kinetic energy increases with temperature, so they collide with the walls more forcefully. Since the container volume and number of particles are fixed, the pressure rises.
+</LessonSection>
+
+</LessonSection>
+
+<LessonSection title="7. Reliable review resources" description="Use video and official material to see the same relationships explained another way">
+
+- [College Board AP Chemistry Course and Exam Description](https://apcentral.collegeboard.org/media/pdf/ap-chemistry-course-and-exam-description.pdf) — official Unit 3 scope and learning objectives.
+- [Khan Academy: AP Chemistry gas laws and ideal gas law](https://www.khanacademy.org/science/ap-chemistry) — supplementary worked examples and practice.
+- [Official AP Chemistry exam and scoring resources](https://apcentral.collegeboard.org/courses/ap-chemistry/exam) — practice explaining model-based predictions, not only calculating numbers.
+
+</LessonSection>
+
+<LessonSection title="8. Check your readiness" description="Try these without notes">
+
+- [ ] Identify P, V, n, R, and T, and use consistent units.
+- [ ] Convert Celsius to kelvin before using a gas law.
+- [ ] Explain pressure changes using collisions with the container walls.
+- [ ] Predict direct and inverse relationships while holding the correct variables constant.
+- [ ] Rearrange PV = nRT and solve for any one variable.
+- [ ] Use the combined gas law when n is constant.
+- [ ] Explain why real gases behave most ideally at high temperature and low pressure.
 
 </LessonSection>
