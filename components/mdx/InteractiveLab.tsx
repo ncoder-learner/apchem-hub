@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-type LabKind = "kinetics" | "rate-law" | "collision" | "energy-profile" | "balance" | "gas-law" | "ph" | "net-ionic" | "stoichiometry" | "titration" | "reaction-types" | "particles" | "redox" | "coulomb" | "bond-energy" | "beer-lambert" | "lewis";
+type LabKind = "kinetics" | "rate-law" | "collision" | "energy-profile" | "balance" | "gas-law" | "ph" | "net-ionic" | "stoichiometry" | "titration" | "reaction-types" | "particles" | "redox" | "coulomb" | "bond-energy" | "beer-lambert" | "lewis" | "photon";
 
 interface InteractiveLabProps {
   kind: LabKind;
@@ -20,7 +20,7 @@ export function InteractiveLab({ kind, title }: InteractiveLabProps) {
   if (kind === "collision") return <CollisionLab title={title} />;
   if (kind === "energy-profile") return <EnergyProfileLab title={title} />;
   if (kind === "gas-law") return <GasLawLab title={title} />;
-  if (kind === "ph") return <PhLab title={title} />;\n  if (kind === "net-ionic") return <NetIonicLab title={title} />;\n  if (kind === "stoichiometry") return <StoichiometryLab title={title} />;\n  if (kind === "titration") return <TitrationLab title={title} />;\n  if (kind === "reaction-types") return <ReactionTypesLab title={title} />;\n  if (kind === "particles") return <ParticleChangeLab title={title} />;\n  if (kind === "redox") return <RedoxLab title={title} />;\n  if (kind === "coulomb") return <CoulombLab title={title} />;\n  if (kind === "bond-energy") return <BondEnergyLab title={title} />;\n  if (kind === "beer-lambert") return <BeerLambertLab title={title} />;\n  if (kind === "lewis") return <LewisLab title={title} />;
+  if (kind === "ph") return <PhLab title={title} />;\n  if (kind === "net-ionic") return <NetIonicLab title={title} />;\n  if (kind === "stoichiometry") return <StoichiometryLab title={title} />;\n  if (kind === "titration") return <TitrationLab title={title} />;\n  if (kind === "reaction-types") return <ReactionTypesLab title={title} />;\n  if (kind === "particles") return <ParticleChangeLab title={title} />;\n  if (kind === "redox") return <RedoxLab title={title} />;\n  if (kind === "coulomb") return <CoulombLab title={title} />;\n  if (kind === "bond-energy") return <BondEnergyLab title={title} />;\n  if (kind === "beer-lambert") return <BeerLambertLab title={title} />;\n  if (kind === "lewis") return <LewisLab title={title} />;\n  if (kind === "photon") return <PhotonLab title={title} />;
   return <KineticsLab title={title} />;
 }
 
@@ -228,6 +228,19 @@ function LewisLab({ title }: { title?: string }) {
     </svg></div>
     <div className="grid gap-3 sm:grid-cols-2"><div className="rounded-lg bg-white/[0.04] p-3"><p className="text-xs text-ink-dim">Valence electrons</p><p className="text-xl font-semibold">{d.electrons}</p></div><div className="rounded-lg bg-white/[0.04] p-3"><p className="text-xs text-ink-dim">Structure to notice</p><p className="text-sm">{d.description}</p></div></div>
     <p className="text-xs text-ink-dim">Schematic 2D Lewis structures emphasize connectivity and valence-electron accounting. Use a separate geometry model to reason about 3D shape.</p>
+  </LabFrame>;
+}
+
+
+function PhotonLab({ title }: { title?: string }) {
+  const [wavelength,setWavelength]=useState(500);
+  const h=6.62607015e-34,cLight=2.99792458e8,na=6.02214076e23;
+  const meters=wavelength*1e-9, frequency=cLight/meters, energy=h*frequency, molar=energy*na/1000;
+  return <LabFrame title={title ?? "Explore photon energy"}>
+    <RangeControl label="Wavelength" value={wavelength} min={100} max={1000} step={10} onChange={setWavelength} output={wavelength+" nm"}/>
+    <div className="rounded-xl border border-border bg-bg p-4"><div className="mb-3 h-5 rounded-full" style={{background:"linear-gradient(90deg,#8b5cf6,#3b82f6,#22c55e,#eab308,#f97316,#ef4444)"}}/><div className="grid gap-3 sm:grid-cols-3"><div><p className="text-xs text-ink-dim">Frequency</p><p className="text-lg font-semibold">{(frequency/1e14).toFixed(2)} × 10¹⁴ Hz</p></div><div><p className="text-xs text-ink-dim">Energy per photon</p><p className="text-lg font-semibold">{(energy/1e-19).toFixed(3)} × 10⁻¹⁹ J</p></div><div><p className="text-xs text-ink-dim">Energy per mole of photons</p><p className="text-lg font-semibold">{molar.toFixed(1)} kJ/mol</p></div></div></div>
+    <p className="text-sm">Shorter wavelength means higher frequency and higher photon energy: E = hν = hc/λ. Doubling wavelength halves photon energy.</p>
+    <p className="text-xs text-ink-dim">The color strip is a schematic guide to the visible spectrum. Wavelengths below about 400 nm are ultraviolet and above about 700 nm are infrared; the numeric slider includes both nonvisible regions.</p>
   </LabFrame>;
 }
 
