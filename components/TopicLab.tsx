@@ -155,6 +155,32 @@ function SolubilityLab() {
     <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Temperature" min={0} max={80} step={5} value={temperature} onChange={setTemperature} suffix=" °C"/><Slider label="Relative solute–solvent compatibility" min={1} max={10} step={1} value={polarity} onChange={setPolarity}/></div><div className="rounded-xl border border-border bg-bg/50 p-4"><div className="text-xs text-ink-dim">Illustrative dissolving capacity index</div><div className="text-3xl font-bold">{capacity.toFixed(0)}</div><div className="mt-3 h-4 overflow-hidden rounded-full bg-white/5"><div className="h-full rounded-full bg-emerald-300" style={{width:capacity+"%"}}/></div><p className="mt-2 text-xs text-ink-dim">A conceptual index only; real solubility must be measured or derived for the specific solute–solvent system.</p></div></div>
   </Frame>;
 }
+function MetallicLab() {
+  const [alloy,setAlloy]=useState(0);const [layers,setLayers]=useState(2);
+  return <Frame unit="2 · Metallic bonding" title="See why metals conduct and deform" takeaway="Delocalized valence electrons can move through the metallic lattice and carry charge and thermal energy. Metal-ion layers can shift while the electron sea continues to attract them; alloying disrupts regular layer alignment and often reduces ease of sliding.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Alloying / size mismatch" min={0} max={10} step={1} value={alloy} onChange={setAlloy}/><Slider label="Layer displacement" min={0} max={4} step={1} value={layers} onChange={setLayers}/><p className="text-sm text-ink-dim">Model prediction: {alloy===0?"regular layers slide relatively easily":alloy<5?"some lattice distortion resists sliding":"strong lattice distortion makes sliding harder"}.</p></div><div className="rounded-xl border border-border bg-bg/50 p-3"><svg viewBox="0 0 300 190" className="w-full" role="img" aria-label="Metal lattice with mobile electrons and adjustable layer displacement">{Array.from({length:3},(_,row)=>Array.from({length:5},(_,col)=>{const x=35+col*52+(row===1?layers*5:0),y=35+row*52;return <g key={row+"-"+col}><circle cx={x} cy={y} r={alloy>0&&(row+col)%3===0?13:10} fill={alloy>0&&(row+col)%3===0?"#f5c454":"#5aa9ff"}/><text x={x} y={y+3} textAnchor="middle" fontSize="8" fill="#0a0e16">+</text></g>}))}{Array.from({length:8},(_,i)=><circle key={i} cx={25+(i*31)%250} cy={20+(i*23)%145} r="3" fill="#34d399"/>)}</svg><p className="text-xs text-ink-dim">Schematic: blue/gold circles are metal-ion cores; green dots represent mobile valence electrons.</p></div></div>
+  </Frame>;
+}
+function KineticMolecularLab() {
+  const [temperature,setTemperature]=useState(300);const [mass,setMass]=useState(28);const speed=Math.sqrt(3*8.314*temperature/(mass/1000));
+  return <Frame unit="3 · Kinetic molecular theory" title="Compare average molecular speeds" takeaway="At the same temperature, gases have the same average translational kinetic energy, but lighter particles have higher characteristic speeds. Raising temperature increases average kinetic energy and speed.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Absolute temperature" min={100} max={800} step={25} value={temperature} onChange={setTemperature} suffix=" K"/><Slider label="Molar mass" min={2} max={100} step={2} value={mass} onChange={setMass} suffix=" g/mol"/></div><div className="rounded-xl border border-border bg-bg/50 p-4"><div className="text-xs text-ink-dim">Root-mean-square speed</div><div className="text-3xl font-bold">{speed.toFixed(0)} m/s</div><div className="mt-2 text-sm text-ink-dim">uᵣₘₛ = √(3RT/M), with M in kg/mol.</div><div className="mt-4 h-3 rounded-full bg-white/5"><div className="h-3 rounded-full bg-emerald-300" style={{width:Math.min(100,speed/1600*100)+"%"}}/></div></div></div>
+  </Frame>;
+}
+function NonIdealGasLab() {
+  const [volume,setVolume]=useState(5);const [temperature,setTemperature]=useState(300);const [attraction,setAttraction]=useState(2);
+  const ideal=.082057*temperature/volume;const z=1-attraction/(temperature*volume);const real=ideal*z;
+  return <Frame unit="3 · Real gases" title="Explore why real gases deviate from PV = nRT" takeaway="The ideal model assumes negligible particle volume and no intermolecular attractions. At high pressure or low temperature, finite particle size and attractions become more important; this qualitative correction is not a substitute for a fitted real-gas equation.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Container volume" min={1} max={10} step={.5} value={volume} onChange={setVolume} suffix=" L"/><Slider label="Temperature" min={100} max={600} step={25} value={temperature} onChange={setTemperature} suffix=" K"/><Slider label="Relative attraction strength" min={0} max={10} step={1} value={attraction} onChange={setAttraction}/></div><div className="rounded-xl border border-border bg-bg/50 p-4"><p className="text-sm text-ink-dim">Ideal pressure (1 mol)</p><p className="text-xl font-bold">{ideal.toFixed(2)} atm</p><p className="mt-3 text-sm text-ink-dim">Illustrative corrected pressure</p><p className="text-2xl font-bold">{real.toFixed(2)} atm</p><p className="mt-2 text-xs text-ink-dim">Toy correction factor Z = 1 − a/(TV); use only to visualize trends, not to calculate actual gas behavior.</p></div></div>
+  </Frame>;
+}
+function PhysicalChemicalLab() {
+  const [change,setChange]=useState("melting");
+  const data:Record<string,{label:string;kind:string;explain:string}>={melting:{label:"Ice melting",kind:"Physical change",explain:"H₂O molecules remain H₂O; their arrangement and motion change as the solid becomes liquid."},dissolving:{label:"Salt dissolving in water",kind:"Physical process (dissociation/solvation)",explain:"The ionic lattice separates into hydrated ions; no new molecular substance is formed in the usual aqueous model."},decomposition:{label:"Hydrogen peroxide decomposes",kind:"Chemical change",explain:"H₂O₂ molecules rearrange into H₂O and O₂; new chemical species form."}};
+  return <Frame unit="4 · Physical vs. chemical changes" title="Classify a change from the particle model" takeaway="A phase change changes arrangement and motion without changing chemical identity. A chemical reaction changes bonding and produces different chemical species. Look for the particle identity, not just whether a sample looks different.">
+    <label className="mb-2 block text-sm text-ink-dim" htmlFor="change-type">Choose the observed change</label><select id="change-type" value={change} onChange={e=>setChange(e.target.value)} className="mb-4 w-full rounded-lg border border-border bg-bg px-3 py-2">{Object.entries(data).map(([key,value])=><option key={key} value={key}>{value.label}</option>)}</select><div className="rounded-xl border border-border bg-bg/50 p-4"><div className="text-xl font-bold text-emerald-300">{data[change].kind}</div><p className="mt-2 text-sm">{data[change].explain}</p><svg viewBox="0 0 300 100" className="mt-3 w-full" role="img" aria-label="Schematic particles before and after the selected change">{Array.from({length:8},(_,i)=>{const chemical=change==="decomposition";const x=25+(i%4)*28,y=20+Math.floor(i/4)*28;return <g key={i}><circle cx={x} cy={y} r="6" fill={chemical&&i%2===0?"#f5c454":"#5aa9ff"}/>{!chemical&&<circle cx={x+8} cy={y} r="4" fill="#34d399"/>}</g>})}<line x1="155" y1="15" x2="155" y2="80" stroke="var(--color-ink-dim)" strokeDasharray="3 3"/>{Array.from({length:8},(_,i)=>{const chemical=change==="decomposition";const x=180+(i%4)*28,y=20+Math.floor(i/4)*28;return <g key={i}><circle cx={x} cy={y} r="6" fill={chemical&&i%2===0?"#f5c454":"#5aa9ff"}/>{!chemical&&<circle cx={x+8} cy={y} r="4" fill="#34d399"/>}</g>})}</svg><p className="text-xs text-ink-dim">Schematic particle drawing, not a stoichiometric count.</p></div>
+  </Frame>;
+}
 function UnitOne({ topicNumber }: { topicNumber: string }) {
   if (["1.1","1.3","1.4"].includes(topicNumber)) return <MoleLab />;
   if (topicNumber === "1.2") return <IsotopeLab />;
@@ -167,13 +193,16 @@ function UnitOne({ topicNumber }: { topicNumber: string }) {
 function UnitTwo({ topicNumber }: { topicNumber: string }) {
   if (topicNumber === "2.1") return <BondTypeLab />;
   if (topicNumber === "2.3") return <IonicLatticeLab />;
+  if (topicNumber === "2.4") return <MetallicLab />;
   if (topicNumber === "2.5") return <LewisLab />;
   if (topicNumber === "2.6") return <FormalChargeLab />;
   if (topicNumber === "2.7") return <GeometryLab />;
   return <BondPotentialLab />;
 }
 function UnitThree({ topicNumber }: { topicNumber: string }) {
-  if (topicNumber === "3.1" || topicNumber === "3.2" || topicNumber === "3.3" || topicNumber === "3.5" || topicNumber === "3.6") return <IntermolecularLab />;
+  if (topicNumber === "3.5") return <KineticMolecularLab />;
+  if (topicNumber === "3.6") return <NonIdealGasLab />;
+  if (topicNumber === "3.1" || topicNumber === "3.2" || topicNumber === "3.3") return <IntermolecularLab />;
   if (["3.7","3.8"].includes(topicNumber)) return <SolutionLab />;
   if (topicNumber === "3.9") return <ChromatographyLab />;
   if (topicNumber === "3.10") return <SolubilityLab />;
@@ -243,7 +272,7 @@ function RedoxLab() {
 function UnitFour({ topicNumber }: { topicNumber: string }) {
   if (topicNumber === "4.1" || topicNumber === "4.3") return <BalanceEquation />;
   if (topicNumber === "4.2") return <NetIonicLab />;
-  if (topicNumber === "4.4") return <ReactionTypeLab />;
+  if (topicNumber === "4.4") return <PhysicalChemicalLab />;
   if (topicNumber === "4.6") return <TitrationLab />;
   if (topicNumber === "4.7") return <ReactionTypeLab />;
   if (topicNumber === "4.8") return <AcidBaseLab />;
