@@ -53,7 +53,7 @@ export default function HomePage() {
             <div className="mt-8 flex flex-wrap gap-3">
               {unitTwoTopics[0] && (
                 <Link href={`/units/2/${unitTwoTopics[0].slug}`} className="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-bold text-[#06251b] shadow-lg shadow-emerald-950/20 transition hover:-translate-y-0.5 hover:bg-emerald-300">
-                  Continue Unit 2 <span aria-hidden="true">→</span>
+                  Start Unit 2 <span aria-hidden="true">→</span>
                 </Link>
               )}
               <a href="#course-map" className="inline-flex items-center gap-2 rounded-xl border border-border bg-white/[0.03] px-5 py-3 text-sm font-semibold text-ink transition hover:border-ink-dim/50 hover:bg-white/[0.06]">
