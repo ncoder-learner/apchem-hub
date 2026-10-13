@@ -33,7 +33,7 @@ export default async function TopicPage({ params }: PageProps) {
       topicNumber={topic.topicNumber}
     >
       <MDXRemote source={topic.body} components={mdxComponents} />
-      <TopicLab unitId={unitId} topicNumber={topic.topicNumber} title={topic.title} />
+      {unitId !== 4 && unitId !== 5 && <TopicLab unitId={unitId} topicNumber={topic.topicNumber} title={topic.title} />}
     </LessonView>
   );
 }
