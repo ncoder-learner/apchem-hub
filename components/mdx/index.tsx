@@ -7,6 +7,7 @@ import { LessonSection } from "./LessonSection";
 import { QuickCheck } from "./QuickCheck";
 import { ChemVisual } from "./ChemVisual";
 import { Unit3Visual } from "./Unit3Visual";
+import { InteractiveLab } from "./InteractiveLab";
 
 export const mdxComponents: MDXComponents = {
   Lightbulb,
@@ -20,4 +21,5 @@ export const mdxComponents: MDXComponents = {
   QuickCheck,
   ChemVisual,
   Unit3Visual,
+  InteractiveLab,
 };
