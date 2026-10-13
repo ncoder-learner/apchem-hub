@@ -21,7 +21,18 @@ export function InteractiveLab({ kind, title }: InteractiveLabProps) {
   if (kind === "collision") return <CollisionLab title={title} />;
   if (kind === "energy-profile") return <EnergyProfileLab title={title} />;
   if (kind === "gas-law") return <GasLawLab title={title} />;
-  if (kind === "ph") return <PhLab title={title} />;\n  if (kind === "net-ionic") return <NetIonicLab title={title} />;\n  if (kind === "stoichiometry") return <StoichiometryLab title={title} />;\n  if (kind === "titration") return <TitrationLab title={title} />;\n  if (kind === "reaction-types") return <ReactionTypesLab title={title} />;\n  if (kind === "particles") return <ParticleChangeLab title={title} />;\n  if (kind === "redox") return <RedoxLab title={title} />;\n  if (kind === "coulomb") return <CoulombLab title={title} />;\n  if (kind === "bond-energy") return <BondEnergyLab title={title} />;\n  if (kind === "beer-lambert") return <BeerLambertLab title={title} />;\n  if (kind === "lewis") return <LewisLab title={title} />;\n  if (kind === "photon") return <PhotonLab title={title} />;
+  if (kind === "ph") return <PhLab title={title} />;
+  if (kind === "net-ionic") return <NetIonicLab title={title} />;
+  if (kind === "stoichiometry") return <StoichiometryLab title={title} />;
+  if (kind === "titration") return <TitrationLab title={title} />;
+  if (kind === "reaction-types") return <ReactionTypesLab title={title} />;
+  if (kind === "particles") return <ParticleChangeLab title={title} />;
+  if (kind === "redox") return <RedoxLab title={title} />;
+  if (kind === "coulomb") return <CoulombLab title={title} />;
+  if (kind === "bond-energy") return <BondEnergyLab title={title} />;
+  if (kind === "beer-lambert") return <BeerLambertLab title={title} />;
+  if (kind === "lewis") return <LewisLab title={title} />;
+  if (kind === "photon") return <PhotonLab title={title} />;
   return <KineticsLab title={title} />;
 }
 
