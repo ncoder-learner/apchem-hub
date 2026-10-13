@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-type LabKind = "kinetics" | "rate-law" | "collision" | "energy-profile" | "balance" | "gas-law" | "ph" | "net-ionic" | "stoichiometry" | "titration" | "reaction-types" | "particles" | "redox" | "coulomb" | "bond-energy" | "beer-lambert";
+type LabKind = "kinetics" | "rate-law" | "collision" | "energy-profile" | "balance" | "gas-law" | "ph" | "net-ionic" | "stoichiometry" | "titration" | "reaction-types" | "particles" | "redox" | "coulomb" | "bond-energy" | "beer-lambert" | "lewis";
 
 interface InteractiveLabProps {
   kind: LabKind;
@@ -20,7 +20,7 @@ export function InteractiveLab({ kind, title }: InteractiveLabProps) {
   if (kind === "collision") return <CollisionLab title={title} />;
   if (kind === "energy-profile") return <EnergyProfileLab title={title} />;
   if (kind === "gas-law") return <GasLawLab title={title} />;
-  if (kind === "ph") return <PhLab title={title} />;\n  if (kind === "net-ionic") return <NetIonicLab title={title} />;\n  if (kind === "stoichiometry") return <StoichiometryLab title={title} />;\n  if (kind === "titration") return <TitrationLab title={title} />;\n  if (kind === "reaction-types") return <ReactionTypesLab title={title} />;\n  if (kind === "particles") return <ParticleChangeLab title={title} />;\n  if (kind === "redox") return <RedoxLab title={title} />;\n  if (kind === "coulomb") return <CoulombLab title={title} />;\n  if (kind === "bond-energy") return <BondEnergyLab title={title} />;\n  if (kind === "beer-lambert") return <BeerLambertLab title={title} />;
+  if (kind === "ph") return <PhLab title={title} />;\n  if (kind === "net-ionic") return <NetIonicLab title={title} />;\n  if (kind === "stoichiometry") return <StoichiometryLab title={title} />;\n  if (kind === "titration") return <TitrationLab title={title} />;\n  if (kind === "reaction-types") return <ReactionTypesLab title={title} />;\n  if (kind === "particles") return <ParticleChangeLab title={title} />;\n  if (kind === "redox") return <RedoxLab title={title} />;\n  if (kind === "coulomb") return <CoulombLab title={title} />;\n  if (kind === "bond-energy") return <BondEnergyLab title={title} />;\n  if (kind === "beer-lambert") return <BeerLambertLab title={title} />;\n  if (kind === "lewis") return <LewisLab title={title} />;
   return <KineticsLab title={title} />;
 }
 
@@ -205,6 +205,29 @@ function BeerLambertLab({ title }: { title?: string }) {
     <div className="grid gap-3 sm:grid-cols-2"><div className="rounded-xl border border-border bg-bg p-4"><p className="text-xs text-ink-dim">Calculated absorbance</p><p className="text-3xl font-semibold">{absorbance.toFixed(3)}</p><p className="mt-2 text-xs text-ink-dim">A = εℓc; ε = 120 L·mol⁻¹·cm⁻¹ (illustrative)</p></div><div className="rounded-xl border border-border bg-bg p-2"><svg viewBox="0 0 320 165" role="img" aria-label="Absorbance versus concentration graph" className="w-full"><line x1="35" y1="15" x2="35" y2="140" stroke="var(--color-ink-dim)"/><line x1="35" y1="140" x2="310" y2="140" stroke="var(--color-ink-dim)"/><path d={d} fill="none" stroke="var(--color-emerald)" strokeWidth="3"/><circle cx={35+c/0.02*275} cy={140-absorbance/Math.max(2,epsilon*0.02*length)*115} r="5" fill="var(--color-amber)"/><text x="170" y="159" fontSize="10" fill="var(--color-ink-dim)" textAnchor="middle">Concentration (mol/L)</text></svg></div></div>
     <p className="text-sm">At fixed wavelength, ε, and path length, absorbance is directly proportional to concentration. Doubling path length also doubles absorbance in this ideal model.</p>
     <p className="text-xs text-ink-dim">Assumes a dilute solution within the linear range and a constant molar absorptivity; real measurements can deviate because of instrument and chemical effects.</p>
+  </LabFrame>;
+}
+
+
+function LewisLab({ title }: { title?: string }) {
+  const [molecule,setMolecule]=useState("water");
+  const details:Record<string,{name:string;formula:string;electrons:number;description:string}> = {
+    water:{name:"Water",formula:"H₂O",electrons:8,description:"Oxygen forms two single bonds and retains two lone pairs. The Lewis structure shows electron accounting, not the 3D bent shape."},
+    carbonDioxide:{name:"Carbon dioxide",formula:"CO₂",electrons:16,description:"Carbon forms two double bonds. Each oxygen has two lone pairs; carbon has an octet with no lone pairs."},
+    ammonia:{name:"Ammonia",formula:"NH₃",electrons:8,description:"Nitrogen forms three single bonds and retains one lone pair. That lone pair affects the molecular shape."},
+    ozone:{name:"Ozone (one resonance contributor)",formula:"O₃",electrons:18,description:"One contributor has one single bond and one double bond, with formal charges. The second contributor swaps the bond positions; the real molecule is a resonance hybrid."}
+  };
+  const d=details[molecule];
+  return <LabFrame title={title ?? "Explore Lewis structures"}>
+    <label className="block space-y-1.5 text-sm"><span className="text-ink-dim">Choose a molecule</span><select value={molecule} onChange={e=>setMolecule(e.target.value)} className="w-full rounded-lg border border-border bg-bg px-3 py-2"><option value="water">H₂O — water</option><option value="carbonDioxide">CO₂ — carbon dioxide</option><option value="ammonia">NH₃ — ammonia</option><option value="ozone">O₃ — ozone resonance contributor</option></select></label>
+    <div className="rounded-xl border border-border bg-bg p-3"><svg viewBox="0 0 340 150" role="img" aria-label={`Schematic Lewis structure for ${d.name}`} className="w-full">
+      {molecule==="water"&&<><line x1="130" y1="82" x2="85" y2="112" stroke="var(--color-ink)" strokeWidth="3"/><line x1="210" y1="82" x2="255" y2="112" stroke="var(--color-ink)" strokeWidth="3"/><text x="170" y="87" fontSize="24" textAnchor="middle" fill="var(--color-emerald)">O</text><text x="75" y="122" fontSize="21" textAnchor="middle" fill="var(--color-ink)">H</text><text x="265" y="122" fontSize="21" textAnchor="middle" fill="var(--color-ink)">H</text>{[[160,45],[180,45],[160,105],[180,105]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="3.5" fill="var(--color-amber)"/>)}</>}
+      {molecule==="carbonDioxide"&&<><line x1="90" y1="70" x2="140" y2="70" stroke="var(--color-ink)" strokeWidth="3"/><line x1="90" y1="78" x2="140" y2="78" stroke="var(--color-ink)" strokeWidth="3"/><line x1="200" y1="70" x2="250" y2="70" stroke="var(--color-ink)" strokeWidth="3"/><line x1="200" y1="78" x2="250" y2="78" stroke="var(--color-ink)" strokeWidth="3"/><text x="70" y="80" fontSize="23" fill="var(--color-emerald)">O</text><text x="170" y="80" fontSize="23" textAnchor="middle" fill="var(--color-ink)">C</text><text x="260" y="80" fontSize="23" fill="var(--color-emerald)">O</text>{[[55,45],[70,45],[55,105],[70,105],[270,45],[285,45],[270,105],[285,105]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="3.5" fill="var(--color-amber)"/>)}</>}
+      {molecule==="ammonia"&&<><line x1="170" y1="73" x2="170" y2="32" stroke="var(--color-ink)" strokeWidth="3"/><line x1="150" y1="83" x2="105" y2="110" stroke="var(--color-ink)" strokeWidth="3"/><line x1="190" y1="83" x2="235" y2="110" stroke="var(--color-ink)" strokeWidth="3"/><text x="170" y="86" fontSize="23" textAnchor="middle" fill="var(--color-emerald)">N</text><text x="170" y="25" fontSize="20" textAnchor="middle" fill="var(--color-ink)">H</text><text x="95" y="123" fontSize="20" textAnchor="middle" fill="var(--color-ink)">H</text><text x="245" y="123" fontSize="20" textAnchor="middle" fill="var(--color-ink)">H</text><circle cx="162" cy="48" r="3.5" fill="var(--color-amber)"/><circle cx="178" cy="48" r="3.5" fill="var(--color-amber)"/></>}
+      {molecule==="ozone"&&<><text x="65" y="82" fontSize="23" fill="var(--color-emerald)">O</text><text x="170" y="82" fontSize="23" textAnchor="middle" fill="var(--color-emerald)">O</text><text x="260" y="82" fontSize="23" fill="var(--color-emerald)">O</text><line x1="90" y1="70" x2="145" y2="70" stroke="var(--color-ink)" strokeWidth="3"/><line x1="195" y1="70" x2="250" y2="70" stroke="var(--color-ink)" strokeWidth="3"/><line x1="195" y1="78" x2="250" y2="78" stroke="var(--color-ink)" strokeWidth="3"/><text x="60" y="48" fontSize="12" fill="var(--color-amber)">−</text><text x="170" y="48" fontSize="12" fill="var(--color-amber)" textAnchor="middle">+</text></>}
+    </svg></div>
+    <div className="grid gap-3 sm:grid-cols-2"><div className="rounded-lg bg-white/[0.04] p-3"><p className="text-xs text-ink-dim">Valence electrons</p><p className="text-xl font-semibold">{d.electrons}</p></div><div className="rounded-lg bg-white/[0.04] p-3"><p className="text-xs text-ink-dim">Structure to notice</p><p className="text-sm">{d.description}</p></div></div>
+    <p className="text-xs text-ink-dim">Schematic 2D Lewis structures emphasize connectivity and valence-electron accounting. Use a separate geometry model to reason about 3D shape.</p>
   </LabFrame>;
 }
 
