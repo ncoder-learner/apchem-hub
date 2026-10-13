@@ -1,0 +1,89 @@
+---
+title: "Introduction to Rate Law"
+unit: 5
+topicNumber: "5.2"
+slug: "5-2-introduction-to-rate-law"
+summary: "Determine reaction orders and the rate constant from experimental initial-rate data without assuming orders from balanced coefficients."
+---
+
+A rate law is an experimentally determined relationship between reaction rate and reactant concentrations. It answers a different question from a balanced equation: the equation gives overall stoichiometric amounts, while the rate law describes how measured rate depends on concentration under specified conditions.
+
+<LessonSection title="1. Read the general form" description="Orders are determined from experiments" defaultOpen>
+
+For a reaction involving A and B, a common empirical rate law is:
+
+**rate = k[A]ᵐ[B]ⁿ**
+
+- **k** is the rate constant at a specified temperature.
+- **m** is the reaction order with respect to A.
+- **n** is the reaction order with respect to B.
+- The overall order is m + n.
+
+The exponents are not automatically the coefficients in the balanced chemical equation. For an overall reaction, determine the exponents from experimental data unless the prompt explicitly describes a single elementary step for which the molecularity justifies the corresponding rate expression.
+
+A zero-order dependence means changing that reactant's concentration does not change the rate over the studied range. A first-order dependence means doubling the concentration doubles the rate. A second-order dependence means doubling the concentration multiplies the rate by four.
+
+<QuickCheck question="For rate = k[A]²[B], what is the overall reaction order?" options={["First order","Second order","Third order","Fourth order"]} correctIndex={2} explanation="Add the exponents: 2 + 1 = 3, so the rate law is third order overall." />
+
+</LessonSection>
+
+<LessonSection title="2. Determine order by comparing experiments" description="Change one concentration at a time">
+
+Initial-rate tables compare the rate measured just after mixing under different starting concentrations. To find the order with respect to A, compare trials where [A] changes but [B] stays constant. Use the rate ratio to infer the exponent.
+
+If doubling [A] doubles the rate, the order in A is 1 because 2ᵐ = 2, so m = 1. If doubling [A] quadruples the rate, then 2ᵐ = 4 and m = 2. If doubling [A] leaves the rate unchanged, 2ᵐ = 1 and m = 0.
+
+<WorkedExample title="Worked example: find both orders">
+A reaction has these initial-rate data:
+
+| Trial | [A] (M) | [B] (M) | Initial rate (M·s⁻¹) |
+|---|---:|---:|---:|
+| 1 | 0.10 | 0.10 | 0.020 |
+| 2 | 0.20 | 0.10 | 0.080 |
+| 3 | 0.10 | 0.20 | 0.040 |
+
+Compare trials 1 and 2: [A] doubles while [B] stays fixed; rate quadruples. Therefore 2ᵐ = 4 and m = 2.
+
+Compare trials 1 and 3: [B] doubles while [A] stays fixed; rate doubles. Therefore 2ⁿ = 2 and n = 1.
+
+Rate law: **rate = k[A]²[B]**. Overall order = 3.
+</WorkedExample>
+
+<QuickCheck question="When [A] doubles while all other reactant concentrations stay constant, the initial rate becomes four times larger. What is the order in A?" options={["Zero","First","Second","Third"]} correctIndex={2} explanation="The rate ratio is 4 = 2ᵐ, so m = 2. A second-order dependence makes rate proportional to [A]²." />
+
+</LessonSection>
+
+<LessonSection title="3. Calculate the rate constant and its units" description="Use any experiment after finding the exponents">
+
+Once the orders are known, substitute one trial into the rate law and solve for k. The units of k depend on the overall order because the rate has units of concentration per time.
+
+For rate = k[A]²[B], with rate in M·s⁻¹ and concentration in M, k = rate / ([A]²[B]) has units (M·s⁻¹)/(M³) = **M⁻²·s⁻¹**.
+
+<WorkedExample title="Worked example: calculate k">
+Using trial 1 from the table above: rate = 0.020 M·s⁻¹, [A] = 0.10 M, and [B] = 0.10 M.
+
+k = 0.020 / ((0.10)²(0.10)) = 0.020 / 0.0010 = **20 M⁻²·s⁻¹**.
+
+Check with trial 2: 20(0.20)²(0.10) = 0.080 M·s⁻¹, matching the measured rate. A rate law that does not reproduce the experimental data is not consistent with the table.
+</WorkedExample>
+
+<QuickCheck question="For a first-order rate law rate = k[A], what are the units of k if rate is M·s⁻¹?" options={["M·s⁻¹","s⁻¹","M⁻¹·s⁻¹","M²·s⁻¹"]} correctIndex={1} explanation="k = rate/[A] = (M·s⁻¹)/M = s⁻¹." />
+
+</LessonSection>
+
+<LessonSection title="4. Common traps" description="Don't infer kinetics from stoichiometry">
+
+- **Using equation coefficients as exponents:** generally incorrect for an overall reaction. Use the initial-rate data.
+- **Comparing trials where two concentrations change:** you cannot isolate one order unless you account for both changes.
+- **Confusing rate with k:** rate changes when concentrations change; at fixed temperature, k is constant for a given reaction and mechanism.
+- **Ignoring units:** calculate units from the rate law rather than memorizing one universal unit for k.
+
+For further reference, see [OpenStax Chemistry 2e: Rate Laws](https://openstax.org/books/chemistry-2e/pages/12-3-rate-laws).
+
+<QuickCheck question="If the balanced equation is A + 2B → products, what can you conclude about the exponents in the experimentally measured rate law?" options={["A must have order 1 and B order 2","The overall order must be 3","The exponents cannot be determined from the equation alone","The reaction must be second order"]} correctIndex={2} explanation="The overall rate law is empirical. Stoichiometric coefficients give the rate-law exponents for an elementary step, not necessarily for an overall reaction." />
+
+</LessonSection>
+
+## Readiness check
+
+You should be able to infer orders from initial-rate comparisons, write the empirical rate law, calculate k with units, and explain why overall reaction coefficients do not automatically give rate-law exponents.

@@ -1,0 +1,78 @@
+---
+title: "Concentration Changes Over Time"
+unit: 5
+topicNumber: "5.3"
+slug: "5-3-concentration-changes-over-time"
+summary: "Use integrated rate-law relationships and concentration–time data to identify reaction order and predict concentration over time."
+---
+
+Initial-rate experiments tell you how rate depends on starting concentrations. Integrated rate laws describe how concentration changes as time passes. They allow you to test which order best fits data, estimate a rate constant, and predict how much reactant remains after a given time.
+
+<LessonSection title="1. Recognize the integrated relationships" description="Different orders produce different concentration patterns" defaultOpen>
+
+For a single reactant A under constant conditions, the most important integrated forms are:
+
+| Order in A | Integrated relationship | Linear plot |
+|---|---|---|
+| Zero | [A]ₜ = [A]₀ − kt | [A] vs. time |
+| First | ln[A]ₜ = ln[A]₀ − kt | ln[A] vs. time |
+| Second | 1/[A]ₜ = 1/[A]₀ + kt | 1/[A] vs. time |
+
+[A]₀ is the initial concentration and [A]ₜ is the concentration at time t. These forms assume the corresponding simple rate law applies over the measured interval and the rate constant remains constant.
+
+The line's slope identifies k: for zero order, slope = −k; for first order, slope = −k; for second order, slope = +k. The intercept relates to the initial concentration.
+
+<QuickCheck question="For a first-order reaction, which graph should be linear when the data follow the integrated rate law?" options={["[A] vs. time","ln[A] vs. time","1/[A] vs. time","Rate vs. product mass only"]} correctIndex={1} explanation="The first-order integrated law is ln[A]ₜ = ln[A]₀ − kt, so plotting ln[A] against time gives a straight line with slope −k." />
+
+</LessonSection>
+
+<LessonSection title="2. Use a first-order half-life" description="The same fraction remains after equal time intervals">
+
+The half-life is the time required for a reactant concentration to fall to half its value. For a first-order process:
+
+**t₁/₂ = 0.693 / k**
+
+It does not depend on the starting concentration. After each half-life, half of the amount present at the beginning of that interval remains: 100% → 50% → 25% → 12.5%. The absolute amount lost each interval becomes smaller, but the fraction remaining is constant.
+
+<WorkedExample title="Worked example: first-order decay">
+A first-order reaction has k = 0.0350 s⁻¹. Its half-life is t₁/₂ = 0.693 / 0.0350 s⁻¹ = **19.8 s**.
+
+If [A]₀ = 0.800 M, after one half-life [A] = 0.400 M; after two half-lives [A] = 0.200 M. After 39.6 s, one quarter of the initial concentration remains.
+</WorkedExample>
+
+<QuickCheck question="A first-order reaction has a half-life of 10 minutes. If [A] starts at 0.80 M, what is [A] after 20 minutes?" options={["0.60 M","0.40 M","0.20 M","0.10 M"]} correctIndex={2} explanation="Twenty minutes is two half-lives: 0.80 → 0.40 → 0.20 M." />
+
+</LessonSection>
+
+<LessonSection title="3. Determine order from concentration–time evidence" description="Look for the plot that becomes linear">
+
+If a prompt gives concentration data at multiple times, test the transformations. A straight [A] versus t plot supports zero-order behavior; a straight ln[A] versus t plot supports first order; a straight 1/[A] versus t plot supports second order. Do not decide from one data point.
+
+<WorkedExample title="Worked example: identify a first-order reaction">
+Suppose a table shows that [A] decreases from 0.500 M to 0.250 M over 12.0 s, then to 0.125 M over the next 12.0 s. The concentration halves over equal time intervals. That pattern is consistent with first-order behavior and a half-life of 12.0 s.
+
+For a first-order reaction, k = 0.693 / 12.0 s = **0.0578 s⁻¹**. The repeated-halving pattern is evidence for the order; the integrated equation provides the quantitative relationship.
+</WorkedExample>
+
+<QuickCheck question="Which concentration pattern is characteristic of a first-order reaction?" options={["The same concentration amount is lost every second","The concentration halves in equal time intervals","The concentration never changes","The rate is independent of time and concentration in every case"]} correctIndex={1} explanation="A first-order reaction has a constant half-life, so the concentration halves over equal time intervals. A zero-order reaction instead loses equal concentration amounts in equal time intervals." />
+
+</LessonSection>
+
+<LessonSection title="4. Keep order, rate, and half-life distinct" description="Related quantities answer different questions">
+
+- **Order** describes how rate depends on concentration.
+- **Rate** is the concentration change per unit time at a particular moment or over an interval.
+- **k** is the rate constant under specified conditions.
+- **Half-life** is a time interval defined by a concentration reduction.
+
+For first-order kinetics, k has units s⁻¹ and the half-life is independent of [A]₀. For zero- and second-order kinetics, the half-life generally depends on the initial concentration. Temperature changes k, so a half-life measured at one temperature need not apply at another.
+
+For additional explanation, see [OpenStax Chemistry 2e: Integrated Rate Laws](https://openstax.org/books/chemistry-2e/pages/12-4-integrated-rate-laws).
+
+<QuickCheck question="For a first-order reaction, if the starting concentration is doubled while temperature stays the same, what happens to the half-life?" options={["It doubles","It is halved","It remains the same","It becomes zero"]} correctIndex={2} explanation="The first-order half-life is 0.693/k and does not depend on initial concentration. At the same temperature, k is unchanged." />
+
+</LessonSection>
+
+## Readiness check
+
+You should be able to identify the linear integrated-rate plot for zero-, first-, and second-order reactions, use the first-order half-life relation, and infer order from concentration–time data.

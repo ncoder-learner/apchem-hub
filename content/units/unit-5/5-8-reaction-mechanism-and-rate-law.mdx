@@ -1,0 +1,58 @@
+---
+title: "Reaction Mechanism and Rate Law"
+unit: 5
+topicNumber: "5.8"
+slug: "5-8-reaction-mechanism-and-rate-law"
+summary: "Use a proposed mechanism and its rate-determining step to evaluate a rate law while treating intermediates carefully."
+---
+
+A proposed reaction mechanism makes predictions about rate. The challenge is that an elementary step may contain a species that is not present in the overall equation. A valid derivation must express the predicted rate in terms of quantities consistent with the experiment, not simply leave an unmeasured intermediate in the final rate law.
+
+<LessonSection title="1. Begin with the elementary step that controls rate" description="Use the stated slow step, but check its assumptions" defaultOpen>
+
+In introductory problems, the **rate-determining step** is the slow step that limits the overall rate. If that step is elementary and contains only reactants whose concentrations are known, its molecularity gives a rate law for that step.
+
+For example:
+- Slow elementary step: A + B → X. A simple model gives rate = k[A][B].
+- Slow elementary step: 2A → X. A simple model gives rate = k[A]².
+
+However, if the slow step includes an intermediate X, the rate expression may contain [X]. To compare the mechanism with experimental rate data, X must be related to the measurable reactant concentrations using justified information about preceding or following steps. This is why a mechanism cannot be judged solely by the slow-step label.
+
+<QuickCheck question="A stated slow elementary step is A + B → products. Under the simple rate-determining-step model, what rate law follows?" options={["rate = k[A]","rate = k[B]²","rate = k[A][B]","rate = k[A + B]"]} correctIndex={2} explanation="The elementary bimolecular step involves one A and one B, so the simple rate law is first order in each: k[A][B]." />
+
+</LessonSection>
+
+<LessonSection title="2. Why intermediates complicate rate laws" description="The final rate law should match measurable species">
+
+Consider a mechanism with a fast pre-equilibrium **A + B ⇌ X**, followed by a slow step **X + C → products**. The slow-step expression is rate = k₂[X][C]. But X is an intermediate, so a useful overall rate law should eliminate [X].
+
+If the first step is at equilibrium, its equilibrium expression can be used to relate [X] to [A] and [B]: K = [X]/([A][B]), so [X] = K[A][B]. Substitution gives rate = k₂K[A][B][C]. This conclusion depends on the stated fast-equilibrium assumption; it is not a universal shortcut for all mechanisms.
+
+<WorkedExample title="Worked example: remove an intermediate using a fast equilibrium">
+Suppose A + B ⇌ X is fast and at equilibrium, and X + C → products is slow. The slow step gives rate = k₂[X][C]. From the first-step equilibrium, [X] = K[A][B]. Substitute: rate = k₂K[A][B][C]. Combining constants gives **rate = kobs[A][B][C]**, where kobs = k₂K under the stated conditions.
+</WorkedExample>
+
+<QuickCheck question="Why is a final empirical rate law usually written in terms of reactants rather than a short-lived intermediate?" options={["Intermediates contain no atoms","The intermediate concentration is usually not directly controlled as an initial reactant and must be related to measurable species","All intermediates are catalysts","The rate law cannot contain concentration terms"]} correctIndex={1} explanation="An intermediate is formed during the mechanism and often is not a directly set initial concentration. Mechanistic derivations eliminate it using justified equilibrium or steady-state relationships." />
+
+</LessonSection>
+
+<LessonSection title="3. Test consistency rather than guessing" description="A mechanism must satisfy multiple constraints">
+
+Check a proposed mechanism in this order:
+1. Add elementary steps and cancel intermediates.
+2. Confirm the sum matches the balanced overall reaction.
+3. Write rate expressions only for elementary steps as justified.
+4. Eliminate intermediates if needed using the assumptions provided.
+5. Compare the predicted rate law with experimental evidence.
+
+If a mechanism predicts a different dependence on concentration than the measured rate law, the mechanism is inconsistent with the data even if the steps sum correctly. Conversely, matching one rate law does not prove a unique mechanism; multiple mechanisms can sometimes produce the same observed rate expression.
+
+For further reference, see [OpenStax Chemistry 2e: Rate Laws](https://openstax.org/books/chemistry-2e/pages/12-3-rate-laws).
+
+<QuickCheck question="A proposed mechanism matches the net equation but predicts rate ∝ [A], while experiments show rate ∝ [A]². What is the best conclusion?" options={["The mechanism is inconsistent with the measured kinetics","The measured rate law can be ignored","The overall reaction must be zero order","The reaction is necessarily elementary"]} correctIndex={0} explanation="A mechanism must account for the experimentally observed rate law as well as the overall equation. The mismatch indicates that the proposed mechanism or its assumptions are inadequate." />
+
+</LessonSection>
+
+## Readiness check
+
+You should be able to derive a rate law from an explicitly stated elementary slow step, eliminate intermediates using a supplied equilibrium relationship, and evaluate a mechanism against both net stoichiometry and experimental kinetics.
