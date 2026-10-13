@@ -105,7 +105,7 @@ function AcidBaseLab() {
 function RedoxLab() {
   const [fe,setFe]=useState(2);
   return <Frame unit="4 · Oxidation–reduction" title="Track electron transfer" takeaway="Oxidation is an increase in oxidation state and corresponds to loss of electrons; reduction is a decrease in oxidation state and corresponds to gain of electrons. The electrons lost and gained must balance.">
-    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Starting iron oxidation state" min={0} max={3} step={1} value={fe} onChange={setFe}/><div className="rounded-xl border border-border bg-bg/50 p-4"><p>Fe{fe===0?"(s)":fe===2?"²⁺(aq)":"³⁺(aq)"} → Fe³⁺(aq)</p><p className="mt-3 text-sm text-ink-dim">Change in oxidation state</p><p className="text-2xl font-bold">{3-fe>0?"+":""}{3-fe}</p></div></div><div className="rounded-xl border border-border p-4"><p className="font-semibold text-emerald-300">{fe<3?"Oxidation: iron loses "+(3-fe)+" electron"+(3-fe===1?"":"s"):"No oxidation-state change"}</p><p className="mt-3 text-sm text-ink-dim">In a complete redox equation, another species must accept the electrons released by iron. This model tracks only iron's oxidation half-reaction.</p></div></div>
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Starting iron oxidation state" min={0} max={3} step={1} value={fe} onChange={setFe}/><div className="rounded-xl border border-border bg-bg/50 p-4"><p>Fe{fe===0?"(s)":fe===1?"⁺(aq)":fe===2?"²⁺(aq)":"³⁺(aq)"} → Fe³⁺(aq)</p><p className="mt-3 text-sm text-ink-dim">Change in oxidation state</p><p className="text-2xl font-bold">{3-fe>0?"+":""}{3-fe}</p></div></div><div className="rounded-xl border border-border p-4"><p className="font-semibold text-emerald-300">{fe<3?"Oxidation: iron loses "+(3-fe)+" electron"+(3-fe===1?"":"s"):"No oxidation-state change"}</p><p className="mt-3 text-sm text-ink-dim">In a complete redox equation, another species must accept the electrons released by iron. This model tracks only iron's oxidation half-reaction.</p></div></div>
   </Frame>;
 }
 function UnitFour({ topicNumber }: { topicNumber: string }) {
@@ -196,6 +196,6 @@ function UnitNine() {
   </Frame>;
 }
 export function TopicLab({ unitId, topicNumber, title }: TopicLabProps) {
-  const labs: Record<number, React.ReactNode> = {1:<UnitOne/>,2:<UnitTwo/>,3:<UnitThree/>,4:<UnitFour topicNumber={topicNumber}/>,5:<UnitFive topicNumber={topicNumber}/>,6:<UnitSix/>,7:<UnitSeven/>,8:<UnitEight/>,9:<UnitNine/>};
+  const labs: Record<number, ReactNode> = {1:<UnitOne/>,2:<UnitTwo/>,3:<UnitThree/>,4:<UnitFour topicNumber={topicNumber}/>,5:<UnitFive topicNumber={topicNumber}/>,6:<UnitSix/>,7:<UnitSeven/>,8:<UnitEight/>,9:<UnitNine/>};
   return <div data-topic={topicNumber} data-title={title}>{labs[unitId] ?? null}</div>;
 }
