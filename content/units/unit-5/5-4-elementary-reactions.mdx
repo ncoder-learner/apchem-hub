@@ -1,0 +1,55 @@
+---
+title: "Elementary Reactions"
+unit: 5
+topicNumber: "5.4"
+slug: "5-4-elementary-reactions"
+summary: "Interpret elementary reaction steps, molecularity, and the limited conditions under which stoichiometric coefficients define a rate law."
+---
+
+A balanced overall equation tells you the net chemical transformation, but many reactions occur through a sequence of molecular events. An **elementary reaction** is one individual step in a proposed mechanism. Because it describes a single molecular event, its molecularity can be used to write its rate law directly.
+
+<LessonSection title="1. What makes a step elementary?" description="A single molecular event, not an overall summary" defaultOpen>
+
+A mechanism is a sequence of elementary steps that, when added, gives the overall reaction. Each elementary step represents a proposed event at the particle level. An elementary step may be unimolecular (one reactant particle), bimolecular (two reactant particles collide), or, rarely, termolecular (three particles participate in one event).
+
+For an elementary step **A → products**, the step is unimolecular and its rate law is first order in A: rate = k[A]. For **A + B → products**, a bimolecular elementary step has rate = k[A][B]. For **2A → products**, the step's rate law is rate = k[A]².
+
+This direct connection applies to an elementary step, not automatically to a net equation formed by adding several steps. Mechanisms involving intermediates can produce overall rate laws with exponents that differ from the overall stoichiometric coefficients.
+
+<QuickCheck question="For the elementary step A + B → products, what rate law follows from its molecularity?" options={["rate = k[A]","rate = k[B]²","rate = k[A][B]","rate = k[A + B]² in all cases"]} correctIndex={2} explanation="A and B participate together in one bimolecular elementary step, so the rate is proportional to the concentration of each reactant: k[A][B]." />
+
+</LessonSection>
+
+<LessonSection title="2. Molecularity is not the same as reaction order" description="Molecularity applies to a step; order comes from a rate law">
+
+Molecularity is the number of reactant particles participating in one elementary step. It is always a positive integer for the stated step. Reaction order is the sum of exponents in a rate law and is established from the rate expression. For an elementary step, order follows from its molecularity; for an overall reaction, order is determined experimentally.
+
+A reaction with overall equation A + B → products could proceed through multiple steps, so you cannot assume its rate law is k[A][B] just because A and B have coefficient 1. The mechanism could include a slow unimolecular rearrangement after a rapid equilibrium, or a different rate-determining event.
+
+<WorkedExample title="Worked example: compare an overall equation and an elementary step">
+The overall equation is 2NO₂ + F₂ → 2NO₂F. If the prompt explicitly states this transformation occurs in one elementary step, the rate law for that step is rate = k[NO₂]²[F₂].
+
+If the equation is only the overall reaction and no mechanism is provided, the exponents cannot be inferred from the overall coefficients alone. Initial-rate data or a justified mechanism is needed.
+</WorkedExample>
+
+<QuickCheck question="Which statement is correct?" options={["The order of every overall reaction equals its coefficient sum","Molecularity can be fractional","Molecularity describes an elementary step; overall reaction order must be determined from kinetics","An elementary step can contain no reactant particles"]} correctIndex={2} explanation="Molecularity refers to the particles involved in a single elementary event. Overall reaction order is an empirical kinetic property and need not equal the overall equation's coefficients." />
+
+</LessonSection>
+
+<LessonSection title="3. Elementary steps and intermediates" description="Mechanisms must add to the observed overall reaction">
+
+An **intermediate** is produced in one step and consumed in a later step, so it does not appear in the net overall equation. To obtain the overall reaction, add the elementary steps and cancel intermediates that appear on both sides.
+
+For example:
+1. NO₂ + NO₂ → NO₃ + NO (slow)
+2. NO₃ + CO → NO₂ + CO₂ (fast)
+
+Add the steps. NO₃ appears as a product and reactant, so it cancels. One NO₂ also cancels from both sides. The net equation is **NO₂ + CO → NO + CO₂**. NO₃ is an intermediate. The labels “slow” and “fast” are part of the proposed mechanism and must be supported by kinetics, not guessed from the balanced overall equation.
+
+<QuickCheck question="What happens to an intermediate when elementary steps are added to obtain the overall equation?" options={["It must appear as a final product","It cancels because it is formed in one step and consumed in another","It changes into a catalyst","Its atoms disappear from the system"]} correctIndex={1} explanation="An intermediate is made and later used up. It cancels algebraically from the sum of the steps, while its atoms are still conserved in each step." />
+
+</LessonSection>
+
+## Readiness check
+
+You should be able to define molecularity and intermediates, write a rate law for an explicitly elementary step, and explain why an overall equation does not generally reveal its rate law.
