@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import type { ReactNode } from "react";
 
 interface TopicLabProps { unitId: number; topicNumber: string; title: string; }
 type Change = (value: number) => void;
@@ -14,7 +15,7 @@ function Slider({ label, min, max, step, value, onChange, suffix = "" }: {
     <span className="flex justify-between text-xs text-ink-dim"><span>{min}{suffix}</span><span>{max}{suffix}</span></span>
   </label>;
 }
-function Frame({ unit, title, takeaway, children }: { unit: string; title: string; takeaway: string; children: React.ReactNode }) {
+function Frame({ unit, title, takeaway, children }: { unit: string; title: string; takeaway: string; children: ReactNode }) {
   return <section className="my-10 rounded-2xl border border-emerald-400/30 bg-card p-5 sm:p-7" aria-label={title}>
     <div className="mb-3 text-xs font-bold uppercase tracking-[.16em] text-emerald-300">Interactive lab · {unit}</div>
     <h2 className="mb-2 text-xl font-bold text-ink">{title}</h2>
@@ -36,10 +37,10 @@ function UnitOne() {
 function UnitTwo() {
   const [distance,setDistance]=useState(1.2); const [depth,setDepth]=useState(70);
   const energy=depth*(Math.pow(1/distance,12)-2*Math.pow(1/distance,6));
-  const points=Array.from({length:80},(_,i)=>{const x=.72+i*2.8/79;const y=1/Math.pow(x,12)-2/Math.pow(x,6);return {x,y};});
-  const minY=-.2,maxY=2.5; const path=points.map((p,i)=>(i?"L":"M")+(35+i*4.8)+","+(15+(maxY-p.y)/(maxY-minY)*145)).join(" ");
+  const points=Array.from({length:80},(_,i)=>{const x=.72+i*2.8/79;const y=depth*(1/Math.pow(x,12)-2/Math.pow(x,6));return {x,y};});
+  const minY=-depth,maxY=depth*2.5; const path=points.map((p,i)=>(i?"L":"M")+(35+i*4.8)+","+(15+(maxY-p.y)/(maxY-minY)*145)).join(" ");
   return <Frame unit="2 · Bonding" title="Bond potential-energy curve" takeaway="The minimum is the most stable internuclear distance. Moving atoms closer than this causes strong repulsion; separating them requires energy to overcome attraction. A deeper well corresponds to a stronger bond in this simplified model.">
-    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Internuclear distance" min={.8} max={3.5} step={.05} value={distance} onChange={setDistance} suffix=" relative"/><Slider label="Potential well depth" min={30} max={100} step={5} value={depth} onChange={setDepth}/><div className="rounded-lg border border-border p-3"><div className="text-xs text-ink-dim">Energy at current distance</div><div className="text-2xl font-bold">{Number(energy.toFixed(2))} relative units</div></div></div><div className="rounded-xl border border-border bg-bg/50 p-3"><svg viewBox="0 0 440 210" className="w-full" role="img" aria-label="Schematic bond potential energy curve"><line x1="35" y1="160" x2="420" y2="160" stroke="var(--color-ink-dim)"/><line x1="35" y1="15" x2="35" y2="160" stroke="var(--color-ink-dim)"/><path d={path} fill="none" stroke="#34d399" strokeWidth="3"/><text x="225" y="192" textAnchor="middle" fill="var(--color-ink-dim)" fontSize="12">Internuclear distance →</text><circle cx={35+(distance-.72)/2.8*379} cy={15+(maxY-(1/Math.pow(distance,12)-2/Math.pow(distance,6)))/(maxY-minY)*145} r="5" fill="#f5c454"/></svg><p className="text-xs text-ink-dim">Lennard-Jones-style shape, scaled for visualization; not a fitted molecular potential.</p></div></div>
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Internuclear distance" min={.8} max={3.5} step={.05} value={distance} onChange={setDistance} suffix=" relative"/><Slider label="Potential well depth" min={30} max={100} step={5} value={depth} onChange={setDepth}/><div className="rounded-lg border border-border p-3"><div className="text-xs text-ink-dim">Energy at current distance</div><div className="text-2xl font-bold">{Number(energy.toFixed(2))} relative units</div></div></div><div className="rounded-xl border border-border bg-bg/50 p-3"><svg viewBox="0 0 440 210" className="w-full" role="img" aria-label="Schematic bond potential energy curve"><line x1="35" y1="160" x2="420" y2="160" stroke="var(--color-ink-dim)"/><line x1="35" y1="15" x2="35" y2="160" stroke="var(--color-ink-dim)"/><path d={path} fill="none" stroke="#34d399" strokeWidth="3"/><text x="225" y="192" textAnchor="middle" fill="var(--color-ink-dim)" fontSize="12">Internuclear distance →</text><circle cx={35+(distance-.72)/2.8*379} cy={15+(maxY-energy)/(maxY-minY)*145} r="5" fill="#f5c454"/></svg><p className="text-xs text-ink-dim">Lennard-Jones-style shape, scaled for visualization; not a fitted molecular potential.</p></div></div>
   </Frame>;
 }
 function UnitThree() {
