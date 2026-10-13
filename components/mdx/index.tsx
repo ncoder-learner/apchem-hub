@@ -5,6 +5,7 @@ import { GeometryDiagram } from "./GeometryDiagram";
 import { PhetSim } from "./PhetSim";
 import { LessonSection } from "./LessonSection";
 import { QuickCheck } from "./QuickCheck";
+import { ChemVisual } from "./ChemVisual";
 
 export const mdxComponents: MDXComponents = {
   Lightbulb,
@@ -16,4 +17,5 @@ export const mdxComponents: MDXComponents = {
   PhetSim,
   LessonSection,
   QuickCheck,
+  ChemVisual,
 };
