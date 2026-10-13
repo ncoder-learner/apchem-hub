@@ -60,10 +60,32 @@ export function Unit3Visual({ kind, children }: {kind:Unit3VisualKind; children?
       {Array.from({length:20},(_,i)=><Particle key={i} x={365+(i%5)*32} y={50+Math.floor(i/5)*35} color={i%4===0?"#f5718a":"#5aa9ff"} r={6}/>)}
     </>}
     {(kind==="spectroscopy"||kind==="photoelectric"||kind==="beer-lambert") && <>
-      <line x1="70" y1="170" x2="530" y2="170" stroke="#93a1b7" strokeWidth="1.5"/><line x1="70" y1="45" x2="70" y2="170" stroke="#93a1b7" strokeWidth="1.5"/>
-      {kind==="spectroscopy" && <><path d="M90 160 L160 160 L205 70 L250 160 L335 160 L390 110 L435 160 L510 160" stroke="#5aa9ff" strokeWidth="3" fill="none"/><text x="300" y="205" textAnchor="middle" fill="#93a1b7" fontSize="12">Energy is quantized; spectra show allowed transitions</text></>}
-      {kind==="photoelectric" && <><path d="M90 160 L170 160 L205 95 L245 160 L315 160 L355 80 L395 160 L510 160" stroke="#f5c454" strokeWidth="3" fill="none"/><text x="300" y="205" textAnchor="middle" fill="#93a1b7" fontSize="12">Frequency controls energy per photon</text></>}
-      {kind==="beer-lambert" && <><path d="M80 155 L510 50" stroke="#34d399" strokeWidth="3" fill="none"/><text x="300" y="205" textAnchor="middle" fill="#93a1b7" fontSize="12">Absorbance is proportional to concentration at fixed path length</text></>}
+      <line x1="78" y1="170" x2="530" y2="170" stroke="#93a1b7" strokeWidth="1.5"/>
+      <line x1="78" y1="42" x2="78" y2="170" stroke="#93a1b7" strokeWidth="1.5"/>
+      <path d="M78 42 L73 51 M78 42 L83 51 M530 170 L520 165 M530 170 L520 175" stroke="#93a1b7" strokeWidth="1.5" fill="none"/>
+      {kind==="spectroscopy" && <>
+        <text x="86" y="32" fill="#e6ecf5" fontSize="12">Relative intensity</text>
+        <text x="300" y="205" textAnchor="middle" fill="#93a1b7" fontSize="12">Wavelength (schematic)</text>
+        <line x1="145" y1="170" x2="145" y2="115" stroke="#5aa9ff" strokeWidth="4"/>
+        <line x1="230" y1="170" x2="230" y2="65" stroke="#5aa9ff" strokeWidth="4"/>
+        <line x1="318" y1="170" x2="318" y2="135" stroke="#5aa9ff" strokeWidth="4"/>
+        <line x1="420" y1="170" x2="420" y2="88" stroke="#5aa9ff" strokeWidth="4"/>
+        <text x="300" y="226" textAnchor="middle" fill="#93a1b7" fontSize="10">Illustrative line spectrum, not measured data</text>
+      </>}
+      {kind==="photoelectric" && <>
+        <text x="86" y="32" fill="#e6ecf5" fontSize="12">Maximum kinetic energy</text>
+        <text x="300" y="205" textAnchor="middle" fill="#93a1b7" fontSize="12">Incident-light frequency</text>
+        <line x1="205" y1="170" x2="205" y2="48" stroke="#f5718a" strokeWidth="1.5" strokeDasharray="4 4"/>
+        <path d="M205 170 L495 60" stroke="#f5c454" strokeWidth="3" fill="none"/>
+        <text x="205" y="188" textAnchor="middle" fill="#f5718a" fontSize="10">Threshold</text>
+        <text x="300" y="226" textAnchor="middle" fill="#93a1b7" fontSize="10">Above threshold: KE rises with frequency</text>
+      </>}
+      {kind==="beer-lambert" && <>
+        <text x="86" y="32" fill="#e6ecf5" fontSize="12">Absorbance, A</text>
+        <text x="300" y="205" textAnchor="middle" fill="#93a1b7" fontSize="12">Concentration, c</text>
+        <path d="M78 170 L505 52" stroke="#34d399" strokeWidth="3" fill="none"/>
+        <text x="300" y="226" textAnchor="middle" fill="#93a1b7" fontSize="10">Linear range; fixed wavelength and path length</text>
+      </>}
     </>}
    </svg>
    <p className="mt-2 text-center text-xs leading-relaxed text-ink-dim">{m.caption}</p>{children}
