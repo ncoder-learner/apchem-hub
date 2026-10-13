@@ -68,7 +68,7 @@ new custom component, register it in that file in the same change.**
 | `<BondDiagram order={1\|2\|3} />` | Sigma/pi orbital overlap diagram |
 | `<GeometryDiagram shape="..." />` | VSEPR molecular geometry diagram — see `GeometryShape` type in the component file for valid shape names |
 | `<PhetSim src="..." title="..." />` | Embeds a PhET simulation. **`src` must be the direct runnable sim URL** (`phet.colorado.edu/sims/html/{id}/latest/{id}_en.html`), not the simulation's landing page |
-
+| `<InteractiveLab kind="..." />` | Working interactive chemistry model. Supported kinds include `balance`, `kinetics`, `rate-law`, `collision`, `energy-profile`, `gas-law`, `ph`, `net-ionic`, `stoichiometry`, `titration`, `reaction-types`, `particles`, `redox`, `coulomb`, `bond-energy`, `beer-lambert`, and `lewis`. Models must state assumptions and limitations. |
 ## Content depth standard
 
 Established on the 2.7 lesson — every future lesson should match this, not
@@ -83,15 +83,8 @@ just cover the same topics:
    the mistake — show *why* the wrong answer seems plausible before showing
    why it's wrong.
 
-## Known gaps / next steps
+## Visual and interactive learning
 
-- Units 1, 3–9 have no content files yet.
-- Unit 2 has only Topic 2.7 so far. Topics 2.1–2.6 still need lesson files
-  (video transcripts are being supplied as source material for these — see
-  project chat history for the workflow).
-- `generateStaticParams` is wired up but the project hasn't been built with
-  `next build` yet in this environment — run it locally and fix anything
-  that surfaces before deploying.
-- No practice-question bank, flashcards, or score tracking yet (sidebar nav
-  placeholders for these don't exist in this version — the original design
-  had "Soon" placeholders; re-add if wanted).
+The visual/interaction standard in `CURRICULUM_REBUILD_STANDARD.md` applies to **all nine units**. Every topic needs an instructional representation appropriate to the chemistry; interactive models and verified PhET simulations should be used where they improve understanding. Graph-heavy lessons should include graphs that respond to learner-controlled variables when a scientifically valid model is feasible. Avoid decorative visuals and label assumptions and limitations.
+
+Before adding an MDX component, register it in `components/mdx/index.tsx`. Before writing a new topic, audit the current College Board CED and relevant visual/simulation options. Do not treat a static image as a substitute for an interactive model when students need to experiment.
