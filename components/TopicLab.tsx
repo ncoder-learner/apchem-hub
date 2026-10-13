@@ -105,21 +105,78 @@ function IntermolecularLab() {
     <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Relative attraction strength" min={1} max={10} step={1} value={strength} onChange={setStrength}/><Slider label="Relative thermal motion" min={10} max={100} step={10} value={temperature} onChange={setTemperature}/><div className="rounded-lg border border-border p-3"><div className="text-xs text-ink-dim">Illustrative boiling-point index</div><div className="text-2xl font-bold">{boiling}</div></div></div><div className="rounded-xl border border-border bg-bg/50 p-3"><svg viewBox="0 0 180 160" className="w-full" role="img" aria-label="Particle model with adjustable thermal motion">{particles.map((p,i)=><g key={i}><circle cx={p.x} cy={p.y} r="7" fill="#5aa9ff" fillOpacity=".9"/>{i%4!==3&&<line x1={p.x} y1={p.y} x2={p.x+34} y2={p.y} stroke="#34d399" strokeOpacity={Math.max(.1,1-strength/12)} strokeDasharray="3 3"/>}</g>)}</svg><p className="text-xs text-ink-dim">Schematic particle model. The index is illustrative, not a prediction of a real substance's boiling point.</p></div></div>
   </Frame>;
 }
+function ElectronConfigLab() {
+  const [electrons,setElectrons]=useState(10);const shells=[{name:"1s",cap:2},{name:"2s",cap:2},{name:"2p",cap:6},{name:"3s",cap:2},{name:"3p",cap:6}];let left=electrons;
+  const filled=shells.map(s=>{const n=Math.min(left,s.cap);left-=n;return {...s,n};});
+  return <Frame unit="1 · Electron configuration" title="Fill orbitals in energy order" takeaway="Electrons occupy lower-energy orbitals first, with at most two electrons per orbital and opposite spins. This simplified filling sequence covers the first 18 electrons; transition-metal exceptions are outside this model.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Number of electrons" min={1} max={18} step={1} value={electrons} onChange={setElectrons}/><p className="text-sm text-ink-dim">Filling sequence: 1s → 2s → 2p → 3s → 3p.</p></div><div className="space-y-3 rounded-xl border border-border bg-bg/50 p-4">{filled.map(s=><div key={s.name} className="flex items-center gap-3"><span className="w-8 text-sm font-semibold">{s.name}</span><div className="flex gap-1">{Array.from({length:s.cap/2},(_,i)=><div key={i} className="flex h-8 w-12 items-center justify-center gap-1 rounded border border-border bg-card text-sm">{s.n>i*2?"↑":""}{s.n>i*2+1?"↓":""}</div>)}</div><span className="text-xs text-ink-dim">{s.n}/{s.cap}</span></div>)}</div></div>
+  </Frame>;
+}
+function PESTrendLab() {
+  const [inner,setInner]=useState(2);const [outer,setOuter]=useState(1);
+  return <Frame unit="1 · Photoelectron spectroscopy" title="Read a schematic PES spectrum" takeaway="Peak position indicates electron binding energy, while peak area reflects the number of electrons in a subshell. Inner-shell electrons generally have higher binding energies than outer-shell electrons.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Inner-shell electrons" min={1} max={2} step={1} value={inner} onChange={setInner}/><Slider label="Outer-shell electrons" min={1} max={8} step={1} value={outer} onChange={setOuter}/><p className="text-sm text-ink-dim">Adjust electron counts and compare peak areas; positions are schematic.</p></div><div className="rounded-xl border border-border bg-bg/50 p-4"><svg viewBox="0 0 320 200" className="w-full" role="img" aria-label="Schematic PES spectrum with inner and outer shell peaks"><line x1="25" y1="160" x2="300" y2="160" stroke="var(--color-ink-dim)"/><rect x="70" y={160-inner*35} width="48" height={inner*35} fill="#5aa9ff" rx="3"/><rect x="205" y={160-outer*15} width="48" height={outer*15} fill="#34d399" rx="3"/><text x="94" y="180" textAnchor="middle" fontSize="10" fill="var(--color-ink-dim)">Inner shell</text><text x="229" y="180" textAnchor="middle" fontSize="10" fill="var(--color-ink-dim)">Outer shell</text><text x="160" y="195" textAnchor="middle" fontSize="10" fill="var(--color-ink-dim)">Schematic binding-energy peaks</text></svg></div></div>
+  </Frame>;
+}
+function IonicFormulaLab() {
+  const [cat,setCat]=useState(2);const [an,setAn]=useState(3);const gcd=(a:number,b:number):number=>b===0?a:gcd(b,a%b);const total=cat*an/gcd(cat,an);const c=total/cat,a=total/an;
+  return <Frame unit="1 · Ionic compounds" title="Build a neutral ionic formula" takeaway="An ionic formula represents the lowest whole-number ratio that makes total positive and negative charge sum to zero. The subscripts come from charge balance, not from the number of atoms in a Lewis drawing.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Cation charge magnitude" min={1} max={3} step={1} value={cat} onChange={setCat} suffix="+"/><Slider label="Anion charge magnitude" min={1} max={3} step={1} value={an} onChange={setAn} suffix="−"/></div><div className="rounded-xl border border-border bg-bg/50 p-4"><div className="text-xs text-ink-dim">Smallest neutral ratio</div><div className="my-2 text-3xl font-bold">{c===1?"M":"M"+c}{a===1?"X":"X"+a}</div><p className="text-sm">Positive charge: {c} × +{cat} = +{c*cat}</p><p className="text-sm">Negative charge: {a} × −{an} = −{a*an}</p><p className="mt-2 font-semibold text-emerald-300">Net charge = 0</p></div></div>
+  </Frame>;
+}
+function BondTypeLab() {
+  const [difference,setDifference]=useState(1.2);
+  const type=difference<.4?"Mostly nonpolar covalent":difference<1.7?"Polar covalent":"Often modeled as ionic";
+  return <Frame unit="2 · Chemical bonds" title="Use electronegativity difference as evidence" takeaway="Electronegativity difference is a useful guide to bond polarity, not a universal hard boundary. Bonding is a continuum, and context such as the atoms and structure also matters.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Electronegativity difference ΔEN" min={0} max={3.5} step={.1} value={difference} onChange={setDifference}/><div className="rounded-lg border border-border p-4"><div className="text-xs text-ink-dim">Approximate classification</div><div className="text-xl font-bold">{type}</div></div></div><div className="flex items-center justify-center rounded-xl border border-border bg-bg/50 p-4"><svg viewBox="0 0 300 130" className="w-full" role="img" aria-label="Schematic polar bond with adjustable electron density"><circle cx="75" cy="65" r="27" fill="#5aa9ff" fillOpacity=".55"/><circle cx="225" cy="65" r="27" fill="#f5c454" fillOpacity=".7"/><ellipse cx="150" cy="65" rx={35+difference*9} ry={14+difference*2} fill="#34d399" fillOpacity={Math.min(.55,.15+difference*.1)}/><text x="75" y="70" textAnchor="middle" fill="var(--color-ink)" fontWeight="700">δ+</text><text x="225" y="70" textAnchor="middle" fill="var(--color-ink)" fontWeight="700">δ−</text><text x="150" y="118" textAnchor="middle" fill="var(--color-ink-dim)" fontSize="11">Schematic electron density</text></svg></div></div>
+  </Frame>;
+}
+function IonicLatticeLab() {
+  const [cation,setCation]=useState(1);const [anion,setAnion]=useState(1);const [distance,setDistance]=useState(2);const energy=-(cation*anion)/distance;
+  return <Frame unit="2 · Ionic solids" title="Compare ionic attraction in a lattice" takeaway="Coulombic attraction strengthens when ion-charge magnitudes increase and when oppositely charged ions are closer. Real lattice energy depends on the full three-dimensional arrangement, not one ion pair alone.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Cation charge magnitude" min={1} max={3} step={1} value={cation} onChange={setCation}/><Slider label="Anion charge magnitude" min={1} max={3} step={1} value={anion} onChange={setAnion}/><Slider label="Separation" min={1} max={5} step={.25} value={distance} onChange={setDistance}/></div><div className="rounded-xl border border-border bg-bg/50 p-4"><div className="text-xs text-ink-dim">Relative pair potential energy</div><div className="text-3xl font-bold">{energy.toFixed(2)}</div><p className="mt-2 text-sm text-ink-dim">More negative means a stronger attractive interaction in this simplified pair model.</p></div></div>
+  </Frame>;
+}
+function FormalChargeLab() {
+  const [valence,setValence]=useState(5);const [nonbonding,setNonbonding]=useState(2);const [bonding,setBonding]=useState(6);const charge=valence-nonbonding-bonding/2;
+  return <Frame unit="2 · Formal charge" title="Calculate formal charge from a Lewis structure" takeaway="Formal charge = valence electrons − nonbonding electrons − half the bonding electrons. Use the electron count shown in the structure; formal charge is bookkeeping for comparing valid Lewis structures, not a literal measurement of atomic charge.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Valence electrons for the neutral atom" min={1} max={8} step={1} value={valence} onChange={setValence}/><Slider label="Nonbonding electrons assigned" min={0} max={8} step={1} value={nonbonding} onChange={setNonbonding}/><Slider label="Bonding electrons" min={0} max={8} step={2} value={bonding} onChange={setBonding}/></div><div className="flex flex-col justify-center rounded-xl border border-border bg-bg/50 p-4"><div className="text-xs text-ink-dim">Formal charge</div><div className="text-3xl font-bold">{charge>0?"+":""}{charge}</div><p className="mt-2 text-sm text-ink-dim">{valence} − {nonbonding} − ({bonding}/2) = {charge}</p></div></div>
+  </Frame>;
+}
+function ChromatographyLab() {
+  const [spot,setSpot]=useState(4);const [front,setFront]=useState(8);
+  return <Frame unit="3 · Separation techniques" title="Measure an Rf value" takeaway="Retention factor is the distance traveled by a component divided by the distance traveled by the solvent front, both measured from the same origin. Under the same conditions, Rf values can help compare components.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Spot distance from origin" min={1} max={front} step={.5} value={Math.min(spot,front)} onChange={setSpot} suffix=" cm"/><Slider label="Solvent-front distance" min={2} max={10} step={.5} value={front} onChange={setFront}/><div className="rounded-lg border border-border p-3"><div className="text-xs text-ink-dim">Rf = spot / solvent front</div><div className="text-3xl font-bold">{(Math.min(spot,front)/front).toFixed(2)}</div></div></div><div className="flex items-center justify-center rounded-xl border border-border bg-bg/50 p-4"><svg viewBox="0 0 180 240" className="w-full max-w-xs" role="img" aria-label="Paper chromatography plate with adjustable spot and solvent front"><rect x="35" y="15" width="110" height="205" rx="4" fill="#e2e8f0" fillOpacity=".1" stroke="var(--color-ink-dim)"/><line x1="35" y1="210" x2="145" y2="210" stroke="#f5c454" strokeWidth="2"/><line x1="35" y1={210-front/10*180} x2="145" y2={210-front/10*180} stroke="#5aa9ff" strokeDasharray="4 3"/><circle cx="90" cy={210-Math.min(spot,front)/10*180} r="7" fill="#34d399"/><text x="90" y="235" textAnchor="middle" fontSize="10" fill="var(--color-ink-dim)">Origin</text></svg></div></div>
+  </Frame>;
+}
+function SolubilityLab() {
+  const [temperature,setTemperature]=useState(25);const [polarity,setPolarity]=useState(5);const capacity=Math.max(1,Math.min(100,20+temperature*.7+polarity*3));
+  return <Frame unit="3 · Solutions" title="Explore a qualitative solubility model" takeaway="Solubility depends on the balance of solute–solute, solvent–solvent, and solute–solvent interactions. Temperature effects depend on the substance and whether dissolution is endothermic or exothermic, so this is a qualitative model rather than a universal law.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Temperature" min={0} max={80} step={5} value={temperature} onChange={setTemperature} suffix=" °C"/><Slider label="Relative solute–solvent compatibility" min={1} max={10} step={1} value={polarity} onChange={setPolarity}/></div><div className="rounded-xl border border-border bg-bg/50 p-4"><div className="text-xs text-ink-dim">Illustrative dissolving capacity index</div><div className="text-3xl font-bold">{capacity.toFixed(0)}</div><div className="mt-3 h-4 overflow-hidden rounded-full bg-white/5"><div className="h-full rounded-full bg-emerald-300" style={{width:capacity+"%"}}/></div><p className="mt-2 text-xs text-ink-dim">A conceptual index only; real solubility must be measured or derived for the specific solute–solvent system.</p></div></div>
+  </Frame>;
+}
 function UnitOne({ topicNumber }: { topicNumber: string }) {
   if (["1.1","1.3","1.4"].includes(topicNumber)) return <MoleLab />;
   if (topicNumber === "1.2") return <IsotopeLab />;
+  if (topicNumber === "1.5") return <ElectronConfigLab />;
+  if (topicNumber === "1.6") return <PESTrendLab />;
+  if (topicNumber === "1.8") return <IonicFormulaLab />;
   if (topicNumber === "1.9") return <CoulombLab />;
   return <PeriodicTrendLab />;
 }
 function UnitTwo({ topicNumber }: { topicNumber: string }) {
+  if (topicNumber === "2.1") return <BondTypeLab />;
+  if (topicNumber === "2.3") return <IonicLatticeLab />;
   if (topicNumber === "2.5") return <LewisLab />;
+  if (topicNumber === "2.6") return <FormalChargeLab />;
   if (topicNumber === "2.7") return <GeometryLab />;
-  if (topicNumber === "2.2") return <BondPotentialLab />;
   return <BondPotentialLab />;
 }
 function UnitThree({ topicNumber }: { topicNumber: string }) {
   if (topicNumber === "3.1" || topicNumber === "3.2" || topicNumber === "3.3" || topicNumber === "3.5" || topicNumber === "3.6") return <IntermolecularLab />;
-  if (["3.7","3.8","3.9","3.10"].includes(topicNumber)) return <SolutionLab />;
+  if (["3.7","3.8"].includes(topicNumber)) return <SolutionLab />;
+  if (topicNumber === "3.9") return <ChromatographyLab />;
+  if (topicNumber === "3.10") return <SolubilityLab />;
   if (topicNumber === "3.11" || topicNumber === "3.12") return <PhotonLab />;
   if (topicNumber === "3.13") return <BeerLambertLab />;
   return <GasLawLab />;
