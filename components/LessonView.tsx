@@ -28,15 +28,15 @@ export function LessonView({
   const next = activeIndex >= 0 && activeIndex < topics.length - 1 ? topics[activeIndex + 1] : undefined;
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-7xl gap-8 px-5 py-6 sm:px-8 sm:py-8">
+    <div className="mx-auto flex min-h-screen max-w-7xl flex-col gap-5 px-4 py-5 sm:px-6 md:flex-row md:gap-8 md:px-8 md:py-8">
       {/* Sidebar: topic list for this unit */}
-      <aside className="sticky top-6 h-fit w-60 shrink-0 rounded-xl border border-border bg-sidebar/80 p-4">
+      <aside className="h-fit w-full shrink-0 rounded-xl border border-border bg-sidebar/80 p-4 md:sticky md:top-6 md:w-60">
         <Link href="/" className="mb-4 block text-xs text-ink-dim hover:text-accent">
           ← All units
         </Link>
         <h2 className="mb-1 text-sm font-semibold text-ink-dim">Unit {unitId}</h2>
         <p className="mb-4 text-sm text-ink">{unitTitle}</p>
-        <nav className="flex flex-col gap-1">
+        <nav className="flex max-h-40 flex-col gap-1 overflow-y-auto md:max-h-none">
           {topics.map((t) => {
             const active = t.slug === activeSlug;
             return (
