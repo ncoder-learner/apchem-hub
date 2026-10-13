@@ -1,0 +1,49 @@
+---
+title: "The Ideal Gas Law"
+unit: 3
+topicNumber: "3.4"
+slug: "3-4-ideal-gas-law"
+summary: "Solve PV = nRT problems, convert units, and reason about gas-variable relationships."
+---
+
+# The ideal gas law links four measurable quantities
+
+**PV = nRT**
+
+P is pressure, V is volume, n is amount in moles, T is absolute temperature in kelvin, and R is the gas constant. With P in atm and V in liters, use R = 0.08206 L·atm·mol⁻¹·K⁻¹. Match the value of R to the units in the problem.
+
+<Unit3Visual kind="gas-law" />
+
+<LessonSection title="1. Solve with units" description="A repeatable calculation method" defaultOpen>
+
+**Example:** What volume does 0.500 mol of an ideal gas occupy at 298 K and 1.00 atm?
+
+**Calculation:** V = (n × R × T) / P = (0.500 × 0.08206 × 298) / 1.00 = **12.2 L**
+
+1. Write the known variables with units.
+2. Convert temperature to kelvin: K = °C + 273.15.
+3. Choose R consistent with pressure and volume units.
+4. Rearrange algebraically before substituting.
+5. Check whether the result is physically reasonable and report units.
+
+<QuickCheck question="A gas sample has n = 0.250 mol, T = 300 K, and P = 1.00 atm. Which expression gives its volume in liters?" options={["(0.250)(0.08206)(300) / 1.00","(1.00)(0.250) / (0.08206)(300)","(0.250)(300) / (1.00)(0.08206)","(1.00)(0.08206)(300) / 0.250"]} correctIndex={0} explanation="Rearrange PV = nRT to V = nRT/P. The chosen R matches L, atm, mol, and K."/>
+
+</LessonSection>
+
+<LessonSection title="2. Combined gas relationships" description="Hold the correct variables constant">
+
+For a fixed amount of gas, PV/T is constant. This produces familiar relationships: at constant T, P and V are inversely proportional; at constant P, V is proportional to T; at constant V, P is proportional to T. Always use kelvin for temperature ratios.
+
+</LessonSection>
+
+<LessonSection title="3. Density and molar mass" description="Derive, do not memorize blindly">
+
+From n = m/M and PV = nRT, gas density d = m/V can be related to molar mass:
+
+**d = (P × M) / (R × T)**
+
+Use consistent units. At the same P and T, a gas with larger molar mass has greater density. This relationship assumes ideal behavior.
+
+<QuickCheck question="At the same pressure and temperature, which gas has the greater density?" options={["The gas with the lower molar mass","The gas with the higher molar mass","Both always have equal density","The gas with the smaller sample volume only"]} correctIndex={1} explanation="For ideal gases at fixed P and T, density is proportional to molar mass."/>
+
+</LessonSection>
