@@ -3,6 +3,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { getTopicContent, getUnitTopics, getUnitsWithContent } from "@/lib/content";
 import { getUnit } from "@/lib/units";
 import { mdxComponents } from "@/components/mdx";
+import { TopicLab } from "@/components/TopicLab";
 import { LessonView } from "@/components/LessonView";
 
 interface PageProps {
@@ -32,6 +33,7 @@ export default async function TopicPage({ params }: PageProps) {
       topicNumber={topic.topicNumber}
     >
       <MDXRemote source={topic.body} components={mdxComponents} />
+      <TopicLab unitId={unitId} topicNumber={topic.topicNumber} title={topic.title} />
     </LessonView>
   );
 }
