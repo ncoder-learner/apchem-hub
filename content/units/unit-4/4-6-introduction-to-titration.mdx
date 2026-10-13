@@ -1,0 +1,94 @@
+---
+title: "Introduction to Titration"
+unit: 4
+topicNumber: "4.6"
+slug: "4-6-introduction-to-titration"
+summary: "Use titration data and reaction stoichiometry to determine an unknown concentration at the equivalence point."
+---
+
+A titration determines an unknown concentration by reacting a measured sample with a solution whose concentration is known. The key is not to assume that equal volumes or equal molarities react in a 1:1 ratio. The balanced equation determines the mole relationship at the equivalence point.
+
+<LessonSection title="1. What the titration apparatus measures" description="Known titrant added to a measured analyte sample" defaultOpen>
+
+The **analyte** is the sample whose concentration is unknown. The **titrant** is the solution of known concentration delivered from a buret. The volume delivered is the final buret reading minus the initial reading. The analyte volume is usually measured with a pipet and placed in a flask.
+
+As titrant is added, it reacts with the analyte. The **equivalence point** is reached when the reactants have been added in the stoichiometric proportions specified by the balanced equation. An indicator or a pH meter helps identify the endpoint experimentally; the endpoint is the observed signal used to estimate the equivalence point and may not be exactly identical.
+
+At the equivalence point, the equation's mole ratio is satisfied. It is only for a 1:1 reaction that the moles of titrant equal the moles of analyte.
+
+<QuickCheck question="What determines the mole relationship at a titration's equivalence point?" options={["The two solution volumes must be equal","The two molarities must be equal","The coefficients in the balanced reaction equation","The indicator's color"]} correctIndex={2} explanation="Equivalence means the reactants are present in stoichiometric proportions. Their mole ratio comes from the balanced chemical equation, not from equal volumes or concentrations." />
+
+</LessonSection>
+
+<LessonSection title="2. Derive the concentration calculation" description="Molarity × volume gives moles">
+
+Molarity is concentration in moles per liter:
+
+**M = n / V**, so **n = M × V**
+
+Use volume in liters when calculating moles. For a general reaction **aA + bB → products**, the equivalence condition is:
+
+**n(A) / a = n(B) / b**
+
+Equivalently, the moles of B needed are n(A) × (b/a). If the unknown analyte is A and the known titrant is B, solve for the unknown concentration after finding the required moles.
+
+<WorkedExample title="Worked example: 1:1 acid–base titration">
+A 25.00 mL sample of HCl is titrated with 0.1000 M NaOH. The equivalence point occurs after 18.60 mL NaOH is delivered. Find the HCl concentration.
+
+Balanced reaction: HCl + NaOH → NaCl + H₂O. The mole ratio is 1:1.
+
+Moles NaOH = 0.1000 mol/L × 0.01860 L = 0.001860 mol.
+
+Therefore, moles HCl = 0.001860 mol. The analyte volume is 0.02500 L.
+
+[HCl] = 0.001860 mol / 0.02500 L = **0.07440 M**.
+
+The HCl concentration is lower than the NaOH concentration because a larger volume of HCl was needed than the NaOH volume? No: here the analyte volume (25.00 mL) is larger than the titrant volume (18.60 mL), so its concentration is lower, consistent with the calculated value.
+</WorkedExample>
+
+<QuickCheck question="A 20.0 mL acid sample requires 30.0 mL of 0.100 M base for a 1:1 neutralization. What is the acid concentration?" options={["0.0667 M","0.100 M","0.150 M","0.300 M"]} correctIndex={2} explanation="Moles base = 0.100 mol/L × 0.0300 L = 0.00300 mol. The 1:1 ratio gives 0.00300 mol acid; divide by 0.0200 L to obtain 0.150 M." />
+
+</LessonSection>
+
+<LessonSection title="3. When the stoichiometric ratio is not 1:1" description="Never use M₁V₁ = M₂V₂ blindly">
+
+For sulfuric acid neutralized by sodium hydroxide:
+
+**H₂SO₄ + 2NaOH → Na₂SO₄ + 2H₂O**
+
+One mole of H₂SO₄ reacts with two moles of NaOH. At equivalence, n(NaOH) = 2n(H₂SO₄). The common shortcut M₁V₁ = M₂V₂ works only when the balanced mole ratio is 1:1; otherwise, include the coefficients explicitly.
+
+<WorkedExample title="Worked example: diprotic acid">
+A 10.00 mL H₂SO₄ sample is neutralized by 24.00 mL of 0.1500 M NaOH.
+
+Moles NaOH = 0.02400 L × 0.1500 mol/L = 0.003600 mol.
+
+From the 2:1 ratio, moles H₂SO₄ = 0.003600 / 2 = 0.001800 mol.
+
+[H₂SO₄] = 0.001800 mol / 0.01000 L = **0.1800 M**.
+</WorkedExample>
+
+<QuickCheck question="For H₂SO₄ + 2NaOH → Na₂SO₄ + 2H₂O, how many moles of NaOH react with 0.0040 mol H₂SO₄ at equivalence?" options={["0.0020 mol","0.0040 mol","0.0080 mol","0.016 mol"]} correctIndex={2} explanation="The balanced equation requires two moles of NaOH for every mole of H₂SO₄, so 0.0040 × 2 = 0.0080 mol NaOH." />
+
+</LessonSection>
+
+<LessonSection title="4. Experimental quality and common errors" description="Volume readings, indicators, and assumptions">
+
+Read a buret at eye level and record both initial and final readings with the instrument's precision. Delivered volume is their difference. Convert milliliters to liters before using M × V, and keep track of which volume belongs to the analyte and which to the titrant.
+
+An indicator changes color over a pH range. Choosing an appropriate indicator means its transition range should be near the steep pH change around the equivalence point. In a quantitative problem, use the stated equivalence volume or titration data rather than guessing from an indicator color alone.
+
+Frequent errors:
+- using total buret reading instead of delivered volume;
+- treating mL as L in M × V;
+- assuming a 1:1 mole ratio without balancing the reaction;
+- using the titrant volume as the analyte volume;
+- confusing the endpoint signal with the theoretical equivalence condition.
+
+For a laboratory reference, see [Chemistry LibreTexts: Acid–Base Titrations](https://chem.libretexts.org/Bookshelves/General_Chemistry).
+
+</LessonSection>
+
+## Readiness check
+
+You should be able to identify analyte and titrant, calculate delivered volume, use M × V to obtain moles, apply the balanced-equation ratio, and solve for an unknown concentration at equivalence.
