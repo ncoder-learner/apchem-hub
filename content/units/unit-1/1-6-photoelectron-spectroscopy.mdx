@@ -1,58 +1,161 @@
-﻿---
+---
 title: "Photoelectron Spectroscopy"
 unit: 1
 topicNumber: "1.6"
 slug: "1-6-photoelectron-spectroscopy"
-summary: "Interpret PES peaks to infer electron subshells, relative binding energies, and electron counts."
+summary: "Use PES peak positions and sizes to infer electron binding energies, subshell populations, electron configurations, and nuclear attraction."
 ---
 
-# PES turns electron binding into evidence
+Photoelectron spectroscopy (PES) turns electron binding into measurable evidence. A sample is struck with high-energy photons that eject electrons. The instrument measures the kinetic energies of the ejected electrons, allowing the binding energies of the original electrons to be determined.
 
-Photoelectron spectroscopy (PES) measures the energy needed to remove electrons from a sample. Photons eject electrons, and the instrument measures their kinetic energies. From the photon energy and measured kinetic energy, the binding energy can be determined.
+A PES spectrum helps answer two questions: **How tightly was each group of electrons held, and how many electrons were in that group?**
 
-<LessonSection title="1. Understand the axes and peaks" description="Peak position tells binding energy; peak area tells electron count." defaultOpen>
+<LessonSection title="1. Understand the experiment and the axes" description="Peak position and peak size tell you different things" defaultOpen>
 
 <ChemVisual kind="pes" />
 
-In a typical AP Chemistry PES plot, binding energy is on the horizontal axis and is often shown increasing to the left. Always check the axis labels and direction before interpreting the graph.
+![Photoelectron spectroscopy infographic showing subshell peaks, binding-energy positions, and electron counts. Source: LivePhysics, Chemistry: Photoelectron Spectroscopy.](https://cdn.livephysics.com/infographics/chemistry-photoelectron-spectroscopy.png)
 
-- **Binding energy:** the energy needed to remove an electron from a particular state.
-- **Peak position:** identifies the relative binding energy of electrons in a subshell.
-- **Peak area or integrated intensity:** relates to the number of electrons represented by that peak.
-- **More tightly held electrons:** have higher binding energy.
+The incident photon supplies energy to remove an electron. The energy is used to overcome the electron's binding energy, and any excess becomes the ejected electron's kinetic energy.
 
-Core electrons are generally more tightly bound than valence electrons because they are closer to the nucleus and experience less shielding from inner electrons. Electrons in different subshells therefore appear at different binding energies.
+**Photon energy = binding energy + kinetic energy**
 
-<QuickCheck question="On a PES graph, what does a peak with roughly twice the area of another peak usually indicate?" options={["Twice the binding energy","About twice as many electrons in that subshell","The electrons have twice the charge","The atom has twice as many protons"]} correctIndex={1} explanation="Peak area reflects the number of electrons contributing to the signal. Peak position, not area, represents binding energy." />
+Therefore:
 
-</LessonSection>
+**Binding energy = photon energy − kinetic energy**
 
-<LessonSection title="2. Assign peaks to subshells" description="Use relative binding energy and electron capacity.">
+For one experiment, the incident photon energy is known. The instrument measures the photoelectron kinetic energy, so the binding energy can be calculated.
 
-For a main-group atom, the subshells with the highest binding energies are usually the inner/core subshells. The outermost occupied subshell typically has the lowest binding energy. Peak sizes can be compared with subshell capacities: an s subshell holds up to 2 electrons, p holds 6, and d holds 10.
+Read a PES graph carefully:
+- **Horizontal position:** binding energy. Higher binding energy means electrons are held more tightly. AP-style plots often show binding energy increasing to the left, but always check the axis.
+- **Peak size:** represents the relative number of electrons in the subshell. Many simplified AP graphs use peak height; physically, integrated peak area is the more direct population measure.
+- **Each peak:** represents a group of electrons with a particular binding energy, usually a subshell in an idealized atomic spectrum.
 
-A peak area ratio of about 2:6 may be consistent with a filled s subshell and a filled p subshell, if the graph and element support that assignment. Do not assign a peak based on position alone; use the number of peaks, relative areas, known filling order, and total electron count together.
-
-</LessonSection>
-
-<LessonSection title="3. Compare elements using PES" description="Use effective nuclear charge and electron-shell structure.">
-
-For electrons in comparable subshells, an increase in nuclear charge generally increases binding energy, provided the shielding and shell structure are comparable. Across a period, valence electrons often become more tightly bound as effective nuclear charge increases.
-
-Down a group, valence electrons occupy a higher principal energy level and are farther from the nucleus, so their binding energy is generally lower. The precise comparison depends on which subshells are being compared.
-
-**Exam reasoning pattern:** identify the peak, compare binding energy, connect it to nuclear attraction and shielding, then state the conclusion. Avoid claiming that every peak in one element must lie to the left or right of every peak in another without matching comparable subshells.
+<QuickCheck question="On a PES spectrum, what does a peak representing about six electrons tell you?" options={["The electrons have six times the binding energy of another peak","The peak corresponds to a subshell population of about six electrons, such as a filled p subshell","The atom has six protons","The peak must be at the highest binding energy"]} correctIndex={1} explanation="Peak size represents the relative number of electrons. A p subshell can contain six electrons; peak position separately indicates binding energy." />
 
 </LessonSection>
 
-<LessonSection title="4. A reliable PES workflow" description="Count first, assign second, explain last.">
+<LessonSection title="2. Why different subshells have different binding energies" description="Distance from the nucleus and shielding matter">
 
-1. Read which direction binding energy increases.
-2. Estimate the number of occupied subshell peaks.
-3. Compare peak areas to infer electrons per subshell.
-4. Assign subshells using relative binding energies and the electron configuration.
-5. Check that all peak areas account for the atom's total electron count.
-6. For comparisons, explain how nuclear charge, distance, and shielding affect binding energy.
+Electrons are attracted to the positively charged nucleus. Electrons closer to the nucleus generally experience a stronger attraction and are harder to remove. Inner-shell electrons are also shielded less by other electrons than outer-shell electrons are.
 
-PES data support a model of quantized electron energies. They do not show literal electron trajectories or exact orbital shapes.
+That produces a typical pattern:
+- **Core electrons** have high binding energies because they are close to the nucleus and experience relatively strong attraction.
+- **Valence electrons** have lower binding energies because they are farther from the nucleus and more shielded by inner electrons.
+
+The energy order is not identical to the order of peak size. A 1s peak is usually at very high binding energy but represents only two electrons. A 2p peak can be much taller because it represents up to six electrons even though its electrons are less tightly bound than 1s electrons.
+
+<WorkedExample title="Worked example 1: identify the valence peak">
+A PES graph has three peaks. One is at very high binding energy, one at intermediate binding energy, and one at the lowest binding energy.
+
+The lowest-binding-energy peak represents the electrons that are easiest to remove. For a ground-state atom, these are typically the valence electrons in the outermost occupied subshell. The highest-binding-energy peak typically represents the 1s core electrons.
+</WorkedExample>
+
+<QuickCheck question="Why do core electrons generally appear at higher binding energy than valence electrons?" options={["Core electrons are farther from the nucleus","Core electrons experience stronger attraction because they are closer to the nucleus and less shielded","Core electrons have more negative charge than valence electrons","Core electrons are not affected by the nucleus"]} correctIndex={1} explanation="Core electrons are closer to the nucleus and experience less shielding, so more energy is required to remove them." />
+
+</LessonSection>
+
+<LessonSection title="3. Use peak sizes to reconstruct electron configurations" description="Count electrons in each occupied subshell">
+
+An electron configuration predicts how many occupied subshells appear in an idealized PES spectrum and how many electrons each peak represents.
+
+- s subshell: maximum 2 electrons
+- p subshell: maximum 6 electrons
+- d subshell: maximum 10 electrons
+
+A filled 2p subshell contains three times as many electrons as a filled 2s subshell (6 versus 2). If the peaks are drawn with comparable widths, the 2p peak should be about three times as high as the 2s peak. Do not use peak height to infer binding energy; use the horizontal position.
+
+<WorkedExample title="Worked example 2: identify an unknown with three peaks">
+An unknown main-group element has a PES spectrum with three peaks from highest to lowest binding energy. Their relative electron populations are 2, 2, and 6.
+
+1. The highest-binding-energy peak is consistent with 1s².
+2. The next peak contains 2 electrons, consistent with 2s².
+3. The lowest-binding-energy peak contains 6 electrons, consistent with 2p⁶.
+4. The configuration is 1s² 2s² 2p⁶, which contains 10 electrons.
+
+The neutral atom is neon (Ne). This conclusion uses both peak positions and peak populations; it is not based on the tallest peak alone.
+</WorkedExample>
+
+<QuickCheck question="A spectrum's peak populations, ordered from highest to lowest binding energy, are 2, 2, 6, 2, and 1 electrons. Which neutral atom's configuration is consistent with this pattern?" options={["Ne: 1s² 2s² 2p⁶","Na: 1s² 2s² 2p⁶ 3s¹","Mg: 1s² 2s² 2p⁶ 3s²","Al: 1s² 2s² 2p⁶ 3s² 3p¹"]} correctIndex={3} explanation="The populations correspond to 1s², 2s², 2p⁶, 3s², and 3p¹, which is aluminum's 13-electron configuration." />
+
+</LessonSection>
+
+<LessonSection title="4. Compare two elements" description="Use comparable subshells, not just left-versus-right">
+
+For electrons in comparable subshells, increasing nuclear charge generally increases binding energy if shielding and shell structure are similar. Across a period, protons are added while electrons enter the same principal shell, so the effective nuclear charge experienced by comparable valence electrons often increases.
+
+Down a group, valence electrons occupy a higher principal energy level and are farther from the nucleus, so they are generally less tightly bound and have lower binding energies. A comparison must match the same type of electron or subshell; different shells and subshells can have very different binding energies.
+
+<WorkedExample title="Worked example 3: compare the 2p electrons of nitrogen and oxygen">
+Nitrogen and oxygen have electrons in the 2p subshell. Oxygen has one more proton than nitrogen, while the added electron enters the same general shell. The greater nuclear charge increases the attraction experienced by comparable 2p electrons, so oxygen's 2p electrons generally have a higher binding energy than nitrogen's 2p electrons.
+
+The reasoning compares the same subshell across neighboring elements. It does not claim that every oxygen peak must be more tightly bound than every nitrogen peak.
+</WorkedExample>
+
+</LessonSection>
+
+<LessonSection title="5. A reliable PES workflow" description="Count first, assign second, explain last">
+
+When given an unfamiliar spectrum:
+
+1. Read the axis labels and identify the direction in which binding energy increases.
+2. Count the distinct occupied-subshell peaks.
+3. Use peak sizes to estimate how many electrons occupy each subshell.
+4. Assign subshells from highest to lowest binding energy, using electron configuration and shell structure.
+5. Add the electron counts and compare with the expected atomic number.
+6. For an element comparison, explain the shift using nuclear charge, distance, and shielding.
+
+PES is evidence for quantized electron energies. It does not show literal electron trajectories or a photograph of orbitals.
+
+<Mistake title="Assuming the tallest peak has the highest binding energy">
+Peak size reflects electron population. Peak position reflects binding energy. A six-electron p subshell can make a taller peak than a two-electron s subshell even though its electrons are less tightly bound.
+</Mistake>
+
+<Mistake title="Ignoring the axis direction">
+Some spectra place high binding energy on the left. Always inspect the numerical scale; do not assume that moving right always means greater energy.
+</Mistake>
+
+</LessonSection>
+
+<LessonSection title="6. AP-style practice" description="Identify an element and explain a peak shift">
+
+A neutral atom has an idealized PES spectrum with five peaks. From highest to lowest binding energy, the peak populations are 2, 2, 6, 2, and 1 electrons.
+
+**(a)** Determine the electron configuration and identify the element.
+
+**(b)** Explain why the first peak (highest binding energy) represents core electrons.
+
+**(c)** The 3p peak of a neighboring element to the right in the same period occurs at a higher binding energy. Explain the trend using atomic structure.
+
+<LessonSection title="Reveal the reasoning" description="Use both population and binding energy">
+
+**(a)** The configuration is 1s² 2s² 2p⁶ 3s² 3p¹. The electron count is 13, so the element is aluminum (Al).
+
+**(b)** The first peak represents 1s² electrons. They are closest to the nucleus and shielded least by other electrons, so more energy is required to remove them.
+
+**(c)** Moving to the right across a period increases nuclear charge while the valence electrons remain in the same general principal shell. The effective attraction for comparable 3p electrons generally increases, so their binding energy increases.
+</LessonSection>
+
+</LessonSection>
+
+<LessonSection title="7. External visual and video resources" description="Use a real spectrum and an interactive generator">
+
+- [Khan Academy: Photoelectron spectroscopy](https://www.khanacademy.org/science/chemistry/electronic-structure-of-atoms/electron-configurations-jayamedh/a/photoelectron-spectroscopy) — a detailed walkthrough of the apparatus, binding-energy equation, and spectrum interpretation.
+- [Khan Academy video: Introduction to photoelectron spectroscopy](https://www.youtube.com/watch?v=UaTWrOTh4qU) — visual explanation of how PES is measured.
+- [Interactive PES spectrum generator](https://chemistryfigures.com/photoelectron-spectrum) — compare elements and hide peak labels to practice reconstructing configurations.
+- [College Board AP Chemistry Course and Exam Description](https://apcentral.collegeboard.org/media/pdf/ap-chemistry-course-and-exam-description.pdf) — official Unit 1 scope.
+- [Official AP Chemistry exam and scoring resources](https://apcentral.collegeboard.org/courses/ap-chemistry/exam) — released questions and scoring guidelines.
+
+</LessonSection>
+
+<LessonSection title="8. Check your readiness" description="Try these without notes">
+
+- [ ] Explain how PES measures electron binding energy.
+- [ ] Use binding energy = photon energy − kinetic energy.
+- [ ] Interpret peak position and peak size as different types of evidence.
+- [ ] Identify core and valence peaks.
+- [ ] Reconstruct an electron configuration from peak populations.
+- [ ] Compare comparable subshells using nuclear charge and shielding.
+- [ ] Check the axis direction before interpreting peak positions.
+
 </LessonSection>
