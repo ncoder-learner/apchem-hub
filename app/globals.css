@@ -106,3 +106,41 @@ body {
   color: var(--color-ink-dim);
   margin-bottom: 1.1rem;
 }
+
+
+/* Guided lesson pacing */
+.lesson-section > summary {
+  list-style: none;
+}
+
+.lesson-section > summary::-webkit-details-marker {
+  display: none;
+}
+
+.lesson-section[open] > summary {
+  border-bottom-color: var(--color-border);
+}
+
+.lesson-section-content > :first-child {
+  margin-top: 0;
+}
+
+.lesson-section-content > :last-child {
+  margin-bottom: 0;
+}
+
+.lesson-prose .lesson-callout p:last-child,
+.lesson-prose .quick-check p:last-child {
+  margin-bottom: 0;
+}
+
+.lesson-prose .lesson-callout ul,
+.lesson-prose .lesson-callout ol {
+  margin-top: 0.6rem;
+}
+
+@media (max-width: 767px) {
+  .lesson-prose {
+    min-width: 0;
+  }
+}
