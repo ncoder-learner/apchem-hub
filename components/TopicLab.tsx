@@ -49,6 +49,29 @@ function UnitThree() {
     <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Volume" min={2} max={10} step={.5} value={v} onChange={setV} suffix=" L"/><Slider label="Temperature" min={200} max={600} step={10} value={t} onChange={setT} suffix=" K"/><Slider label="Amount of gas" min={.5} max={3} step={.5} value={n} onChange={setN} suffix=" mol"/><div className="rounded-lg border border-border p-4"><div className="text-xs text-ink-dim">Calculated pressure</div><div className="text-3xl font-bold">{p.toFixed(2)} atm</div><div className="text-xs text-ink-dim">P = nRT/V</div></div></div><Bars rows={[{label:"Pressure",value:p,max:25,color:"#34d399"},{label:"Temperature (scaled)",value:t/25,max:24,color:"#f5c454"},{label:"Volume (scaled inverse)",value:10/v*5,max:25,color:"#5aa9ff"}]}/></div>
   </Frame>;
 }
+function BalanceEquation() {
+  const [iron,setIron]=useState(4); const [oxygen,setOxygen]=useState(3); const [oxide,setOxide]=useState(2);
+  const leftFe=iron, rightFe=2*oxide, leftO=2*oxygen, rightO=3*oxide;
+  const balanced=leftFe===rightFe && leftO===rightO;
+  return <Frame unit="4 · Representing reactions" title="Hands-on: balance an equation" takeaway="A balanced equation has the same number of each type of atom on both sides. Change coefficients in front of formulas; never change subscripts, because that would change the chemical substances.">
+    <div className="rounded-xl border border-border bg-bg/50 p-4">
+      <div className="flex flex-wrap items-center justify-center gap-2 py-4 text-2xl font-bold sm:text-3xl">
+        <span>{iron} Fe</span><span className="text-ink-dim">+</span><span>{oxygen} O₂</span><span className="text-ink-dim">→</span><span>{oxide} Fe₂O₃</span>
+      </div>
+      <p className="mb-3 text-center text-xs text-ink-dim">Adjust the coefficients to balance Fe + O₂ → Fe₂O₃.</p>
+      <div className="grid gap-3 sm:grid-cols-3">
+        <Slider label="Coefficient before Fe" min={1} max={8} step={1} value={iron} onChange={setIron}/>
+        <Slider label="Coefficient before O₂" min={1} max={8} step={1} value={oxygen} onChange={setOxygen}/>
+        <Slider label="Coefficient before Fe₂O₃" min={1} max={8} step={1} value={oxide} onChange={setOxide}/>
+      </div>
+      <div className="mt-4 grid grid-cols-2 gap-3">
+        <div className="rounded-lg border border-border p-3"><div className="text-xs text-ink-dim">Iron atoms · left / right</div><div className="text-xl font-bold">{leftFe} / {rightFe}</div></div>
+        <div className="rounded-lg border border-border p-3"><div className="text-xs text-ink-dim">Oxygen atoms · left / right</div><div className="text-xl font-bold">{leftO} / {rightO}</div></div>
+      </div>
+      <p aria-live="polite" className={balanced?"mt-4 rounded-lg border border-emerald-300/40 bg-emerald-300/10 p-3 font-semibold text-emerald-300":"mt-4 rounded-lg border border-amber-300/30 bg-amber-300/5 p-3 text-sm text-amber-200"}>{balanced?"Balanced. The simplest whole-number ratio is 4 : 3 : 2.":"Not balanced yet. Match both atom counts, then reduce to the smallest whole-number ratio."}</p>
+    </div>
+  </Frame>;
+}
 function UnitFour() {
   const [a,setA]=useState(4);const [b,setB]=useState(6);const extent=Math.min(a,b/2);const leftA=a-extent;const leftB=b-2*extent;
   return <Frame unit="4 · Reactions" title="Find the limiting reactant" takeaway="For A + 2B → products, each reaction event consumes one A and two B. The limiting reactant runs out first. Compare available amount divided by the stoichiometric coefficient, not just raw amounts.">
@@ -89,6 +112,6 @@ function UnitNine() {
   </Frame>;
 }
 export function TopicLab({ unitId, topicNumber, title }: TopicLabProps) {
-  const labs: Record<number, React.ReactNode> = {1:<UnitOne/>,2:<UnitTwo/>,3:<UnitThree/>,4:<UnitFour/>,5:<UnitFive/>,6:<UnitSix/>,7:<UnitSeven/>,8:<UnitEight/>,9:<UnitNine/>};
+  const labs: Record<number, React.ReactNode> = {1:<UnitOne/>,2:<UnitTwo/>,3:<UnitThree/>,4:topicNumber === "4.1" || topicNumber === "4.3" ? <BalanceEquation/> : <UnitFour/>,5:<UnitFive/>,6:<UnitSix/>,7:<UnitSeven/>,8:<UnitEight/>,9:<UnitNine/>};
   return <div data-topic={topicNumber} data-title={title}>{labs[unitId] ?? null}</div>;
 }
