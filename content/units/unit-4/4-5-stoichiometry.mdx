@@ -1,0 +1,95 @@
+---
+title: "Stoichiometry"
+unit: 4
+topicNumber: "4.5"
+slug: "4-5-stoichiometry"
+summary: "Use balanced equations, mole ratios, molar mass, and limiting-reactant reasoning to calculate product amounts."
+---
+
+Stoichiometry is the quantitative use of a balanced chemical equation. The equation gives a fixed relationship among reacting particles; molar mass and other conversion factors connect that relationship to measurable grams, solution volumes, or gas quantities. The most reliable approach is to convert the given quantity to moles, use the coefficient ratio, and convert to the requested unit.
+
+<LessonSection title="1. The mole ratio comes from the balanced equation" description="Coefficients are conversion factors" defaultOpen>
+
+Consider **N₂(g) + 3H₂(g) → 2NH₃(g)**. The equation gives the ratio 1 mol N₂ : 3 mol H₂ : 2 mol NH₃. A coefficient ratio is exact for the reaction as written, but it is not a ratio of masses.
+
+If 2.00 mol N₂ reacts with excess hydrogen, the amount of ammonia predicted is:
+
+2.00 mol N₂ × (2 mol NH₃ / 1 mol N₂) = **4.00 mol NH₃**
+
+The N₂ units cancel, leaving moles of NH₃. Writing units at each step makes it easier to see whether the conversion factor is upside down.
+
+<QuickCheck question="For 2N₂ + 6H₂ → 4NH₃, what is the mole ratio of H₂ to NH₃?" options={["6:4, equivalent to 3:2","2:4, equivalent to 1:2","4:6, equivalent to 2:3","6:2, equivalent to 3:1"]} correctIndex={0} explanation="The balanced coefficients give 6 mol H₂ for every 4 mol NH₃, which simplifies to 3:2. Equivalent balanced equations can use different overall multiples, but the ratio stays the same." />
+
+</LessonSection>
+
+<LessonSection title="2. Convert grams to moles before using the ratio" description="Molar mass connects the balance to the equation">
+
+A typical mass-to-mass calculation has three stages:
+
+**grams of given substance → moles of given substance → moles of target substance → grams of target substance**
+
+The middle step uses the balanced-equation mole ratio. The first and last steps use molar mass. Do not jump directly from grams of one substance to grams of another using coefficients alone.
+
+<WorkedExample title="Worked example: mass of carbon dioxide from calcium carbonate">
+Calcium carbonate decomposes: **CaCO₃(s) → CaO(s) + CO₂(g)**. If 25.0 g CaCO₃ decomposes completely, what mass of CO₂ is produced?
+
+Molar mass CaCO₃ ≈ 100.09 g/mol; molar mass CO₂ ≈ 44.01 g/mol.
+
+1. Convert CaCO₃ to moles: 25.0 g ÷ 100.09 g/mol = 0.2498 mol CaCO₃.
+2. Use the 1:1 ratio: 0.2498 mol CaCO₃ × (1 mol CO₂ / 1 mol CaCO₃) = 0.2498 mol CO₂.
+3. Convert to grams: 0.2498 mol × 44.01 g/mol = **11.0 g CO₂** (3 significant figures).
+
+The answer is less than the starting mass because the remaining mass is in solid CaO. Mass is conserved across all products in a closed system.
+</WorkedExample>
+
+<QuickCheck question="What is the first step when a problem gives 10.0 g of a reactant and asks for grams of product?" options={["Multiply grams by the product coefficient","Convert the given mass to moles using molar mass","Divide the given mass by the coefficient","Assume the product has the same mass as the reactant"]} correctIndex={1} explanation="The equation's coefficients are mole ratios. Convert grams of the known substance to moles before applying that ratio." />
+
+</LessonSection>
+
+<LessonSection title="3. Limiting reactants: the reactant that runs out first" description="Compare possible product amounts, not just starting masses">
+
+When two reactants are supplied, one may run out before the other. The **limiting reactant** determines the maximum amount of product; the excess reactant remains after the reaction stops.
+
+A reliable method is to calculate how much product each reactant could produce if the other were available in excess. The reactant that produces the smaller amount of product is limiting. This method automatically accounts for different coefficients and molar masses.
+
+<WorkedExample title="Worked example: identify the limiting reactant">
+For N₂ + 3H₂ → 2NH₃, a mixture contains 2.0 mol N₂ and 3.0 mol H₂.
+
+From N₂: 2.0 mol N₂ × (2 mol NH₃ / 1 mol N₂) = 4.0 mol NH₃ possible.
+
+From H₂: 3.0 mol H₂ × (2 mol NH₃ / 3 mol H₂) = 2.0 mol NH₃ possible.
+
+Hydrogen is limiting because it predicts less product. The theoretical yield is **2.0 mol NH₃**. Consuming that amount of hydrogen uses 1.0 mol N₂, so 1.0 mol N₂ remains in excess.
+</WorkedExample>
+
+Do not decide the limiting reactant by choosing the smaller mass or smaller number of moles without considering coefficients. Compare the product each reactant could form.
+
+<QuickCheck question="For 2H₂ + O₂ → 2H₂O, a mixture has 3 mol H₂ and 2 mol O₂. Which reactant limits the amount of water?" options={["H₂","O₂","Neither; the ratio is exact","Cannot determine without molar masses"]} correctIndex={0} explanation="Three moles H₂ require 1.5 mol O₂, and 2 mol O₂ are available. Hydrogen runs out first, so H₂ is limiting." />
+
+</LessonSection>
+
+<LessonSection title="4. Theoretical yield, actual yield, and percent yield" description="Distinguish a calculation ceiling from a measured result">
+
+**Theoretical yield** is the maximum product predicted from the limiting reactant under the assumed reaction. **Actual yield** is the amount isolated or measured in an experiment. Actual yield may be lower because reaction is incomplete, side reactions occur, or product is lost during transfer or purification.
+
+Percent yield is:
+
+**percent yield = (actual yield / theoretical yield) × 100%**
+
+<WorkedExample title="Worked example: percent yield">
+A reaction has a theoretical yield of 12.5 g product, but the lab produces 10.0 g.
+
+Percent yield = (10.0 g / 12.5 g) × 100% = **80.0%**.
+
+Use the same units in the numerator and denominator so the units cancel. Percent yield is not a measure of purity unless the procedure defines the actual yield in a way that accounts for purity.
+</WorkedExample>
+
+<QuickCheck question="A reaction's percent yield is 75%. Which interpretation is correct?" options={["Exactly 75% of the atoms reacted","The measured product mass is 75% of the theoretical product mass","The reaction is 75% complete in every case","The product must be 75% pure"]} correctIndex={1} explanation="Percent yield compares actual product yield with the theoretical yield. It does not automatically measure reaction completion or product purity." />
+
+</LessonSection>
+
+## Readiness check
+
+You should be able to balance an equation, convert mass to moles, apply a mole ratio, identify a limiting reactant by comparing possible product, and calculate percent yield with units and significant figures.
+
+For a further reference, see [OpenStax Chemistry 2e: Reaction Stoichiometry](https://openstax.org/books/chemistry-2e/pages/4-3-reaction-stoichiometry).
