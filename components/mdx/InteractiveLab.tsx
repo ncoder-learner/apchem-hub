@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-type LabKind = "kinetics" | "energy-profile" | "balance" | "gas-law" | "ph";
+type LabKind = "kinetics" | "rate-law" | "collision" | "energy-profile" | "balance" | "gas-law" | "ph";
 
 interface InteractiveLabProps {
   kind: LabKind;
@@ -16,6 +16,8 @@ interface InteractiveLabProps {
  */
 export function InteractiveLab({ kind, title }: InteractiveLabProps) {
   if (kind === "balance") return <BalanceLab title={title} />;
+  if (kind === "rate-law") return <RateLawLab title={title} />;
+  if (kind === "collision") return <CollisionLab title={title} />;
   if (kind === "energy-profile") return <EnergyProfileLab title={title} />;
   if (kind === "gas-law") return <GasLawLab title={title} />;
   if (kind === "ph") return <PhLab title={title} />;
@@ -48,6 +50,40 @@ function RangeControl({ label, value, min, max, step = 1, onChange, output }: {
         className="w-full accent-emerald-400" />
     </label>
   );
+}
+
+
+function RateLawLab({ title }: { title?: string }) {
+  const [a, setA] = useState(1);
+  const [b, setB] = useState(1);
+  const [m, setM] = useState(1);
+  const [n, setN] = useState(1);
+  const rate = 0.5 * a ** m * b ** n;
+  return <LabFrame title={title ?? "Experiment with a rate law"}>
+    <p className="text-sm text-ink-dim">Model: rate = k[A]ᵐ[B]ⁿ, with k = 0.50 in consistent units. Change concentrations or reaction orders and watch the calculated rate update.</p>
+    <div className="grid gap-4 sm:grid-cols-2">
+      <RangeControl label="Reactant A concentration" value={a} min={0.5} max={3} step={0.5} onChange={setA} output={a.toFixed(1) + " M"} />
+      <RangeControl label="Reactant B concentration" value={b} min={0.5} max={3} step={0.5} onChange={setB} output={b.toFixed(1) + " M"} />
+      <label className="block space-y-1.5 text-sm"><span className="text-ink-dim">Order in A (m)</span><select value={m} onChange={e=>setM(Number(e.target.value))} className="w-full rounded-lg border border-border bg-bg px-3 py-2"><option value={0}>0 — zero order</option><option value={1}>1 — first order</option><option value={2}>2 — second order</option></select></label>
+      <label className="block space-y-1.5 text-sm"><span className="text-ink-dim">Order in B (n)</span><select value={n} onChange={e=>setN(Number(e.target.value))} className="w-full rounded-lg border border-border bg-bg px-3 py-2"><option value={0}>0 — zero order</option><option value={1}>1 — first order</option><option value={2}>2 — second order</option></select></label>
+    </div>
+    <div className="rounded-xl border border-border bg-bg p-4"><p className="text-xs text-ink-dim">Predicted relative rate</p><p className="text-3xl font-semibold tabular-nums">{rate.toFixed(3)}</p><div className="mt-3 h-3 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full bg-emerald-400 transition-all" style={{width: Math.min(100,rate/40*100)+"%"}} /></div><p className="mt-3 text-sm">Doubling [A] changes rate by a factor of <strong>{2 ** m}</strong> for the selected order. If m = 0, changing [A] has no effect on rate.</p></div>
+    <p className="text-xs text-ink-dim">This is a mathematical sandbox, not a claim about a particular reaction. Real reaction orders must be determined experimentally; they are not generally copied from the balanced equation.</p>
+  </LabFrame>;
+}
+
+function CollisionLab({ title }: { title?: string }) {
+  const [temperature, setTemperature] = useState(300);
+  const [concentration, setConcentration] = useState(8);
+  const speed = 0.7 + (temperature - 200) / 250;
+  const dots = Array.from({length: concentration}, (_,i)=>({x:28+(i*47)%264,y:26+((i*61+31)%100),dx:((i%3)-1)*speed*8,dy:((i%4)-1.5)*speed*5}));
+  const relative = (concentration/8)**2 * Math.exp(-1200/temperature) / Math.exp(-1200/300);
+  return <LabFrame title={title ?? "Explore collision frequency"}>
+    <div className="grid gap-4 sm:grid-cols-2"><RangeControl label="Temperature" value={temperature} min={200} max={500} step={25} onChange={setTemperature} output={temperature+" K"} /><RangeControl label="Particle concentration" value={concentration} min={4} max={16} onChange={setConcentration} output={concentration+" particles (schematic)"} /></div>
+    <div className="rounded-xl border border-border bg-bg p-2"><svg viewBox="0 0 320 155" role="img" aria-label="Schematic gas particles with motion arrows" className="w-full">{dots.map((d,i)=><g key={i}><line x1={d.x} y1={d.y} x2={d.x+d.dx} y2={d.y+d.dy} stroke="var(--color-blue)" strokeWidth="2" strokeLinecap="round"/><circle cx={d.x} cy={d.y} r="7" fill={i%2?"var(--color-emerald)":"var(--color-amber)"} /></g>)}</svg></div>
+    <div className="grid gap-3 sm:grid-cols-2"><div className="rounded-lg bg-white/[0.04] p-3"><p className="text-xs text-ink-dim">Relative collision opportunity</p><p className="text-xl font-semibold">{relative.toFixed(2)}× baseline</p></div><div className="rounded-lg bg-white/[0.04] p-3"><p className="text-xs text-ink-dim">Particle motion</p><p className="text-sm">{temperature < 300 ? "Lower temperature: slower average motion and fewer collisions with sufficient energy." : temperature > 300 ? "Higher temperature: faster average motion and a larger fraction of collisions can overcome the activation barrier." : "Baseline conditions for comparison."}</p></div></div>
+    <p className="text-xs text-ink-dim">Particle positions and arrows are schematic, not a molecular-dynamics simulation. The relative index is an illustrative teaching model, not a measured rate law. Temperature can increase the fraction of collisions energetic enough to react; concentration mainly changes how often particles encounter one another.</p>
+  </LabFrame>;
 }
 
 function KineticsLab({ title }: { title?: string }) {
