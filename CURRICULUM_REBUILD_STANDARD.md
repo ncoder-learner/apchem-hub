@@ -73,3 +73,29 @@ Not every topic needs every visual type. Use the best available representation f
 3. Build Units 4–9 from the CED and official released assessment evidence, using the same standards from the beginning.
 4. Add mixed-unit practice, cumulative retrieval, and full-length exam practice only after the individual lessons cover the required content.
 5. Run a production build and inspect lessons on desktop and mobile after each batch. Track coverage explicitly; do not label the course complete while required CED subskills remain unverified.
+
+
+## Mandatory visual and hands-on learning standard (all nine units)
+
+This applies to **every topic in Units 1–9**, not only graph-heavy kinetics lessons. Before a lesson is considered complete, audit whether a learner can understand the idea from the page without relying on imagination alone.
+
+For every topic, include at least one **instructional representation** selected for the chemistry: a labeled diagram, particle model, molecular structure, data table, plotted graph, energy profile, annotated spectrum, or worked visual sequence. Reuse existing `ChemVisual`, `Unit3Visual`, `BondDiagram`, and `GeometryDiagram` components where appropriate; do not add a decorative visual that does not teach the topic.
+
+Where manipulation materially improves learning, add a working hands-on activity. Examples include:
+- change coefficients and watch atom counts update while balancing equations;
+- change concentration, order, or rate constant and see a kinetics graph update;
+- change gas-law variables and inspect calculated pressure or volume relationships;
+- manipulate energy barriers and compare catalyzed/uncatalyzed pathways;
+- explore molecular geometry, polarity, bonding, solutions, equilibrium, acids/bases, and electrochemistry with controls suited to each model;
+- embed a real PhET simulation only when it directly supports the learning objective and the direct runnable URL has been verified.
+
+Interactive requirements:
+1. Controls must change the model or result immediately; a screenshot or static mockup does not count as interactive.
+2. Label axes, quantities, units, assumptions, and model limitations.
+3. Explain the chemistry behind the observed change, then ask a short prediction question or provide a challenge.
+4. Use accessible native controls and responsive layouts; make the activity usable on mobile.
+5. Never present a schematic as measured data or a simplified model as universally valid.
+6. Do not force the same widget into every lesson. Select the visual/interactivity that fits that specific concept.
+7. Review existing lessons, including previously merged units, for missing or weak instructional visuals. Add visuals to the content itself, not just to a unit landing page.
+
+A lesson audit should record: current visuals/activities, gaps, proposed representation, interactive or simulation opportunity, and whether the resulting activity teaches the relevant CED learning objective. For graph-heavy topics, the graph should be part of the lesson and should be manipulable when a simple, scientifically valid model can support it.
