@@ -573,3 +573,58 @@ body {
     max-height: 230px;
   }
 }
+
+
+/* Assessment and visual-learning refinements */
+.chem-visual {
+  box-shadow: 0 16px 36px rgb(0 0 0 / 0.14);
+}
+.chem-visual-heading {
+  background: linear-gradient(90deg, rgb(52 211 153 / 0.08), transparent 70%);
+}
+.lesson-prose .quick-check {
+  margin-block: 1.35rem;
+  border-color: rgb(90 169 255 / 0.28);
+  background: linear-gradient(135deg, rgb(90 169 255 / 0.075), rgb(15 20 32 / 0.8) 65%);
+}
+.lesson-prose .quick-check button,
+.lesson-prose .quick-check [role="button"] {
+  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+.lesson-prose .quick-check button:hover,
+.lesson-prose .quick-check [role="button"]:hover {
+  border-color: rgb(52 211 153 / 0.6);
+}
+.lesson-prose table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font-size: 0.92rem;
+}
+.lesson-prose th,
+.lesson-prose td {
+  border: 1px solid var(--color-border);
+  padding: 0.65rem 0.8rem;
+  text-align: left;
+}
+.lesson-prose th {
+  background: rgb(255 255 255 / 0.035);
+  font-weight: 700;
+}
+.lesson-prose hr {
+  border-color: var(--color-border);
+  margin: 2rem 0;
+}
+.lesson-prose .lesson-section-content {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 640px) {
+  .chem-visual {
+    margin-inline: -0.25rem;
+  }
+  .chem-visual-art svg {
+    min-width: 0;
+  }
+}
