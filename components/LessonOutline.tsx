@@ -52,6 +52,7 @@ export function LessonOutline({ articleId }: LessonOutlineProps) {
   function jumpTo(item: OutlineItem) {
     const target = document.getElementById(item.id);
     if (!target) return;
+    if (target instanceof HTMLDetailsElement) target.open = true;
     let parent = target.parentElement;
     while (parent && parent.id !== articleId) {
       if (parent instanceof HTMLDetailsElement) parent.open = true;
