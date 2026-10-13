@@ -1,62 +1,165 @@
-﻿---
-title: "Coulombâ€™s Law"
+---
+title: "Coulomb's Law"
 unit: 1
 topicNumber: "1.9"
 slug: "1-9-coulombs-law"
-summary: "Use charge and separation to compare electrostatic forces and potential energies in atomic and ionic systems."
+summary: "Use charge magnitude and separation to compare electrostatic forces and potential energies in atomic and ionic systems."
 ---
 
-# Charge and distance control electrostatic interactions
+Coulomb's law turns the idea of electrostatic attraction into a quantitative model. It explains why charge magnitude and distance matter when comparing electrons and nuclei, ions in a lattice, and the attraction between charged particles.
 
-Coulomb's law describes the electrostatic force between two charged particles. It gives a quantitative version of the idea that charge magnitude and distance determine the strength of an interaction. In AP Chemistry, this model helps explain ion formation, atomic structure, and periodic trends.
+The first decision is crucial: **is the question asking about force or potential energy?** They depend on distance differently.
 
-<LessonSection title="1. The relationship" description="Identify the variables before comparing cases." defaultOpen>
+<LessonSection title="1. Coulomb's law: force between two charges" description="Identify charge, distance, and whether the interaction attracts or repels" defaultOpen>
 
 <ChemVisual kind="coulomb" />
 
-For point charges, the force magnitude is
+For two point charges, the magnitude of the electrostatic force is:
 
-F = k Ã— |qâ‚qâ‚‚| / rÂ²
+**F = k × |q₁q₂| / r²**
 
-where (q_1) and (q_2) are the charges, (r) is the separation between their centers, and (k) is Coulomb's constant. The force is attractive for opposite charges and repulsive for like charges.
+- F = force magnitude
+- k = Coulomb's constant
+- q₁ and q₂ = the two charges
+- r = distance between the charge centers
 
-The **square on distance matters**. If separation doubles while charges remain constant, the force magnitude becomes one-fourth as large. If one charge doubles while distance and the other charge remain constant, the force magnitude doubles.
+The force is **attractive** when the charges have opposite signs and **repulsive** when the charges have the same sign. The equation above gives the magnitude; the signs determine the direction.
 
-<QuickCheck question="If the distance between two charges triples and their charges stay constant, what happens to the force magnitude?" options={["It triples","It becomes one-third as large","It becomes one-ninth as large","It becomes nine times as large"]} correctIndex={2} explanation="Force is inversely proportional to rÂ², so tripling r divides the force by 3Â² = 9." />
+Two relationships follow:
+- Larger charge magnitudes produce a stronger force when distance is unchanged.
+- Greater separation weakens the force according to the inverse square of distance.
 
-</LessonSection>
+The square matters. Doubling the distance makes the force one-fourth as large, not one-half. Tripling distance makes the force one-ninth as large.
 
-<LessonSection title="2. Force vs. potential energy" description="Related ideas, but not the same quantity.">
-
-Electrostatic potential energy for two point charges is
-
-E = k Ã— qâ‚qâ‚‚ / r
-
-Unlike force, potential energy varies inversely with distance rather than distance squared. The sign matters: opposite charges have negative potential energy under the usual zero-at-infinite-separation convention, while like charges have positive potential energy.
-
-The force describes how strongly particles push or pull at a given separation. Potential energy describes the energy associated with their arrangement. Do not apply the inverse-square distance dependence of force to potential energy.
+<QuickCheck question="If the distance between two charges triples while both charges stay the same, what happens to the force magnitude?" options={["It triples","It becomes one-third as large","It becomes one-ninth as large","It becomes nine times as large"]} correctIndex={2} explanation="Force is inversely proportional to r². Tripling r divides the force by 3² = 9." />
 
 </LessonSection>
 
-<LessonSection title="3. Explain atomic and periodic behavior" description="Translate the model into a chemical argument.">
+<LessonSection title="2. Compare forces using ratios" description="You usually do not need Coulomb's constant">
+
+When comparing two situations, use the proportionality F ∝ |q₁q₂|/r². This lets you calculate a ratio without knowing the numerical value of k.
+
+<WorkedExample title="Worked example 1: double one charge">
+Two charges are separated by the same distance. The magnitude of one charge doubles while the other charge stays the same.
+
+The product |q₁q₂| doubles, and r² is unchanged. Therefore, the force magnitude **doubles**.
+</WorkedExample>
+
+<WorkedExample title="Worked example 2: double the distance and triple a charge">
+In a second situation, one charge is tripled and the separation is doubled; the other charge stays constant.
+
+- Charge product changes by a factor of 3.
+- Distance squared changes by a factor of 2² = 4.
+- New force / original force = 3/4.
+
+The new force magnitude is **three-fourths of the original force**. Increasing a charge strengthens the force, but increasing the distance weakens it; both effects must be included.
+</WorkedExample>
+
+<QuickCheck question="One charge doubles and the separation also doubles, while the other charge stays constant. How does the force magnitude change?" options={["It doubles","It is halved","It is unchanged","It becomes four times as large"]} correctIndex={1} explanation="The charge product doubles, but r² increases by a factor of 4. The net factor is 2/4 = 1/2." />
+
+</LessonSection>
+
+<LessonSection title="3. Force is not potential energy" description="Potential energy varies as one over distance, not one over distance squared">
+
+Electrostatic potential energy for two point charges is:
+
+**E = k × q₁q₂ / r**
+
+Unlike force, potential energy is inversely proportional to distance, not distance squared. The sign matters under the usual convention that potential energy is zero at infinite separation:
+- Opposite charges have negative electrostatic potential energy because the interaction is attractive.
+- Like charges have positive electrostatic potential energy because the interaction is repulsive.
+
+The force tells you how strongly the particles push or pull at a given separation. Potential energy describes the energy associated with their arrangement.
+
+<WorkedExample title="Worked example 3: compare force and potential energy">
+Two opposite charges are moved from a separation r to 2r.
+
+The force magnitude changes by a factor of 1/2² = 1/4. The potential energy changes in magnitude by a factor of 1/2. Since the charges are opposite, the potential energy remains negative, but it becomes less negative as the charges move farther apart.
+
+This is why force and potential energy cannot be compared using the same distance factor.
+</WorkedExample>
+
+<QuickCheck question="If two point charges are moved from distance r to distance 3r, how does the magnitude of their electrostatic potential energy change?" options={["It becomes one-third as large","It becomes one-ninth as large","It triples","It becomes nine times as large"]} correctIndex={0} explanation="Potential energy is proportional to 1/r, so tripling the separation reduces its magnitude to one-third." />
+
+</LessonSection>
+
+<LessonSection title="4. Apply Coulomb's law to atoms and ions" description="Connect the model to periodic behavior">
+
+Coulomb's law helps explain why nuclear charge, distance, and shielding affect electron behavior.
 
 - A proton attracts an electron because their charges have opposite signs.
-- Increasing nuclear charge strengthens attraction to electrons if distance and shielding are otherwise comparable.
-- Greater electron-nucleus distance weakens the attraction.
-- Electron-electron repulsion can oppose nucleus-electron attraction and contributes to shielding.
-- In an ionic lattice, ions with greater charge magnitudes and shorter separations generally interact more strongly.
+- Greater nuclear charge strengthens attraction to an electron if distance and shielding are otherwise comparable.
+- Greater electron–nucleus distance weakens attraction.
+- Inner electrons repel outer electrons and shield them from some of the nucleus's attraction.
+- Ions with larger charge magnitudes and smaller separations generally experience stronger electrostatic interactions.
 
-These ideas support periodic trends, but an atom contains many interacting particles. Use Coulomb's law as a qualitative model rather than pretending that one electron experiences only one isolated charge.
+For an atom, this is a simplified model because many electrons and the nucleus interact simultaneously. Use it to explain trends, not as a claim that each electron feels only one isolated charge.
+
+<WorkedExample title="Worked example 4: compare two isoelectronic ions">
+Consider O²⁻ and Mg²⁺. Both have 10 electrons, but Mg²⁺ has 12 protons while O²⁻ has 8. Because the electron populations are the same, the larger nuclear charge in Mg²⁺ pulls the electrons closer. Mg²⁺ is smaller, and its remaining electrons are held more tightly.
+
+This argument works especially well for isoelectronic species because the number of electrons is held constant while nuclear charge changes.
+</WorkedExample>
 
 </LessonSection>
 
-<LessonSection title="4. Comparison problems" description="Change one variable at a time.">
+<LessonSection title="5. Common reasoning errors" description="Check the variable and the relationship">
 
-For any comparison, write the proportionality first. If charges change by factors (a) and (b), and distance changes by factor (c), then
+<Mistake title="Using the inverse-square relationship for potential energy">
+Force follows 1/r²; electrostatic potential energy follows 1/r. If distance triples, force magnitude becomes one-ninth, while potential-energy magnitude becomes one-third.
+</Mistake>
 
-fracF_newF_old=(|a b|)/(c^2)
+<Mistake title="Ignoring charge signs">
+The magnitude formula uses absolute values, but whether the force is attractive or repulsive depends on the signs. Opposite charges attract; like charges repel.
+</Mistake>
 
-This ratio approach prevents unnecessary calculation with Coulomb's constant. For potential energy, use the same charge ratio but divide by (c), not (c^2).
+<Mistake title="Assuming charge is the only factor in atomic attraction">
+Greater nuclear charge can strengthen attraction, but distance and shielding also matter. When comparing atoms in different shells, do not explain the trend using proton count alone.
+</Mistake>
 
-**Final check:** Is the question asking about force or potential energy? Are you comparing magnitudes or signs? Did you square the distance only for force?
+</LessonSection>
+
+<LessonSection title="6. AP-style practice" description="Compare electrostatic forces and explain the result">
+
+Two pairs of point charges are compared.
+
+- Pair A: charges +1 and −1, separated by distance r.
+- Pair B: charges +2 and −1, separated by distance 2r.
+
+**(a)** Compare the force magnitudes in A and B.
+
+**(b)** State whether the interaction in each pair is attractive or repulsive.
+
+**(c)** Explain why the charge change and distance change have competing effects.
+
+<LessonSection title="Reveal the reasoning" description="Use proportionality and charge signs">
+
+**(a)** For A, force magnitude is proportional to 1/r². For B, the charge product doubles and the distance squared increases by a factor of 4. Thus B's force magnitude is 2/4 = **one-half** the force magnitude of A.
+
+**(b)** Both pairs have opposite charges, so both interactions are attractive.
+
+**(c)** Doubling one charge strengthens the force by a factor of 2, while doubling distance weakens it by a factor of 4 because distance is squared. The combined factor is 1/2.
+</LessonSection>
+
+</LessonSection>
+
+<LessonSection title="7. External review" description="Review electrostatic interactions with diagrams and examples">
+
+- [College Board AP Chemistry Course and Exam Description](https://apcentral.collegeboard.org/media/pdf/ap-chemistry-course-and-exam-description.pdf) — official Unit 1 scope.
+- [Khan Academy: Coulomb's law and electrostatic interactions](https://www.khanacademy.org/science/physics/electric-charge-electric-force-and-voltage) — visual explanation of how charge and distance affect force.
+- [Royal Society of Chemistry: Interactive periodic table](https://www.rsc.org/periodic-table) — connect nuclear structure to periodic properties.
+- [Official AP Chemistry exam and scoring resources](https://apcentral.collegeboard.org/courses/ap-chemistry/exam) — practice explaining trends with structural evidence.
+
+</LessonSection>
+
+<LessonSection title="8. Check your readiness" description="Try these without notes">
+
+- [ ] State Coulomb's law and explain each variable.
+- [ ] Predict the effect of changing one charge or the separation.
+- [ ] Use ratios to compare force magnitudes.
+- [ ] Distinguish force's inverse-square dependence from potential energy's inverse-distance dependence.
+- [ ] Determine whether charges attract or repel.
+- [ ] Explain how nuclear charge, distance, and shielding affect electrons.
+- [ ] Use the model carefully when comparing real atoms with many interacting particles.
+
 </LessonSection>
