@@ -1,86 +1,169 @@
-﻿---
+---
 title: "Moles and Molar Mass"
 unit: 1
 topicNumber: "1.1"
 slug: "1-1-moles-and-molar-mass"
-summary: "Use the mole as a counting unit to convert between particles, amount of substance, and sample mass."
+summary: "Use the mole as a counting unit and convert between particles, amount of substance, and sample mass with dimensional analysis."
 ---
 
-# Count particles by weighing them
+Chemists need to connect two scales: the atoms and molecules too small to count individually, and the grams we can measure on a balance. The **mole** is the bridge between them. Learn to keep three quantities separate: number of particles, amount in moles, and mass in grams.
 
-Chemists rarely count atoms one at a time. A sample contains an enormous number of particles, so chemistry uses the **mole** as a counting unit. One mole contains exactly 6.02214076 Ã— 10Â²Â³ specified entities. This number is the Avogadro constant. The entities might be atoms, molecules, ions, or formula units; always name what you are counting.
+<LessonSection title="1. What a mole actually counts" description="A counting unit, not a mass unit" defaultOpen>
 
-<LessonSection title="1. What a mole actually counts" description="Separate particle count from sample mass." defaultOpen>
+A dozen means 12 objects whether the objects are grapes or pencils. A mole works the same way, except it represents **6.02214076 × 10²³ specified entities**. This exact number is the Avogadro constant, usually written Nₐ ≈ 6.022 × 10²³ mol⁻¹.
 
-A dozen means 12 objects, regardless of whether the objects are grapes or pencils. A mole works the same way, except it represents 6.022 Ã— 10Â²Â³ entities. One mole of carbon atoms and one mole of water molecules contain the same number of entities, but they do not have the same mass.
-
-- **Atoms:** 1 mol of Ne contains Nâ‚ neon atoms.
-- **Molecules:** 1 mol of Hâ‚‚O contains Nâ‚ water molecules, or 2Nâ‚ H atoms and Nâ‚ O atoms.
-- **Formula units:** 1 mol of NaCl represents Nâ‚ NaCl formula units in the ionic solid. It does not mean the solid contains separate NaCl molecules.
+One mole of carbon atoms and one mole of water molecules contain the same number of specified entities, but they do not have the same mass. A mole tells you how many entities you have, not how heavy the sample is.
 
 <ChemVisual kind="mole-count" />
 
-The key idea: **moles connect the microscopic world to measurable amounts**. The mole is not a mass unit; molar mass provides the conversion between moles and grams.
+Be precise about the entity:
+- **Atoms:** 1 mol of Ne contains 6.022 × 10²³ neon atoms.
+- **Molecules:** 1 mol of H₂O contains 6.022 × 10²³ water molecules. Since each molecule has two H atoms and one O atom, that amount contains 2 mol of H atoms and 1 mol of O atoms.
+- **Ions:** 1 mol of Na⁺ means 6.022 × 10²³ sodium ions.
+- **Formula units:** 1 mol of solid NaCl means 6.022 × 10²³ NaCl formula units. The ionic solid is an extended lattice, not a collection of separate NaCl molecules.
 
-<QuickCheck question="How many oxygen atoms are present in 1.00 mol of Hâ‚‚O molecules?" options={["1.00 atom","6.022 Ã— 10Â²Â³ atoms","2 Ã— 6.022 Ã— 10Â²Â³ atoms","18.0 atoms"]} correctIndex={1} explanation="Each water molecule contains one oxygen atom, so one mole of water molecules contains one mole of oxygen atoms." />
+<QuickCheck question="How many oxygen atoms are present in 1.00 mol of H₂O molecules?" options={["1.00 atom","6.022 × 10²³ atoms","2 × 6.022 × 10²³ atoms","18.0 atoms"]} correctIndex={1} explanation="Each H₂O molecule contains one oxygen atom, so one mole of water molecules contains one mole of oxygen atoms: 6.022 × 10²³ oxygen atoms." />
 
 </LessonSection>
 
-<LessonSection title="2. Molar mass: grams per mole" description="Read the periodic table and account for every atom.">
+<LessonSection title="2. Molar mass: the grams-per-mole bridge" description="Calculate the mass of one mole from a formula">
 
-**Molar mass** is the mass of one mole of a substance, usually in g/mol. For an element, use its average atomic mass from the periodic table. For a compound, add the atomic masses of every atom shown in its chemical formula, including subscripts and parentheses.
+**Molar mass** is the mass of one mole of a substance, usually expressed in g/mol. For an element, use its average atomic mass from the periodic table. For a compound, add the atomic masses of every atom in its formula.
 
-**Worked example: molar mass of Ca(NOâ‚ƒ)â‚‚**
+Subscripts and parentheses tell you how many of each atom to count. For Ca(NO₃)₂, the outside subscript 2 multiplies everything inside the parentheses: there is 1 Ca, 2 N, and 6 O atoms in each formula unit.
 
-- Ca: 1 Ã— 40.08 = 40.08 g/mol
-- N: 2 Ã— 14.01 = 28.02 g/mol
-- O: 6 Ã— 16.00 = 96.00 g/mol
-- Total: 164.10 g/mol
+<WorkedExample title="Worked example 1: calculate the molar mass of Ca(NO₃)₂">
+- Ca: 1 × 40.08 = 40.08 g/mol
+- N: 2 × 14.01 = 28.02 g/mol
+- O: 6 × 16.00 = 96.00 g/mol
 
-The subscript 2 outside the parentheses multiplies both N and O. A common error is to count only three oxygen atoms rather than six.
+Total molar mass = 40.08 + 28.02 + 96.00 = **164.10 g/mol**.
 
-<WorkedExample title="Find the amount of substance in 24.0 g of Mg">
+Check the formula before adding: forgetting that the subscript outside the parentheses multiplies both N and O would give the wrong total.
+</WorkedExample>
+
+Molar mass is a conversion factor. For example, 1 mol H₂O has a mass of about 18.02 g. That means 18.02 g H₂O corresponds to 1 mol H₂O, and 1 mol H₂O corresponds to 6.022 × 10²³ water molecules.
+
+<QuickCheck question="What is the molar mass of CO₂, using C = 12.01 g/mol and O = 16.00 g/mol?" options={["12.01 g/mol","28.01 g/mol","44.01 g/mol","32.00 g/mol"]} correctIndex={2} explanation="CO₂ contains one C and two O atoms: 12.01 + 2(16.00) = 44.01 g/mol." />
+
+</LessonSection>
+
+<LessonSection title="3. Convert grams, moles, and particles" description="Choose the factor that cancels your starting unit">
+
+There are two key conversions:
+
+- **Grams ↔ moles:** use molar mass (g/mol).
+- **Moles ↔ particles:** use Avogadro's constant (6.022 × 10²³ entities/mol).
+
+The direction tells you whether to multiply or divide. To convert grams to moles, divide by molar mass. To convert moles to grams, multiply by molar mass. To convert moles to particles, multiply by Avogadro's constant. To convert particles to moles, divide by Avogadro's constant.
+
+Dimensional analysis makes the direction less dependent on memorization: write the starting quantity and multiply by a conversion factor arranged so the unwanted unit cancels.
+
+<WorkedExample title="Worked example 2: how many moles are in 24.0 g of Mg?">
 Molar mass of Mg = 24.305 g/mol.
 
-n = m / M = 24.0 g / (24.305 g/mol) = 0.988 mol
+24.0 g Mg × (1 mol Mg / 24.305 g Mg) = **0.988 mol Mg**.
 
-The grams cancel, leaving moles. Keep extra digits during calculations and round the final answer to the precision justified by the given data.
+The grams cancel, leaving moles. The answer is less than 1 mol because the sample mass is slightly less than the mass of a full mole.
+</WorkedExample>
+
+<WorkedExample title="Worked example 3: how many CO₂ molecules are in 11.0 g?">
+First convert grams to moles, then moles to molecules:
+
+11.0 g CO₂ × (1 mol CO₂ / 44.01 g CO₂) × (6.022 × 10²³ molecules / 1 mol CO₂)
+
+= **1.50 × 10²³ CO₂ molecules**.
+
+Notice that both grams and moles cancel. The final unit is molecules because that is what the question asks for.
+</WorkedExample>
+
+<QuickCheck question="Which setup correctly converts 2.00 mol of O₂ to molecules?" options={["2.00 ÷ 6.022 × 10²³","2.00 × 32.00","2.00 × 6.022 × 10²³","2.00 ÷ 32.00"]} correctIndex={2} explanation="Multiply the amount in moles by Avogadro's constant. Molar mass is used to convert between moles and grams, not to count molecules." />
+
+</LessonSection>
+
+<LessonSection title="4. Multi-step problems: plan before calculating" description="Write what you know, what you need, and the route">
+
+A useful way to solve any conversion problem is to draw a short route:
+
+**grams → moles → particles**
+
+or
+
+**particles → moles → grams**
+
+For example, if a problem asks for the mass of 3.01 × 10²³ molecules of NH₃, do not try to convert molecules directly to grams in one mental step. First divide by Avogadro's constant to find moles, then multiply by the molar mass of NH₃.
+
+<WorkedExample title="Worked example 4: find the mass from a particle count">
+Find the mass of 3.01 × 10²³ NH₃ molecules. Use N = 14.01 g/mol and H = 1.008 g/mol.
+
+1. Molar mass NH₃ = 14.01 + 3(1.008) = 17.034 g/mol.
+2. Convert particles to moles: (3.01 × 10²³ molecules) / (6.022 × 10²³ molecules/mol) = 0.500 mol.
+3. Convert moles to grams: 0.500 mol × 17.034 g/mol = **8.52 g NH₃**.
+
+The factor of 10²³ cancels in the particle-to-mole step, leaving a reasonable amount of 0.500 mol.
 </WorkedExample>
 
 </LessonSection>
 
-<LessonSection title="3. Convert between grams, moles, and particles" description="Choose the conversion factor that cancels the starting unit.">
+<LessonSection title="5. Common traps and how to catch them" description="Use entity identity and units as error checks">
 
-Use these relationships:
+<Mistake title="Confusing atoms with molecules">
+One mole of H₂O contains one mole of H₂O molecules, but it contains two moles of H atoms. The number of atoms depends on the subscripts in each molecule. Always identify the entity before multiplying by Avogadro's constant.
+</Mistake>
 
-| Starting quantity | Conversion | Result |
-|---|---|---|
-| Grams | divide by molar mass | Moles |
-| Moles | multiply by molar mass | Grams |
-| Moles | multiply by Nâ‚ | Particles |
-| Particles | divide by Nâ‚ | Moles |
+<Mistake title="Using molar mass to convert particles directly">
+Molar mass connects grams and moles. Avogadro's constant connects moles and entities. If a problem asks for molecules, the final conversion must use molecules/mol, not g/mol.
+</Mistake>
 
-A reliable setup is dimensional analysis: write the starting quantity, multiply by a fraction equal to 1, and arrange units so unwanted units cancel.
+<Mistake title="Treating the mole as a mass">
+One mole of different substances has the same number of entities but different masses. A mole of lead atoms is much heavier than a mole of helium atoms because their molar masses differ.
+</Mistake>
 
-<WorkedExample title="How many COâ‚‚ molecules are in 11.0 g?">
-Molar mass COâ‚‚ = 44.01 g/mol.
-
-11.0 g COâ‚‚ Ã— (1 mol / 44.01 g) Ã— (6.022 Ã— 10Â²Â³ molecules / 1 mol) = 1.50 Ã— 10Â²Â³ molecules
-
-The answer is a particle count, so the final unit is molecules, not moles.
-</WorkedExample>
-
-<QuickCheck question="Which setup correctly converts 2.00 mol of Oâ‚‚ to molecules?" options={["2.00 Ã· 6.022 Ã— 10Â²Â³","2.00 Ã— 32.00","2.00 Ã— 6.022 Ã— 10Â²Â³","2.00 Ã· 32.00"]} correctIndex={2} explanation="Multiply moles by Avogadroâ€™s constant. Molar mass is needed to convert between moles and grams, not to count molecules." />
+<Mistake title="Ignoring formula subscripts">
+The subscript in H₂O means two H atoms per molecule. The subscript outside parentheses in Ca(NO₃)₂ multiplies the entire nitrate group. Count atoms from the formula before calculating molar mass.
+</Mistake>
 
 </LessonSection>
 
-<LessonSection title="4. AP exam traps and self-check" description="Use particle identity and unit cancellation to catch mistakes.">
+<LessonSection title="6. AP-style practice" description="Combine conversion steps and explain the particle count">
 
-- A mole of molecules is not the same as a mole of atoms if each molecule contains multiple atoms.
-- The periodic-table atomic mass is a weighted average for the naturally occurring isotopes, not the mass number of one specific atom.
-- Molar mass has units of g/mol; sample mass has units of g.
-- Ionic compounds are counted in formula units; covalent compounds are often counted in molecules.
-- Significant figures affect the reported result, not the exact definition of the mole.
+A student has 9.00 g of H₂O. Use a molar mass of 18.02 g/mol.
 
-Before moving on, ask: What entity is being counted? What is the starting unit? Which conversion factor cancels it?
+**(a)** Calculate the amount of H₂O in moles.
+
+**(b)** Calculate the number of H₂O molecules.
+
+**(c)** Calculate the number of H atoms in the sample.
+
+<LessonSection title="Reveal the reasoning" description="Check each conversion and the atom-to-molecule ratio">
+
+**(a)** n = 9.00 g / 18.02 g/mol = **0.500 mol H₂O**.
+
+**(b)** Number of molecules = 0.500 mol × 6.022 × 10²³ molecules/mol = **3.00 × 10²³ H₂O molecules**.
+
+**(c)** Each water molecule contains two H atoms, so the sample contains 2 × 3.00 × 10²³ = **6.02 × 10²³ H atoms**.
+
+The final step uses the subscript in H₂O. The number of hydrogen atoms is twice the number of water molecules.
+</LessonSection>
+
+</LessonSection>
+
+<LessonSection title="7. Reliable review" description="Use another explanation, then solve a fresh problem">
+
+- [College Board AP Chemistry Course and Exam Description](https://apcentral.collegeboard.org/media/pdf/ap-chemistry-course-and-exam-description.pdf) — official Unit 1 scope and mathematical-skill expectations.
+- [Khan Academy: Moles and molar mass](https://www.khanacademy.org/science/chemistry/chemical-reactions-stoichiome) — supplementary explanation and practice.
+- [Official AP Chemistry exam and scoring resources](https://apcentral.collegeboard.org/courses/ap-chemistry/exam) — practice quantitative reasoning with released assessment materials.
+
+</LessonSection>
+
+<LessonSection title="8. Check your readiness" description="Try these without notes">
+
+- [ ] Explain what a mole counts and state Avogadro's constant.
+- [ ] Distinguish atoms, molecules, ions, and formula units.
+- [ ] Calculate molar mass from a chemical formula, including parentheses.
+- [ ] Convert grams to moles and moles to grams.
+- [ ] Convert moles to particles and particles to moles.
+- [ ] Solve a multi-step conversion using unit cancellation.
+- [ ] Use formula subscripts to convert between molecules and atoms.
+
 </LessonSection>
