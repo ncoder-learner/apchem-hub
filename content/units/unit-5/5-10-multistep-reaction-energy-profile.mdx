@@ -1,0 +1,49 @@
+---
+title: "Multistep Reaction Energy Profile"
+unit: 5
+topicNumber: "5.10"
+slug: "5-10-multistep-reaction-energy-profile"
+summary: "Interpret multiple transition states and intermediates on an energy profile and relate the highest kinetic barrier to reaction rate."
+---
+
+A multistep reaction mechanism contains multiple elementary steps, so its energy profile can have several maxima and minima. Each maximum corresponds to a transition-state region; a local minimum between maxima can correspond to an intermediate. The overall reaction enthalpy still depends only on the energies of the initial reactants and final products.
+
+<LessonSection title="1. Identify transition states and intermediates" description="Peaks are barriers; valleys between peaks are intermediates" defaultOpen>
+
+On a reaction-coordinate diagram, a **transition state** lies near a local maximum along the pathway. An **intermediate** corresponds to a local minimum between transition states and is formed in one step, then consumed in another. It is not the same as a final product.
+
+For a multistep pathway, each elementary step has its own activation barrier measured from the energy level at the start of that step to the next transition-state peak. Do not measure every barrier from the original reactants; a later step begins at the energy of the preceding intermediate.
+
+<QuickCheck question="On a two-peak reaction energy profile, what does a valley between the peaks usually represent?" options={["The overall activation energy by definition","A reaction intermediate","The final product in every case","The catalyst's concentration"]} correctIndex={1} explanation="A local minimum between transition states corresponds to an intermediate along the pathway. The final product is at the endpoint of the full profile." />
+
+</LessonSection>
+
+<LessonSection title="2. Compare barriers to reason about rate" description="The slow step often has the largest relevant activation barrier">
+
+The elementary step with the largest activation barrier relative to its starting state often has the smallest rate constant and can strongly limit the overall reaction rate. However, identifying the rate-determining step in a real multistep mechanism can also depend on concentrations and the full kinetic network; use the assumptions stated in the prompt.
+
+A peak that is high above the original reactants is not necessarily the largest step barrier if the preceding intermediate is already at high energy. Measure from the local starting level for each step.
+
+<WorkedExample title="Worked example: compare two step barriers">
+Suppose the reactants are at 20 kJ/mol, the first transition state is at 70 kJ/mol, the intermediate is at 40 kJ/mol, and the second transition state is at 110 kJ/mol.
+
+First-step barrier = 70 − 20 = 50 kJ/mol. Second-step barrier = 110 − 40 = 70 kJ/mol. The second step has the larger activation barrier relative to its starting intermediate and is a candidate for the rate-determining step under the usual introductory model.
+</WorkedExample>
+
+<QuickCheck question="A second transition-state peak is 100 kJ/mol above the original reactants but only 30 kJ/mol above the intermediate before it. What is the activation energy for that elementary step?" options={["30 kJ/mol","70 kJ/mol","100 kJ/mol","130 kJ/mol"]} correctIndex={0} explanation="The activation energy for the second step is measured from the preceding intermediate to the second transition state, not from the original reactants." />
+
+</LessonSection>
+
+<LessonSection title="3. Overall ΔH is endpoint-to-endpoint" description="Intermediates do not change the net energy difference">
+
+The overall enthalpy change is **ΔH = H(final products) − H(initial reactants)**. It does not depend on how many steps the mechanism uses or how high the transition-state peaks are. A catalyst can provide a pathway with different intermediate energies and lower barriers, but for the same initial and final states it does not change overall ΔH.
+
+<QuickCheck question="When a catalyst changes a multistep pathway but the initial and final chemical species stay the same, what happens to overall ΔH?" options={["It must become zero","It changes sign","It remains the same","It equals the tallest peak"]} correctIndex={2} explanation="Overall ΔH depends on the initial and final states. A catalyst changes the pathway and barriers, not the endpoint energy difference." />
+
+For more context on reaction pathways, see [OpenStax Chemistry 2e: Reaction Mechanisms](https://openstax.org/books/chemistry-2e/pages/12-5-collision-theory).
+
+</LessonSection>
+
+## Readiness check
+
+You should be able to identify transition states and intermediates, measure each activation barrier from the correct local starting level, and calculate overall ΔH from the endpoints.
