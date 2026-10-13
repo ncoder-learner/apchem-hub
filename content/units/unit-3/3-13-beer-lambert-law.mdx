@@ -1,41 +1,188 @@
 ---
-title: "Beer–Lambert Law"
+title: "The Beer–Lambert Law"
 unit: 3
 topicNumber: "3.13"
 slug: "3-13-beer-lambert-law"
-summary: "Use absorbance, concentration, molar absorptivity, and path length to interpret spectrophotometry data."
+summary: "Use absorbance, path length, molar absorptivity, and concentration to interpret spectrophotometry data and calibration curves."
 ---
 
-# Absorbance can quantify concentration
+A spectrophotometer sends light through a sample and measures how much light is absorbed. A more concentrated absorbing solution usually absorbs more light because the beam encounters more absorbing particles. The Beer–Lambert law turns that pattern into a quantitative tool for determining an unknown concentration.
 
-The Beer–Lambert law relates absorbance to concentration:
-
-**A = εℓc**
-
-A is absorbance (dimensionless), ε is molar absorptivity, ℓ is path length (commonly cm), and c is molar concentration. At a fixed wavelength, with the same absorbing species and path length, absorbance is directly proportional to concentration within the useful linear range.
+<LessonSection title="1. What absorbance measures" description="Connect the light entering the sample to the light leaving it" defaultOpen>
 
 <Unit3Visual kind="beer-lambert" />
 
-<LessonSection title="1. Read an absorbance graph" description="Slope and proportionality" defaultOpen>
+When light passes through a solution, some photons may be absorbed by the dissolved species and the rest may pass through. **Transmittance** is the fraction of incident light that passes through the sample. **Absorbance** describes how strongly the sample attenuates the light.
 
-A plot of absorbance versus concentration should be linear for an appropriate dilute range. If path length and wavelength are fixed, doubling concentration doubles absorbance under the model. A calibration curve can be used to estimate the concentration of an unknown sample from its measured absorbance.
+Absorbance is not simply the fraction of light absorbed; it is a logarithmic quantity. In the AP Chemistry context, the key use is that for a given absorbing species at a fixed wavelength and path length, absorbance is proportional to concentration over the range where Beer–Lambert behavior applies.
 
-<QuickCheck question="At a fixed wavelength and path length, a solution's concentration doubles. Under the Beer–Lambert model, what happens to absorbance?" options={["It is halved","It doubles","It remains constant","It quadruples"]} correctIndex={1} explanation="A = εℓc, so if ε and ℓ stay constant, absorbance is directly proportional to concentration."/>
+More absorbing particles in the path of the beam generally mean a greater chance that photons will be absorbed. A longer path through the same solution also exposes the light to more absorbing particles, so absorbance increases with path length.
 
-</LessonSection>
-
-<LessonSection title="2. Solve for an unknown" description="Use the calibration relationship">
-
-If ε = 150 L·mol⁻¹·cm⁻¹, ℓ = 1.00 cm, and A = 0.300, then:
-
-**c = A / (εℓ) = 0.300 / ((150)(1.00)) = 2.00 × 10⁻³ M**
-
-Track units and significant figures. Do not compare absorbances measured at different wavelengths as though ε were unchanged unless the problem supports that assumption.
+<QuickCheck question="Two samples contain the same absorbing species at the same wavelength and have identical path lengths. Sample A has twice the concentration of sample B, within the linear range. What is expected?" options={["A has half the absorbance of B","A has twice the absorbance of B","Both must have absorbance zero","Absorbance is unrelated to concentration"]} correctIndex={1} explanation="At fixed wavelength and path length, Beer–Lambert law predicts that absorbance is directly proportional to concentration." />
 
 </LessonSection>
 
-<LessonSection title="3. AP-style experiment interpretation" description="Control variables and support claims">
+<LessonSection title="2. Learn the equation by interpreting each term" description="Absorbance depends on three factors">
 
-When interpreting spectrophotometry, state which variables are controlled (wavelength, path length, species) and use the graph or measured absorbance as evidence. If a calibration plot bends away from linearity, do not force the linear model beyond its valid range; concentration may be too high or the experimental conditions may have changed.
+The Beer–Lambert law is:
+
+**A = εℓc**
+
+- **A** = absorbance (dimensionless)
+- **ε** = molar absorptivity, a measure of how strongly the species absorbs at the selected wavelength
+- **ℓ** = path length of the light through the sample, commonly in cm
+- **c** = concentration of the absorbing species, commonly in mol/L
+
+The molar absorptivity depends on the substance and the wavelength. The path length depends on the cuvette or measurement setup. If the same substance is measured at the same wavelength in the same cuvette, ε and ℓ are constant, so A is directly proportional to c.
+
+That means doubling concentration doubles absorbance within the linear range. Doubling path length also doubles absorbance if concentration and wavelength remain fixed. If the wavelength changes, ε may change, so a calibration relationship obtained at one wavelength cannot automatically be used at another.
+
+<Lightbulb title="What the equation says in plain language">
+Absorbance increases when the light passes through more absorbing particles. That can happen because the solution is more concentrated or because the light travels through a longer path. The chemical species and selected wavelength determine how effectively the particles absorb the light.
+</Lightbulb>
+
+<QuickCheck question="Which change should increase absorbance if all other factors remain constant and the solution stays in the linear range?" options={["Halving the concentration","Halving the path length","Doubling the path length","Changing to a wavelength where the species does not absorb"]} correctIndex={2} explanation="A = εℓc. Doubling ℓ doubles absorbance when ε and c stay constant." />
+
+</LessonSection>
+
+<LessonSection title="3. Solve for an unknown concentration" description="Rearrange the equation before substituting">
+
+If ε, path length, and absorbance are known, solve for concentration:
+
+**c = A / (εℓ)**
+
+Check the units. If ε is given in L·mol⁻¹·cm⁻¹ and ℓ is in cm, absorbance is dimensionless and c comes out in mol/L.
+
+<WorkedExample title="Worked example 1: calculate concentration">
+A solution has absorbance A = 0.600 at a chosen wavelength. Its molar absorptivity is ε = 150 L·mol⁻¹·cm⁻¹, and the cuvette path length is 1.00 cm. Find the concentration.
+
+1. Start with A = εℓc.
+2. Rearrange: c = A/(εℓ).
+3. Substitute: c = 0.600 / [(150 L·mol⁻¹·cm⁻¹)(1.00 cm)].
+4. Calculate: **c = 0.00400 mol/L = 4.00 × 10⁻³ M**.
+
+The cm unit cancels, leaving mol/L. A common mistake is multiplying by εℓ instead of dividing when solving for c.
+</WorkedExample>
+
+<QuickCheck question="A sample has A = 0.300, ε = 100 L·mol⁻¹·cm⁻¹, and ℓ = 1.00 cm. What is its concentration?" options={["3.00 × 10⁻³ M","30.0 M","3.00 × 10¹ M","0.300 M"]} correctIndex={0} explanation="c = A/(εℓ) = 0.300/(100 × 1.00) = 0.00300 M." />
+
+</LessonSection>
+
+<LessonSection title="4. Use a calibration curve" description="Let known standards teach you the absorbance-concentration relationship">
+
+Often, ε is not provided. Instead, a student prepares standard solutions with known concentrations, measures their absorbances, and plots **absorbance on the y-axis** against **concentration on the x-axis**. This is a calibration curve.
+
+Within the linear range, the points should follow an approximately straight line. From A = εℓc, the slope is εℓ if the y-intercept is approximately zero after appropriate blanking. The unknown concentration can be found by measuring its absorbance and reading the corresponding concentration from the graph or using the line equation.
+
+## Example calibration data
+
+| Concentration (M) | Absorbance |
+|---:|---:|
+| 0.00 | 0.00 |
+| 0.010 | 0.10 |
+| 0.020 | 0.20 |
+| 0.030 | 0.30 |
+| 0.040 | 0.40 |
+
+These example data have a slope of 10 M⁻¹. If an unknown sample has absorbance 0.25 and the same conditions apply, its concentration is 0.025 M, by interpolation between the 0.20 and 0.30 absorbance standards.
+
+<WorkedExample title="Worked example 2: infer concentration from a calibration line">
+A calibration line for a dye is A = 12.0c, where c is in mol/L. An unknown sample has absorbance 0.360.
+
+Rearrange the line: c = A/12.0.
+
+Substitute: c = 0.360/12.0 = **0.0300 M**.
+
+The result is valid only if the unknown was measured at the same wavelength and path length as the standards and lies within the calibration range.
+</WorkedExample>
+
+<QuickCheck question="A calibration curve plots absorbance on the y-axis and concentration on the x-axis. An unknown has an absorbance halfway between the standards at 0.20 and 0.40, and the curve is linear. What concentration relationship follows?" options={["Its concentration is halfway between the concentrations of those two standards","Its concentration must be zero","Its concentration is twice the highest standard","No inference is possible from a linear calibration curve"]} correctIndex={0} explanation="On a linear calibration curve, halfway between two absorbance values corresponds to halfway between their concentrations, assuming the same measurement conditions." />
+
+</LessonSection>
+
+<LessonSection title="5. Why the wavelength and blank matter" description="Make measurements comparable">
+
+## Choose a wavelength that the species absorbs
+
+A substance absorbs some wavelengths more strongly than others. Measuring at a wavelength where the species absorbs strongly often provides greater sensitivity: a small concentration change produces a more noticeable absorbance change. The molar absorptivity ε depends on wavelength, so the standards and unknown must be measured at the same selected wavelength.
+
+## Use a blank
+
+A blank contains the solvent and other background components but not the absorbing analyte. Measuring the blank helps account for light absorbed or scattered by the solvent and cuvette. The instrument uses this reference to establish the baseline before measuring standards and unknown samples.
+
+## Keep the path length consistent
+
+If the calibration standards use a 1.00 cm cuvette but the unknown is measured with a different path length, absorbance changes even at the same concentration. A calibration curve assumes the measurement conditions remain consistent.
+
+<QuickCheck question="Why should an unknown and its calibration standards be measured at the same wavelength and path length?" options={["Because the wavelength and path length affect the absorbance-concentration relationship","Because absorbance is always exactly 1.00","Because the solvent changes into a new chemical at every wavelength","Because concentration has no relationship to absorbance"]} correctIndex={0} explanation="The molar absorptivity depends on wavelength and absorbance is proportional to path length. Changing either can change the calibration relationship." />
+
+</LessonSection>
+
+<LessonSection title="6. Recognize the limits of the model" description="A line is useful only when the data support it">
+
+Beer–Lambert behavior is approximately linear over a suitable concentration range. At very high concentrations, interactions between solute particles, changes in the solution, stray light, or instrument limitations can cause deviations. Do not extrapolate a straight line far beyond the range of the standards without evidence that linearity still holds.
+
+If an unknown's absorbance is above the calibration range, a common laboratory response is to dilute it by a known factor, measure the diluted sample, and multiply the calculated concentration by the dilution factor. If the diluted sample concentration is 0.020 M after a 5-fold dilution, the original concentration was 0.100 M.
+
+<Mistake title="Using a calibration curve outside its range">
+A calibration line is supported by the measured standards. If the unknown lies far beyond those standards, the line may not remain linear there. Dilute the unknown into the measured range when appropriate, then account for the dilution factor.
+</Mistake>
+
+<Mistake title="Swapping the graph axes">
+For an absorbance-versus-concentration calibration curve, concentration belongs on the x-axis and absorbance belongs on the y-axis. The slope describes how much absorbance changes per unit concentration. Swapping the axes changes the slope's meaning and units.
+</Mistake>
+
+</LessonSection>
+
+<LessonSection title="7. AP-style practice" description="Interpret data and calculate an unknown">
+
+A student prepares calibration standards for a colored solute at a fixed wavelength using 1.00 cm cuvettes.
+
+| Concentration (M) | Absorbance |
+|---:|---:|
+| 0.010 | 0.12 |
+| 0.020 | 0.24 |
+| 0.030 | 0.36 |
+| 0.040 | 0.48 |
+
+An unknown sample measured under the same conditions has absorbance 0.30.
+
+**(a)** Determine the slope of the calibration line, assuming the data are linear and the intercept is zero.
+
+**(b)** Estimate the unknown concentration.
+
+**(c)** The student measures the unknown in a 2.00 cm cuvette without changing the calibration curve. Explain why this can produce an incorrect concentration.
+
+<LessonSection title="Reveal the reasoning" description="Use the line, conditions, and proportionality">
+
+**(a)** Slope = A/c = 0.12/0.010 M = **12 M⁻¹**.
+
+**(b)** c = A/slope = 0.30/12 M⁻¹ = **0.025 M**. This is halfway between 0.020 M and 0.030 M, consistent with the absorbance being halfway between 0.24 and 0.36.
+
+**(c)** Absorbance is proportional to path length. The 2.00 cm cuvette produces about twice the absorbance of a 1.00 cm cuvette at the same concentration under the same conditions. Applying the original calibration line without accounting for the longer path length would overestimate concentration.
+</LessonSection>
+
+</LessonSection>
+
+<LessonSection title="8. External visuals and practice" description="Watch a calibration example and then solve a new one">
+
+- [College Board AP Chemistry Course and Exam Description](https://apcentral.collegeboard.org/media/pdf/ap-chemistry-course-and-exam-description.pdf) — official Topic 3.13 scope.
+- [Khan Academy: Beer–Lambert law practice](https://www.khanacademy.org/science/chemistry/chem-kinetics/spectrophotometry-tutorial/e/beer-lambert-law) — practice interpreting a calibration plot and determining an unknown.
+- [University of Maryland: Beer’s law calibration simulation](https://www.terpconnect.umd.edu/~toh/models/BeersLaw.html) — interact with standards, absorbance data, and the fitted calibration line.
+- [Beer–Lambert law video with calibration curve](https://www.youtube.com/watch?v=wUrJvt_bdmI) — watch for how known standards are used to determine an unknown concentration.
+- [Official AP Chemistry exam and scoring resources](https://apcentral.collegeboard.org/courses/ap-chemistry/exam) — use released assessment materials to practice quantitative reasoning.
+
+</LessonSection>
+
+<LessonSection title="9. Check your readiness" description="Try these without notes">
+
+- [ ] Explain absorbance using light passing through a sample.
+- [ ] State A = εℓc and explain each term.
+- [ ] Predict how absorbance changes with concentration and path length.
+- [ ] Calculate an unknown concentration from A = εℓc.
+- [ ] Read a calibration curve with correct axes.
+- [ ] Explain why standards and unknowns must use the same wavelength and path length.
+- [ ] Use a dilution factor when an unknown is measured after dilution.
+- [ ] Recognize that a calibration line should not be extrapolated beyond the range without evidence.
 
 </LessonSection>
