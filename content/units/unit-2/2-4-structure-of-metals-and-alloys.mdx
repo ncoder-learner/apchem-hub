@@ -1,0 +1,88 @@
+---
+title: "Structure of Metals and Alloys"
+unit: 2
+topicNumber: "2.4"
+slug: "2-4-structure-of-metals-and-alloys"
+summary: "Use the delocalized-electron model to explain conductivity, malleability, ductility, and how alloy composition changes material behavior."
+---
+
+# Why metals bend instead of shatter
+
+A metal is not best described as a collection of neutral atoms connected by fixed two-atom bonds. Its valence electrons are delocalized across the solid. The positive metal-ion cores are attracted to this shared electron density, producing metallic cohesion.
+
+
+<ChemVisual kind="metallic-bonding" />
+
+<p><strong>Why the model predicts these properties:</strong> because metallic bonding is not restricted to one fixed pair of atoms, layers of metal-ion cores can shift while remaining attracted to the mobile electron cloud. This helps explain malleability and ductility. Alloy atoms of different sizes disrupt the regular layer arrangement, making it harder for layers to slide and often increasing hardness.</p>
+
+<LessonSection title="1. The metallic bonding model" description="Picture positive ion cores and mobile electron density." defaultOpen>
+
+In the simplest model, metal atoms contribute valence electrons to a shared, mobile electron cloud. The positive ion cores remain arranged in a lattice, while the delocalized electrons are not confined to one particular bond.
+
+This model explains two important properties:
+
+- **Electrical conductivity:** mobile electrons respond to an applied electric field and carry charge through the solid.
+- **Thermal conductivity:** mobile electrons and lattice vibrations help transfer energy through the material.
+
+The model is simplified; real metals have band structures and quantum-mechanical behavior. For AP Chemistry, the key idea is the mobility of delocalized valence electrons.
+
+<QuickCheck question="Which particles move through a metal to carry electrical current?" options={["Positive metal-ion cores moving from end to end","Delocalized electrons","Neutral metal atoms leaving the solid","Protons traveling through the lattice"]} correctIndex={1} explanation="The metal-ion cores remain in the solid structure, while delocalized electrons can move through it and carry charge." />
+
+</LessonSection>
+
+<LessonSection title="2. Malleability and ductility" description="Explain why layers can shift without the solid falling apart.">
+
+**Malleability** is the ability to be hammered or rolled into sheets. **Ductility** is the ability to be drawn into wire.
+
+In a metal, layers of ion cores can shift relative to one another while the delocalized electrons continue to attract the positive cores. The metallic structure can therefore deform without requiring every bond to be broken and remade in the way a rigid network might.
+
+Compare this with an ionic crystal. Shifting its layers can align like charges, causing strong repulsion and fracture. This is why many ionic solids are brittle while pure metals are malleable.
+
+<div className="my-6 grid gap-3 sm:grid-cols-2">
+  <div className="rounded-xl border border-border bg-card/60 p-4">
+    <p className="mb-2 text-sm font-semibold text-ink">Metal under stress</p>
+    <svg viewBox="0 0 220 128" className="w-full" role="img" aria-label="Schematic metal layers shifting while delocalized electron density remains between them">
+      {Array.from({length:4},(_,row)=>Array.from({length:6},(_,col)=><circle key={`${row}-${col}`} cx={24+col*34+(row%2)*5} cy={24+row*25} r="7" fill="var(--color-blue)" />))}
+      <rect x="12" y="9" width="196" height="98" rx="12" fill="none" stroke="var(--color-emerald)" strokeDasharray="4 5" strokeWidth="1.5" />
+      <path d="M34 118 L186 118" stroke="var(--color-emerald)" strokeWidth="2" />
+      <path d="M178 112 L186 118 L178 124" fill="none" stroke="var(--color-emerald)" strokeWidth="2" />
+    </svg>
+    <p className="mt-2 text-xs leading-relaxed text-ink-dim">Ion layers can shift while the shared electron density continues to hold the structure together.</p>
+  </div>
+  <div className="rounded-xl border border-border bg-card/60 p-4">
+    <p className="mb-2 text-sm font-semibold text-ink">Ionic crystal under stress</p>
+    <svg viewBox="0 0 220 128" className="w-full" role="img" aria-label="Schematic ionic lattice with like charges aligned after a layer shifts, producing repulsion">
+      {Array.from({length:3},(_,row)=>Array.from({length:5},(_,col)=><g key={`${row}-${col}`}><circle cx={28+col*40+(row===2?18:0)} cy={24+row*30} r="10" fill={(row+col)%2===0?"var(--color-blue)":"var(--color-amber)"} /><text x={28+col*40+(row===2?18:0)} y={28+row*30} textAnchor="middle" fontSize="12" fill="var(--color-bg)">{(row+col)%2===0?"+":"−"}</text></g>))}
+      <path d="M26 114 L194 114" stroke="var(--color-rose)" strokeWidth="2" />
+      <path d="M34 108 L26 114 L34 120 M186 108 L194 114 L186 120" fill="none" stroke="var(--color-rose)" strokeWidth="2" />
+    </svg>
+    <p className="mt-2 text-xs leading-relaxed text-ink-dim">A shift can bring like charges together, increasing repulsion and causing the crystal to crack.</p>
+  </div>
+</div>
+
+<QuickCheck question="Why are metals generally malleable while ionic crystals are often brittle?" options={["Metals have no attractions between particles","Metallic electron density can continue holding shifted layers together; ionic shifts can align like charges","Ionic solids contain only neutral atoms","Metal atoms are always smaller than ions"]} correctIndex={1} explanation="Metallic bonding is nonlocalized, so shifted layers can remain cohesive. In ionic crystals, shifting can place like charges next to each other and destabilize the lattice." />
+
+</LessonSection>
+
+<LessonSection title="3. Alloys: tune the structure" description="Why combining elements can make a material harder or more useful.">
+
+An **alloy** is a metallic material containing more than one element, at least one of which is a metal. Common models include:
+
+- **Substitutional alloy:** some host metal atoms are replaced by atoms of another element with similar size.
+- **Interstitial alloy:** smaller atoms fit into spaces between host metal atoms.
+
+Different-sized atoms distort the regular arrangement of the metal lattice. This can make it harder for layers or defects to move, often increasing hardness or strength while reducing malleability compared with the pure metal.
+
+Steel, an alloy based primarily on iron with carbon and sometimes other elements, is a familiar example. The exact properties depend on composition and processing; "alloy" does not automatically mean harder in every possible case.
+
+<QuickCheck question="Why can adding a second element make a metal harder?" options={["The added atoms can distort the lattice and hinder layers from sliding","All added elements remove every valence electron","Alloys contain no metallic bonding","The second element always converts the metal into an ionic crystal"]} correctIndex={0} explanation="Atoms of different sizes can disrupt the regular lattice and impede the movement that allows a metal to deform." />
+
+</LessonSection>
+
+## Exam-ready summary
+
+- Metallic bonding involves attraction between positive metal-ion cores and delocalized electrons.
+- Mobile electrons explain electrical and thermal conductivity.
+- Continued metallic cohesion during layer movement helps explain malleability and ductility.
+- Alloys alter the regular lattice; size differences can make layer movement more difficult.
+- Use the structure to explain the property rather than merely listing the property.

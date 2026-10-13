@@ -1,0 +1,103 @@
+---
+title: "Intramolecular Force and Potential Energy"
+unit: 2
+topicNumber: "2.2"
+slug: "2-2-intramolecular-force-and-potential-energy"
+summary: "Read potential-energy curves to connect bond length, bond strength, and the energy required to separate bonded atoms."
+---
+
+# A bond is an energy landscape
+
+Two bonded atoms are not motionless dots connected by a line. Their nuclei repel, their electrons repel, and each nucleus attracts the other atom's electrons. The observed bond length is the distance where the combined interactions produce a minimum in potential energy.
+
+
+<ChemVisual kind="bond-energy" />
+
+<p><strong>Connect the curve to a physical change:</strong> compressing atoms past the equilibrium distance raises potential energy sharply because repulsions dominate. Pulling them far apart also requires energy because the attractive interaction must be overcome. The depth of the well measures the energy scale for separation, while the horizontal position of the minimum gives the equilibrium bond distance.</p>
+
+<LessonSection title="1. Read the potential-energy curve" description="Identify the minimum, the equilibrium distance, and the dissociation energy." defaultOpen>
+
+A typical potential-energy curve plots potential energy against the distance between two atoms.
+
+- **Far apart:** interaction approaches zero by convention; the atoms are barely interacting.
+- **Moving closer from far away:** attractive interactions lower the potential energy.
+- **At the minimum:** the atoms are at the equilibrium bond distance, where the net force is zero.
+- **Too close:** repulsions rise steeply, so potential energy increases sharply.
+
+The minimum is not the point where the atoms have zero energy. It is the lowest potential energy on the curve, relative to the chosen reference.
+
+<div className="my-6 rounded-xl border border-border bg-card/50 p-4">
+  <p className="mb-2 text-sm font-semibold text-ink">How to read a bond-energy curve</p>
+  <svg viewBox="0 0 520 290" className="w-full" role="img" aria-label="Schematic potential energy curve with equilibrium bond distance and energy well depth labeled">
+    <line x1="62" y1="28" x2="62" y2="240" stroke="var(--color-ink-dim)" strokeWidth="1.5" />
+    <line x1="62" y1="190" x2="488" y2="190" stroke="var(--color-ink-dim)" strokeWidth="1.5" />
+    <path d="M62 188 C105 188 120 187 144 179 C171 168 180 100 218 70 C250 44 270 111 300 152 C328 184 368 189 488 190" fill="none" stroke="var(--color-blue)" strokeWidth="3.5" />
+    <line x1="218" y1="70" x2="218" y2="190" stroke="var(--color-amber)" strokeDasharray="5 5" strokeWidth="1.5" />
+    <line x1="218" y1="70" x2="62" y2="70" stroke="var(--color-amber)" strokeDasharray="5 5" strokeWidth="1.5" />
+    <line x1="218" y1="206" x2="218" y2="221" stroke="var(--color-ink-dim)" />
+    <text x="218" y="239" textAnchor="middle" fontSize="12" fill="var(--color-ink-dim)">rₑ</text>
+    <text x="15" y="32" fontSize="12" fill="var(--color-ink-dim)">Potential</text>
+    <text x="15" y="47" fontSize="12" fill="var(--color-ink-dim)">energy</text>
+    <text x="300" y="218" fontSize="12" fill="var(--color-ink-dim)">Internuclear distance →</text>
+    <text x="232" y="90" fontSize="12" fill="var(--color-amber)">Energy well</text>
+    <text x="232" y="105" fontSize="12" fill="var(--color-amber)">depth relates to</text>
+    <text x="232" y="120" fontSize="12" fill="var(--color-amber)">bond strength</text>
+    <text x="70" y="180" fontSize="11" fill="var(--color-ink-dim)">Reference level</text>
+  </svg>
+  <p className="mt-2 text-xs leading-relaxed text-ink-dim">Schematic only, not experimental data. The equilibrium distance is at the minimum. The energy required to separate the atoms is related to the depth of the well.</p>
+</div>
+
+The equilibrium distance is called the **bond length** in the diatomic model. The energy required to separate the atoms is the **bond dissociation energy** for that specified bond and process. A deeper potential-energy well generally corresponds to a stronger bond.
+
+<QuickCheck question="On a potential-energy-versus-distance graph, where is the equilibrium bond distance?" options={["Where the curve is highest","Where the curve crosses zero energy","At the minimum of the potential-energy curve","At an arbitrarily large distance"]} correctIndex={2} explanation="At the minimum, the potential energy is lowest and the slope is zero, so the net force is zero." />
+
+</LessonSection>
+
+<LessonSection title="2. Bond length and bond strength" description="Use bond order to predict trends, then respect the data.">
+
+For bonds between the same pair of atoms, higher bond order generally means more shared electron density between the nuclei. That tends to pull the nuclei closer and makes the bond harder to break.
+
+| Bond | Typical trend |
+|---|---|
+| Single | Longest and weakest |
+| Double | Shorter and stronger |
+| Triple | Shortest and strongest |
+
+These are trends, not a substitute for data when comparing different atom pairs. Atom size and the bonding environment also matter.
+
+<WorkedExample title="Compare C–C, C=C, and C≡C">
+For carbon–carbon bonds, a triple bond has greater bond order than a double bond, which has greater bond order than a single bond. Predict the triple bond to be shortest and strongest, the single bond longest and weakest, and the double bond intermediate. Your explanation should mention greater shared electron density and stronger attraction between the nuclei and bonding electrons.
+</WorkedExample>
+
+<QuickCheck question="For bonds between the same two elements, which is generally the shortest?" options={["Single bond","Double bond","Triple bond","Bond order does not affect bond length"]} correctIndex={2} explanation="Higher bond order generally means greater shared electron density and a shorter, stronger bond." />
+
+</LessonSection>
+
+<LessonSection title="3. Energy in bond breaking and formation" description="Separate the energy of a bond from the energy of a whole reaction.">
+
+Breaking a bond requires energy because the bonded atoms must be moved out of the attractive energy well. Forming a bond releases energy as the system moves toward a lower potential energy.
+
+For a reaction, the overall energy change depends on **all** bonds broken and formed, not on a single bond:
+
+- Energy is absorbed to break reactant bonds.
+- Energy is released when product bonds form.
+- The net change is the energy absorbed minus the energy released, using the appropriate bond-energy values.
+
+This is why "breaking bonds releases energy" is incorrect. Bond breaking requires energy; bond formation releases energy.
+
+<Lightbulb title="Keep the system boundary clear">
+The energy needed to break one bond is not automatically the reaction's total energy change. A reaction may break strong bonds and form even stronger bonds, releasing energy overall; or it may form bonds that release less energy than was needed to break the starting bonds.
+
+</Lightbulb>
+
+<QuickCheck question="What happens energetically when an isolated covalent bond is broken?" options={["Energy is released because atoms become separate","Energy must be supplied to separate the bonded atoms","The potential energy must decrease","Nothing changes because the atoms are conserved"]} correctIndex={1} explanation="Moving bonded atoms out of the attractive potential-energy well requires energy input." />
+
+</LessonSection>
+
+## Exam-ready summary
+
+- Equilibrium bond distance occurs at the potential-energy minimum.
+- A deeper energy well generally indicates a stronger bond.
+- For the same atom pair, higher bond order generally means shorter, stronger bonds.
+- Breaking bonds requires energy; forming bonds releases energy.
+- Reaction energy depends on the complete set of bonds broken and formed.

@@ -1,0 +1,111 @@
+---
+title: "Lewis Diagrams"
+unit: 2
+topicNumber: "2.5"
+slug: "2-5-lewis-diagrams"
+summary: "Build Lewis structures systematically, count valence electrons, place bonds and lone pairs, and check whether the final structure makes chemical sense."
+---
+
+# Lewis structures are electron bookkeeping
+
+A Lewis diagram represents valence electrons as bonding pairs and lone pairs. It is a model, not a photograph: it does not show the full 3D electron distribution, but it gives the information needed to reason about connectivity, formal charge, and VSEPR geometry.
+
+
+<ChemVisual kind="lewis" />
+
+<p><strong>Why bookkeeping matters:</strong> a valid Lewis structure must conserve the total number of valence electrons. Bond lines count as two electrons each, and lone-pair dots count individually. After satisfying octets where appropriate, use formal charge to compare plausible structures instead of choosing whichever drawing looks most symmetrical.</p>
+
+<LessonSection title="1. The reliable drawing algorithm" description="Follow the same sequence every time." defaultOpen>
+
+Use this sequence for a typical covalent molecule or polyatomic ion:
+
+1. **Count total valence electrons.** Add the valence electrons of each atom. For a negative charge, add electrons; for a positive charge, subtract electrons.
+2. **Choose a skeleton.** Hydrogen is terminal. The least electronegative atom (never H) is often central, but use known connectivity when provided.
+3. **Connect atoms with single bonds.** Each single bond uses two electrons.
+4. **Complete terminal octets.** Give outer atoms their lone pairs first, with hydrogen needing only two electrons.
+5. **Place remaining electrons on the central atom.**
+6. **If the central atom lacks an octet, consider multiple bonds** by moving lone-pair density from a neighboring atom into a shared bond.
+7. **Check the electron count and formal charges.** For ions, put brackets around the structure and show the overall charge.
+
+<Lightbulb title="The total electron count is your error detector">
+Every line bond represents two electrons; every lone-pair dot represents one. If the final diagram uses more or fewer electrons than your initial count, the structure is not finished correctly.
+
+</Lightbulb>
+
+<QuickCheck question="When drawing the Lewis structure of a 2− polyatomic ion, how should the charge affect the initial valence-electron count?" options={["Subtract two electrons","Add two electrons","Ignore the charge","Double the electron count"]} correctIndex={1} explanation="A negative charge means the species has extra electrons relative to the neutral atoms, so add two electrons for a 2− ion." />
+
+</LessonSection>
+
+<LessonSection title="2. Worked structure: CO₂" description="Count first, then use multiple bonds to complete the octets.">
+
+**Step 1 — Count.** Carbon contributes 4 valence electrons and each oxygen contributes 6, for a total of 16.
+
+**Step 2 — Skeleton.** O–C–O uses two single bonds, consuming 4 electrons. There are 12 electrons left.
+
+**Step 3 — Complete oxygen octets.** Put three lone pairs on each oxygen, using the remaining 12 electrons. Carbon has only four electrons around it from its two single bonds, so it does not have an octet.
+
+**Step 4 — Make double bonds.** Move one lone pair from each oxygen into a bonding pair. The structure becomes O=C=O, with two lone pairs on each oxygen.
+
+**Step 5 — Check.** Total electrons remain 16. Each atom has an octet, and the formal charges are zero in this structure.
+
+<div className="my-5 rounded-xl border border-border bg-card/60 p-5">
+  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-ink-dim">Final Lewis structure</p>
+  <svg viewBox="0 0 420 110" className="mx-auto block w-full max-w-lg" role="img" aria-label="Lewis structure of carbon dioxide, O double bond C double bond O, with two lone pairs on each oxygen">
+    <text x="66" y="59" fontSize="32" textAnchor="middle" fill="var(--color-ink)">O</text>
+    <text x="210" y="59" fontSize="32" textAnchor="middle" fill="var(--color-ink)">C</text>
+    <text x="354" y="59" fontSize="32" textAnchor="middle" fill="var(--color-ink)">O</text>
+    <line x1="91" y1="43" x2="183" y2="43" stroke="var(--color-blue)" strokeWidth="2.5" />
+    <line x1="91" y1="51" x2="183" y2="51" stroke="var(--color-blue)" strokeWidth="2.5" />
+    <line x1="237" y1="43" x2="329" y2="43" stroke="var(--color-blue)" strokeWidth="2.5" />
+    <line x1="237" y1="51" x2="329" y2="51" stroke="var(--color-blue)" strokeWidth="2.5" />
+    {[[58,20],[74,20],[58,78],[74,78],[346,20],[362,20],[346,78],[362,78]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="2.5" fill="var(--color-amber)" />)}
+  </svg>
+  <p className="mt-2 text-center text-xs text-ink-dim">Each oxygen has two lone pairs; each C=O double bond contains two shared pairs.</p>
+</div>
+
+<QuickCheck question="How many valence electrons must appear in the Lewis diagram for CO₂?" options={["8","12","16","18"]} correctIndex={2} explanation="Carbon contributes 4 and two oxygens contribute 12, for a total of 16 valence electrons." />
+
+</LessonSection>
+
+<LessonSection title="3. Octet exceptions and common traps" description="Know when the standard octet pattern does not apply.">
+
+The octet rule is a useful guide, not an exception-free law.
+
+- **Hydrogen** follows a duet rule: two electrons fill its first shell.
+- **Electron-deficient centers:** boron compounds such as BF₃ are often represented with only six electrons around boron.
+- **Odd-electron species:** radicals have an odd total number of valence electrons, so not every atom can have a paired octet.
+- **Expanded-valence representations:** some period 3 and heavier central atoms are drawn with more than eight electrons in introductory Lewis structures. Treat these as the course's representation model, not proof that d orbitals must be used to form every bond.
+
+When several structures are possible, do not pick the one that simply "looks neat." Use electron counting, formal charge, and the species' known chemistry.
+
+<Mistake title="Do not add electrons because a structure has a positive charge">
+A positive ion has fewer electrons than its neutral atoms. For NH₄⁺, count the nitrogen's 5 and four hydrogens' 4, then subtract 1 for the + charge: 8 valence electrons total. Four N–H bonds use all eight.
+
+</Mistake>
+
+<QuickCheck question="How many valence electrons are in NH₄⁺?" options={["7","8","9","10"]} correctIndex={1} explanation="Nitrogen contributes 5, four hydrogens contribute 4, and the +1 charge means subtract one: 5 + 4 − 1 = 8." />
+
+</LessonSection>
+
+<LessonSection title="4. Check the drawing before moving on" description="Use a final checklist to catch mistakes early.">
+
+Before trusting a Lewis structure, ask:
+
+- Does the drawing use the exact total valence-electron count?
+- Does every line count as two electrons?
+- Does H have one bond and a duet?
+- Do typical second-period atoms have reasonable octets?
+- Are the formal charges plausible and consistent with the overall charge?
+- Does the structure agree with any information in the prompt, such as connectivity or known bond lengths?
+
+Lewis structures are the input to the next two topics: resonance and formal charge help you compare valid electron arrangements, while VSEPR uses the bonds and lone pairs to predict 3D shape.
+
+</LessonSection>
+
+## Exam-ready summary
+
+- Count valence electrons first; adjust for ionic charge.
+- Build the skeleton, complete terminal atoms, place remaining electrons, and then consider multiple bonds.
+- Recount electrons after every change.
+- Know common octet exceptions and distinguish a useful model from a literal picture.
+- Use formal charge and resonance to evaluate structures that satisfy the basic bookkeeping.

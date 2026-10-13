@@ -1,0 +1,114 @@
+---
+title: "Resonance and Formal Charge"
+unit: 2
+topicNumber: "2.6"
+slug: "2-6-resonance-and-formal-charge"
+summary: "Use formal charge to evaluate Lewis structures and resonance to represent electron delocalization when one diagram cannot capture the bonding."
+---
+
+# One molecule, more than one useful Lewis structure
+
+Some species cannot be represented accurately by a single Lewis structure with fixed single and double bonds. Two or more valid structures can differ only in the placement of electrons, not in the positions of the atoms. These are **resonance structures**.
+
+
+<ChemVisual kind="resonance" />
+
+<p><strong>What resonance does not mean:</strong> the molecule is not rapidly flipping between drawings. The contributors are alternative bookkeeping representations of one electron-delocalized structure. Equivalent contributors often lead to equivalent bonds, while unequal contributors can help explain why some bonds have intermediate properties.</p>
+
+<LessonSection title="1. Calculate formal charge" description="A bookkeeping tool for evaluating a Lewis structure." defaultOpen>
+
+Formal charge estimates how the valence electrons are assigned in a particular Lewis structure. Use:
+
+**Formal charge = V − N − B/2**
+
+where:
+- (V) = valence electrons in the neutral atom;
+- (N) = nonbonding electrons assigned to that atom;
+- (B) = bonding electrons around that atom.
+
+A faster way to use the same equation is:
+
+**Formal charge = valence electrons − lone-pair electrons − number of bonds**  
+This shortcut assumes the usual Lewis convention where each bond is a shared pair. A double bond counts as two bonds for this calculation; a triple bond counts as three.
+
+<WorkedExample title="Formal charge on nitrogen in NH₄⁺">
+Nitrogen has 5 valence electrons, no lone-pair electrons, and four N–H bonds.
+
+Formal charge = 5 − 0 − 4 = **+1**.
+
+Each hydrogen has 1 − 0 − 1 = 0. The sum of the formal charges is +1, matching the ion's overall charge.
+</WorkedExample>
+
+A good candidate Lewis structure generally minimizes unnecessary formal-charge magnitude and places negative formal charge on more electronegative atoms when other factors are comparable. These are guidelines for comparing plausible structures, not rules that override the required electron count or known chemistry.
+
+<QuickCheck question="What is the formal charge on an oxygen with three lone pairs and one single bond?" options={["−1","0","+1","+2"]} correctIndex={0} explanation="Oxygen has 6 valence electrons, 6 nonbonding electrons, and one bond: 6 − 6 − 1 = −1." />
+
+</LessonSection>
+
+<LessonSection title="2. Resonance: move electrons, not atoms" description="Recognize what changes and what stays fixed.">
+
+Resonance structures have the same arrangement of nuclei but differ in where electrons are drawn. When sketching one resonance form from another, move lone pairs and π bonds; do not move atoms or change the sigma-bond skeleton.
+
+The real species is not rapidly switching between separate structures. It is better described as a **resonance hybrid** with electron density delocalized across the relevant atoms.
+
+Nitrate, NO₃⁻, is a standard example. In any one conventional Lewis structure, one N–O bond is drawn as a double bond and two as single bonds. But there are three equivalent resonance forms, placing the double bond at each oxygen in turn. The actual N–O bonds are equivalent in the resonance hybrid rather than one fixed double bond and two fixed single bonds.
+
+<div className="my-6 rounded-xl border border-border bg-card/50 p-4">
+  <p className="mb-3 text-sm font-semibold text-ink">Nitrate: three equivalent electron arrangements</p>
+  <svg viewBox="0 0 500 180" className="w-full" role="img" aria-label="Three nitrate resonance forms with the double bond shown to a different oxygen in each form">
+    {[
+      {x:82, double:0},
+      {x:250, double:1},
+      {x:418, double:2}
+    ].map((item,idx)=><g key={idx} transform={`translate(${item.x},84)`}>
+      <text x="0" y="0" fontSize="19" textAnchor="middle" fill="var(--color-ink)">N</text>
+      {[[-36,-28],[36,-28],[0,37]].map(([dx,dy],j)=><g key={j}>
+        <line x1="0" y1="0" x2={dx} y2={dy} stroke="var(--color-blue)" strokeWidth="2.5" />
+        {j===item.double && <line x1={4} y1={4} x2={dx+4} y2={dy+4} stroke="var(--color-blue)" strokeWidth="2.5" />}
+        <text x={dx*1.35} y={dy*1.35+6} fontSize="16" textAnchor="middle" fill="var(--color-ink)">O</text>
+      </g>)}
+      <text x="0" y="77" fontSize="12" textAnchor="middle" fill="var(--color-ink-dim)">Form {idx+1}</text>
+    </g>)}
+    <text x="166" y="90" fontSize="20" textAnchor="middle" fill="var(--color-amber)">↔</text>
+    <text x="334" y="90" fontSize="20" textAnchor="middle" fill="var(--color-amber)">↔</text>
+  </svg>
+  <p className="mt-2 text-xs leading-relaxed text-ink-dim">Schematic resonance forms. The atom arrangement stays the same; only the placement of the drawn π bond and formal charges changes. In the resonance hybrid, the three N–O bonds are equivalent.</p>
+</div>
+
+<QuickCheck question="When drawing a resonance structure, what must remain unchanged?" options={["The locations of the atoms and the sigma-bond framework","The location of every lone pair","Which atom has every π bond","The formal charge on each individual atom in every form"]} correctIndex={0} explanation="Resonance forms differ in electron placement. The nuclei and sigma-bond skeleton stay fixed, although individual formal charges may shift." />
+
+</LessonSection>
+
+<LessonSection title="3. Choose the better representation" description="Combine formal charge with resonance reasoning.">
+
+When comparing candidate Lewis structures:
+
+1. Confirm each structure has the correct total valence-electron count.
+2. Check that the atom arrangement is appropriate and typical valence rules are respected where possible.
+3. Calculate formal charges on atoms that may be unusual.
+4. Prefer structures with smaller formal-charge magnitudes when the alternatives are otherwise reasonable.
+5. If a negative charge must be placed somewhere, a more electronegative atom is generally better able to accommodate it.
+6. If multiple equivalent structures exist, include them as resonance forms rather than pretending one bond arrangement is uniquely correct.
+
+The formal charges in individual resonance drawings are bookkeeping values. The real charge distribution in the hybrid can be spread across multiple atoms.
+
+<Lightbulb title="Resonance is not the same as equilibrium">
+The molecule is not alternating between structures in time. Resonance is a way to represent a single delocalized electronic structure using several contributing Lewis drawings.
+
+</Lightbulb>
+
+<WorkedExample title="Why the three nitrate N–O bonds are equivalent">
+Each of nitrate's three equivalent resonance structures places one N=O double bond at a different oxygen. Since the oxygens are equivalent and no one drawing is the whole physical structure, the real resonance hybrid distributes the bonding across all three N–O connections. Experimental bond lengths are therefore equivalent and intermediate between a simple single- and double-bond description.
+</WorkedExample>
+
+<QuickCheck question="What does resonance imply about the three N–O bonds in nitrate?" options={["One bond is permanently double and the other two permanently single","The molecule rapidly switches between three different atom arrangements","Electron density is delocalized, making the three N–O bonds equivalent in the hybrid","Nitrate contains no covalent bonds"]} correctIndex={2} explanation="The resonance hybrid delocalizes the bonding across the equivalent N–O connections, so the bonds are equivalent rather than fixed single and double bonds." />
+
+</LessonSection>
+
+## Exam-ready summary
+
+- Formal charge = valence electrons − nonbonding electrons − half of bonding electrons.
+- The sum of formal charges must equal the species' overall charge.
+- Resonance forms keep atom positions and the sigma-bond framework fixed; electron placement changes.
+- The real structure is a resonance hybrid, not a molecule switching between drawings.
+- Equivalent resonance forms explain equivalent bonds that a single Lewis diagram cannot represent.

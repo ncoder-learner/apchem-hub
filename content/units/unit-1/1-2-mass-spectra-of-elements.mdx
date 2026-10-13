@@ -1,0 +1,66 @@
+﻿---
+title: "Mass Spectra of Elements"
+unit: 1
+topicNumber: "1.2"
+slug: "1-2-mass-spectra-of-elements"
+summary: "Interpret isotope peaks and use relative abundance to determine an elementâ€™s average atomic mass."
+---
+
+# An element can have multiple masses
+
+An element is defined by its proton count, not by one exact mass. Naturally occurring samples can contain different isotopes of the same element. A mass spectrometer separates ions by their mass-to-charge ratio, producing peaks that provide evidence about isotopic masses and relative abundances.
+
+<LessonSection title="1. Read the spectrum" description="Understand the axes and what a peak represents." defaultOpen>
+
+A simplified mass spectrum plots relative abundance against mass-to-charge ratio, often written (m/z). The instrument ionizes particles and separates them according to how they respond to electric or magnetic fields. In common introductory examples, ions have a +1 charge, so (m/z) is numerically close to the isotope's mass.
+
+<ChemVisual kind="mass-spectrum" />
+
+- **Horizontal position:** the mass-to-charge ratio of the detected ion.
+- **Peak height or area:** relative abundance, depending on how the spectrum is represented.
+- **Base peak:** the most abundant detected ion, normalized to 100% in a relative-intensity spectrum.
+
+A peak at (m/z=24) does not mean every atom of the element has mass 24. It indicates a detected isotope or ion with that mass-to-charge ratio. Real spectra may also contain molecular fragments or multiply charged ions, so interpret the context given in the question.
+
+<QuickCheck question="A spectrum has isotope peaks at m/z 10 and 11. What is the strongest conclusion?" options={["The element has atomic number 10","The element has at least two isotopes with different masses","Every atom has an average mass of 10.5","The larger peak must have the larger mass"]} correctIndex={1} explanation="Separate peaks at different isotope masses indicate isotopes. Atomic number is proton count and cannot be read directly from the mass axis." />
+
+</LessonSection>
+
+<LessonSection title="2. Calculate average atomic mass" description="Use a weighted average, not a simple mean.">
+
+The atomic mass shown on a periodic table is generally a **weighted average** of the naturally occurring isotopes. More abundant isotopes contribute more to the average.
+
+average atomic mass=sum(isotope mass)(fractional abundance)
+
+Convert percent abundance to a decimal fraction before multiplying. The fractions should sum to 1.00, or the percentages should sum to 100%.
+
+<WorkedExample title="An element has two isotopes">
+Isotope A has mass 10.0 amu and abundance 20.0%; isotope B has mass 11.0 amu and abundance 80.0%.
+
+(10.0)(0.200)+(11.0)(0.800)=10.8 amu
+
+The average is closer to 11.0 amu because isotope B is much more abundant. A simple average of 10.0 and 11.0 would incorrectly assume equal abundance.
+</WorkedExample>
+
+</LessonSection>
+
+<LessonSection title="3. Work backward from average mass" description="Set the isotope fractions before solving.">
+
+For a two-isotope element, let (x) be the fractional abundance of isotope A. Then isotope B has fraction (1-x).
+
+average mass=m_Ax+m_B(1-x)
+
+Expand, solve for (x), and convert the fraction to a percentage. Check that the result lies between 0 and 1. If the average mass is closer to isotope A's mass, isotope A must be the more abundant isotope.
+
+**Common error:** treating percent abundance as a whole number. If abundance is 35%, use 0.35 in the weighted-average equation, not 35.
+</LessonSection>
+
+<LessonSection title="4. Exam reasoning" description="Explain what the data support, without overclaiming.">
+
+- Isotopes have the same number of protons and different numbers of neutrons.
+- A larger peak generally indicates greater relative abundance, not a greater charge or stronger bond.
+- Average atomic mass may be non-integer because it averages isotope masses and abundances.
+- If isotope abundances change between samples, the measured average can change even though the element identity does not.
+
+When explaining a spectrum, refer to peak positions for isotope masses and relative peak sizes for abundance.
+</LessonSection>
