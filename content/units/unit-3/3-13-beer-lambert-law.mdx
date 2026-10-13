@@ -1,0 +1,45 @@
+---
+title: "Beer–Lambert Law"
+unit: 3
+topicNumber: "3.13"
+slug: "3-13-beer-lambert-law"
+summary: "Use absorbance, concentration, molar absorptivity, and path length to interpret spectrophotometry data."
+---
+
+# Absorbance can quantify concentration
+
+The Beer–Lambert law relates absorbance to concentration:
+
+\[
+A=\varepsilon\ell c
+\]
+
+A is absorbance (dimensionless), ε is molar absorptivity, ℓ is path length (commonly cm), and c is molar concentration. At a fixed wavelength, with the same absorbing species and path length, absorbance is directly proportional to concentration within the useful linear range.
+
+<Unit3Visual kind="beer-lambert" />
+
+<LessonSection title="1. Read an absorbance graph" description="Slope and proportionality" defaultOpen>
+
+A plot of absorbance versus concentration should be linear for an appropriate dilute range. If path length and wavelength are fixed, doubling concentration doubles absorbance under the model. A calibration curve can be used to estimate the concentration of an unknown sample from its measured absorbance.
+
+<QuickCheck question="At a fixed wavelength and path length, a solution's concentration doubles. Under the Beer–Lambert model, what happens to absorbance?" options={["It is halved","It doubles","It remains constant","It quadruples"]} correctIndex={1} explanation="A = εℓc, so if ε and ℓ stay constant, absorbance is directly proportional to concentration."/>
+
+</LessonSection>
+
+<LessonSection title="2. Solve for an unknown" description="Use the calibration relationship">
+
+If ε = 150 L·mol⁻¹·cm⁻¹, ℓ = 1.00 cm, and A = 0.300, then:
+
+\[
+c=\frac{A}{\varepsilon\ell}=\frac{0.300}{(150)(1.00)}=2.00\times10^{-3}\text{ M}
+\]
+
+Track units and significant figures. Do not compare absorbances measured at different wavelengths as though ε were unchanged unless the problem supports that assumption.
+
+</LessonSection>
+
+<LessonSection title="3. AP-style experiment interpretation" description="Control variables and support claims">
+
+When interpreting spectrophotometry, state which variables are controlled (wavelength, path length, species) and use the graph or measured absorbance as evidence. If a calibration plot bends away from linearity, do not force the linear model beyond its valid range; concentration may be too high or the experimental conditions may have changed.
+
+</LessonSection>
