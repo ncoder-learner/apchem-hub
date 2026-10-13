@@ -16,6 +16,27 @@ A simplified mass spectrum plots **mass-to-charge ratio (m/z)** on the horizonta
 
 This schematic uses **magnesium** as a real-data example. NIST reports natural abundances of approximately 78.99% for magnesium-24, 10.00% for magnesium-25, and 11.01% for magnesium-26. Because the peak heights are normalized to the tallest peak, the smaller peaks appear at about 12.7% and 13.9% relative abundance—not at 10% and 11% on the normalized scale. See [NIST's magnesium isotope composition data](https://physics.nist.gov/cgi-bin/Compositions/stand_alone.pl?ele=Mg).
 
+Here is the same evidence as a data table. The isotopic masses are more precise than the integer mass numbers shown on the schematic x-axis.
+
+| Magnesium isotope | Isotopic mass (u) | Natural abundance |
+|---|---:|---:|
+| ²⁴Mg | 23.98504 | 78.99% |
+| ²⁵Mg | 24.98584 | 10.00% |
+| ²⁶Mg | 25.98259 | 11.01% |
+
+Use fractional abundances in the weighted mean:
+
+\[
+\begin{aligned}
+\bar m &= (23.98504)(0.7899) \\
+&\quad +(24.98584)(0.1000) \\
+&\quad +(25.98259)(0.1101) \\
+&\approx 24.306\ \text{u}
+\end{aligned}
+\]
+
+The result is near the periodic-table atomic mass of magnesium (about 24.305 u). Small differences in the last digits reflect the precision and rounding of the displayed masses and abundances. The tallest peak is not necessarily at the average mass: the average is calculated from all isotope masses weighted by their abundances.
+
 For a second explanation with a spectrum, see [Khan Academy: Isotopes and mass spectrometry](https://www.khanacademy.org/science/chemistry/ap-chemistry/atoms-compounds-ions-ap/introduction-to-the-atom-ap/a/isotopes-and-mass-spectrometry).
 
 Read the spectrum in two separate ways:
