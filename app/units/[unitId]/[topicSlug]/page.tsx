@@ -21,6 +21,12 @@ export default async function TopicPage({ params }: PageProps) {
   if (!topic) return notFound();
 
   const topics = getUnitTopics(unitId);
+  // Put the topic model immediately after the opening explanation, rather than before the lesson starts.
+  // Unit 4 and 5 already author their labs inline in MDX, so do not duplicate them.
+  const firstParagraphEnd = topic.body.indexOf("\n\n");
+  const bodyWithInlineLab = unitId !== 4 && unitId !== 5 && firstParagraphEnd >= 0
+    ? `${topic.body.slice(0, firstParagraphEnd)}\n\n<TopicLab unitId={${unitId}} topicNumber="${topic.topicNumber}" title={${JSON.stringify(topic.title)}} />\n\n${topic.body.slice(firstParagraphEnd + 2)}`
+    : topic.body;
 
   return (
     <LessonView
@@ -32,8 +38,7 @@ export default async function TopicPage({ params }: PageProps) {
       summary={topic.summary}
       topicNumber={topic.topicNumber}
     >
-      {unitId !== 4 && unitId !== 5 && <TopicLab unitId={unitId} topicNumber={topic.topicNumber} title={topic.title} />}
-      <MDXRemote source={topic.body} components={mdxComponents} />
+      <MDXRemote source={bodyWithInlineLab} components={mdxComponents} />
     </LessonView>
   );
 }
