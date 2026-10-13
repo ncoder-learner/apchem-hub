@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-type LabKind = "kinetics" | "rate-law" | "collision" | "energy-profile" | "balance" | "gas-law" | "ph";
+type LabKind = "kinetics" | "rate-law" | "collision" | "energy-profile" | "balance" | "gas-law" | "ph" | "net-ionic" | "stoichiometry" | "titration" | "reaction-types" | "particles" | "redox";
 
 interface InteractiveLabProps {
   kind: LabKind;
@@ -20,7 +20,7 @@ export function InteractiveLab({ kind, title }: InteractiveLabProps) {
   if (kind === "collision") return <CollisionLab title={title} />;
   if (kind === "energy-profile") return <EnergyProfileLab title={title} />;
   if (kind === "gas-law") return <GasLawLab title={title} />;
-  if (kind === "ph") return <PhLab title={title} />;
+  if (kind === "ph") return <PhLab title={title} />;\n  if (kind === "net-ionic") return <NetIonicLab title={title} />;\n  if (kind === "stoichiometry") return <StoichiometryLab title={title} />;\n  if (kind === "titration") return <TitrationLab title={title} />;\n  if (kind === "reaction-types") return <ReactionTypesLab title={title} />;\n  if (kind === "particles") return <ParticleChangeLab title={title} />;\n  if (kind === "redox") return <RedoxLab title={title} />;
   return <KineticsLab title={title} />;
 }
 
@@ -83,6 +83,89 @@ function CollisionLab({ title }: { title?: string }) {
     <div className="rounded-xl border border-border bg-bg p-2"><svg viewBox="0 0 320 155" role="img" aria-label="Schematic gas particles with motion arrows" className="w-full">{dots.map((d,i)=><g key={i}><line x1={d.x} y1={d.y} x2={d.x+d.dx} y2={d.y+d.dy} stroke="var(--color-blue)" strokeWidth="2" strokeLinecap="round"/><circle cx={d.x} cy={d.y} r="7" fill={i%2?"var(--color-emerald)":"var(--color-amber)"} /></g>)}</svg></div>
     <div className="grid gap-3 sm:grid-cols-2"><div className="rounded-lg bg-white/[0.04] p-3"><p className="text-xs text-ink-dim">Relative collision opportunity</p><p className="text-xl font-semibold">{relative.toFixed(2)}× baseline</p></div><div className="rounded-lg bg-white/[0.04] p-3"><p className="text-xs text-ink-dim">Particle motion</p><p className="text-sm">{temperature < 300 ? "Lower temperature: slower average motion and fewer collisions with sufficient energy." : temperature > 300 ? "Higher temperature: faster average motion and a larger fraction of collisions can overcome the activation barrier." : "Baseline conditions for comparison."}</p></div></div>
     <p className="text-xs text-ink-dim">Particle positions and arrows are schematic, not a molecular-dynamics simulation. The relative index is an illustrative teaching model, not a measured rate law. Temperature can increase the fraction of collisions energetic enough to react; concentration mainly changes how often particles encounter one another.</p>
+  </LabFrame>;
+}
+
+
+function NetIonicLab({ title }: { title?: string }) {
+  const [mixed, setMixed] = useState(false);
+  return <LabFrame title={title ?? "Mix solutions and identify spectator ions"}>
+    <p className="text-sm text-ink-dim">Mix aqueous silver nitrate and sodium chloride. Select the button to see what happens when the ions meet.</p>
+    <div className="grid gap-3 sm:grid-cols-2"><div className="rounded-xl border border-border bg-bg p-3"><p className="font-semibold">Solution A: AgNO₃(aq)</p><p className="mt-2 text-sm">Ag⁺(aq) + NO₃⁻(aq)</p><div className="mt-2 flex gap-2"><span className="rounded-full bg-white/10 px-3 py-1 text-sm">Ag⁺</span><span className="rounded-full bg-white/10 px-3 py-1 text-sm">NO₃⁻</span></div></div><div className="rounded-xl border border-border bg-bg p-3"><p className="font-semibold">Solution B: NaCl(aq)</p><p className="mt-2 text-sm">Na⁺(aq) + Cl⁻(aq)</p><div className="mt-2 flex gap-2"><span className="rounded-full bg-white/10 px-3 py-1 text-sm">Na⁺</span><span className="rounded-full bg-white/10 px-3 py-1 text-sm">Cl⁻</span></div></div></div>
+    <button type="button" onClick={()=>setMixed(v=>!v)} className="rounded-lg border border-border px-3 py-2 text-sm hover:bg-white/[0.05]">{mixed ? "Separate the solutions" : "Mix the solutions"}</button>
+    {mixed && <div className="rounded-xl border border-amber-300/30 bg-amber-300/5 p-4"><p className="font-semibold">AgCl(s) precipitates</p><p className="mt-2 text-sm">Ag⁺(aq) + Cl⁻(aq) → AgCl(s)</p><p className="mt-2 text-sm text-ink-dim">Na⁺ and NO₃⁻ remain dissolved and unchanged, so they are spectator ions and cancel from the complete ionic equation.</p><p className="mt-2 text-sm font-semibold">Net ionic equation: Ag⁺(aq) + Cl⁻(aq) → AgCl(s)</p></div>}
+  </LabFrame>;
+}
+
+function StoichiometryLab({ title }: { title?: string }) {
+  const [h2, setH2] = useState(4);
+  const [o2, setO2] = useState(2);
+  const water = Math.min(h2, 2*o2);
+  const leftoverH = h2-water;
+  const leftoverO = o2-water/2;
+  return <LabFrame title={title ?? "Find the limiting reactant"}>
+    <p className="text-sm text-ink-dim">For 2H₂ + O₂ → 2H₂O, compare the available mole amounts to the 2:1 ratio. These sliders represent moles, not coefficients.</p>
+    <div className="grid gap-4 sm:grid-cols-2"><RangeControl label="Available H₂" value={h2} min={1} max={8} onChange={setH2} output={h2+" mol"} /><RangeControl label="Available O₂" value={o2} min={1} max={6} onChange={setO2} output={o2+" mol"} /></div>
+    <div className="grid gap-3 sm:grid-cols-3"><div className="rounded-lg bg-white/[0.04] p-3"><p className="text-xs text-ink-dim">Water formed (maximum)</p><p className="text-xl font-semibold">{water.toFixed(1)} mol</p></div><div className="rounded-lg bg-white/[0.04] p-3"><p className="text-xs text-ink-dim">H₂ left over</p><p className="text-xl font-semibold">{leftoverH.toFixed(1)} mol</p></div><div className="rounded-lg bg-white/[0.04] p-3"><p className="text-xs text-ink-dim">O₂ left over</p><p className="text-xl font-semibold">{leftoverO.toFixed(1)} mol</p></div></div>
+    <p className="text-sm">{h2/2 < o2 ? "H₂ is limiting: it runs out first." : h2/2 > o2 ? "O₂ is limiting: it runs out first." : "The reactants are in the exact stoichiometric ratio; neither is in excess."}</p>
+    <p className="text-xs text-ink-dim">Assumes the reaction goes to completion and uses the balanced equation's 2:1 H₂:O₂ mole ratio.</p>
+  </LabFrame>;
+}
+
+function TitrationLab({ title }: { title?: string }) {
+  const [baseVolume, setBaseVolume] = useState(20);
+  const [baseM, setBaseM] = useState(0.1);
+  const acidM = 0.1, acidMl = 25;
+  const acidMoles = acidM*acidMl/1000, baseMoles = baseM*baseVolume/1000;
+  const totalL = (acidMl+baseVolume)/1000;
+  const excess = acidMoles-baseMoles;
+  const ph = Math.abs(excess)<0.000001 ? 7 : excess>0 ? -Math.log10(excess/totalL) : 14+Math.log10((-excess)/totalL);
+  const points=Array.from({length:51},(_,i)=>{const v=i;const m=acidM*acidMl/1000-baseM*v/1000;const tv=(acidMl+v)/1000;const p=Math.abs(m)<0.000001?7:m>0?-Math.log10(m/tv):14+Math.log10((-m)/tv);return {v,p:Math.max(0,Math.min(14,p))}});
+  const curve=points.map((p,i)=>`${i?"L":"M"} ${35+p.v/50*280} ${145-p.p/14*120}`).join(" ");
+  const eq=acidM*acidMl/baseM;
+  return <LabFrame title={title ?? "Explore a strong acid–strong base titration"}>
+    <p className="text-sm text-ink-dim">25.0 mL of 0.100 M strong acid is titrated with strong base. Adjust the base concentration and volume; the curve and pH estimate update.</p>
+    <div className="grid gap-4 sm:grid-cols-2"><RangeControl label="Base added" value={baseVolume} min={0} max={50} onChange={setBaseVolume} output={baseVolume.toFixed(1)+" mL"} /><RangeControl label="Base concentration" value={baseM} min={0.05} max={0.2} step={0.025} onChange={setBaseM} output={baseM.toFixed(3)+" M"} /></div>
+    <div className="grid gap-3 sm:grid-cols-2"><div className="rounded-xl border border-border bg-bg p-4"><p className="text-xs text-ink-dim">Approximate pH</p><p className="text-3xl font-semibold">{ph.toFixed(2)}</p><p className="mt-2 text-xs text-ink-dim">Equivalence point at about {eq.toFixed(1)} mL added.</p></div><div className="rounded-xl border border-border bg-bg p-2"><svg viewBox="0 0 330 175" role="img" aria-label="Strong acid strong base titration curve" className="w-full"><line x1="35" y1="15" x2="35" y2="145" stroke="var(--color-ink-dim)"/><line x1="35" y1="145" x2="315" y2="145" stroke="var(--color-ink-dim)"/>{[0,7,14].map(v=><g key={v}><line x1="35" x2="315" y1={145-v/14*120} y2={145-v/14*120} stroke="var(--color-border)" strokeDasharray="3 4"/><text x="28" y={149-v/14*120} fontSize="10" textAnchor="end" fill="var(--color-ink-dim)">{v}</text></g>)}<path d={curve} fill="none" stroke="var(--color-emerald)" strokeWidth="3"/><text x="175" y="166" fontSize="10" textAnchor="middle" fill="var(--color-ink-dim)">Base added (mL)</text></svg></div></div>
+    <p className="text-xs text-ink-dim">Idealized calculation for a strong monoprotic acid and strong base at 25 °C; ignores activity effects and water autoionization except at equivalence. It is a learning model, not experimental titration data.</p>
+  </LabFrame>;
+}
+
+function ReactionTypesLab({ title }: { title?: string }) {
+  const [kind, setKind] = useState("combustion");
+  const data: Record<string,{name:string;eq:string;why:string}> = {
+    synthesis:{name:"Synthesis",eq:"2Mg + O₂ → 2MgO",why:"Two reactant substances combine to form one product compound."},
+    decomposition:{name:"Decomposition",eq:"2H₂O₂ → 2H₂O + O₂",why:"One reactant breaks into multiple products."},
+    replacement:{name:"Single replacement",eq:"Zn + CuSO₄ → ZnSO₄ + Cu",why:"Zinc replaces copper in the compound."},
+    exchange:{name:"Double replacement",eq:"AgNO₃ + NaCl → AgCl + NaNO₃",why:"Ions exchange partners; AgCl forms a precipitate in aqueous solution."},
+    combustion:{name:"Combustion",eq:"CH₄ + 2O₂ → CO₂ + 2H₂O",why:"A hydrocarbon reacts with oxygen to form carbon dioxide and water in complete combustion."}
+  };
+  const d=data[kind];
+  return <LabFrame title={title ?? "Classify reaction patterns"}>
+    <label className="block space-y-1.5 text-sm"><span className="text-ink-dim">Choose a reaction pattern</span><select value={kind} onChange={e=>setKind(e.target.value)} className="w-full rounded-lg border border-border bg-bg px-3 py-2">{Object.entries(data).map(([k,v])=><option key={k} value={k}>{v.name}</option>)}</select></label>
+    <div className="rounded-xl border border-border bg-bg p-4"><p className="text-xs text-ink-dim">{d.name}</p><p className="my-3 text-xl font-semibold">{d.eq}</p><p className="text-sm">{d.why}</p></div>
+    <p className="text-xs text-ink-dim">Pattern recognition is a starting point, not a replacement for checking physical states, solubility, oxidation states, and whether a reaction is actually driven under the stated conditions.</p>
+  </LabFrame>;
+}
+
+function ParticleChangeLab({ title }: { title?: string }) {
+  const [change, setChange] = useState("physical");
+  const physical = change === "physical";
+  return <LabFrame title={title ?? "Physical change or chemical reaction?"}>
+    <div className="flex flex-wrap gap-2"><button type="button" onClick={()=>setChange("physical")} className={`rounded-lg border px-3 py-2 text-sm ${physical?"border-emerald-400 text-emerald-300":"border-border"}`}>Melting ice (physical)</button><button type="button" onClick={()=>setChange("chemical")} className={`rounded-lg border px-3 py-2 text-sm ${!physical?"border-emerald-400 text-emerald-300":"border-border"}`}>Breaking water apart (chemical)</button></div>
+    <div className="rounded-xl border border-border bg-bg p-3"><svg viewBox="0 0 320 145" role="img" aria-label="Particle-level before and after model" className="w-full"><text x="70" y="15" fontSize="11" textAnchor="middle" fill="var(--color-ink-dim)">Before</text><text x="250" y="15" fontSize="11" textAnchor="middle" fill="var(--color-ink-dim)">After</text>{Array.from({length:5},(_,i)=><g key={i}><circle cx={36+(i%3)*28} cy={42+Math.floor(i/3)*28} r="6" fill="#60a5fa"/><circle cx={44+(i%3)*28} cy={42+Math.floor(i/3)*28} r="4" fill="#fb7185"/><circle cx={52+(i%3)*28} cy={42+Math.floor(i/3)*28} r="6" fill="#60a5fa"/><line x1={42+(i%3)*28} y1={42+Math.floor(i/3)*28} x2={46+(i%3)*28} y2={42+Math.floor(i/3)*28} stroke="white" strokeWidth="2"/></g>)}{Array.from({length:5},(_,i)=><g key={i}>{physical?<><circle cx={210+(i%3)*28} cy={70+Math.floor(i/3)*24} r="6" fill="#60a5fa"/><circle cx={218+(i%3)*28} cy={70+Math.floor(i/3)*24} r="4" fill="#fb7185"/><circle cx={226+(i%3)*28} cy={70+Math.floor(i/3)*24} r="6" fill="#60a5fa"/><line x1={216+(i%3)*28} y1={70+Math.floor(i/3)*24} x2={220+(i%3)*28} y2={70+Math.floor(i/3)*24} stroke="white" strokeWidth="2"/></>:<><circle cx={208+(i%3)*28} cy={60+Math.floor(i/3)*30} r="7" fill="#60a5fa"/><circle cx={220+(i%3)*28} cy={60+Math.floor(i/3)*30} r="7" fill="#fb7185"/></>}</g>)}</svg></div>
+    <p className="text-sm">{physical ? "During melting, H₂O molecules remain H₂O. Their arrangement and freedom of motion change, but the chemical identity and covalent bonds within each molecule do not." : "A chemical reaction changes which atoms are bonded to which. This schematic shows bonds being rearranged; atoms themselves are conserved."}</p>
+    <p className="text-xs text-ink-dim">Particle drawings are conceptual, not to scale. A physical change can alter spacing, motion, or phase; a chemical reaction changes chemical connectivity.</p>
+  </LabFrame>;
+}
+
+function RedoxLab({ title }: { title?: string }) {
+  const [showProducts, setShowProducts] = useState(false);
+  return <LabFrame title={title ?? "Track electron transfer in a redox reaction"}>
+    <p className="text-sm text-ink-dim">Model: Mg(s) + Cu²⁺(aq) → Mg²⁺(aq) + Cu(s). Toggle the reaction to track oxidation numbers and electrons.</p>
+    <div className="grid gap-3 sm:grid-cols-2"><div className="rounded-xl border border-border bg-bg p-4"><p className="text-xs text-ink-dim">{showProducts?"Product":"Reactant"} 1</p><p className="text-xl font-semibold">{showProducts?"Mg²⁺":"Mg(s)"}</p><p className="text-sm">Oxidation number: {showProducts?"+2":"0"}</p><p className="mt-2 text-sm">{showProducts?"Lost 2 e⁻ (oxidized)":"Can lose 2 e⁻"}</p></div><div className="rounded-xl border border-border bg-bg p-4"><p className="text-xs text-ink-dim">{showProducts?"Product":"Reactant"} 2</p><p className="text-xl font-semibold">{showProducts?"Cu(s)":"Cu²⁺(aq)"}</p><p className="text-sm">Oxidation number: {showProducts?"0":"+2"}</p><p className="mt-2 text-sm">{showProducts?"Gained 2 e⁻ (reduced)":"Can gain 2 e⁻"}</p></div></div>
+    <button type="button" onClick={()=>setShowProducts(v=>!v)} className="rounded-lg border border-border px-3 py-2 text-sm hover:bg-white/[0.05]">{showProducts?"Reset to reactants":"Show electron transfer"}</button>
+    {showProducts&&<p className="rounded-lg bg-emerald-400/10 p-3 text-sm">Mg is the reducing agent because it donates electrons. Cu²⁺ is the oxidizing agent because it accepts electrons. Two electrons lost equal two electrons gained.</p>}
   </LabFrame>;
 }
 
