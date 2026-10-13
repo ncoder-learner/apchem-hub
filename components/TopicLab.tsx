@@ -27,14 +27,14 @@ function Frame({ unit, title, takeaway, children }: { unit: string; title: strin
 function Bars({ rows }: { rows: {label:string;value:number;max:number;color:string}[] }) {
   return <div className="space-y-4 rounded-xl border border-border bg-bg/50 p-4">{rows.map(r=><div key={r.label}><div className="mb-1 flex justify-between text-xs"><span>{r.label}</span><span>{Number(r.value.toFixed(2))}</span></div><div className="h-3 overflow-hidden rounded-full bg-white/5"><div className="h-full rounded-full" style={{width:Math.max(0,Math.min(100,r.value/r.max*100))+"%",background:r.color}} /></div></div>)}</div>;
 }
-function UnitOne() {
+function PeriodicTrendLab() {
   const [across,setAcross]=useState(3); const [shells,setShells]=useState(2);
   const radius=180-across*13+(shells-1)*35, ie=450+across*115-(shells-1)*95;
   return <Frame unit="1 · Atomic structure" title="Explore periodic trends" takeaway="Across a period, effective nuclear charge generally increases while the principal energy level stays the same, so atomic radius tends to decrease and first ionization energy tends to increase. Added shells change the comparison down a group.">
     <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Position across a period" min={0} max={6} step={1} value={across} onChange={setAcross}/><Slider label="Occupied principal shells" min={1} max={4} step={1} value={shells} onChange={setShells}/><Bars rows={[{label:"Illustrative atomic radius (pm)",value:radius,max:220,color:"#5aa9ff"},{label:"Illustrative first ionization energy",value:ie,max:1200,color:"#34d399"}]}/><p className="mt-2 text-xs text-ink-dim">Schematic trend model; these are not measured values for a particular element.</p></div><div className="flex items-center justify-center rounded-xl border border-border bg-bg/50"><svg viewBox="0 0 280 220" className="w-full max-w-xs" role="img" aria-label="Schematic atom with adjustable electron shells">{Array.from({length:shells},(_,i)=><circle key={i} cx="140" cy="105" r={30+i*24} fill="none" stroke="#5aa9ff" strokeDasharray="4 4"/>)}<circle cx="140" cy="105" r="15" fill="#f5c454"/>{Array.from({length:shells},(_,i)=><circle key={i} cx={140+Math.cos(across*.7+i*2)*(30+i*24)} cy={105+Math.sin(across*.7+i*2)*(30+i*24)} r="5" fill="#34d399"/>)}<text x="140" y="198" textAnchor="middle" fontSize="11" fill="var(--color-ink-dim)">Schematic, not to scale</text></svg></div></div>
   </Frame>;
 }
-function UnitTwo() {
+function BondPotentialLab() {
   const [distance,setDistance]=useState(1.2); const [depth,setDepth]=useState(70);
   const energy=depth*(Math.pow(1/distance,12)-2*Math.pow(1/distance,6));
   const points=Array.from({length:80},(_,i)=>{const x=.72+i*2.8/79;const y=depth*(1/Math.pow(x,12)-2/Math.pow(x,6));return {x,y};});
@@ -43,11 +43,86 @@ function UnitTwo() {
     <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Internuclear distance" min={.8} max={3.5} step={.05} value={distance} onChange={setDistance} suffix=" relative"/><Slider label="Potential well depth" min={30} max={100} step={5} value={depth} onChange={setDepth}/><div className="rounded-lg border border-border p-3"><div className="text-xs text-ink-dim">Energy at current distance</div><div className="text-2xl font-bold">{Number(energy.toFixed(2))} relative units</div></div></div><div className="rounded-xl border border-border bg-bg/50 p-3"><svg viewBox="0 0 440 210" className="w-full" role="img" aria-label="Schematic bond potential energy curve"><line x1="35" y1="160" x2="420" y2="160" stroke="var(--color-ink-dim)"/><line x1="35" y1="15" x2="35" y2="160" stroke="var(--color-ink-dim)"/><path d={path} fill="none" stroke="#34d399" strokeWidth="3"/><text x="225" y="192" textAnchor="middle" fill="var(--color-ink-dim)" fontSize="12">Internuclear distance →</text><circle cx={35+(distance-.72)/2.8*379} cy={15+(maxY-energy)/(maxY-minY)*145} r="5" fill="#f5c454"/></svg><p className="text-xs text-ink-dim">Lennard-Jones-style shape, scaled for visualization; not a fitted molecular potential.</p></div></div>
   </Frame>;
 }
-function UnitThree() {
+function GasLawLab() {
   const [v,setV]=useState(5);const [t,setT]=useState(300);const [n,setN]=useState(1);const p=n*.082057*t/v;
   return <Frame unit="3 · States of matter" title="Ideal-gas relationship explorer" takeaway="For a fixed amount of gas at constant temperature, increasing volume lowers pressure. Raising absolute temperature increases pressure if volume is fixed. Use kelvin in PV = nRT.">
     <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Volume" min={2} max={10} step={.5} value={v} onChange={setV} suffix=" L"/><Slider label="Temperature" min={200} max={600} step={10} value={t} onChange={setT} suffix=" K"/><Slider label="Amount of gas" min={.5} max={3} step={.5} value={n} onChange={setN} suffix=" mol"/><div className="rounded-lg border border-border p-4"><div className="text-xs text-ink-dim">Calculated pressure</div><div className="text-3xl font-bold">{p.toFixed(2)} atm</div><div className="text-xs text-ink-dim">P = nRT/V</div></div></div><Bars rows={[{label:"Pressure",value:p,max:25,color:"#34d399"},{label:"Temperature (scaled)",value:t/25,max:24,color:"#f5c454"},{label:"Volume (scaled inverse)",value:10/v*5,max:25,color:"#5aa9ff"}]}/></div>
   </Frame>;
+}
+function MoleLab() {
+  const [grams,setGrams]=useState(18); const [molarMass,setMolarMass]=useState(18);
+  const moles=grams/molarMass, particles=moles*6.022e23;
+  return <Frame unit="1 · Quantitative chemistry" title="Move between grams, moles, and particles" takeaway="Molar mass converts grams to moles, and Avogadro's constant converts moles to specified particles. Keep the units in each step so the conversion factors cancel correctly.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Sample mass" min={1} max={100} step={1} value={grams} onChange={setGrams} suffix=" g"/><Slider label="Molar mass" min={1} max={200} step={1} value={molarMass} onChange={setMolarMass} suffix=" g/mol"/></div><div className="grid grid-cols-2 gap-3"><div className="rounded-lg border border-border p-3"><div className="text-xs text-ink-dim">Amount</div><div className="text-2xl font-bold">{moles.toFixed(3)} mol</div></div><div className="rounded-lg border border-border p-3"><div className="text-xs text-ink-dim">Particles</div><div className="text-xl font-bold">{particles.toExponential(2)}</div></div><p className="col-span-2 text-xs text-ink-dim">The example treats molar mass as an input. Select the correct substance-specific molar mass before using this in a chemistry problem.</p></div></div>
+  </Frame>;
+}
+function IsotopeLab() {
+  const [p24,setP24]=useState(79); const [p25,setP25]=useState(10); const p26=Math.max(0,100-p24-p25); const avg=(p24*23.985+p25*24.986+p26*25.983)/100;
+  return <Frame unit="1 · Isotopes" title="Build a weighted-average atomic mass" takeaway="The periodic-table atomic mass is a weighted average, not a simple mean. A more abundant isotope contributes more to the average. Abundances must sum to 100%.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="²⁴Mg abundance" min={60} max={90} step={1} value={p24} onChange={v=>{setP24(v);if(v+p25>100)setP25(100-v);}} suffix="%"/><Slider label="²⁵Mg abundance" min={0} max={100-p24} step={1} value={p25} onChange={setP25} suffix="%"/><p className="text-sm text-ink-dim">²⁶Mg abundance is the remainder: {p26}%.</p></div><div className="rounded-xl border border-border bg-bg/50 p-4"><div className="text-xs text-ink-dim">Weighted-average mass</div><div className="text-3xl font-bold">{avg.toFixed(3)} u</div><div className="mt-3 space-y-2 text-sm">{[{l:"²⁴Mg",v:p24,c:"#5aa9ff"},{l:"²⁵Mg",v:p25,c:"#34d399"},{l:"²⁶Mg",v:p26,c:"#f5c454"}].map(x=><div key={x.l}><div className="mb-1 flex justify-between"><span>{x.l}</span><span>{x.v}%</span></div><div className="h-2 rounded-full bg-white/5"><div className="h-2 rounded-full" style={{width:x.v+"%",background:x.c}}/></div></div>)}</div></div></div>
+  </Frame>;
+}
+function CoulombLab() {
+  const [q1,setQ1]=useState(1);const [q2,setQ2]=useState(-1);const [r,setR]=useState(2);const force=q1*q2/(r*r);
+  return <Frame unit="1 · Electrostatic interactions" title="Test Coulomb's law" takeaway="The magnitude of electrostatic force increases with the product of charge magnitudes and decreases with the square of separation. Opposite signs attract; like signs repel. This relative model omits the constant and detailed atomic environment.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Charge q₁" min={-3} max={3} step={1} value={q1} onChange={setQ1}/><Slider label="Charge q₂" min={-3} max={3} step={1} value={q2} onChange={setQ2}/><Slider label="Separation r" min={1} max={5} step={.25} value={r} onChange={setR}/></div><div className="rounded-xl border border-border bg-bg/50 p-4"><svg viewBox="0 0 320 100" className="w-full" role="img" aria-label="Two charges separated by an adjustable distance"><line x1="40" y1="50" x2="280" y2="50" stroke="var(--color-ink-dim)" strokeDasharray="4 4"/><circle cx="80" cy="50" r="24" fill="#5aa9ff"/><circle cx="240" cy="50" r="24" fill="#f5c454"/><text x="80" y="55" textAnchor="middle" fill="#0a0e16" fontWeight="700">{q1>0?"+":""}{q1}</text><text x="240" y="55" textAnchor="middle" fill="#0a0e16" fontWeight="700">{q2>0?"+":""}{q2}</text></svg><div className="text-xs text-ink-dim">Relative signed force q₁q₂/r²</div><div className="text-2xl font-bold">{force.toFixed(3)}</div><p className={force<0?"text-sm text-emerald-300":"text-sm text-amber-200"}>{force<0?"Attractive interaction":force>0?"Repulsive interaction":"No electrostatic force when one charge is zero"}</p></div></div>
+  </Frame>;
+}
+function LewisLab() {
+  const [electrons,setElectrons]=useState(6);const dots=Array.from({length:electrons},(_,i)=>{const angles=[-90,-45,0,45,90,135,180,225];return {x:140+Math.cos(angles[i]*Math.PI/180)*48,y:90+Math.sin(angles[i]*Math.PI/180)*48};});
+  return <Frame unit="2 · Lewis structures" title="Count and place valence electrons" takeaway="Lewis symbols show valence electrons, not all electrons. Place one electron on each side before pairing where possible; in a full Lewis structure, total valence electrons must match the sum from the atoms and any charge.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Valence electrons to display" min={0} max={8} step={1} value={electrons} onChange={setElectrons}/><p className="text-sm text-ink-dim">Practice symbol: a neutral main-group atom with {electrons} valence electron{electrons===1?"":"s"}.</p></div><div className="flex justify-center rounded-xl border border-border bg-bg/50 p-4"><svg viewBox="0 0 280 180" className="w-full max-w-xs" role="img" aria-label="Lewis dot symbol with adjustable valence electron count"><circle cx="140" cy="90" r="25" fill="#5aa9ff" fillOpacity=".2" stroke="#5aa9ff"/><text x="140" y="96" textAnchor="middle" fill="var(--color-ink)" fontSize="20" fontWeight="700">X</text>{dots.map((p,i)=><circle key={i} cx={p.x} cy={p.y} r="4" fill="#f5c454"/>)}</svg></div></div>
+  </Frame>;
+}
+function GeometryLab() {
+  const [domains,setDomains]=useState(4);const [lone,setLone]=useState(1);const atoms=Math.max(0,domains-lone);const labels:Record<number,string>={2:"Linear",3:"Trigonal planar",4:"Tetrahedral",5:"Trigonal bipyramidal",6:"Octahedral"};
+  return <Frame unit="2 · Molecular geometry" title="Separate electron geometry from molecular shape" takeaway="Electron domains include bonding regions and lone pairs. Molecular geometry names the arrangement of atoms only, so adding lone pairs can change the molecular shape even when the electron-domain geometry stays the same.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Electron domains around central atom" min={2} max={6} step={1} value={domains} onChange={v=>{setDomains(v);if(lone>v-2)setLone(v-2);}}/><Slider label="Lone pairs" min={0} max={domains-2} step={1} value={lone} onChange={setLone}/><div className="rounded-lg border border-border p-3"><div className="text-xs text-ink-dim">Electron geometry</div><div className="font-semibold">{labels[domains]}</div><div className="mt-2 text-xs text-ink-dim">Bonded atoms shown: {atoms}</div></div></div><div className="flex items-center justify-center rounded-xl border border-border bg-bg/50 p-3"><svg viewBox="0 0 280 220" className="w-full max-w-xs" role="img" aria-label="Schematic molecular shape with adjustable bonded atoms and lone pairs"><line x1="140" y1="110" x2="140" y2="35" stroke="var(--color-ink-dim)" strokeWidth="2"/><circle cx="140" cy="110" r="20" fill="#5aa9ff"/><text x="140" y="115" textAnchor="middle" fill="#0a0e16" fontWeight="700">A</text>{Array.from({length:domains},(_,i)=>{const angle=-Math.PI/2+i*2*Math.PI/domains;const x=140+Math.cos(angle)*75,y=110+Math.sin(angle)*75;const isLone=i<lone;return <g key={i}><line x1="140" y1="110" x2={x} y2={y} stroke={isLone?"#f5c454":"#34d399"} strokeWidth="2" strokeDasharray={isLone?"4 3":undefined}/><circle cx={x} cy={y} r={isLone?8:12} fill={isLone?"#f5c454":"#34d399"}/><text x={x} y={y+4} textAnchor="middle" fill="#0a0e16" fontSize="9" fontWeight="700">{isLone?"LP":"X"}</text></g>;})}</svg></div></div>
+  </Frame>;
+}
+function PhotonLab() {
+  const [wavelength,setWavelength]=useState(500);const energy=1240/wavelength;
+  return <Frame unit="3 · Photons" title="Wavelength controls photon energy" takeaway="Photon energy is inversely proportional to wavelength: E = hc/λ. Shorter-wavelength light has higher-energy photons; increasing intensity changes the number of photons, not the energy of each photon.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Wavelength" min={100} max={800} step={10} value={wavelength} onChange={setWavelength} suffix=" nm"/><div className="rounded-lg border border-border p-4"><div className="text-xs text-ink-dim">Photon energy</div><div className="text-3xl font-bold">{energy.toFixed(3)} eV</div><div className="text-sm text-ink-dim">{(energy*96.485).toFixed(1)} kJ/mol of photons</div></div></div><div className="flex items-center justify-center rounded-xl border border-border bg-bg/50 p-4"><div className="w-full rounded-lg p-5 text-center" style={{background:"linear-gradient(90deg, rgba(90,169,255,.18), rgba(52,211,153,.16), rgba(245,196,84,.16))"}}><div className="text-sm text-ink-dim">Light wavelength</div><div className="my-3 text-4xl font-bold">{wavelength} nm</div><div className="text-sm">{wavelength<400?"Ultraviolet region":wavelength>700?"Near-infrared region":"Visible-light range (approximate)"}</div></div></div></div>
+  </Frame>;
+}
+function BeerLambertLab() {
+  const [c,setC]=useState(.4);const [length,setLength]=useState(1);const [epsilon,setEpsilon]=useState(2);const absorbance=epsilon*length*c;
+  return <Frame unit="3 · Spectroscopy" title="Build a Beer–Lambert calibration curve" takeaway="At fixed wavelength and for a suitable dilute solution, absorbance is proportional to concentration and path length: A = εℓc. Doubling concentration doubles absorbance under those conditions.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Concentration" min={.1} max={1} step={.1} value={c} onChange={setC} suffix=" mol/L"/><Slider label="Path length" min={.5} max={2} step={.5} value={length} onChange={setLength} suffix=" cm"/><Slider label="Molar absorptivity (scaled)" min={.5} max={3} step={.5} value={epsilon} onChange={setEpsilon}/><div className="rounded-lg border border-border p-4"><div className="text-xs text-ink-dim">Absorbance</div><div className="text-3xl font-bold">{absorbance.toFixed(2)}</div></div></div><div className="rounded-xl border border-border bg-bg/50 p-4"><div className="mb-3 text-sm text-ink-dim">Absorbance vs. concentration</div><svg viewBox="0 0 320 200" className="w-full" role="img" aria-label="Beer Lambert linear calibration graph"><line x1="35" y1="160" x2="300" y2="160" stroke="var(--color-ink-dim)"/><line x1="35" y1="15" x2="35" y2="160" stroke="var(--color-ink-dim)"/><line x1="35" y1="160" x2="300" y2={160-Math.min(3,epsilon*length)*45} stroke="#34d399" strokeWidth="3"/><circle cx={35+c*265} cy={160-absorbance*45} r="5" fill="#f5c454"/><text x="165" y="190" textAnchor="middle" fill="var(--color-ink-dim)" fontSize="11">Concentration →</text></svg></div></div>
+  </Frame>;
+}
+function SolutionLab() {
+  const [solute,setSolute]=useState(.5);const [volume,setVolume]=useState(1);
+  return <Frame unit="3 · Solutions" title="Change solution concentration" takeaway="Molarity is moles of dissolved solute divided by liters of total solution. Adding solvent lowers concentration without changing the amount of solute, provided no solute is lost or reacts.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Amount of solute" min={.1} max={2} step={.1} value={solute} onChange={setSolute} suffix=" mol"/><Slider label="Final solution volume" min={.25} max={3} step={.25} value={volume} onChange={setVolume} suffix=" L"/></div><div className="rounded-xl border border-border bg-bg/50 p-4"><div className="text-xs text-ink-dim">Molarity</div><div className="text-3xl font-bold">{(solute/volume).toFixed(2)} M</div><div className="mt-3 h-4 overflow-hidden rounded-full bg-white/5"><div className="h-full rounded-full bg-emerald-300" style={{width:Math.min(100,solute/volume/8*100)+"%"}}/></div><p className="mt-2 text-xs text-ink-dim">Bar indicates relative concentration on this model's scale.</p></div></div>
+  </Frame>;
+}
+function IntermolecularLab() {
+  const [strength,setStrength]=useState(5);const [temperature,setTemperature]=useState(50);
+  const boiling=20+strength*12;const particles=Array.from({length:16},(_,i)=>({x:28+(i%4)*34+(temperature/50)*(i%2?4:-4),y:24+Math.floor(i/4)*30+(temperature/50)*(i%3?3:-3)}));
+  return <Frame unit="3 · Intermolecular forces" title="Relate particle attractions to phase behavior" takeaway="Stronger intermolecular attractions generally require more energy to separate particles, raising boiling point. At the same temperature, stronger attractions make escape into the gas phase less favorable.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Relative attraction strength" min={1} max={10} step={1} value={strength} onChange={setStrength}/><Slider label="Relative thermal motion" min={10} max={100} step={10} value={temperature} onChange={setTemperature}/><div className="rounded-lg border border-border p-3"><div className="text-xs text-ink-dim">Illustrative boiling-point index</div><div className="text-2xl font-bold">{boiling}</div></div></div><div className="rounded-xl border border-border bg-bg/50 p-3"><svg viewBox="0 0 180 160" className="w-full" role="img" aria-label="Particle model with adjustable thermal motion">{particles.map((p,i)=><g key={i}><circle cx={p.x} cy={p.y} r="7" fill="#5aa9ff" fillOpacity=".9"/>{i%4!==3&&<line x1={p.x} y1={p.y} x2={p.x+34} y2={p.y} stroke="#34d399" strokeOpacity={Math.max(.1,1-strength/12)} strokeDasharray="3 3"/>}</g>)}</svg><p className="text-xs text-ink-dim">Schematic particle model. The index is illustrative, not a prediction of a real substance's boiling point.</p></div></div>
+  </Frame>;
+}
+function UnitOne({ topicNumber }: { topicNumber: string }) {
+  if (["1.1","1.3","1.4"].includes(topicNumber)) return <MoleLab />;
+  if (topicNumber === "1.2") return <IsotopeLab />;
+  if (topicNumber === "1.9") return <CoulombLab />;
+  return <PeriodicTrendLab />;
+}
+function UnitTwo({ topicNumber }: { topicNumber: string }) {
+  if (topicNumber === "2.5") return <LewisLab />;
+  if (topicNumber === "2.7") return <GeometryLab />;
+  if (topicNumber === "2.2") return <BondPotentialLab />;
+  return <BondPotentialLab />;
+}
+function UnitThree({ topicNumber }: { topicNumber: string }) {
+  if (topicNumber === "3.1" || topicNumber === "3.2" || topicNumber === "3.3" || topicNumber === "3.5" || topicNumber === "3.6") return <IntermolecularLab />;
+  if (["3.7","3.8","3.9","3.10"].includes(topicNumber)) return <SolutionLab />;
+  if (topicNumber === "3.11" || topicNumber === "3.12") return <PhotonLab />;
+  if (topicNumber === "3.13") return <BeerLambertLab />;
+  return <GasLawLab />;
 }
 function BalanceEquation() {
   const [iron,setIron]=useState(4); const [oxygen,setOxygen]=useState(3); const [oxide,setOxide]=useState(2);
@@ -196,6 +271,6 @@ function UnitNine() {
   </Frame>;
 }
 export function TopicLab({ unitId, topicNumber, title }: TopicLabProps) {
-  const labs: Record<number, ReactNode> = {1:<UnitOne/>,2:<UnitTwo/>,3:<UnitThree/>,4:<UnitFour topicNumber={topicNumber}/>,5:<UnitFive topicNumber={topicNumber}/>,6:<UnitSix/>,7:<UnitSeven/>,8:<UnitEight/>,9:<UnitNine/>};
+  const labs: Record<number, ReactNode> = {1:<UnitOne topicNumber={topicNumber}/>,2:<UnitTwo topicNumber={topicNumber}/>,3:<UnitThree topicNumber={topicNumber}/>,4:<UnitFour topicNumber={topicNumber}/>,5:<UnitFive topicNumber={topicNumber}/>,6:<UnitSix/>,7:<UnitSeven/>,8:<UnitEight/>,9:<UnitNine/>};
   return <div data-topic={topicNumber} data-title={title}>{labs[unitId] ?? null}</div>;
 }
