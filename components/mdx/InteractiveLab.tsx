@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import type { ReactNode } from "react";
 
 type LabKind = "kinetics" | "rate-law" | "collision" | "energy-profile" | "balance" | "gas-law" | "ph" | "net-ionic" | "stoichiometry" | "titration" | "reaction-types" | "particles" | "redox" | "coulomb" | "bond-energy" | "beer-lambert" | "lewis" | "photon";
 
@@ -24,7 +25,7 @@ export function InteractiveLab({ kind, title }: InteractiveLabProps) {
   return <KineticsLab title={title} />;
 }
 
-function LabFrame({ title, children }: { title: string; children: React.ReactNode }) {
+function LabFrame({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="my-8 overflow-hidden rounded-2xl border border-border bg-card">
       <div className="border-b border-border bg-white/[0.03] px-4 py-3">
@@ -148,14 +149,19 @@ function ReactionTypesLab({ title }: { title?: string }) {
   </LabFrame>;
 }
 
+
 function ParticleChangeLab({ title }: { title?: string }) {
   const [change, setChange] = useState("physical");
   const physical = change === "physical";
+  const water = (x:number,y:number,key:string) => <g key={key}><line x1={x-5} y1={y+3} x2={x} y2={y} stroke="var(--color-ink)" strokeWidth="2"/><line x1={x+5} y1={y+3} x2={x} y2={y} stroke="var(--color-ink)" strokeWidth="2"/><circle cx={x} cy={y} r="6" fill="#fb7185"/><circle cx={x-7} cy={y+6} r="4.5" fill="#60a5fa"/><circle cx={x+7} cy={y+6} r="4.5" fill="#60a5fa"/></g>;
+  const pair = (x:number,y:number,color:string,key:string) => <g key={key}><line x1={x-5} y1={y} x2={x+5} y2={y} stroke="var(--color-ink)" strokeWidth="2"/><circle cx={x-5} cy={y} r="6" fill={color}/><circle cx={x+5} cy={y} r="6" fill={color}/></g>;
   return <LabFrame title={title ?? "Physical change or chemical reaction?"}>
-    <div className="flex flex-wrap gap-2"><button type="button" onClick={()=>setChange("physical")} className={`rounded-lg border px-3 py-2 text-sm ${physical?"border-emerald-400 text-emerald-300":"border-border"}`}>Melting ice (physical)</button><button type="button" onClick={()=>setChange("chemical")} className={`rounded-lg border px-3 py-2 text-sm ${!physical?"border-emerald-400 text-emerald-300":"border-border"}`}>Breaking water apart (chemical)</button></div>
-    <div className="rounded-xl border border-border bg-bg p-3"><svg viewBox="0 0 320 145" role="img" aria-label="Particle-level before and after model" className="w-full"><text x="70" y="15" fontSize="11" textAnchor="middle" fill="var(--color-ink-dim)">Before</text><text x="250" y="15" fontSize="11" textAnchor="middle" fill="var(--color-ink-dim)">After</text>{Array.from({length:5},(_,i)=><g key={i}><circle cx={36+(i%3)*28} cy={42+Math.floor(i/3)*28} r="6" fill="#60a5fa"/><circle cx={44+(i%3)*28} cy={42+Math.floor(i/3)*28} r="4" fill="#fb7185"/><circle cx={52+(i%3)*28} cy={42+Math.floor(i/3)*28} r="6" fill="#60a5fa"/><line x1={42+(i%3)*28} y1={42+Math.floor(i/3)*28} x2={46+(i%3)*28} y2={42+Math.floor(i/3)*28} stroke="white" strokeWidth="2"/></g>)}{Array.from({length:5},(_,i)=><g key={i}>{physical?<><circle cx={210+(i%3)*28} cy={70+Math.floor(i/3)*24} r="6" fill="#60a5fa"/><circle cx={218+(i%3)*28} cy={70+Math.floor(i/3)*24} r="4" fill="#fb7185"/><circle cx={226+(i%3)*28} cy={70+Math.floor(i/3)*24} r="6" fill="#60a5fa"/><line x1={216+(i%3)*28} y1={70+Math.floor(i/3)*24} x2={220+(i%3)*28} y2={70+Math.floor(i/3)*24} stroke="white" strokeWidth="2"/></>:<><circle cx={208+(i%3)*28} cy={60+Math.floor(i/3)*30} r="7" fill="#60a5fa"/><circle cx={220+(i%3)*28} cy={60+Math.floor(i/3)*30} r="7" fill="#fb7185"/></>}</g>)}</svg></div>
-    <p className="text-sm">{physical ? "During melting, H₂O molecules remain H₂O. Their arrangement and freedom of motion change, but the chemical identity and covalent bonds within each molecule do not." : "A chemical reaction changes which atoms are bonded to which. This schematic shows bonds being rearranged; atoms themselves are conserved."}</p>
-    <p className="text-xs text-ink-dim">Particle drawings are conceptual, not to scale. A physical change can alter spacing, motion, or phase; a chemical reaction changes chemical connectivity.</p>
+    <div className="flex flex-wrap gap-2"><button type="button" onClick={()=>setChange("physical")} className={`rounded-lg border px-3 py-2 text-sm ${physical?"border-emerald-400 text-emerald-300":"border-border"}`}>Melting ice (physical)</button><button type="button" onClick={()=>setChange("chemical")} className={`rounded-lg border px-3 py-2 text-sm ${!physical?"border-emerald-400 text-emerald-300":"border-border"}`}>Forming water (chemical)</button></div>
+    <div className="rounded-xl border border-border bg-bg p-3"><svg viewBox="0 0 320 145" role="img" aria-label="Particle-level before and after model" className="w-full"><text x="70" y="15" fontSize="11" textAnchor="middle" fill="var(--color-ink-dim)">Before</text><text x="250" y="15" fontSize="11" textAnchor="middle" fill="var(--color-ink-dim)">After</text>
+      {physical ? <>{[[42,42],[82,42],[42,83],[82,83]].map(([x,y],i)=>water(x,y,`wb${i}`))}{[[207,39],[253,55],[211,91],[268,96]].map(([x,y],i)=>water(x,y,`wa${i}`))}</> : <>{pair(48,48,"#60a5fa","h1")}{pair(48,88,"#60a5fa","h2")}{pair(104,68,"#fb7185","o2")}{water(218,53,"w1")}{water(270,87,"w2")}</>}
+    </svg></div>
+    <p className="text-sm">{physical ? "During melting, H₂O molecules remain H₂O. Their arrangement and freedom of motion change, but the chemical identity and covalent bonds within each molecule do not." : "The equation 2H₂ + O₂ → 2H₂O rearranges bonds: two H₂ molecules and one O₂ molecule form two water molecules. The number of each type of atom is conserved."}</p>
+    <p className="text-xs text-ink-dim">Particle drawings are schematic, not to scale. A physical change alters arrangement or phase; a chemical reaction changes which atoms are bonded together.</p>
   </LabFrame>;
 }
 
@@ -173,7 +179,7 @@ function RedoxLab({ title }: { title?: string }) {
 function CoulombLab({ title }: { title?: string }) {
   const [q1,setQ1]=useState(1),[q2,setQ2]=useState(1),[r,setR]=useState(2);
   const force=q1*q2/(r*r);
-  return <LabFrame title={title ?? "Explore electrostatic attraction"}>
+  return <LabFrame title={title ?? "Explore Coulomb's law"}>
     <p className="text-sm text-ink-dim">Coulomb's law: the magnitude of electrostatic force is proportional to the product of charge magnitudes and inversely proportional to distance squared.</p>
     <div className="grid gap-4 sm:grid-cols-3"><RangeControl label="Charge magnitude 1" value={q1} min={1} max={3} onChange={setQ1} output={q1+" relative units"}/><RangeControl label="Charge magnitude 2" value={q2} min={1} max={3} onChange={setQ2} output={q2+" relative units"}/><RangeControl label="Separation distance" value={r} min={1} max={5} step={0.5} onChange={setR} output={r.toFixed(1)+" relative units"}/></div>
     <div className="rounded-xl border border-border bg-bg p-4"><svg viewBox="0 0 320 80" role="img" aria-label="Two charges with adjustable separation" className="w-full"><line x1={45} y1="40" x2={275} y2="40" stroke="var(--color-border)" strokeDasharray="4 4"/><circle cx={160-r*22} cy="40" r={10+q1*3} fill="#60a5fa"/><circle cx={160+r*22} cy="40" r={10+q2*3} fill="#fb7185"/><text x={160-r*22} y="44" fontSize="11" fill="#0a0e16" textAnchor="middle">+</text><text x={160+r*22} y="44" fontSize="11" fill="#0a0e16" textAnchor="middle">+</text><text x="160" y="13" fontSize="10" fill="var(--color-ink-dim)" textAnchor="middle">r = {r.toFixed(1)}</text></svg><p className="text-xs text-ink-dim">Schematic shows two positive charges, so the force is repulsive. Changing either charge changes force linearly; doubling distance makes force one-fourth as large.</p></div>
@@ -327,13 +333,14 @@ function EnergyProfileLab({ title }: { title?: string }) {
   const [catalyst, setCatalyst] = useState(true);
   const baseline = 142;
   const reactantY = baseline - 55;
-  const productY = baseline - (55 + deltaH * 0.65);
-  const peakY = baseline - 55 - ea * 0.8;
-  const catPeakY = baseline - 55 - ea * 0.48;
+  const productY = reactantY - deltaH * 0.8;
+  const peakY = reactantY - ea * 0.8;
+  const catalyzedBarrier = Math.max(deltaH + 5, ea * 0.48);
+  const catPeakY = reactantY - catalyzedBarrier * 0.8;
   const path = `M 34 ${reactantY} C 85 ${reactantY}, 95 ${catalyst ? catPeakY : peakY}, 145 ${catalyst ? catPeakY : peakY} S 205 ${productY}, 270 ${productY}`;
   return <LabFrame title={title ?? "Explore a reaction energy profile"}>
     <div className="grid gap-4 sm:grid-cols-3">
-      <RangeControl label="Forward activation energy" value={ea} min={25} max={100} step={5} onChange={setEa} output={ea + " kJ/mol"} />
+      <RangeControl label="Forward activation energy" value={ea} min={55} max={100} step={5} onChange={setEa} output={ea + " kJ/mol"} />
       <RangeControl label="Reaction enthalpy ΔH" value={deltaH} min={-50} max={50} step={5} onChange={setDeltaH} output={(deltaH > 0 ? "+" : "") + deltaH + " kJ/mol"} />
       <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={catalyst} onChange={(e) => setCatalyst(e.target.checked)} className="accent-emerald-400" /><span>Show catalyzed pathway</span></label>
     </div>
@@ -358,11 +365,14 @@ function GasLawLab({ title }: { title?: string }) {
   const [moles, setMoles] = useState(1);
   const [volume, setVolume] = useState(10);
   const pressure = (moles * 0.082057 * temp) / volume;
+  const maxPressure = moles * 0.082057 * temp / 3;
   const curve = Array.from({ length: 25 }, (_, i) => {
     const v = 3 + i * 0.8;
     const p = moles * 0.082057 * temp / v;
-    return `${i ? "L" : "M"} ${35 + (v-3)/19.2*280} ${20 + (10-p)/10*125}`;
+    return `${i ? "L" : "M"} ${35 + (v-3)/19.2*280} ${20 + (maxPressure-p)/maxPressure*115}`;
   }).join(" ");
+  const selectedX = 35 + (volume - 3) / 19.2 * 280;
+  const selectedY = 20 + (maxPressure - pressure) / maxPressure * 115;
   return <LabFrame title={title ?? "Explore the ideal gas law"}>
     <div className="grid gap-4 sm:grid-cols-3">
       <RangeControl label="Temperature" value={temp} min={150} max={600} step={25} onChange={setTemp} output={temp + " K"} />
@@ -371,7 +381,7 @@ function GasLawLab({ title }: { title?: string }) {
     </div>
     <div className="grid gap-3 sm:grid-cols-2">
       <div className="rounded-xl border border-border bg-bg p-4"><p className="text-xs text-ink-dim">Calculated pressure</p><p className="mt-1 text-2xl font-semibold">{pressure.toFixed(2)} atm</p><p className="mt-1 text-xs text-ink-dim">PV = nRT; R = 0.082057 L·atm·mol⁻¹·K⁻¹</p></div>
-      <div className="rounded-xl border border-border bg-bg p-2"><svg viewBox="0 0 330 170" role="img" aria-label="Pressure versus volume graph for selected temperature and amount" className="w-full"><line x1="35" y1="15" x2="35" y2="145" stroke="var(--color-ink-dim)" /><line x1="35" y1="145" x2="315" y2="145" stroke="var(--color-ink-dim)" /><path d={curve} fill="none" stroke="var(--color-blue)" strokeWidth="3" /><text x="175" y="164" fill="var(--color-ink-dim)" fontSize="10" textAnchor="middle">Volume (L)</text><text x="12" y="80" fill="var(--color-ink-dim)" fontSize="10" textAnchor="middle" transform="rotate(-90 12 80)">Pressure (atm)</text></svg></div>
+      <div className="rounded-xl border border-border bg-bg p-2"><svg viewBox="0 0 330 170" role="img" aria-label="Pressure versus volume graph for selected temperature and amount" className="w-full"><line x1="35" y1="15" x2="35" y2="145" stroke="var(--color-ink-dim)" /><line x1="35" y1="145" x2="315" y2="145" stroke="var(--color-ink-dim)" /><path d={curve} fill="none" stroke="var(--color-blue)" strokeWidth="3" /><circle cx={selectedX} cy={selectedY} r="4.5" fill="var(--color-amber)" /><text x="175" y="164" fill="var(--color-ink-dim)" fontSize="10" textAnchor="middle">Volume (L)</text><text x="12" y="80" fill="var(--color-ink-dim)" fontSize="10" textAnchor="middle" transform="rotate(-90 12 80)">Pressure (atm)</text></svg></div>
     </div>
     <p className="text-sm">At fixed temperature and amount, increasing volume lowers pressure. Increasing temperature or moles raises pressure at the same volume.</p>
   </LabFrame>;
@@ -388,6 +398,6 @@ function PhLab({ title }: { title?: string }) {
       <div className="flex h-5 overflow-hidden rounded-full">{Array.from({length:14},(_,i)=><div key={i} className="flex-1" style={{background:`hsl(${350-i*13}, 75%, 60%)`}} />)}</div>
       <div className="mt-2 flex justify-between text-xs text-ink-dim"><span>More acidic</span><span>Neutral (7)</span><span>More basic</span></div>
     </div>
-    <p className="text-sm">For a strong monoprotic acid in dilute water at 25 °C, assume complete dissociation so [H⁺] is approximately the acid concentration. pH = −log[H⁺]. Changing [H⁺] by a factor of 10 changes pH by one unit in the opposite direction.</p>
+    <p className="text-sm">Here the slider represents the final hydrogen-ion concentration, so pH = −log[H⁺]. Changing [H⁺] by a factor of 10 changes pH by one unit in the opposite direction. If you are predicting [H⁺] from an extremely dilute acid concentration, water autoionization must also be considered; this simplified model does not calculate that equilibrium.</p>
   </LabFrame>;
 }
