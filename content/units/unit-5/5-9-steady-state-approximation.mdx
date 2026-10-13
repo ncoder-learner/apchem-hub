@@ -1,0 +1,65 @@
+---
+title: "Steady-State Approximation"
+unit: 5
+topicNumber: "5.9"
+slug: "5-9-steady-state-approximation"
+summary: "Understand the steady-state assumption for intermediates and how it helps derive rate laws for multistep mechanisms."
+---
+
+A short-lived intermediate can be produced and consumed continuously while remaining at a low, nearly constant concentration during much of a reaction. The **steady-state approximation** models this situation by assuming that the rate of formation of the intermediate is approximately equal to its rate of consumption after an initial transient.
+
+<LessonSection title="1. What steady state means" description="Low concentration does not mean no reaction" defaultOpen>
+
+For an intermediate X, the steady-state approximation sets **d[X]/dt ≈ 0**. In words, the concentration of X changes very little over the interval being modeled because X is being formed and consumed at nearly the same rate.
+
+This does not mean that X is absent, that its concentration is exactly zero, or that the reaction has reached chemical equilibrium. At steady state, there can be a continuous flow of material through X even though [X] is nearly constant. Equilibrium is a different condition involving forward and reverse processes balancing for a reversible reaction.
+
+<QuickCheck question="Which statement best describes a steady-state intermediate?" options={["Its concentration is exactly zero","It is not produced or consumed","Its rate of formation is approximately equal to its rate of consumption","The entire reaction has reached equilibrium"]} correctIndex={2} explanation="Steady state approximates d[X]/dt ≈ 0 because formation and consumption rates nearly balance. X can still be produced and consumed continuously." />
+
+</LessonSection>
+
+<LessonSection title="2. Set up the intermediate balance" description="Write formation minus consumption">
+
+Suppose a mechanism contains:
+1. A → X with rate k₁[A]
+2. X → P with rate k₂[X]
+
+If X is produced only by step 1 and consumed only by step 2, then:
+
+**d[X]/dt = k₁[A] − k₂[X]**
+
+Under the steady-state approximation, set this expression approximately equal to zero:
+
+0 ≈ k₁[A] − k₂[X]
+
+Rearrange to obtain **[X] ≈ k₁[A]/k₂**. The product formation rate is rate = k₂[X], so substituting gives rate ≈ k₂(k₁[A]/k₂) = **k₁[A]**.
+
+This simplified example illustrates the method. In a more complex mechanism, multiple steps may produce or consume X, so every relevant contribution must appear in the balance.
+
+<WorkedExample title="Worked example: write the steady-state equation">
+Suppose X is formed by A → X at rate k₁[A] and consumed by X + B → products at rate k₂[X][B].
+
+Formation rate = k₁[A]. Consumption rate = k₂[X][B].
+
+Steady state: 0 ≈ k₁[A] − k₂[X][B], so **[X] ≈ k₁[A]/(k₂[B])**. The approximation depends on the mechanism and the assumption that the concentration of X is nearly constant.
+</WorkedExample>
+
+<QuickCheck question="If X is formed at rate k₁[A] and consumed at rate k₂[X][B], which expression represents the steady-state condition?" options={["k₁[A] + k₂[X][B] = 0","k₁[A] − k₂[X][B] ≈ 0","[X] = 0 exactly","k₁ = k₂"]} correctIndex={1} explanation="The rate of change of X is formation minus consumption. At steady state, that difference is approximately zero." />
+
+</LessonSection>
+
+<LessonSection title="3. Know the limitation" description="An approximation that must be justified">
+
+The steady-state approximation is useful when an intermediate reaches a low, slowly changing concentration relative to the timescale of the overall reaction. It is not automatically valid for every mechanism or at every instant. In particular, the earliest moments after mixing may include a transient while intermediate concentrations adjust.
+
+AP-level questions may provide the steady-state assumption or ask what it means rather than requiring a complicated derivation. If the prompt does not justify a steady-state or pre-equilibrium assumption, do not introduce it as if it were guaranteed.
+
+<QuickCheck question="Why should the steady-state approximation not be treated as a universal law for all intermediates?" options={["It violates conservation of atoms","It is an approximation that depends on the mechanism and reaction timescale","It requires all reactions to be at equilibrium","It says reaction rates are always zero"]} correctIndex={1} explanation="Steady state is a modeling assumption that must fit the mechanism and conditions. It does not mean the overall reaction stops or reaches equilibrium." />
+
+For more background on mechanisms and kinetic models, see [OpenStax Chemistry 2e: Reaction Mechanisms](https://openstax.org/books/chemistry-2e/pages/12-5-collision-theory).
+
+</LessonSection>
+
+## Readiness check
+
+You should be able to explain d[X]/dt ≈ 0, write formation-minus-consumption equations for an intermediate, solve for [X] under a stated mechanism, and distinguish steady state from equilibrium.
