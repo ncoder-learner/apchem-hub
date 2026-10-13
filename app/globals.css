@@ -144,3 +144,91 @@ body {
     min-width: 0;
   }
 }
+
+
+/* Navigation-first lesson layout */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 1.25rem;
+}
+
+.lesson-sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+.lesson-outline-list {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+.lesson-prose > .lesson-section {
+  scroll-margin-top: 1.25rem;
+  margin-top: 0.85rem;
+  margin-bottom: 0.85rem;
+  border-radius: 0.9rem;
+  background: rgb(15 20 32 / 0.38);
+}
+
+.lesson-prose > .lesson-section > summary {
+  min-height: 4rem;
+}
+
+.lesson-prose > .lesson-section > .lesson-section-content {
+  padding-top: 1.15rem;
+  padding-bottom: 1.25rem;
+}
+
+.lesson-prose h2 {
+  margin-top: 1.75rem;
+}
+
+.lesson-prose h3 {
+  margin-top: 1.4rem;
+}
+
+.lesson-prose p {
+  line-height: 1.7;
+}
+
+.lesson-prose > :first-child {
+  margin-top: 0;
+}
+
+.lesson-outline-list button:focus-visible,
+.lesson-prose summary:focus-visible,
+.lesson-sidebar a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+  .lesson-sidebar {
+    position: relative;
+  }
+
+  .lesson-outline-list {
+    max-height: 30vh;
+  }
+
+  .lesson-prose > .lesson-section > summary {
+    padding: 0.9rem 1rem;
+  }
+
+  .lesson-prose > .lesson-section > .lesson-section-content {
+    padding: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
