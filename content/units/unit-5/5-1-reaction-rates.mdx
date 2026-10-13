@@ -1,0 +1,71 @@
+---
+title: "Reaction Rates"
+unit: 5
+topicNumber: "5.1"
+slug: "5-1-reaction-rates"
+summary: "Define reaction rate from concentration change over time and interpret rate data using stoichiometry and particle collisions."
+---
+
+Chemical kinetics asks how fast reactions occur and what controls that speed. Thermodynamics can indicate whether a process is energetically favorable, but it does not by itself tell you whether the process happens in a millisecond or over years. Rate data connect observable concentration changes to the particle-level events that produce them.
+
+<LessonSection title="1. Define rate from concentration change" description="Track how quickly reactants disappear or products form" defaultOpen>
+
+A reaction rate describes concentration change per unit time. For a product P, an average formation rate over an interval is:
+
+**rate of formation of P = Δ[P] / Δt**
+
+For a reactant A, concentration decreases, so Δ[A] is negative. The rate of disappearance is usually written as **−Δ[A] / Δt** so the reported rate is positive. Concentration is commonly measured in mol·L⁻¹ (M), and time may be seconds, giving rate units of M·s⁻¹.
+
+An average rate applies over a finite interval. An instantaneous rate is the slope of the tangent to the concentration-versus-time curve at one moment. As a reaction proceeds, reactant concentrations often decrease, collision frequency changes, and the rate changes.
+
+<QuickCheck question="A reactant concentration falls from 0.80 M to 0.50 M over 10 s. What is its average rate of disappearance?" options={["−0.030 M·s⁻¹","0.030 M·s⁻¹","0.13 M·s⁻¹","3.0 M·s⁻¹"]} correctIndex={1} explanation="Δ[A]/Δt = (0.50 − 0.80) M / 10 s = −0.030 M·s⁻¹. The rate of disappearance is the negative of this value, +0.030 M·s⁻¹." />
+
+</LessonSection>
+
+<LessonSection title="2. Relate reactant and product rates with coefficients" description="Different species can change at different numerical rates">
+
+For **2N₂O₅ → 4NO₂ + O₂**, four moles of NO₂ form for every one mole of O₂ formed. Their concentration formation rates therefore differ by a factor of four if measured over the same interval.
+
+A stoichiometrically normalized reaction rate accounts for the coefficients. For aA → bB, the reaction rate is **−(1/a) Δ[A]/Δt = +(1/b) Δ[B]/Δt**. This means the normalized rate is consistent regardless of which species is monitored. When a question asks only for the disappearance rate of a particular reactant or the formation rate of a particular product, do not divide by the coefficient unless it asks for the normalized reaction rate.
+
+<WorkedExample title="Worked example: compare species rates">
+For 2NO₂(g) → 2NO(g) + O₂(g), suppose O₂ forms at 0.015 M·s⁻¹ over an interval.
+
+The equation produces 2 mol NO for each 1 mol O₂, so NO forms at twice the rate: 0.030 M·s⁻¹. Two mol NO₂ disappear for each mol O₂ formed, so NO₂ disappears at 0.030 M·s⁻¹.
+
+The normalized reaction rate is −(1/2)Δ[NO₂]/Δt = +(1/2)Δ[NO]/Δt = Δ[O₂]/Δt = 0.015 M·s⁻¹.
+</WorkedExample>
+
+<QuickCheck question="For A → 2B, if B forms at 0.40 M·s⁻¹, how fast does A disappear?" options={["0.10 M·s⁻¹","0.20 M·s⁻¹","0.40 M·s⁻¹","0.80 M·s⁻¹"]} correctIndex={1} explanation="Two B particles form for each A particle consumed. A disappears at half the rate B forms: 0.20 M·s⁻¹." />
+
+</LessonSection>
+
+<LessonSection title="3. Read concentration–time graphs" description="Slope represents rate">
+
+On a concentration-versus-time graph, the slope is Δconcentration/Δtime. A steep slope means a large rate magnitude; a flatter slope means a smaller rate magnitude. A reactant curve usually slopes downward, while a product curve usually slopes upward. If the slope approaches zero, the concentration is changing very slowly.
+
+Do not confuse the height of a curve with its slope. A high product concentration does not necessarily mean the product is forming quickly at that moment. The rate depends on the slope, not the concentration value alone.
+
+<WorkedExample title="Worked example: interpret a graph in words">
+Imagine a reactant concentration curve that falls steeply at first and then levels off. The reaction is fastest early in the interval and slows as time passes. In a typical closed system, the reactant is being consumed and its concentration is falling, so there are fewer reactant particles available for productive collisions.
+</WorkedExample>
+
+<QuickCheck question="At which point on a reactant concentration–time curve is the rate of disappearance greatest?" options={["Where the curve is flattest","Where the concentration is highest, regardless of slope","Where the downward slope has the greatest magnitude","At the final time in every reaction"]} correctIndex={2} explanation="The magnitude of the slope gives the rate. A steeper downward slope means a faster decrease in reactant concentration." />
+
+</LessonSection>
+
+<LessonSection title="4. Connect macroscopic rate to particles" description="Collisions are necessary, but not every collision reacts">
+
+Reactant particles must encounter one another for many reactions to occur. A collision can lead to products only if the particles have sufficient energy and an appropriate orientation. Increasing concentration often increases the frequency of collisions, but the rate also depends on the activation-energy barrier and the molecular details of the reaction.
+
+Rate data alone do not reveal every elementary step. They describe how quickly concentrations change under measured conditions. To determine the rate law or mechanism, chemists combine rate measurements with models and additional evidence.
+
+For a foundation in rate measurements, see [OpenStax Chemistry 2e: Factors Affecting Reaction Rates](https://openstax.org/books/chemistry-2e/pages/12-2-factors-affecting-reaction-rates).
+
+<QuickCheck question="Why does a concentration–time curve often become less steep as reactants are consumed?" options={["The atoms become heavier","The reaction rate often decreases as reactant concentration falls","The balanced equation changes over time","The reaction becomes unbalanced"]} correctIndex={1} explanation="Lower reactant concentration often means fewer collisions per unit time, so the rate decreases. The balanced equation and atom conservation do not change." />
+
+</LessonSection>
+
+## Readiness check
+
+You should be able to calculate average disappearance and formation rates, connect species rates using balanced coefficients, interpret graph slopes, and distinguish concentration from rate.
