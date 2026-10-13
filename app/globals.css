@@ -474,3 +474,71 @@ body {
     transition: none;
   }
 }
+
+
+.lesson-main-panel {
+  background:
+    radial-gradient(ellipse at 100% 0%, rgb(90 169 255 / 0.035), transparent 35rem),
+    linear-gradient(155deg, rgb(13 18 28 / 0.92), rgb(10 14 22 / 0.96));
+  box-shadow: 0 22px 70px rgb(0 0 0 / 0.12);
+}
+
+.lesson-header {
+  background:
+    linear-gradient(110deg, rgb(18 28 42 / 0.98), rgb(13 19 30 / 0.9)),
+    var(--color-card);
+}
+
+.lesson-header-glow {
+  position: absolute;
+  right: -4rem;
+  top: -9rem;
+  width: 20rem;
+  height: 20rem;
+  border: 1px solid rgb(52 211 153 / 0.12);
+  border-radius: 9999px;
+  box-shadow: 0 0 0 2rem rgb(52 211 153 / 0.018), 0 0 0 4rem rgb(52 211 153 / 0.012);
+  pointer-events: none;
+}
+
+.topic-nav-card {
+  background: linear-gradient(145deg, rgb(255 255 255 / 0.025), rgb(255 255 255 / 0.008));
+}
+
+.topic-nav-card:hover {
+  background: linear-gradient(145deg, rgb(52 211 153 / 0.045), rgb(255 255 255 / 0.01));
+}
+
+.lesson-outline-list button {
+  border: 1px solid transparent;
+}
+
+.lesson-outline-list button[aria-current="location"] {
+  border-color: rgb(52 211 153 / 0.18);
+}
+
+.lesson-prose > h2:first-child {
+  margin-top: 0;
+}
+
+.lesson-prose > p:first-of-type {
+  margin-top: 0;
+}
+
+.lesson-prose .quick-check button:focus-visible,
+.lesson-prose a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  .lesson-main-panel {
+    border-radius: 1rem;
+    padding: 1rem;
+  }
+
+  .lesson-header-glow {
+    right: -10rem;
+    opacity: 0.7;
+  }
+}
