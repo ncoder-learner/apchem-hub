@@ -6,7 +6,11 @@ slug: "2-7-vsepr-and-hybridization"
 summary: "Why molecules take the 3D shapes they do, how to predict every shape from a Lewis structure, and what that shape has to do with polarity."
 ---
 
-A Lewis structure is flat. Real molecules are not. Every molecule you've drawn so far in this unit has electrons arranged on a piece of paper, all in one plane, with bond angles that look suspiciously like 90° or 180° just because that's easy to draw. None of that is real. This lesson is about closing the gap between the flat diagram and the actual three-dimensional object, and it does that in three stages: first by looking at what a bond actually *is* physically, then by figuring out how one atom can form more bonds than its electron configuration seems to allow, and finally by predicting the real shape the molecule settles into and what that shape does to the molecule's behavior.
+This lesson connects three ideas that are often taught separately: how covalent bonds form, how hybridization describes bonding, and how to predict a molecule's 3D shape. Work through one section at a time. The diagrams show the pattern; the quick checks make you retrieve it from memory.
+
+**By the end, you should be able to:** count sigma and pi bonds, determine steric number and hybridization, predict molecular geometry, and use shape to reason about polarity.
+
+<LessonSection title="1. Bonding: sigma and pi" description="See what single, double, and triple bonds actually contain." defaultOpen>
 
 ## Stage 1: What a bond looks like up close
 
@@ -61,9 +65,15 @@ Add the sigma bonds: 1 + 1 + 1 + 3 = **6 sigma bonds**. Add the pi bonds: 1 + 0 
 The move that makes this manageable: never try to count sigma and pi bonds for the whole structure in one glance. Go bond by bond, classify each one as single/double/triple, convert using the rule above, then add at the end.
 </WorkedExample>
 
-<Mistake title="\"A double bond is just two bonds, so it's 2 sigma bonds\"">
+<Mistake title="A double bond is not two sigma bonds">
 This is the single most common error in sigma/pi counting, and it comes from treating "double bond" as meaning "two of the same thing" instead of "two *different* things stacked together." A double bond is **one** sigma bond plus **one** pi bond — never two sigma bonds. The reason is purely geometric: there is exactly one straight-line, head-on path between two nuclei, so only one bond can ever be a sigma bond between any given pair of atoms. Every additional bond beyond the first, for that same atom pair, has to be a pi bond, because there's no second axis left for it to form head-on. If you ever count more than one sigma bond between two specific atoms, stop — that's the signal something went wrong.
 </Mistake>
+
+<QuickCheck question="How many sigma and pi bonds are in a C≡N triple bond?" options={['Three sigma, zero pi', 'One sigma, two pi', 'Two sigma, one pi', 'One sigma, one pi']} correctIndex={1} explanation="A triple bond contains one head-on sigma overlap and two side-by-side pi overlaps." />
+
+</LessonSection>
+
+<LessonSection title="2. Hybridization" description="Connect steric number to orbital hybridization.">
 
 ## Stage 2: Hybridization — resolving a contradiction
 
@@ -105,6 +115,14 @@ A double or triple bond still only counts as **one** attachment for steric-numbe
 You're responsible for naming sp, sp², and sp³ hybridization and connecting each one to its steric number. You are **not** expected to justify sp³d or sp³d² using d-orbital involvement — modern bonding theory doesn't actually support real d-orbital participation in most of those "expanded octet" cases anyway, which is part of why the exam backs off this specific claim. You'll still need to predict the *shapes* that come from steric numbers 5 and 6 (trigonal bipyramidal, octahedral, and everything derived from them) — you just won't be asked to name their hybridization.
 </Connects>
 
+<QuickCheck question="What is the steric number of oxygen in H₂O?" options={['2', '3', '4', '6']} correctIndex={2} explanation="Oxygen has two O–H sigma bonds and two lone pairs. Two plus two gives a steric number of four, corresponding to sp³ hybridization in the course model." />
+
+</LessonSection>
+
+<QuickCheck question="A central atom has four electron domains and no lone pairs. What is its molecular geometry?" options={['Linear', 'Tetrahedral', 'Trigonal planar', 'Trigonal pyramidal']} correctIndex={1} explanation="Four bonding domains spread out in three dimensions in a tetrahedral arrangement. With no lone pairs, the electron geometry and molecular geometry are both tetrahedral." />
+
+<LessonSection title="3. VSEPR: predict the 3D shape" description="Use electron domains and lone pairs to work out molecular geometry.">
+
 ## Stage 3: VSEPR — predicting the actual 3D shape
 
 Now that you can count how many regions of electron density surround a central atom (that's the steric number from Stage 2 again — same number, same count), you can predict the molecule's real shape. The logic is almost embarrassingly simple:
@@ -114,6 +132,8 @@ Now that you can count how many regions of electron density surround a central a
 That one sentence is the entire content of **VSEPR theory** (Valence Shell Electron Pair Repulsion). Everything else in this section is just working out what "as far apart as possible" looks like for different numbers of regions.
 
 One distinction matters a lot here: **electron geometry** counts every region, bonds and lone pairs alike. **Molecular geometry** only describes where the *atoms* are — lone pairs are real, and they do push bonds around, but they're invisible when you look at the molecule's actual shape, because there's no atom sitting out there, just electron density. Two molecules can share the same electron geometry and have completely different molecular geometries, depending on how many of those regions are lone pairs instead of bonds. That's the whole reason water looks bent instead of looking like oxygen's actual tetrahedral electron arrangement.
+
+<LessonSection title="Steric numbers 2–4" description="Linear, trigonal planar, bent, tetrahedral, and trigonal pyramidal." defaultOpen>
 
 ### Two regions: linear
 
@@ -163,9 +183,13 @@ Four regions spreading out as far as possible in 3D space do **not** form a flat
 Notice the pattern across tetrahedral-derived shapes: 109.5° with zero lone pairs, ~107° with one, ~104.5° with two. Every time you trade a bonding pair for a lone pair, you're trading something whose electron density is shared (and therefore pulled in, tighter, by two nuclei) for something whose electron density belongs to one atom alone (and therefore spreads out more, taking up more angular space and pushing its neighbors). That's not three separate facts to remember — it's one mechanism, applied repeatedly.
 </Lightbulb>
 
-<Mistake title="Assuming water is linear or 109.5° because oxygen is \"tetrahedral\"">
+<Mistake title="Water is not linear or 109.5 degrees">
 Oxygen's **electron geometry** in water genuinely is tetrahedral — there are four regions of density around it. But the question "what shape is the molecule" is asking about **molecular geometry**, which only counts atoms, and water only has two atoms attached to its central oxygen. The two lone pairs are real, they do the squeezing described above, but they are invisible in the final molecular shape. Always answer "electron geometry" and "molecular geometry" as two separate questions, even when a problem only seems to be asking about one of them, because mixing them up is the single most common VSEPR error on the exam.
 </Mistake>
+
+</LessonSection>
+
+<LessonSection title="Steric number 5" description="Trigonal bipyramidal geometry and its lone-pair variants.">
 
 ### Five regions: trigonal bipyramidal and its relatives
 
@@ -192,6 +216,10 @@ Three atoms remain, roughly in a T. ClF₃ is the standard example.
 **Three lone pairs (all equatorial): linear.**
 
 With three equatorial lone pairs and only the two axial bonds remaining, the molecule looks linear again — just like the two-region case, but arrived at from a completely different steric number. XeF₂ is the standard example: two bonds, three lone pairs, steric number 5.
+
+</LessonSection>
+
+<LessonSection title="Steric number 6" description="Octahedral geometry, square pyramidal, and square planar.">
 
 ### Six regions: octahedral and its relatives
 
@@ -225,6 +253,8 @@ Four atoms remain, all in one flat plane. XeF₄ is the standard example.
 Every VSEPR prediction on the exam follows exactly this five-step path: Lewis structure → steric number → electron geometry from the steric number → lone pair placement if relevant → molecular geometry. Memorizing the final shapes is far less useful than being able to rebuild them through this chain every time.
 </WorkedExample>
 
+</LessonSection>
+
 ### Simulation: explore the shapes yourself
 
 Static diagrams flatten something that's genuinely three-dimensional. Use the simulation below to build molecules with different numbers of bonding and lone pairs and rotate them freely — pay particular attention to how adding a lone pair visibly pushes the remaining bonds closer together, which is the exact effect described above for every shape derived from tetrahedral and trigonal-bipyramidal geometry.
@@ -235,6 +265,10 @@ Static diagrams flatten something that's genuinely three-dimensional. Use the si
   caption="Switch to “Real Molecules” mode once you're comfortable with the model mode, to see these shapes on actual molecules rather than generic electron-pair placeholders."
 />
 
+</LessonSection>
+
+<LessonSection title="4. Polarity: why shape matters" description="Determine whether bond dipoles cancel.">
+
 ## Stage 4: Polarity — what the shape is actually for
 
 Knowing a molecule's shape isn't just a geometry exercise — it's the key to predicting how the molecule behaves, and the first big payoff is **polarity**.
@@ -243,7 +277,7 @@ A bond is polar when the two atoms sharing it don't pull equally on the shared e
 
 The test is whether the molecule has an **unbalanced region of electron density** — somewhere that charge is piling up without an equal and opposite pile-up to cancel it.
 
-<Mistake title="Using \"symmetry\" as the test for polarity">
+<Mistake title="Symmetry alone does not determine polarity">
 You'll see this shortcut everywhere, and it's not quite right. A molecule can be perfectly symmetric on paper and still be polar, and the real test was never about symmetry — it's about whether electron density is balanced. The cleanest way to check: does the molecule have exactly one lone pair sitting on the central atom with nothing to balance it? If so, it's almost certainly polar, because one unshared pair of electrons is, by definition, an unbalanced pile of negative charge with nothing opposite it to cancel it out. Molecules with zero lone pairs on a symmetric central atom (like CO₂ or SF₆), or with lone pairs arranged in a perfectly opposing pattern (like XeF₄'s two lone pairs on opposite sides), end up balanced and nonpolar — but check the actual charge distribution, not just whether the shape "looks" symmetric.
 </Mistake>
 
@@ -257,6 +291,11 @@ You'll see this shortcut everywhere, and it's not quite right. A molecule can be
 **XeF₄ (square planar, two lone pairs on xenon):** two lone pairs, but they sit on exact opposite sides of the central atom (180° apart), so they cancel each other the same way two equal, opposing bond dipoles would. **Nonpolar**, despite having lone pairs — proof that "has lone pairs" alone isn't the test; *balanced* versus *unbalanced* is.
 </WorkedExample>
 
+<QuickCheck question="Why is CO₂ nonpolar even though each C=O bond is polar?" options={['Carbon has no valence electrons', 'The molecule is linear, so equal bond dipoles cancel', 'Oxygen is less electronegative than carbon', 'The molecule has lone pairs on carbon']} correctIndex={1} explanation="CO₂ is linear. Its two equal C=O bond dipoles point in opposite directions and cancel, so the molecule has no net dipole." />
+
 <Connects title="Where this goes next">
 Polarity determined here is the foundation for Unit 3 (Intermolecular Forces): whether a molecule is polar or nonpolar directly determines which intermolecular forces it can participate in, which in turn determines boiling point, solubility, and nearly everything else in that unit. If you walk into Unit 3 shaky on reading polarity off a VSEPR shape, that entire unit gets harder than it needs to be — this is worth being genuinely solid on, not just exam-ready on.
 </Connects>
+
+</LessonSection>
+
