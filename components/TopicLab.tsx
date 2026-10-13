@@ -72,7 +72,53 @@ function BalanceEquation() {
     </div>
   </Frame>;
 }
-function UnitFour() {
+function NetIonicLab() {
+  const [showSpectators,setShowSpectators]=useState(false);
+  return <Frame unit="4 · Net ionic equations" title="Remove spectator ions" takeaway="Spectator ions appear unchanged on both sides of the complete ionic equation, so cancel them to obtain the net ionic equation. Only species that undergo a chemical change remain.">
+    <div className="rounded-xl border border-border bg-bg/50 p-4"><p className="text-center text-lg font-semibold">AgNO₃(aq) + NaCl(aq) → AgCl(s) + NaNO₃(aq)</p><div className="my-4 grid gap-3 sm:grid-cols-2"><div className="rounded-lg border border-border p-3"><div className="mb-2 text-xs uppercase tracking-wide text-ink-dim">Complete ionic equation</div><p>Ag⁺ + NO₃⁻ + Na⁺ + Cl⁻ → AgCl(s) + Na⁺ + NO₃⁻</p></div><div className="rounded-lg border border-border p-3"><div className="mb-2 text-xs uppercase tracking-wide text-ink-dim">Net ionic equation</div><p className="font-semibold text-emerald-300">Ag⁺(aq) + Cl⁻(aq) → AgCl(s)</p></div></div><label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={showSpectators} onChange={e=>setShowSpectators(e.target.checked)} className="accent-emerald-400"/> Highlight the spectator ions in the complete equation</label>{showSpectators&&<p className="mt-3 rounded-lg border border-amber-300/30 bg-amber-300/5 p-3 text-sm text-amber-200">Na⁺ and NO₃⁻ stay dissolved and unchanged. They cancel; Ag⁺ and Cl⁻ form the precipitate.</p>}</div>
+  </Frame>;
+}
+function TitrationLab() {
+  const [volume,setVolume]=useState(25); const [acid,setAcid]=useState(.1); const [base,setBase]=useState(.1);
+  const calc=(v:number)=>{const h=25*acid/1000,oh=v*base/1000,total=(25+v)/1000;const excess=h-oh;if(Math.abs(excess)<1e-9)return 7;return excess>0?-Math.log10(excess/total):14+Math.log10((-excess)/total);};
+  const ph=calc(volume);
+  const pts=Array.from({length:51},(_,i)=>({x:i,y:Math.max(0,Math.min(14,calc(i)))}));
+  const path=pts.map((p,i)=>(i?"L":"M")+(35+p.x*7.5)+","+(15+(14-p.y)/14*145)).join(" ");
+  return <Frame unit="4 · Titration" title="Follow pH through a strong-acid/strong-base titration" takeaway="Before equivalence, excess acid controls pH; at equivalence, stoichiometric amounts have reacted; after equivalence, excess base controls pH. The steep change is why indicators work only over suitable pH ranges.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="NaOH added" min={0} max={50} step={1} value={volume} onChange={setVolume} suffix=" mL"/><Slider label="Initial strong-acid concentration" min={.05} max={.2} step={.01} value={acid} onChange={setAcid} suffix=" M"/><Slider label="Strong-base concentration" min={.05} max={.2} step={.01} value={base} onChange={setBase} suffix=" M"/><div className="rounded-lg border border-border p-4"><div className="text-xs text-ink-dim">Estimated pH</div><div className="text-3xl font-bold">{ph.toFixed(2)}</div><div className="text-xs text-ink-dim">{Math.abs(25*acid-volume*base)<1e-8?"At equivalence":25*acid>volume*base?"Excess strong acid":"Excess strong base"}</div></div></div><div className="rounded-xl border border-border bg-bg/50 p-3"><svg viewBox="0 0 440 210" className="w-full" role="img" aria-label="Strong acid and strong base titration curve"><line x1="35" y1="160" x2="420" y2="160" stroke="var(--color-ink-dim)"/><line x1="35" y1="15" x2="35" y2="160" stroke="var(--color-ink-dim)"/><path d={path} fill="none" stroke="#34d399" strokeWidth="3"/><line x1={35+volume*7.5} y1="15" x2={35+volume*7.5} y2="160" stroke="#f5c454" strokeDasharray="4 4"/><text x="225" y="192" textAnchor="middle" fill="var(--color-ink-dim)" fontSize="12">NaOH added (mL)</text></svg><p className="text-xs text-ink-dim">Simplified strong acid–strong base model; ignores activity effects and assumes 25.0 mL initial acid.</p></div></div>
+  </Frame>;
+}
+function ReactionTypeLab() {
+  const [kind,setKind]=useState("precipitation");
+  const items:Record<string,{equation:string;clue:string}>={"precipitation":{equation:"AgNO₃(aq) + NaCl(aq) → AgCl(s) + NaNO₃(aq)",clue:"An insoluble ionic solid forms from aqueous ions."},"acid-base":{equation:"HCl(aq) + NaOH(aq) → NaCl(aq) + H₂O(l)",clue:"An acid and a base react to form water and a salt."},"redox":{equation:"Zn(s) + Cu²⁺(aq) → Zn²⁺(aq) + Cu(s)",clue:"Electrons transfer; zinc is oxidized and copper(II) is reduced."},"gas":{equation:"2 H₂O₂(aq) → 2 H₂O(l) + O₂(g)",clue:"One reactant breaks down into multiple products."}};
+  return <Frame unit="4 · Reaction types" title="Classify the reaction from its evidence" takeaway="Classify using what changes in the equation: formation of a solid, acid–base neutralization, electron transfer, or decomposition. More than one useful description can sometimes apply to a real reaction.">
+    <label className="mb-2 block text-sm text-ink-dim" htmlFor="reaction-kind">Choose a reaction pattern</label><select id="reaction-kind" value={kind} onChange={e=>setKind(e.target.value)} className="mb-4 w-full rounded-lg border border-border bg-bg px-3 py-2">{Object.keys(items).map(k=><option key={k} value={k}>{k==="gas"?"Decomposition":k==="acid-base"?"Acid–base":k==="redox"?"Oxidation–reduction":"Precipitation"}</option>)}</select><div className="rounded-xl border border-border bg-bg/50 p-4"><p className="text-center text-lg font-semibold">{items[kind].equation}</p><p className="mt-3 text-sm text-emerald-300">{items[kind].clue}</p></div>
+  </Frame>;
+}
+function AcidBaseLab() {
+  const [molarity,setMolarity]=useState(.1);const [volume,setVolume]=useState(25);const [baseM,setBaseM]=useState(.1);const [baseV,setBaseV]=useState(20);
+  const acidMol=molarity*volume/1000,baseMol=baseM*baseV/1000;
+  return <Frame unit="4 · Acid–base reactions" title="Track neutralization by moles" takeaway="For a 1:1 strong acid–strong base reaction, equivalence occurs when moles of H⁺ equal moles of OH⁻. Concentration alone is not enough; volume determines how many moles are present.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Acid concentration" min={.05} max={.2} step={.01} value={molarity} onChange={setMolarity} suffix=" M"/><Slider label="Acid volume" min={5} max={50} step={1} value={volume} onChange={setVolume} suffix=" mL"/><Slider label="Base concentration" min={.05} max={.2} step={.01} value={baseM} onChange={setBaseM} suffix=" M"/><Slider label="Base volume" min={5} max={50} step={1} value={baseV} onChange={setBaseV} suffix=" mL"/></div><div className="rounded-xl border border-border p-4"><p className="text-sm text-ink-dim">Initial acid amount</p><p className="text-xl font-bold">{(acidMol*1000).toFixed(2)} mmol</p><p className="mt-3 text-sm text-ink-dim">Added base amount</p><p className="text-xl font-bold">{(baseMol*1000).toFixed(2)} mmol</p><p className={Math.abs(acidMol-baseMol)<1e-8?"mt-4 font-semibold text-emerald-300":"mt-4 font-semibold text-amber-200"}>{Math.abs(acidMol-baseMol)<1e-8?"Stoichiometric equivalence":acidMol>baseMol?"Acid remains in excess":"Base remains in excess"}</p></div></div>
+  </Frame>;
+}
+function RedoxLab() {
+  const [fe,setFe]=useState(2);
+  return <Frame unit="4 · Oxidation–reduction" title="Track electron transfer" takeaway="Oxidation is an increase in oxidation state and corresponds to loss of electrons; reduction is a decrease in oxidation state and corresponds to gain of electrons. The electrons lost and gained must balance.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Starting iron oxidation state" min={0} max={3} step={1} value={fe} onChange={setFe}/><div className="rounded-xl border border-border bg-bg/50 p-4"><p>Fe{fe===0?"(s)":fe===2?"²⁺(aq)":"³⁺(aq)"} → Fe³⁺(aq)</p><p className="mt-3 text-sm text-ink-dim">Change in oxidation state</p><p className="text-2xl font-bold">{3-fe>0?"+":""}{3-fe}</p></div></div><div className="rounded-xl border border-border p-4"><p className="font-semibold text-emerald-300">{fe<3?"Oxidation: iron loses "+(3-fe)+" electron"+(3-fe===1?"":"s"):"No oxidation-state change"}</p><p className="mt-3 text-sm text-ink-dim">In a complete redox equation, another species must accept the electrons released by iron. This model tracks only iron's oxidation half-reaction.</p></div></div>
+  </Frame>;
+}
+function UnitFour({ topicNumber }: { topicNumber: string }) {
+  if (topicNumber === "4.1" || topicNumber === "4.3") return <BalanceEquation />;
+  if (topicNumber === "4.2") return <NetIonicLab />;
+  if (topicNumber === "4.4") return <ReactionTypeLab />;
+  if (topicNumber === "4.6") return <TitrationLab />;
+  if (topicNumber === "4.7") return <ReactionTypeLab />;
+  if (topicNumber === "4.8") return <AcidBaseLab />;
+  if (topicNumber === "4.9") return <RedoxLab />;
+  return <LimitingReactantLab />;
+}
+function LimitingReactantLab() {
   const [a,setA]=useState(4);const [b,setB]=useState(6);const extent=Math.min(a,b/2);const leftA=a-extent;const leftB=b-2*extent;
   return <Frame unit="4 · Reactions" title="Find the limiting reactant" takeaway="For A + 2B → products, each reaction event consumes one A and two B. The limiting reactant runs out first. Compare available amount divided by the stoichiometric coefficient, not just raw amounts.">
     <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Starting A" min={1} max={12} step={1} value={a} onChange={setA} suffix=" mol"/><Slider label="Starting B" min={1} max={20} step={1} value={b} onChange={setB} suffix=" mol"/><div className="mt-4 space-y-2 text-sm"><p>Product formed: <strong>{extent.toFixed(2)} mol</strong></p><p>A remaining: <strong>{leftA.toFixed(2)} mol</strong></p><p>B remaining: <strong>{leftB.toFixed(2)} mol</strong></p><p className="font-semibold text-emerald-300">Limiting reactant: {a<b/2?"A":b/2<a?"B":"Neither; exact ratio"}</p></div></div><Bars rows={[{label:"A initially",value:a,max:20,color:"#5aa9ff"},{label:"B initially",value:b,max:20,color:"#f5c454"},{label:"A remaining",value:leftA,max:20,color:"#5aa9ff"},{label:"B remaining",value:leftB,max:20,color:"#f5c454"}]}/></div>
@@ -150,6 +196,6 @@ function UnitNine() {
   </Frame>;
 }
 export function TopicLab({ unitId, topicNumber, title }: TopicLabProps) {
-  const labs: Record<number, React.ReactNode> = {1:<UnitOne/>,2:<UnitTwo/>,3:<UnitThree/>,4:topicNumber === "4.1" || topicNumber === "4.3" ? <BalanceEquation/> : <UnitFour/>,5:<UnitFive topicNumber={topicNumber}/>,6:<UnitSix/>,7:<UnitSeven/>,8:<UnitEight/>,9:<UnitNine/>};
+  const labs: Record<number, React.ReactNode> = {1:<UnitOne/>,2:<UnitTwo/>,3:<UnitThree/>,4:<UnitFour topicNumber={topicNumber}/>,5:<UnitFive topicNumber={topicNumber}/>,6:<UnitSix/>,7:<UnitSeven/>,8:<UnitEight/>,9:<UnitNine/>};
   return <div data-topic={topicNumber} data-title={title}>{labs[unitId] ?? null}</div>;
 }
