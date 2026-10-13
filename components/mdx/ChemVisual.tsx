@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 
 export type ChemVisualKind =
+  | "mole-count"
+  | "composition"
   | "atomic-model"
   | "isotope"
   | "mass-spectrum"
@@ -18,6 +20,8 @@ export type ChemVisualKind =
   | "geometry";
 
 const labels: Record<ChemVisualKind, { title: string; caption: string }> = {
+  "mole-count": { title: "The mole connects particles to measurable samples", caption: "A mole is a fixed number of specified entities. Molar mass connects that particle count to a measurable mass in grams." },
+  composition: { title: "Mass data become a mole ratio", caption: "Convert each element’s measured mass to moles before comparing the amounts. Empirical formulas report the simplest whole-number atom ratio." },
   "atomic-model": { title: "Inside an atom", caption: "The nucleus contains protons and neutrons; electrons occupy quantized energy levels around it. The drawing is a model, not a scale diagram." },
   isotope: { title: "Same element, different isotope", caption: "Isotopes have the same proton count but different neutron counts. Changing the neutron count changes mass, not atomic number." },
   "mass-spectrum": { title: "Reading a simplified mass spectrum", caption: "Each peak represents ions with a particular mass-to-charge ratio. Peak height or area reflects relative abundance, depending on the instrument." },
@@ -55,6 +59,19 @@ export function ChemVisual({ kind, children }: { kind: ChemVisualKind; children?
     </div>
     <div className="chem-visual-art px-3 py-4 sm:px-5">
       <svg viewBox="0 0 600 220" role="img" aria-label={meta.title} className="mx-auto block w-full max-w-2xl">
+        {kind === "mole-count" && <>
+          {Array.from({length:24},(_,i)=><g key={i}><circle cx={70+(i%8)*25} cy={45+Math.floor(i/8)*30} r="5" fill="#5aa9ff"/><circle cx={78+(i%8)*25} cy={45+Math.floor(i/8)*30} r="4" fill="#34d399"/></g>)}
+          <path d="M285 83 L325 83 M315 75 L325 83 L315 91" stroke="#93a1b7" strokeWidth="2" fill="none"/>
+          <text x="355" y="54" fill="#34d399" fontSize="14" fontWeight="600">1 mole</text><text x="355" y="81" fill="#e6ecf5" fontSize="17">6.022 × 10²³</text><text x="355" y="103" fill="#93a1b7" fontSize="12">specified entities</text>
+          <text x="300" y="160" textAnchor="middle" fill="#e6ecf5" fontSize="13">Count particles → use molar mass → weigh the sample</text><text x="300" y="185" textAnchor="middle" fill="#93a1b7" fontSize="12">Dots are illustrative, not drawn to scale.</text>
+        </>}
+        {kind === "composition" && <>
+          <text x="150" y="34" textAnchor="middle" fill="#e6ecf5" fontSize="14" fontWeight="600">Measured mass</text>
+          {[{x:80,w:65,c:"#5aa9ff",l:"C"},{x:145,w:20,c:"#f5c454",l:"H"},{x:165,w:90,c:"#34d399",l:"O"}].map(p=><g key={p.l}><rect x={p.x} y="65" width={p.w} height="28" rx="3" fill={p.c}/><text x={p.x+p.w/2} y="83" textAnchor="middle" fill="#0a0e16" fontSize="12" fontWeight="700">{p.l}</text></g>)}
+          <path d="M270 79 L325 79 M315 71 L325 79 L315 87" stroke="#93a1b7" strokeWidth="2" fill="none"/>
+          <text x="420" y="48" textAnchor="middle" fill="#e6ecf5" fontSize="14" fontWeight="600">Convert to moles</text><text x="420" y="78" textAnchor="middle" fill="#5aa9ff" fontSize="13">mass C ÷ 12.01</text><text x="420" y="103" textAnchor="middle" fill="#f5c454" fontSize="13">mass H ÷ 1.008</text><text x="420" y="128" textAnchor="middle" fill="#34d399" fontSize="13">mass O ÷ 16.00</text>
+          <text x="300" y="176" textAnchor="middle" fill="#93a1b7" fontSize="12">Divide each mole amount by the smallest to get a ratio.</text>
+        </>}
         {kind === "atomic-model" && <>
           <Atom x={160} y={100} protons={3} neutrons={4} label="Nucleus" />
           <text x="285" y="78" fill="#34d399" fontSize="14" fontWeight="600">Electrons</text>
