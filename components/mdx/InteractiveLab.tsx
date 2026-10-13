@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-type LabKind = "kinetics" | "rate-law" | "collision" | "energy-profile" | "balance" | "gas-law" | "ph" | "net-ionic" | "stoichiometry" | "titration" | "reaction-types" | "particles" | "redox";
+type LabKind = "kinetics" | "rate-law" | "collision" | "energy-profile" | "balance" | "gas-law" | "ph" | "net-ionic" | "stoichiometry" | "titration" | "reaction-types" | "particles" | "redox" | "coulomb" | "bond-energy" | "beer-lambert";
 
 interface InteractiveLabProps {
   kind: LabKind;
@@ -20,7 +20,7 @@ export function InteractiveLab({ kind, title }: InteractiveLabProps) {
   if (kind === "collision") return <CollisionLab title={title} />;
   if (kind === "energy-profile") return <EnergyProfileLab title={title} />;
   if (kind === "gas-law") return <GasLawLab title={title} />;
-  if (kind === "ph") return <PhLab title={title} />;\n  if (kind === "net-ionic") return <NetIonicLab title={title} />;\n  if (kind === "stoichiometry") return <StoichiometryLab title={title} />;\n  if (kind === "titration") return <TitrationLab title={title} />;\n  if (kind === "reaction-types") return <ReactionTypesLab title={title} />;\n  if (kind === "particles") return <ParticleChangeLab title={title} />;\n  if (kind === "redox") return <RedoxLab title={title} />;
+  if (kind === "ph") return <PhLab title={title} />;\n  if (kind === "net-ionic") return <NetIonicLab title={title} />;\n  if (kind === "stoichiometry") return <StoichiometryLab title={title} />;\n  if (kind === "titration") return <TitrationLab title={title} />;\n  if (kind === "reaction-types") return <ReactionTypesLab title={title} />;\n  if (kind === "particles") return <ParticleChangeLab title={title} />;\n  if (kind === "redox") return <RedoxLab title={title} />;\n  if (kind === "coulomb") return <CoulombLab title={title} />;\n  if (kind === "bond-energy") return <BondEnergyLab title={title} />;\n  if (kind === "beer-lambert") return <BeerLambertLab title={title} />;
   return <KineticsLab title={title} />;
 }
 
@@ -166,6 +166,45 @@ function RedoxLab({ title }: { title?: string }) {
     <div className="grid gap-3 sm:grid-cols-2"><div className="rounded-xl border border-border bg-bg p-4"><p className="text-xs text-ink-dim">{showProducts?"Product":"Reactant"} 1</p><p className="text-xl font-semibold">{showProducts?"Mg²⁺":"Mg(s)"}</p><p className="text-sm">Oxidation number: {showProducts?"+2":"0"}</p><p className="mt-2 text-sm">{showProducts?"Lost 2 e⁻ (oxidized)":"Can lose 2 e⁻"}</p></div><div className="rounded-xl border border-border bg-bg p-4"><p className="text-xs text-ink-dim">{showProducts?"Product":"Reactant"} 2</p><p className="text-xl font-semibold">{showProducts?"Cu(s)":"Cu²⁺(aq)"}</p><p className="text-sm">Oxidation number: {showProducts?"0":"+2"}</p><p className="mt-2 text-sm">{showProducts?"Gained 2 e⁻ (reduced)":"Can gain 2 e⁻"}</p></div></div>
     <button type="button" onClick={()=>setShowProducts(v=>!v)} className="rounded-lg border border-border px-3 py-2 text-sm hover:bg-white/[0.05]">{showProducts?"Reset to reactants":"Show electron transfer"}</button>
     {showProducts&&<p className="rounded-lg bg-emerald-400/10 p-3 text-sm">Mg is the reducing agent because it donates electrons. Cu²⁺ is the oxidizing agent because it accepts electrons. Two electrons lost equal two electrons gained.</p>}
+  </LabFrame>;
+}
+
+
+function CoulombLab({ title }: { title?: string }) {
+  const [q1,setQ1]=useState(1),[q2,setQ2]=useState(1),[r,setR]=useState(2);
+  const force=q1*q2/(r*r);
+  return <LabFrame title={title ?? "Explore electrostatic attraction"}>
+    <p className="text-sm text-ink-dim">Coulomb's law: the magnitude of electrostatic force is proportional to the product of charge magnitudes and inversely proportional to distance squared.</p>
+    <div className="grid gap-4 sm:grid-cols-3"><RangeControl label="Charge magnitude 1" value={q1} min={1} max={3} onChange={setQ1} output={q1+" relative units"}/><RangeControl label="Charge magnitude 2" value={q2} min={1} max={3} onChange={setQ2} output={q2+" relative units"}/><RangeControl label="Separation distance" value={r} min={1} max={5} step={0.5} onChange={setR} output={r.toFixed(1)+" relative units"}/></div>
+    <div className="rounded-xl border border-border bg-bg p-4"><svg viewBox="0 0 320 80" role="img" aria-label="Two charges with adjustable separation" className="w-full"><line x1={45} y1="40" x2={275} y2="40" stroke="var(--color-border)" strokeDasharray="4 4"/><circle cx={160-r*22} cy="40" r={10+q1*3} fill="#60a5fa"/><circle cx={160+r*22} cy="40" r={10+q2*3} fill="#fb7185"/><text x={160-r*22} y="44" fontSize="11" fill="#0a0e16" textAnchor="middle">+</text><text x={160+r*22} y="44" fontSize="11" fill="#0a0e16" textAnchor="middle">+</text><text x="160" y="13" fontSize="10" fill="var(--color-ink-dim)" textAnchor="middle">r = {r.toFixed(1)}</text></svg><p className="text-xs text-ink-dim">Schematic shows two positive charges, so the force is repulsive. Changing either charge changes force linearly; doubling distance makes force one-fourth as large.</p></div>
+    <p className="text-sm">Relative force magnitude: <strong className="text-lg">{force.toFixed(3)}</strong> (proportional to |q₁q₂|/r²).</p>
+    <p className="text-xs text-ink-dim">This compares magnitudes only; it omits Coulomb's constant and uses relative units, not SI force values.</p>
+  </LabFrame>;
+}
+
+function BondEnergyLab({ title }: { title?: string }) {
+  const [depth,setDepth]=useState(50),[r0,setR0]=useState(1.5);
+  const pts=Array.from({length:51},(_,i)=>{const r=0.5+i*0.06;const y=depth*((1-Math.exp(-1.4*(r-r0)))**2-1);return {r,y}});
+  const yMin=-100,yMax=100;
+  const d=pts.map((p,i)=>`${i?"L":"M"} ${30+(p.r-0.5)/3*275} ${15+(yMax-p.y)/(yMax-yMin)*125}`).join(" ");
+  return <LabFrame title={title ?? "Explore a bond potential-energy curve"}>
+    <div className="grid gap-4 sm:grid-cols-2"><RangeControl label="Well depth (bond strength)" value={depth} min={20} max={90} step={5} onChange={setDepth} output={depth+" relative energy units"}/><RangeControl label="Equilibrium distance" value={r0} min={1} max={2.5} step={0.1} onChange={setR0} output={r0.toFixed(1)+" relative distance units"}/></div>
+    <div className="rounded-xl border border-border bg-bg p-2"><svg viewBox="0 0 320 180" role="img" aria-label="Potential energy versus internuclear distance graph" className="w-full"><line x1="30" y1="78" x2="305" y2="78" stroke="var(--color-ink-dim)" strokeDasharray="3 4"/><line x1="30" y1="15" x2="30" y2="145" stroke="var(--color-ink-dim)"/><line x1="30" y1="145" x2="305" y2="145" stroke="var(--color-ink-dim)"/><path d={d} fill="none" stroke="var(--color-blue)" strokeWidth="3"/><line x1={30+(r0-0.5)/3*275} y1="15" x2={30+(r0-0.5)/3*275} y2="145" stroke="var(--color-amber)" strokeDasharray="4 4"/><text x="170" y="168" fontSize="10" fill="var(--color-ink-dim)" textAnchor="middle">Internuclear distance →</text><text x="10" y="82" fontSize="10" fill="var(--color-ink-dim)" textAnchor="middle" transform="rotate(-90 10 82)">Potential energy</text></svg></div>
+    <p className="text-sm">The minimum marks the most stable separation. A deeper well means more energy is required to separate the atoms; moving too close raises energy sharply because repulsion dominates.</p>
+    <p className="text-xs text-ink-dim">Schematic Morse-like potential; units are illustrative. It teaches the shape and relationships, not a fit to a specific molecule.</p>
+  </LabFrame>;
+}
+
+function BeerLambertLab({ title }: { title?: string }) {
+  const [c,setC]=useState(0.01),[length,setLength]=useState(1);
+  const epsilon=120, absorbance=epsilon*c*length;
+  const points=Array.from({length:21},(_,i)=>({c:i/20*0.02,a:epsilon*(i/20*0.02)*length}));
+  const d=points.map((p,i)=>`${i?"L":"M"} ${35+p.c/0.02*275} ${140-p.a/Math.max(2,epsilon*0.02*length)*115}`).join(" ");
+  return <LabFrame title={title ?? "Explore the Beer–Lambert relationship"}>
+    <div className="grid gap-4 sm:grid-cols-2"><RangeControl label="Concentration" value={c} min={0} max={0.02} step={0.001} onChange={setC} output={c.toFixed(3)+" mol/L"}/><RangeControl label="Path length" value={length} min={0.5} max={2} step={0.5} onChange={setLength} output={length.toFixed(1)+" cm"}/></div>
+    <div className="grid gap-3 sm:grid-cols-2"><div className="rounded-xl border border-border bg-bg p-4"><p className="text-xs text-ink-dim">Calculated absorbance</p><p className="text-3xl font-semibold">{absorbance.toFixed(3)}</p><p className="mt-2 text-xs text-ink-dim">A = εℓc; ε = 120 L·mol⁻¹·cm⁻¹ (illustrative)</p></div><div className="rounded-xl border border-border bg-bg p-2"><svg viewBox="0 0 320 165" role="img" aria-label="Absorbance versus concentration graph" className="w-full"><line x1="35" y1="15" x2="35" y2="140" stroke="var(--color-ink-dim)"/><line x1="35" y1="140" x2="310" y2="140" stroke="var(--color-ink-dim)"/><path d={d} fill="none" stroke="var(--color-emerald)" strokeWidth="3"/><circle cx={35+c/0.02*275} cy={140-absorbance/Math.max(2,epsilon*0.02*length)*115} r="5" fill="var(--color-amber)"/><text x="170" y="159" fontSize="10" fill="var(--color-ink-dim)" textAnchor="middle">Concentration (mol/L)</text></svg></div></div>
+    <p className="text-sm">At fixed wavelength, ε, and path length, absorbance is directly proportional to concentration. Doubling path length also doubles absorbance in this ideal model.</p>
+    <p className="text-xs text-ink-dim">Assumes a dilute solution within the linear range and a constant molar absorptivity; real measurements can deviate because of instrument and chemical effects.</p>
   </LabFrame>;
 }
 
