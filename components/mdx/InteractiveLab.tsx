@@ -378,11 +378,11 @@ function GasLawLab({ title }: { title?: string }) {
   const pressure = (moles * 0.082057 * temp) / volume;
   const maxPressure = moles * 0.082057 * temp / 3;
   const curve = Array.from({ length: 25 }, (_, i) => {
-    const v = 3 + i * 0.8;
+    const v = 3 + i * (22 / 24);
     const p = moles * 0.082057 * temp / v;
-    return `${i ? "L" : "M"} ${35 + (v-3)/19.2*280} ${20 + (maxPressure-p)/maxPressure*115}`;
+    return `${i ? "L" : "M"} ${35 + (v-3)/22*280} ${20 + (maxPressure-p)/maxPressure*115}`;
   }).join(" ");
-  const selectedX = 35 + (volume - 3) / 19.2 * 280;
+  const selectedX = 35 + (volume - 3) / 22 * 280;
   const selectedY = 20 + (maxPressure - pressure) / maxPressure * 115;
   return <LabFrame title={title ?? "Explore the ideal gas law"}>
     <div className="grid gap-4 sm:grid-cols-3">
