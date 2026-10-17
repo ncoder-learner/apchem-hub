@@ -134,6 +134,7 @@ const QUESTION_TOPIC_OVERRIDES: Record<string, Record<number, string>> = {
       conceptHint: "An empirical formula gives the simplest whole-number ratio of atoms.",
       strategyHint: "Convert each element's mass to moles using its molar mass, then divide all mole amounts by the smallest.",
       nextStepHint: "If the ratios are not close to whole numbers, multiply every ratio by the same small integer until the simplest whole-number ratio is obtained.",
+      solution: "The mole amounts are approximately 1.00 mol C, 2.98 mol H, and 0.500 mol O. Dividing by the smallest amount gives a ratio near 2:6:1, so the empirical formula is C₂H₆O.",
     },
     4: {
       conceptHint: "Elements can have similar average atomic masses while having different isotope patterns.",
@@ -154,6 +155,7 @@ const QUESTION_TOPIC_OVERRIDES: Record<string, Record<number, string>> = {
       conceptHint: "Combustion converts each carbon atom to CO₂ and each pair of hydrogen atoms to one H₂O molecule.",
       strategyHint: "Let the hydrocarbon formula be CₓHᵧ. Compare the mole relationship between CO₂ and H₂O to relate x and y.",
       nextStepHint: "Equimolar CO₂ and H₂O means x = y/2, so the simplest carbon-to-hydrogen ratio must satisfy y = 2x.",
+      solution: "Complete combustion of CₓHᵧ produces x moles of CO₂ and y/2 moles of H₂O per mole of hydrocarbon. Equal product amounts require x = y/2, or H:C = 2:1. Choose a molecular formula consistent with that ratio.",
     },
     8: {
       conceptHint: "In a hydrate experiment, the percentage of water is inferred from the mass lost during heating.",
@@ -171,7 +173,7 @@ const QUESTION_TOPIC_OVERRIDES: Record<string, Record<number, string>> = {
   "topics-5-4-5-11-mcq": { 2: "5.4", 3: "5.5", 10: "5.11" },
 };
 
-const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "conceptHint" | "strategyHint" | "nextStepHint">>> = {
+const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "conceptHint" | "strategyHint" | "nextStepHint" | "solution">>> = {
   "topics-2-5-2-7-mcq": {
     1: {
       conceptHint: "A valid Lewis diagram must satisfy the hydrogen duet rule, the usual octet for carbon, and the molecule's total valence-electron count.",
@@ -197,11 +199,13 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
       conceptHint: "Resonance means electrons are delocalized across multiple valid Lewis contributors; the real molecule is not rapidly switching between separate structures.",
       strategyHint: "Draw the important resonance contributors for ozone, then compare what each predicts for the two O–O bonds.",
       nextStepHint: "Equivalent bonds in the resonance hybrid have the same intermediate bond order rather than one permanent single bond and one permanent double bond.",
+      solution: "The two important resonance contributors place the O=O double bond on opposite sides of ozone. Because the actual molecule is a resonance hybrid, the two O–O bonds are equivalent, with an average bond order of 1.5.",
     },
     6: {
       conceptHint: "Equal bond lengths can be evidence that resonance makes two bonds equivalent in the actual structure.",
       strategyHint: "Compare the two major resonance contributors of acetate and track which C–O bond is double in each.",
       nextStepHint: "Look for the pair of contributors that swaps the double bond between the two oxygens while leaving the atom connectivity unchanged.",
+      solution: "The two main acetate resonance contributors differ only in which oxygen is double-bonded to carbon. Their hybrid gives both C–O bonds the same partial double-bond character, so the bonds have equal lengths.",
     },
     7: {
       conceptHint: "VSEPR predicts bond angles from repulsion between electron domains; lone pairs generally repel more strongly than bonding pairs.",
@@ -212,11 +216,13 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
       conceptHint: "Molecular polarity depends on both bond dipoles and the three-dimensional molecular geometry.",
       strategyHint: "Determine the shape of BF₃ and NF₃ separately, then consider whether the individual B–F or N–F bond dipoles cancel as vectors.",
       nextStepHint: "A symmetric trigonal-planar arrangement can cancel equal bond dipoles; a trigonal-pyramidal arrangement does not cancel them completely.",
+      solution: "BF₃ is trigonal planar, so its three equivalent B–F bond dipoles cancel by symmetry. NF₃ is trigonal pyramidal because nitrogen has a lone pair; its N–F bond dipoles do not cancel, leaving a net molecular dipole.",
     },
     9: {
       conceptHint: "Use VSEPR to determine molecular geometry before deciding whether the bond dipoles cancel.",
       strategyHint: "Count the central chlorine's electron domains, including lone pairs, and then identify the positions occupied by the three fluorine atoms.",
       nextStepHint: "Three bonds and two lone pairs give five electron domains; the molecular shape is T-shaped, so the bond dipoles do not fully cancel.",
+      solution: "Chlorine has five electron domains in ClF₃: three bonding pairs and two lone pairs. The lone pairs occupy equatorial positions, leaving a T-shaped molecule. Its bond dipoles do not cancel, so ClF₃ is polar.",
     },
     10: {
       conceptHint: "Hybridization labels are assigned from the local bonding arrangement in each structure, not from the atom's identity alone.",
@@ -234,26 +240,31 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
       conceptHint: "Reaction rate can increase when reactant concentration is higher or when a solid reactant has greater exposed surface area.",
       strategyHint: "Find the trial combining the greatest acid concentration with the smallest solid-particle size; keep mass and solution volume in view.",
       nextStepHint: "The fastest trial should require the least time to finish because both conditions favor more frequent effective collisions.",
+      solution: "The fine powder exposes more reactive surface than a large chunk, and the higher HCl concentration increases the frequency of collisions with the solid. Trial 2 combines both rate-increasing conditions, so it should have the shortest reaction time.",
     },
     3: {
       conceptHint: "Rates of disappearance and formation are related by the coefficients in the balanced chemical equation.",
       strategyHint: "Write the rate ratio for oxalic acid and permanganate using their coefficients, 5 and 2.",
       nextStepHint: "The disappearance rate of permanganate is the oxalic-acid disappearance rate multiplied by 2/5.",
+      solution: "The balanced equation consumes 5 mol of H₂C₂O₄ for every 2 mol of MnO₄⁻. Thus the MnO₄⁻ disappearance rate is (2/5)(2.0 × 10⁻³) = 8.0 × 10⁻⁴ mol L⁻¹ s⁻¹.",
     },
     4: {
       conceptHint: "The rate law describes concentration effects; the rate constant stays fixed when temperature and the reaction conditions defining k stay fixed.",
       strategyHint: "Substitute the concentration changes into rate = k[H₂][I₂], multiplying each concentration factor separately.",
       nextStepHint: "Doubling both first-order reactants multiplies the initial rate by four, while the rate constant remains unchanged at the same temperature.",
+      solution: "With rate = k[H₂][I₂], doubling [H₂] multiplies rate by 2 and doubling [I₂] multiplies it by another 2. The initial rate is therefore four times as large; because the temperature is unchanged, k stays the same.",
     },
     5: {
       conceptHint: "Integrated rate laws connect concentration to elapsed time; repeated equal-fraction decreases suggest first-order behavior.",
       strategyHint: "Compare successive concentration ratios and determine whether the half-life is constant. For a first-order process, k = 0.693/t₁/₂.",
       nextStepHint: "The data show a half-life of about 4.0 minutes, so calculate k in min⁻¹ using 0.693 divided by that half-life.",
+      solution: "The concentration halves from 5.76 M to 2.88 M over 4.0 min, and continues to halve over equal intervals, supporting first-order behavior. k = 0.693/t₁/₂ = 0.693/(4.00 min) = 0.173 min⁻¹.",
     },
     6: {
       conceptHint: "The method of initial rates isolates reaction orders by changing one reactant concentration at a time.",
       strategyHint: "Compare trials 1 and 2 to find the order in X, then compare trials 2 and 3 to find the order in Y.",
       nextStepHint: "A twofold increase in X makes the rate fourfold larger, while a twofold increase in Y doubles the rate. Translate those factors into exponents.",
+      solution: "Doubling [X] at constant [Y] multiplies rate by 4, so the reaction is second order in X. Doubling [Y] at constant [X] multiplies rate by 2, so it is first order in Y. The rate law is k[X]²[Y], third order overall.",
     },
     7: {
       conceptHint: "Use initial-rate comparisons to determine how the rate depends on each reactant concentration.",
@@ -274,6 +285,7 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
       conceptHint: "Concentration-time data can be tested against integrated rate-law relationships to identify reaction order.",
       strategyHint: "Compare [Q], ln[Q], and 1/[Q] against time, or inspect whether the data show a constant half-life.",
       nextStepHint: "Once the order is identified, use the matching integrated equation and keep the time unit consistent when reporting k.",
+      solution: "The concentration drops by the same absolute amount, 0.040 M, every 100 s. That linear [XY]-versus-time pattern supports zero-order behavior, for which the rate law is rate = k.",
     },
   },
 };
