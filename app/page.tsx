@@ -157,7 +157,17 @@ export default function HomePage() {
                 <Link key={unit.id} href={`/units/${unit.id}/${firstTopic.slug}`} className="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">
                   {card}
                 </Link>
-              ) : <div key={unit.id}>{card}</div>;
+              ) : (
+                <div key={unit.id} className="flex h-full flex-col">
+                  <div className="flex-1">{card}</div>
+                  <Link
+                    href={`/units/${unit.id}/review`}
+                    className="mt-2 inline-flex min-h-10 items-center justify-between rounded-xl border border-border px-4 py-2.5 text-sm font-semibold text-accent transition hover:border-accent/40 hover:bg-card"
+                  >
+                    Open Unit {unit.id} Review <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              );
             })}
           </div>
         </section>
