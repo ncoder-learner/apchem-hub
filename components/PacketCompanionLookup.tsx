@@ -15,7 +15,7 @@ export function PacketCompanionLookup() {
   const packets = Array.from(new Map(
     PACKET_QUESTION_INDEX
       .filter((entry) => entry.unitId === Number(unitId) && entry.questionType === questionType)
-      .map((entry) => [entry.packetId, entry.packetTitle])
+      .map((entry) => [entry.packetId, entry.packetTitle] as const)
   ).entries());
 
   const match =
