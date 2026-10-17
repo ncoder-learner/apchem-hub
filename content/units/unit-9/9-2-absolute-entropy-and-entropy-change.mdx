@@ -1,0 +1,43 @@
+---
+title: "Absolute Entropy and Entropy Change"
+unit: 9
+topicNumber: "9.2"
+slug: "9-2-absolute-entropy-and-entropy-change"
+summary: "Calculate standard reaction entropy from tabulated molar entropies and interpret the result using product-minus-reactant bookkeeping."
+---
+
+Unlike standard enthalpies of formation, standard molar entropies S° are not set to zero for elements in their standard states. At a given temperature, each listed substance has a tabulated absolute molar entropy. Use the balanced equation to calculate the entropy change for the reaction as written.
+
+<LessonSection title="1. Use products minus reactants" description="The equation coefficients multiply each molar entropy" defaultOpen>
+
+```text
+ΔS°rxn = Σ nS°(products) − Σ nS°(reactants)
+```
+
+Multiply each substance's S° by its balanced-equation coefficient. Add product terms, add reactant terms, then subtract. Entropy is often reported in J mol⁻¹ K⁻¹, so check units before combining it with ΔH in a Gibbs calculation.
+
+<QuickCheck question="For A(g) → 2B(g), what is the correct setup for standard reaction entropy?" options={["S°(A) − 2S°(B)","2S°(B) − S°(A)","S°(A) + S°(B)","S°(B) − S°(A), ignoring coefficients"]} correctIndex={1} explanation="Reaction entropy is the sum for products minus the sum for reactants. The coefficient 2 multiplies the molar entropy of B." />
+
+</LessonSection>
+
+<LessonSection title="2. Calculate and interpret a result" description="Keep coefficients and signs attached to the correct side">
+
+<WorkedExample title="Worked example: standard reaction entropy">
+
+For A(g) → 2B(g), suppose S°(A) = 190 J mol⁻¹ K⁻¹ and S°(B) = 140 J mol⁻¹ K⁻¹. Then ΔS°rxn = 2(140) − 190 = **+90 J mol⁻¹ K⁻¹**. The positive result is consistent with producing more moles of gas, though the tabulated values determine the numerical answer.
+
+</WorkedExample>
+
+<QuickCheck question="If ΔS°rxn is positive, which statement is justified?" options={["The reaction must be exothermic","The system's entropy increases for the reaction as written under the stated standard conditions","The reaction must be fast","The equilibrium constant must equal 1"]} correctIndex={1} explanation="A positive reaction entropy means the system's entropy increases for the reaction as written. It does not by itself determine enthalpy, rate, or the value of K." />
+
+</LessonSection>
+
+<LessonSection title="3. Do not use entropy alone to decide spontaneity" description="The surroundings and temperature also matter">
+
+A positive ΔS_system does not guarantee a spontaneous process. The surroundings may lose entropy, especially when the process absorbs heat. At constant temperature and pressure, evaluate ΔG = ΔH − TΔS with consistent units to determine thermodynamic favorability.
+
+</LessonSection>
+
+## Readiness check
+
+Use coefficients in ΣS°(products) − ΣS°(reactants), report units, and distinguish a positive system entropy change from a complete spontaneity argument.

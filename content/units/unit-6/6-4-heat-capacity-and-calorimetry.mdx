@@ -1,0 +1,47 @@
+---
+title: "Heat Capacity and Calorimetry"
+unit: 6
+topicNumber: "6.4"
+slug: "6-4-heat-capacity-and-calorimetry"
+summary: "Calculate heat transfer with specific heat and use solution temperature changes to determine reaction heat and molar enthalpy."
+---
+
+Calorimetry measures energy transfer by tracking temperature change. The central relationship for a material that does not change phase is q = mcΔT, where m is mass, c is specific heat capacity, and ΔT = T_final − T_initial. Use the mass and heat capacity of the material whose temperature was measured.
+
+<TopicLab unitId={6} topicNumber="6.4" title="Heat Capacity and Calorimetry" />
+
+<LessonSection title="1. Choose the correct heat equation" description="Specific heat and total heat capacity are different" defaultOpen>
+
+- q = mcΔT uses specific heat c, usually in J g⁻¹ °C⁻¹.
+- q = CΔT uses total heat capacity C, usually in J °C⁻¹.
+- ΔT can be measured in °C or K because a temperature difference has the same numerical size in both units.
+
+A positive ΔT means the material warmed and q is positive. A negative ΔT means it cooled and q is negative.
+
+<QuickCheck question="A 50.0 g solution warms from 21.0 °C to 25.0 °C. Using c = 4.18 J g⁻¹ °C⁻¹, what is q_solution?" options={["−836 J","+836 J","+209 J","+8,360 J"]} correctIndex={1} explanation="q = mcΔT = (50.0 g)(4.18 J g⁻¹ °C⁻¹)(4.0 °C) = +836 J. The solution gained heat." />
+
+</LessonSection>
+
+<LessonSection title="2. Move from solution heat to reaction enthalpy" description="The reaction and the measured solution have opposite heat signs">
+
+For a coffee-cup calorimeter, the solution is often treated as the surroundings. If the solution gains 836 J, the reaction loses approximately 836 J: q_rxn ≈ −q_solution. At constant pressure, q_rxn corresponds to the reaction enthalpy for the amount that reacted. To report molar enthalpy, divide by the moles of reaction as defined by the balanced equation, not automatically by total solution moles.
+
+<WorkedExample title="Worked example: molar enthalpy">
+
+A reaction warms a solution by 836 J while 0.0200 mol of the limiting reactant reacts. If that amount corresponds to the reaction extent specified, q_rxn ≈ −836 J. The molar enthalpy is ΔH ≈ (−836 J)/(0.0200 mol) = **−41.8 kJ/mol** after converting joules to kilojoules.
+
+</WorkedExample>
+
+<QuickCheck question="If a reaction cools the solution in a coffee-cup calorimeter, what is the sign of q_solution and the likely sign of q_rxn?" options={["q_solution < 0 and q_rxn > 0","q_solution > 0 and q_rxn < 0","Both are negative","Both are positive"]} correctIndex={0} explanation="The solution loses heat as it cools, so q_solution is negative. The reaction absorbs that energy, so q_rxn is positive and the process is endothermic." />
+
+</LessonSection>
+
+<LessonSection title="3. Check units and assumptions" description="The common errors are usually setup errors">
+
+Before calculating, convert mass to grams if c is in J g⁻¹ °C⁻¹, use ΔT = final − initial, and keep the sign. Convert J to kJ before combining with enthalpies in kJ/mol. If the problem provides a calorimeter constant, include q_cal = C_calΔT in the energy balance.
+
+</LessonSection>
+
+## Readiness check
+
+Calculate q for the measured material, assign the opposite heat to the reaction when the setup is insulated, then divide by moles only when a molar quantity is requested.

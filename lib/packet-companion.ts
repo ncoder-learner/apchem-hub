@@ -33,8 +33,7 @@ interface PacketSourceDefinition {
   lastQuestion: number;
 }
 
-// Slugs are sourced from the actual lesson files on this branch. Units 6–9
-// currently have Unit Reviews but do not yet have topic lesson files.
+// Slugs correspond to topic files currently available in the curriculum.
 const TOPIC_SLUGS: Record<string, string> = {
   "1.1": "1-1-moles-and-molar-mass",
   "1.2": "1-2-mass-spectra-of-elements",
@@ -85,6 +84,18 @@ const TOPIC_SLUGS: Record<string, string> = {
   "5.9": "5-9-steady-state-approximation",
   "5.10": "5-10-multistep-reaction-energy-profile",
   "5.11": "5-11-catalysis",
+  "6.1": "6-1-endothermic-and-exothermic-processes",
+  "6.2": "6-2-energy-diagrams",
+  "6.3": "6-3-heat-transfer-and-thermal-equilibrium",
+  "6.4": "6-4-heat-capacity-and-calorimetry",
+  "6.5": "6-5-energy-of-phase-changes",
+  "6.6": "6-6-enthalpy-of-reaction",
+  "6.7": "6-7-bond-enthalpies",
+  "6.8": "6-8-enthalpy-of-formation",
+  "6.9": "6-9-hess-law",
+  "9.1": "9-1-introduction-to-entropy",
+  "9.2": "9-2-absolute-entropy-and-entropy-change",
+  "9.3": "9-3-gibbs-free-energy-and-thermodynamic-favorability",
 };
 
 const PACKET_SOURCES: PacketSourceDefinition[] = [
