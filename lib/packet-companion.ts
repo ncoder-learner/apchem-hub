@@ -119,7 +119,17 @@ const QUESTION_TOPIC_OVERRIDES: Record<string, Record<number, string>> = {
   "topics-1-4-1-6-mcq": { 1: "1.4", 2: "1.4", 3: "1.4", 4: "1.5", 5: "1.5", 6: "1.5", 7: "1.6", 8: "1.6", 9: "1.6" },
   "topics-1-7-1-8-mcq": { 1: "1.7", 2: "1.7", 3: "1.7", 4: "1.7", 5: "1.7", 6: "1.7", 7: "1.8", 8: "1.8", 9: "1.8" },
   "topics-2-1-2-4-mcq": { 1: "2.1", 2: "2.1", 3: "2.3", 4: "2.2", 5: "2.2", 6: "2.3", 7: "2.4", 8: "2.3", 9: "2.4" },
-  "topics-1-1-1-3-mcq": {
+  "topics-2-5-2-7-mcq": { 1: "2.5", 2: "2.5", 3: "2.6", 4: "2.6", 5: "2.6", 6: "2.6", 7: "2.7", 8: "2.7", 9: "2.7", 10: "2.7" },
+  "topics-3-1-3-2-mcq": { 1: "3.1", 2: "3.1", 3: "3.1", 4: "3.1", 5: "3.1", 6: "3.1", 7: "3.1", 11: "3.2", 12: "3.2" },
+  "topics-3-3-3-6-mcq": { 1: "3.3", 2: "3.4", 3: "3.4", 4: "3.4", 5: "3.4", 6: "3.4", 7: "3.4", 8: "3.5", 9: "3.5", 10: "3.6", 11: "3.6" },
+  "topics-3-7-3-13-mcq": { 1: "3.7", 2: "3.7", 3: "3.8", 4: "3.8", 5: "3.9", 6: "3.9", 7: "3.10", 8: "3.10", 11: "3.13", 12: "3.11", 13: "3.13" },
+  "topics-4-1-4-4-mcq": { 1: "4.4", 2: "4.4", 3: "4.2", 4: "4.2", 5: "4.2", 6: "4.2", 7: "4.3", 8: "4.3", 9: "4.3" },
+  "topics-4-7-4-9-mcq": { 1: "4.7", 2: "4.8", 3: "4.7", 4: "4.9", 5: "4.8", 6: "4.8", 7: "4.8", 8: "4.9", 9: "4.9" },
+  "topics-5-1-5-3-mcq": { 1: "5.1", 2: "5.1", 3: "5.1", 4: "5.2", 5: "5.3", 6: "5.2", 7: "5.2", 8: "5.3", 9: "5.2", 10: "5.3" },
+  "topics-5-4-5-11-mcq": { 2: "5.4", 3: "5.5", 10: "5.11" },
+};
+
+const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "conceptHint" | "strategyHint" | "nextStepHint" | "solution">>> = {  "topics-1-1-1-3-mcq": {
     1: {
       conceptHint: "Mass percent depends on the fraction of each formula unit's mass contributed by the element, not just the number of atoms in the formula.",
       strategyHint: "Calculate each oxide's molar mass and the oxygen mass contained in one mole of that oxide.",
@@ -163,17 +173,7 @@ const QUESTION_TOPIC_OVERRIDES: Record<string, Record<number, string>> = {
       nextStepHint: "Look for a procedural error that leaves water in the solid or otherwise prevents the full expected water mass from being measured as lost.",
     },
   },
-  "topics-2-5-2-7-mcq": { 1: "2.5", 2: "2.5", 3: "2.6", 4: "2.6", 5: "2.6", 6: "2.6", 7: "2.7", 8: "2.7", 9: "2.7", 10: "2.7" },
-  "topics-3-1-3-2-mcq": { 1: "3.1", 2: "3.1", 3: "3.1", 4: "3.1", 5: "3.1", 6: "3.1", 7: "3.1", 11: "3.2", 12: "3.2" },
-  "topics-3-3-3-6-mcq": { 1: "3.3", 2: "3.4", 3: "3.4", 4: "3.4", 5: "3.4", 6: "3.4", 7: "3.4", 8: "3.5", 9: "3.5", 10: "3.6", 11: "3.6" },
-  "topics-3-7-3-13-mcq": { 1: "3.7", 2: "3.7", 3: "3.8", 4: "3.8", 5: "3.9", 6: "3.9", 7: "3.10", 8: "3.10", 11: "3.13", 12: "3.11", 13: "3.13" },
-  "topics-4-1-4-4-mcq": { 1: "4.4", 2: "4.4", 3: "4.2", 4: "4.2", 5: "4.2", 6: "4.2", 7: "4.3", 8: "4.3", 9: "4.3" },
-  "topics-4-7-4-9-mcq": { 1: "4.7", 2: "4.8", 3: "4.7", 4: "4.9", 5: "4.8", 6: "4.8", 7: "4.8", 8: "4.9", 9: "4.9" },
-  "topics-5-1-5-3-mcq": { 1: "5.1", 2: "5.1", 3: "5.1", 4: "5.2", 5: "5.3", 6: "5.2", 7: "5.2", 8: "5.3", 9: "5.2", 10: "5.3" },
-  "topics-5-4-5-11-mcq": { 2: "5.4", 3: "5.5", 10: "5.11" },
-};
 
-const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "conceptHint" | "strategyHint" | "nextStepHint" | "solution">>> = {
   "topics-2-5-2-7-mcq": {
     1: {
       conceptHint: "A valid Lewis diagram must satisfy the hydrogen duet rule, the usual octet for carbon, and the molecule's total valence-electron count.",
