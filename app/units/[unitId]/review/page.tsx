@@ -35,6 +35,24 @@ export default async function UnitReviewPage({ params }: PageProps) {
         <p className="mt-5 text-sm text-ink-dim">Use this page after studying the lessons. It consolidates unit-wide strategies; topic-specific explanations and worked examples remain in their lessons.</p>
       </header>
 
+      <section className="mb-8 flex flex-col gap-3 rounded-xl border border-accent/25 bg-accent-soft/30 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Official exam weighting</p>
+          <p className="mt-1 text-2xl font-bold text-ink">{review.examWeight}</p>
+          <p className="mt-1 max-w-2xl text-sm leading-relaxed text-ink-dim">
+            This range applies to the multiple-choice section, not the entire AP exam. It is a planning guide, not a prediction of the exact number of questions.
+          </p>
+        </div>
+        <a
+          href="https://apcentral.collegeboard.org/media/pdf/ap-chemistry-course-and-exam-description.pdf"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex min-h-10 shrink-0 items-center gap-2 text-sm font-semibold text-accent hover:underline"
+        >
+          Official course description <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+
       <section className="mb-8">
         <h2 className="mb-4 text-xl font-semibold">How to solve recurring question types</h2>
         <div className="grid gap-4 md:grid-cols-2">
