@@ -38,7 +38,7 @@ export function UnitReviewStudySession({ unitId, topics, review }: Props) {
     () => checkedAnswers.filter((index) => answers[index] === practice.questions[index]?.correctIndex).length,
     [answers, checkedAnswers, practice.questions],
   );
-  const checkedCount = checkedBlocks.length + checkedAnswers.length + readiness.length;
+  const checkedCount = checkedBlocks.length + checkedAnswers.length + readiness.filter((item) => item.startsWith("ready:")).length;
   const totalProgressItems = STUDY_BLOCKS.length + practice.questions.length + review.readiness.length;
   const progress = Math.round((checkedCount / totalProgressItems) * 100);
 
