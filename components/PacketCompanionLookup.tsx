@@ -4,6 +4,32 @@ import { useEffect, useMemo, useState, type ChangeEvent } from "react";
 import Link from "next/link";
 import { PACKET_QUESTION_INDEX, findPacketQuestion } from "@/lib/packet-companion";
 
+const PACKET_PDF_PATHS: Record<string, string> = {
+  "topics-1-1-1-3-mcq": "/packets/topics-1-1-1-3-mcq.pdf",
+  "topics-1-4-1-6-mcq": "/packets/topics-1-4-1-6-mcq.pdf",
+  "topics-1-7-1-8-mcq": "/packets/topics-1-7-1-8-mcq.pdf",
+  "topics-2-1-2-4-mcq": "/packets/topics-2-1-2-4-mcq.pdf",
+  "topics-2-5-2-7-mcq": "/packets/topics-2-5-2-7-mcq.pdf",
+  "topics-3-1-3-2-mcq": "/packets/topics-3-1-3-2-mcq.pdf",
+  "topics-3-3-3-6-mcq": "/packets/topics-3-3-3-6-mcq.pdf",
+  "topics-3-7-3-13-mcq": "/packets/topics-3-7-3-13-mcq.pdf",
+  "topics-4-1-4-4-mcq": "/packets/topics-4-1-4-4-mcq.pdf",
+  "topics-4-7-4-9-mcq": "/packets/topics-4-7-4-9-mcq.pdf",
+  "topics-5-1-5-3-mcq": "/packets/topics-5-1-5-3-mcq.pdf",
+  "topics-5-4-5-11-mcq": "/packets/topics-5-4-5-11-mcq.pdf",
+  "topics-6-1-6-5-mcq": "/packets/topics-6-1-6-5-mcq.pdf",
+  "topics-6-6-6-9-mcq": "/packets/topics-6-6-6-9-mcq.pdf",
+  "topics-7-1-7-5-mcq": "/packets/topics-7-1-7-5-mcq.pdf",
+  "topics-7-11-7-12-mcq": "/packets/topics-7-11-7-12-mcq.pdf",
+  "topics-7-6-7-10-mcq": "/packets/topics-7-6-7-10-mcq.pdf",
+  "topics-8-1-8-3-mcq": "/packets/topics-8-1-8-3-mcq.pdf",
+  "topics-8-4-8-5-mcq": "/packets/topics-8-4-8-5-mcq.pdf",
+  "topics-8-6-8-11-mcq": "/packets/topics-8-6-8-11-mcq.pdf",
+  "topics-9-1-9-7-mcq": "/packets/topics-9-1-9-7-mcq.pdf",
+  "topics-9-8-9-11-mcq": "/packets/topics-9-8-9-11-mcq.pdf",
+};
+
+
 export function PacketCompanionLookup() {
   const [unitId, setUnitId] = useState("1");
   const [packetId, setPacketId] = useState("");
@@ -31,6 +57,7 @@ export function PacketCompanionLookup() {
     ? [match.conceptHint, match.strategyHint, match.nextStepHint].filter((hint): hint is string => Boolean(hint?.trim()))
     : [];
   const revealableSteps = hints.length + (match?.solution ? 1 : 0);
+  const documentUrl = pdfUrl ?? PACKET_PDF_PATHS[packetId] ?? null;
 
   useEffect(() => {
     if (!pdfFile) {
@@ -90,7 +117,7 @@ export function PacketCompanionLookup() {
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.15em] text-accent">Packet reader</p>
             <h2 className="mt-2 text-2xl font-bold tracking-tight">Keep the whole packet beside your help</h2>
-            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-ink-dim">Load the packet PDF once, scroll through it in the reader, and choose the printed question on the side to reveal hints and explanations in stages. The PDF stays in this browser tab; it is not uploaded.</p>
+            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-ink-dim">Choose a packet and its PDF loads automatically in the reader. Scroll through the document while you work, then select the printed question to reveal hints and explanations in stages. You can load a different local copy if needed.</p>
           </div>
           <span className="inline-flex w-fit shrink-0 rounded-full border border-border px-3 py-1.5 text-xs text-ink-dim">{PACKET_QUESTION_INDEX.filter((entry) => entry.questionType === "mcq").length} indexed question numbers</span>
         </div>
@@ -112,30 +139,30 @@ export function PacketCompanionLookup() {
           <div className="block text-sm font-semibold">
             Load packet PDF
             <label htmlFor="packet-pdf-file" className="mt-2 flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-lg border border-accent/40 bg-accent-soft/15 px-3 py-3 text-center text-sm font-bold text-accent transition hover:bg-accent-soft/25">
-              <span aria-hidden="true">＋</span>{pdfFile ? "Choose a different PDF" : "Choose PDF from device"}
+              <span aria-hidden="true">＋</span>{pdfFile ? "Choose a different PDF" : "Use a different PDF"}
             </label>
             <input id="packet-pdf-file" type="file" accept="application/pdf,.pdf" onChange={handleFile} className="sr-only" />
           </div>
         </div>
         {pdfError && <p role="alert" className="mt-3 text-sm text-amber">{pdfError}</p>}
-        {pdfFile && <p className="mt-3 text-xs text-ink-dim">Loaded locally: <span className="font-medium text-ink">{pdfFile.name}</span>. If this does not match the selected packet, switch to the correct PDF.</p>}
+        {pdfFile ? <p className="mt-3 text-xs text-ink-dim">Using your local copy: <span className="font-medium text-ink">{pdfFile.name}</span>.</p> : documentUrl && <p className="mt-3 text-xs text-ink-dim">Packet PDF loaded automatically. You can override it with a local copy if needed.</p>}
       </section>
 
       <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1fr)_370px]">
         <section className="overflow-hidden rounded-2xl border border-border bg-card/40">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border p-4 sm:px-5">
             <div><h2 className="font-semibold">Packet document</h2><p className="mt-1 text-xs text-ink-dim">Scroll the original PDF as you work through the printed questions.</p></div>
-            {pdfUrl && <a href={pdfUrl} download={pdfFile?.name ?? "packet.pdf"} className="text-xs font-semibold text-accent hover:underline">Download a copy</a>}
+            {documentUrl && <a href={documentUrl} download={pdfFile?.name ?? "packet.pdf"} className="text-xs font-semibold text-accent hover:underline">Download a copy</a>}
           </div>
-          {pdfUrl ? (
-            <iframe title="Loaded chemistry packet PDF" src={pdfUrl + "#toolbar=1&navpanes=0&scrollbar=1"} className="block h-[72vh] min-h-[560px] w-full bg-white" />
+          {documentUrl ? (
+            <iframe title="Loaded chemistry packet PDF" src={documentUrl + "#toolbar=1&navpanes=0&scrollbar=1"} className="block h-[72vh] min-h-[560px] w-full bg-white" />
           ) : (
             <div className="flex min-h-[420px] flex-col items-center justify-center px-6 py-12 text-center sm:min-h-[560px]">
               <div aria-hidden="true" className="flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-bg text-3xl">▤</div>
               <h3 className="mt-5 text-lg font-semibold">Your packet opens here</h3>
-              <p className="mt-2 max-w-md text-sm leading-relaxed text-ink-dim">Choose the matching PDF from your device. The built-in document viewer lets you scroll through the whole packet without leaving this study page.</p>
+              <p className="mt-2 max-w-md text-sm leading-relaxed text-ink-dim">Choose a packet above and its PDF will open here automatically. The built-in viewer lets you scroll through the whole document without leaving this study page.</p>
               <label htmlFor="packet-pdf-file" className="mt-5 inline-flex min-h-11 cursor-pointer items-center rounded-lg bg-accent px-4 py-2.5 text-sm font-bold text-[#06251b]">Load a packet PDF</label>
-              <p className="mt-4 max-w-md text-xs leading-relaxed text-ink-dim">Your file stays on your device. For printed-only packets, keep the paper packet open and use the question navigator and hints alongside it.</p>
+              <p className="mt-4 max-w-md text-xs leading-relaxed text-ink-dim">Packet PDFs are hosted with the study site. If you are using a paper packet or a different version, you can load your own PDF instead.</p>
             </div>
           )}
         </section>
