@@ -1,5 +1,5 @@
 export type PacketQuestionType = "mcq" | "frq";
-export type PacketSourceStatus = "unmapped" | "mapped" | "solution-derived" | "video-verified";
+export type PacketSourceStatus = "unmapped" | "indexed" | "mapped" | "solution-derived" | "video-verified";
 
 export interface PacketQuestionEntry {
   id: string;
@@ -327,7 +327,9 @@ export const PACKET_QUESTION_INDEX: PacketQuestionEntry[] = PACKET_SOURCES.flatM
         topicSlugs: mappedTopicSlug ? [mappedTopicSlug] : getTopicSlugs(source.topicRange),
         skills: [],
         ...(questionHints ?? {}),
-        sourceStatus: "mapped",
+        // "indexed" confirms the printed packet/question number exists, but the exact topic has not been verified.
+        // Only assign "mapped" when a question-specific topic override has been reviewed.
+        sourceStatus: mappedTopicNumber ? "mapped" : "indexed",
         reviewNote: mappedTopicNumber
           ? questionHints?.solution
             ? `Packet and question number indexed; mapped to topic ${mappedTopicNumber}; independently written explanation included and should be reviewed before publication.`
