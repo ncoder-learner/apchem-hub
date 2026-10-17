@@ -147,7 +147,7 @@ export function PacketCompanionLookup() {
           <div className="rounded-xl border border-border bg-card p-4 sm:p-5">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-accent">Verified packet match</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-accent">Indexed packet match</p>
                 <h3 className="mt-1 font-semibold">{match.packetTitle} · Question {match.questionNumber}{match.partLabel ? ` (${match.partLabel})` : ""}</h3>
                 <p className="mt-1 text-sm text-ink-dim">Packet topic range: {match.topicRange.replace("-", "–")}</p>
               </div>
@@ -158,7 +158,7 @@ export function PacketCompanionLookup() {
 
             {hintLevel === 0 && (
               <p className="mt-3 text-sm leading-relaxed text-ink-dim">
-                This confirms the printed question number in the selected packet. The exact subtopic mapping and question-specific hints are still being reviewed. Try the question first, then use the lesson links or Unit Review while detailed help is prepared.
+                This identifies the printed question number in the selected packet index. The exact subtopic mapping and question-specific hints are still being reviewed. Try the question first, then use the lesson links or Unit Review while detailed help is prepared.
               </p>
             )}
 
@@ -230,7 +230,7 @@ export function PacketCompanionLookup() {
 
         {submitted && !match && (
           <div className="rounded-xl border border-border bg-card p-4">
-            <h3 className="font-semibold">No verified match yet</h3>
+            <h3 className="font-semibold">No indexed match yet</h3>
             <p className="mt-2 text-sm leading-relaxed text-ink-dim">
               {PACKET_QUESTION_INDEX.length === 0
                 ? "The question index has not been populated with verified packet mappings yet. Rather than risk showing help for a different question, start with the relevant unit lesson."
