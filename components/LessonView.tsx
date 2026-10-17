@@ -85,6 +85,14 @@ export function LessonView({
           <span aria-hidden="true">→</span>
         </Link>
 
+        <Link
+          href="/packet-companion"
+          className="mt-2 flex items-center justify-between rounded-xl border border-border px-3 py-3 text-sm font-semibold text-ink-dim transition hover:border-accent/40 hover:text-accent"
+        >
+          <span>Help with a packet question</span>
+          <span aria-hidden="true">↗</span>
+        </Link>
+
         <LessonOutline articleId="lesson-article" />
       </aside>
 
