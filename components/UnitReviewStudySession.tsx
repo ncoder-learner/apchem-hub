@@ -102,6 +102,13 @@ export function UnitReviewStudySession({ unitId, topics, review }: Props) {
               </article>
             ))}
           </div>
+          <details className="rounded-xl border border-border bg-card/30 p-5">
+            <summary className="cursor-pointer list-none text-base font-semibold">Common traps to actively test yourself against <span className="ml-2 text-xs font-normal text-ink-dim">({review.traps.length})</span></summary>
+            <p className="mt-2 text-sm leading-relaxed text-ink-dim">For each one, explain why it is wrong and what evidence or relationship should replace it.</p>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+              {review.traps.map((trap) => <li key={trap} className="flex gap-3 rounded-lg border border-border p-3 text-sm leading-relaxed"><span className="mt-0.5 text-amber">!</span><span>{trap}</span></li>)}
+            </ul>
+          </details>
           <section className="rounded-xl border border-border p-5 sm:p-6">
             <div className="flex flex-wrap items-end justify-between gap-3">
               <div><h3 className="text-lg font-semibold">Pick the lesson that fixes the gap</h3><p className="mt-1 text-sm text-ink-dim">Use these as targeted repairs, not as a requirement to reread everything.</p></div>
