@@ -329,7 +329,11 @@ export const PACKET_QUESTION_INDEX: PacketQuestionEntry[] = PACKET_SOURCES.flatM
         ...(questionHints ?? {}),
         sourceStatus: "mapped",
         reviewNote: mappedTopicNumber
-          ? `Packet and question number indexed; mapped to topic ${mappedTopicNumber}. Review question-specific help before adding a worked explanation.`
+          ? questionHints?.solution
+            ? `Packet and question number indexed; mapped to topic ${mappedTopicNumber}; independently written explanation included and should be reviewed before publication.`
+            : questionHints
+              ? `Packet and question number indexed; mapped to topic ${mappedTopicNumber}; original staged hints included, but a worked explanation still needs review.`
+              : `Packet and question number indexed; mapped to topic ${mappedTopicNumber}. Question-specific hints and explanation still need review.`
           : "Packet and printed question number indexed; exact subtopic mapping and question-specific help still need review.",
       };
     }
