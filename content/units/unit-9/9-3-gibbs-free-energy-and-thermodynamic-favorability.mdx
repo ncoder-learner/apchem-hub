@@ -1,0 +1,56 @@
+---
+title: "Gibbs Free Energy and Thermodynamic Favorability"
+unit: 9
+topicNumber: "9.3"
+slug: "9-3-gibbs-free-energy-and-thermodynamic-favorability"
+summary: "Use ΔG = ΔH − TΔS to evaluate thermodynamic favorability, temperature dependence, and the difference between spontaneity and rate."
+---
+
+At constant temperature and pressure, Gibbs free-energy change combines enthalpy and entropy:
+
+\[
+\Delta G = \Delta H - T\Delta S
+\]
+
+For the process as written, ΔG < 0 indicates thermodynamic favorability in the forward direction under the stated conditions; ΔG > 0 indicates the reverse direction is favored; ΔG = 0 describes equilibrium. Favorability does not tell you how fast the process occurs.
+
+<TopicLab unitId={9} topicNumber="9.3" title="Gibbs Free Energy and Thermodynamic Favorability" />
+
+<LessonSection title="1. Track signs and units" description="The temperature term can change the result" defaultOpen>
+
+Use temperature in kelvin. Enthalpy and the product TΔS must have the same energy units. If ΔH is in kJ/mol and ΔS is in J mol⁻¹ K⁻¹, convert one so the units agree before subtracting.
+
+| ΔH | ΔS | Temperature implication |
+|---|---|---|
+| Negative | Positive | ΔG is negative at all positive temperatures |
+| Positive | Negative | ΔG is positive at all positive temperatures |
+| Negative | Negative | Favorability is favored at lower temperature |
+| Positive | Positive | Favorability is favored at higher temperature |
+
+<QuickCheck question="A process has ΔH < 0 and ΔS > 0. What follows from ΔG = ΔH − TΔS for T > 0?" options={["ΔG is negative at all positive temperatures","ΔG is positive at all positive temperatures","ΔG must equal zero","The process must be fast"]} correctIndex={0} explanation="Both ΔH and −TΔS are negative for positive T, so their sum is negative. This predicts thermodynamic favorability, not speed." />
+
+</LessonSection>
+
+<LessonSection title="2. Calculate ΔG and find a threshold temperature" description="Set ΔG equal to zero only when asked for the boundary">
+
+<WorkedExample title="Worked example: free energy">
+
+At 298 K, a process has ΔH = −35.0 kJ/mol and ΔS = −80.0 J mol⁻¹ K⁻¹. Convert entropy: −0.0800 kJ mol⁻¹ K⁻¹. Then ΔG = −35.0 − 298(−0.0800) = −35.0 + 23.84 = **−11.2 kJ/mol**. It is favorable at 298 K despite the negative entropy change.
+
+</WorkedExample>
+
+When ΔH and ΔS have the same sign, the threshold occurs where ΔG = 0, so T = ΔH/ΔS. Use consistent units and check that the resulting temperature is physically meaningful and positive for the situation.
+
+<QuickCheck question="A process has ΔH = +24 kJ/mol and ΔS = +80 J mol⁻¹ K⁻¹. Above approximately what temperature does ΔG become negative?" options={["30 K","300 K","1,920 K","No temperature can make it favorable"]} correctIndex={1} explanation="Convert ΔS to 0.080 kJ mol⁻¹ K⁻¹. T = ΔH/ΔS = 24/0.080 = 300 K. Above this threshold, TΔS exceeds ΔH and ΔG becomes negative." />
+
+</LessonSection>
+
+<LessonSection title="3. Do not confuse favorability with kinetics" description="Thermodynamics and reaction rate answer different questions">
+
+A negative ΔG means the forward process is thermodynamically favored under the stated conditions. A reaction may still proceed slowly because its activation-energy barrier is large. A catalyst can increase the rate by lowering the activation barrier, but it does not change ΔG for the overall reaction at the same conditions.
+
+</LessonSection>
+
+## Readiness check
+
+Calculate ΔG with consistent units and kelvin, state the favored direction, and explain why a negative ΔG does not guarantee a rapid reaction.
