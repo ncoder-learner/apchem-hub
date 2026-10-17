@@ -89,7 +89,7 @@ export const UNIT_REVIEW_PRACTICE: Record<number, UnitReviewPractice> = {
       { prompt: "Given A → B with ΔH = +25 kJ and B → C with ΔH = −70 kJ, what is ΔH for A → C?", options: ["+95 kJ","+45 kJ","−45 kJ","−95 kJ"], correctIndex: 2, explanation: "Add the two equations; B cancels. Hess’s law gives ΔH = +25 + (−70) = −45 kJ for A → C.", skill: "Hess’s law" },
       { prompt: "A thermochemical equation is reversed. What happens to its ΔH value?", options: ["Its sign reverses","Its magnitude doubles","It becomes zero","It remains unchanged"], correctIndex: 0, explanation: "Enthalpy is a state function. Reversing the process reverses the sign of ΔH; scaling the equation scales ΔH by the same factor.", skill: "Hess's law" },
     ],
-    frqFocus: ["Show q = mcΔT, identify the system, and explain why the reaction and solution heat signs are opposite.", "Use a consistent unit system in ΔG calculations and state the conditions for the conclusion."],
+    frqFocus: ["Show q = mcΔT or q = nΔH_phase, identify the system, and explain the sign of heat transfer.", "For Hess’s law, show every equation transformation, cancel intermediate species, and sum the adjusted ΔH values."],
   },
   7: {
     mentalModels: [
