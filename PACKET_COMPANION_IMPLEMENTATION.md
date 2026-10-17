@@ -77,7 +77,7 @@ Keep topic-specific chemistry and graph-reading procedures inside the lesson. Co
 ## Current source inventory and limitations
 
 - The private source repository is `ncoder-learner/CHem`. Its main branch contains 22 files explicitly named as MCQ Practice PDFs, plus a mixed Topics 4.5–4.6 practice packet, a separate Topics 8.1–8.3 instructional packet, and an FRQ folder that currently contains only a placeholder.
-- A temporary GitHub Actions artifact extracted text from the PDFs for internal indexing. The extracted question numbers and topic ranges were used to create 234 MCQ index entries across the 22 explicitly labeled MCQ Practice PDFs.
+- A temporary GitHub Actions artifact extracted text from the PDFs for internal indexing. The extracted question numbers and topic ranges were used to create 237 MCQ index entries across the 22 explicitly labeled MCQ Practice PDFs.
 - The public AP Chem Hub repository contains metadata only: packet titles, question numbers, topic ranges, and links to existing lessons where available. It does not contain copied packet questions, diagrams, or answer keys.
 - Original staged hints are now authored for the 10 questions in the Topics 2.5–2.7 packet and the 10 questions in the Topics 5.1–5.3 packet. These are instructional hints, not copied packet text or a complete answer key.
 - The Topics 4.5–4.6 mixed packet is excluded from the MCQ index until its question types are classified. The separate Topics 8.1–8.3 instructional packet is not treated as an MCQ set.
