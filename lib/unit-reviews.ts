@@ -6,6 +6,7 @@ export interface UnitReviewSection {
 
 export interface UnitReviewData {
   focus: string;
+  examWeight: string;
   connect: string;
   strategies: UnitReviewSection[];
   traps: string[];
@@ -16,6 +17,7 @@ export interface UnitReviewData {
 export const UNIT_REVIEWS: Record<number, UnitReviewData> = {
   1: {
     focus: "Atomic structure, mass spectra, electron configurations, periodic trends, and electrostatic attraction.",
+    examWeight: "7–9% of the multiple-choice section",
     connect: "Use particle counts and electron structure to explain measurable properties. Strong answers connect a trend to nuclear charge, shielding, distance, or the number and arrangement of electrons.",
     strategies: [
       { title: "Mass and particle conversions", summary: "Keep mass, moles, and number of entities distinct.", steps: ["Write the quantity and unit given.", "Choose a conversion factor that cancels the starting unit.", "Track the specified entity: atoms, molecules, ions, or formula units.", "Check significant figures and whether the magnitude is reasonable."] },
@@ -27,6 +29,7 @@ export const UNIT_REVIEWS: Record<number, UnitReviewData> = {
   },
   2: {
     focus: "Chemical bonding, potential energy, ionic solids, Lewis structures, resonance, molecular geometry, and polarity.",
+    examWeight: "7–9% of the multiple-choice section",
     connect: "Translate between representations: a Lewis structure shows connectivity and electron accounting; VSEPR predicts three-dimensional shape; bond polarity and molecular geometry together determine the net molecular dipole.",
     strategies: [
       { title: "Build and check a Lewis structure", summary: "Account for every valence electron before judging the structure.", steps: ["Count total valence electrons, adjusting for ionic charge.", "Choose a reasonable skeleton and connect atoms with single bonds.", "Complete terminal-atom octets, then place remaining electrons.", "Create multiple bonds if needed and check formal charges and the total electron count.", "For resonance, keep atom positions fixed and move electrons, not nuclei."] },
@@ -39,6 +42,7 @@ export const UNIT_REVIEWS: Record<number, UnitReviewData> = {
   },
   3: {
     focus: "Intermolecular forces, properties of solids and liquids, gases, solutions, concentration, and spectroscopy.",
+    examWeight: "18–22% of the multiple-choice section",
     connect: "Observable properties follow from particle-level attractions and motion. Always identify the particles and interactions before predicting boiling point, vapor pressure, solubility, or gas behavior.",
     strategies: [
       { title: "Compare intermolecular forces", summary: "Use particle structure and the specific interactions available.", steps: ["Identify whether the particles are atoms, molecules, or ions.", "Check for London dispersion forces, permanent dipoles, and hydrogen bonding where applicable.", "Compare size, polarizability, shape, and interaction strength only after identifying the forces.", "Connect stronger attractions to the property asked about, such as higher boiling point or lower vapor pressure."] },
@@ -50,6 +54,7 @@ export const UNIT_REVIEWS: Record<number, UnitReviewData> = {
   },
   4: {
     focus: "Reaction equations, net ionic equations, physical and chemical changes, stoichiometry, titration, reaction classes, and redox.",
+    examWeight: "7–9% of the multiple-choice section",
     connect: "Chemical equations conserve atoms and charge. Use the balanced equation to connect microscopic particle ratios to measurable amounts.",
     strategies: [
       { title: "Solve stoichiometry problems", summary: "A balanced equation is a mole-ratio map.", steps: ["Balance the chemical equation first.", "Convert the given quantity to moles.", "Use the coefficient ratio to find moles of the requested species.", "Convert to the requested unit and check whether a limiting reactant constrains the amount.", "For yield, distinguish theoretical yield from actual yield."] },
@@ -61,6 +66,7 @@ export const UNIT_REVIEWS: Record<number, UnitReviewData> = {
   },
   5: {
     focus: "Reaction rates, rate laws, integrated rate laws, collision theory, mechanisms, energy profiles, and catalysis.",
+    examWeight: "7–9% of the multiple-choice section",
     connect: "Kinetics links measured concentration changes to particle collisions and reaction pathways. Distinguish what data show directly from what a model proposes about the mechanism.",
     strategies: [
       { title: "Read a concentration–time graph", summary: "Rate comes from slope, not the height of the curve.", steps: ["Read the axes and units first.", "Use Δconcentration/Δtime for an average rate.", "Use the tangent slope for an instantaneous rate when asked.", "Apply the negative sign for a reactant's rate of disappearance.", "Use stoichiometric coefficients when relating rates of different species."] },
@@ -72,6 +78,7 @@ export const UNIT_REVIEWS: Record<number, UnitReviewData> = {
   },
   6: {
     focus: "Endothermic and exothermic processes, calorimetry, enthalpy, entropy, and Gibbs free energy.",
+    examWeight: "7–9% of the multiple-choice section",
     connect: "Thermodynamic conclusions depend on the system, surroundings, and conditions. Keep heat flow, enthalpy, entropy, and free energy conceptually distinct.",
     strategies: [
       { title: "Solve calorimetry problems", summary: "Track which object gains heat and which loses it.", steps: ["Identify the system and surroundings.", "Use q = mcΔT for a solution or material when appropriate.", "Apply energy conservation so heat gained and lost balance for an isolated calorimetry setup.", "Convert between heat and molar enthalpy only after finding the amount reacted.", "Check the sign against whether the reaction is exothermic or endothermic."] },
@@ -83,6 +90,7 @@ export const UNIT_REVIEWS: Record<number, UnitReviewData> = {
   },
   7: {
     focus: "Dynamic equilibrium, equilibrium constants, reaction quotients, ICE tables, and responses to disturbances.",
+    examWeight: "7–9% of the multiple-choice section",
     connect: "At equilibrium, forward and reverse rates are equal; concentrations are constant but are not necessarily equal. Compare Q with K to predict the direction of net change.",
     strategies: [
       { title: "Write an equilibrium expression", summary: "Use the balanced equation and omit pure solids and liquids.", steps: ["Balance the reaction.", "Write product activities over reactant activities, each raised to its coefficient.", "Omit pure solids and pure liquids from K.", "Substitute equilibrium values, not initial values.", "Check whether the question asks for Kc, Kp, or a direction-of-shift prediction."] },
@@ -94,6 +102,7 @@ export const UNIT_REVIEWS: Record<number, UnitReviewData> = {
   },
   8: {
     focus: "Acid–base models, pH, Ka and Kb, conjugate pairs, buffers, titrations, and acid–base equilibria.",
+    examWeight: "11–15% of the multiple-choice section",
     connect: "Acid–base calculations are equilibrium calculations. Identify the reaction and the dominant species before choosing an equation; a memorized formula cannot replace species reasoning.",
     strategies: [
       { title: "Choose a pH calculation method", summary: "Classify the solution before calculating.", steps: ["Identify whether the solute is a strong acid/base, weak acid/base, buffer, or mixture after neutralization.", "Write the relevant reaction and determine the major species.", "Use stoichiometry first when strong acid and base react.", "Use equilibrium relationships for weak acids and bases when needed.", "Convert concentration to pH or pOH and check that the result fits the solution."] },
@@ -105,6 +114,7 @@ export const UNIT_REVIEWS: Record<number, UnitReviewData> = {
   },
   9: {
     focus: "Entropy and free-energy applications, electrochemical cells, cell potentials, and the relationship between redox and thermodynamics.",
+    examWeight: "7–9% of the multiple-choice section",
     connect: "Redox reactions transfer electrons; electrochemical cells use that transfer to produce or consume electrical energy. Cell notation, electron flow, signs, and thermodynamic relationships must be mutually consistent.",
     strategies: [
       { title: "Analyze a galvanic cell", summary: "Oxidation occurs at the anode and reduction at the cathode.", steps: ["Separate the overall redox reaction into oxidation and reduction half-reactions.", "Balance atoms and charge, including electrons.", "Identify the anode as the oxidation site and the cathode as the reduction site.", "Electrons flow through the external circuit from anode to cathode.", "Use reduction potentials consistently to calculate E°cell = E°cathode − E°anode."] },
