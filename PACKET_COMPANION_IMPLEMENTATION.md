@@ -1,7 +1,7 @@
 # Packet Companion Implementation Plan
 
 **Branch:** `curriculum/lesson-clutter-unit-review-audit`  
-**Status:** Architecture and acceptance criteria only; packet-level question data has not been loaded or verified.  
+**Status:** Initial index populated from extracted metadata for 22 MCQ Practice PDFs in the private `ncoder-learner/CHem` repository. Question-specific subtopic mappings, hints, solutions, and video references remain unreviewed.  
 **Deployment constraint:** Do not merge to `master` or trigger a Netlify deployment as part of this work.
 
 ## Product goal
@@ -67,11 +67,21 @@ Keep topic-specific chemistry and graph-reading procedures inside the lesson. Co
 2. Confirm Unit Review navigation and content coverage without publishing.
 3. Implement the question-index types and validation before importing question mappings.
 4. Build the Packet Companion lookup UI with explicit empty/unmapped states.
-5. Populate a small representative batch and manually verify each mapping and solution.
-6. Connect each mapped question to the relevant lesson and original parallel practice.
-7. Add optional progress tracking only after deciding on local-only versus account-backed persistence.
-8. Validate question-number edge cases, FRQ part labels, unknown packet versions, keyboard accessibility, mobile layout, and build/type checks.
+5. Review the extracted question-number index against each source PDF, starting with a representative batch.
+6. Map individual questions to exact concepts and lessons; write original hints and independently derived explanations.
+7. Add original parallel practice after the underlying question skill has been identified.
+8. Add FRQ indexing when the private archive contains actual FRQ files, then review part labels and scoring guidance.
+9. Add optional progress tracking only after deciding on local-only versus account-backed persistence.
+10. Validate question-number edge cases, packet versions, keyboard accessibility, mobile layout, and build/type checks.
 
-## Current limitations
+## Current source inventory and limitations
 
-The blank PDFs and video walkthrough references are not available in this session yet. Therefore no packet numbers, walkthrough URLs/timestamps, or packet-specific solutions are verified. The UI and schema must make that distinction visible rather than imply that the companion is already populated.
+- The private source repository is `ncoder-learner/CHem`. Its main branch contains 22 files explicitly named as MCQ Practice PDFs, plus a mixed Topics 4.5–4.6 practice packet, a separate Topics 8.1–8.3 instructional packet, and an FRQ folder that currently contains only a placeholder.
+- A temporary GitHub Actions artifact extracted text from the PDFs for internal indexing. The extracted question numbers and topic ranges were used to create 234 MCQ index entries across the 22 explicitly labeled MCQ Practice PDFs.
+- The public AP Chem Hub repository contains metadata only: packet titles, question numbers, topic ranges, and links to existing lessons where available. It does not contain copied packet questions, diagrams, or answer keys.
+- The Topics 4.5–4.6 mixed packet is excluded from the MCQ index until its question types are classified. The separate Topics 8.1–8.3 instructional packet is not treated as an MCQ set.
+- The Topics 8.6–8.11 extraction begins with an unnumbered question before printed question 2. The index does not invent a number for that first item.
+- A packet index match confirms the source set and question number, not an exact subtopic mapping or a verified solution. Individual concept mappings, hint stages, original parallel practice, and independently derived solutions still need review.
+- No teacher-video URL or timestamp is marked as verified. Do not label a solution video-verified unless the matching walkthrough has actually been checked.
+
+The UI must keep these distinctions visible. It should never imply that a packet-specific answer is available when only the source and printed number have been indexed.
