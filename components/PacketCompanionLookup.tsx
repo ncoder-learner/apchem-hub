@@ -224,7 +224,7 @@ export function PacketCompanionLookup() {
             )}
 
             {revealableSteps === 0 && (
-              <p className="mt-4 text-sm text-ink-dim">Question-specific hints and a worked explanation are not available yet. The source match is verified, but this is not an answer key.</p>
+              <p className="mt-4 text-sm text-ink-dim">Question-specific hints and a worked explanation are not available yet. The packet and printed question number are indexed, but the exact question match and answer have not been independently verified.</p>
             )}
 
             <div className="mt-4 border-t border-border pt-4">
