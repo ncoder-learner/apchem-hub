@@ -144,7 +144,7 @@ export function PacketCompanionLookup() {
           <section className="rounded-2xl border border-border bg-card/60 p-4 sm:p-5">
             <div className="flex items-start justify-between gap-3">
               <div><p className="text-xs font-bold uppercase tracking-wide text-accent">Question navigator</p><h2 className="mt-1 text-lg font-semibold">{packets.find(([id]) => id === packetId)?.[1] ?? "Choose a packet"}</h2></div>
-              {packetEntries.length > 0 && <span className="rounded-full border border-border px-2 py-1 text-xs text-ink-dim}>{packetEntries.length} questions</span>}
+              {packetEntries.length > 0 && <span className="rounded-full border border-border px-2 py-1 text-xs text-ink-dim">{packetEntries.length} questions</span>}
             </div>
             {packetEntries.length > 0 ? (
               <>
