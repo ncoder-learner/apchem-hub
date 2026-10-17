@@ -468,6 +468,6 @@ function UnitNine({ topicNumber }: { topicNumber: string }) {
   </Frame>;
 }
 export function TopicLab({ unitId, topicNumber, title }: TopicLabProps) {
-  const labs: Record<number, ReactNode> = {1:<UnitOne topicNumber={topicNumber}/>,2:<UnitTwo topicNumber={topicNumber}/>,3:<UnitThree topicNumber={topicNumber}/>,4:<UnitFour topicNumber={topicNumber}/>,5:<UnitFive topicNumber={topicNumber}/>,6:<UnitSix topicNumber={topicNumber}/>,7:<UnitSeven/>,8:<UnitEight/>,9:<UnitNine/>};
+  const labs: Record<number, ReactNode> = {1:<UnitOne topicNumber={topicNumber}/>,2:<UnitTwo topicNumber={topicNumber}/>,3:<UnitThree topicNumber={topicNumber}/>,4:<UnitFour topicNumber={topicNumber}/>,5:<UnitFive topicNumber={topicNumber}/>,6:<UnitSix topicNumber={topicNumber}/>,7:<UnitSeven/>,8:<UnitEight/>,9:<UnitNine topicNumber={topicNumber}/>};
   return <div data-topic={topicNumber} data-title={title}>{labs[unitId] ?? null}</div>;
 }
