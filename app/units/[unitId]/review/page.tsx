@@ -53,6 +53,21 @@ export default async function UnitReviewPage({ params }: PageProps) {
         </a>
       </section>
 
+      <section className="mb-8 rounded-xl border border-border bg-card/40 p-5 sm:flex sm:items-center sm:justify-between sm:gap-6 sm:p-6">
+        <div>
+          <h2 className="text-lg font-semibold">Reviewing with a physical packet?</h2>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-dim">
+            Keep the packet open and use Packet Companion to look up an indexed question. Question-specific help is shown only where available, and unverified mappings are labeled.
+          </p>
+        </div>
+        <Link
+          href="/packet-companion"
+          className="mt-4 inline-flex min-h-11 shrink-0 items-center rounded-lg bg-accent px-4 py-2.5 text-sm font-bold text-[#06251b] transition hover:opacity-90 sm:mt-0"
+        >
+          Open Packet Companion →
+        </Link>
+      </section>
+
       <section className="mb-8">
         <h2 className="mb-4 text-xl font-semibold">How to solve recurring question types</h2>
         <div className="grid gap-4 md:grid-cols-2">
