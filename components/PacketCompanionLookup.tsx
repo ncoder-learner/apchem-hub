@@ -149,7 +149,7 @@ export function PacketCompanionLookup() {
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wide text-accent">Indexed packet match</p>
                 <h3 className="mt-1 font-semibold">{match.packetTitle} · Question {match.questionNumber}{match.partLabel ? ` (${match.partLabel})` : ""}</h3>
-                <p className="mt-1 text-sm text-ink-dim">Packet topic range: {match.topicRange.replace("-", "–")}</p>
+                <p className="mt-1 text-sm text-ink-dim">Packet topic range: {match.topicRange.replace("-", "–")}{match.topicNumber ? ` · mapped topic: ${match.topicNumber}` : ""}</p>
               </div>
               <span className="rounded-full border border-border px-2.5 py-1 text-xs text-ink-dim">
                 {hintLevel === revealableSteps && match.solution ? "Explanation revealed" : `Help stage ${Math.min(hintLevel, hints.length)} of ${revealableSteps}`}
@@ -158,7 +158,9 @@ export function PacketCompanionLookup() {
 
             {hintLevel === 0 && (
               <p className="mt-3 text-sm leading-relaxed text-ink-dim">
-                This identifies the printed question number in the selected packet index. The exact subtopic mapping and question-specific hints are still being reviewed. Try the question first, then use the lesson links or Unit Review while detailed help is prepared.
+                {match.topicNumber
+                  ? `This question is mapped to Topic ${match.topicNumber}. Question-specific hints and a worked explanation are still being prepared. Try it first, then use the lesson or Unit Review to check the underlying chemistry.`
+                  : "This identifies the printed question number in the selected packet index. The exact subtopic mapping and question-specific hints are still being reviewed. Try the question first, then use the lesson links or Unit Review while detailed help is prepared."}
               </p>
             )}
 
@@ -198,7 +200,7 @@ export function PacketCompanionLookup() {
 
             {match.topicSlugs.length > 0 && (
               <div className="mt-4 border-t border-border pt-4">
-                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-ink-dim">Lessons in this packet's topic range</p>
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-ink-dim">{match.topicNumber ? "Mapped lesson" : "Lessons in this packet's topic range"}</p>
                 <div className="flex flex-wrap gap-2">
                 {match.topicSlugs.map((slug) => (
                   <Link
