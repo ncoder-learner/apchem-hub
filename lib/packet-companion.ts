@@ -129,6 +129,113 @@ const QUESTION_TOPIC_OVERRIDES: Record<string, Record<number, string>> = {
   "topics-5-4-5-11-mcq": { 2: "5.4", 3: "5.5", 10: "5.11" },
 };
 
+const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "conceptHint" | "strategyHint" | "nextStepHint">>> = {
+  "topics-2-5-2-7-mcq": {
+    1: {
+      conceptHint: "A valid Lewis diagram must satisfy the hydrogen duet rule, the usual octet for carbon, and the molecule's total valence-electron count.",
+      strategyHint: "Count all valence electrons first, then check each carbon's number of bonds and each hydrogen's single bond.",
+      nextStepHint: "Reject any option that uses too many or too few electrons, gives hydrogen more than one bond, or leaves a carbon with an implausible valence.",
+    },
+    2: {
+      conceptHint: "For a charged Lewis structure, adjust the total valence-electron count for the ion's charge before placing lone pairs and bonds.",
+      strategyHint: "Build an O–N–O skeleton, complete oxygen octets, then consider multiple bonds and formal charges.",
+      nextStepHint: "Check that the final electron count is 16 and that the formal charges add to the overall +1 charge.",
+    },
+    3: {
+      conceptHint: "Formal charge helps compare Lewis structures; a useful structure usually minimizes unnecessary charge separation while preserving plausible bonding.",
+      strategyHint: "For each candidate, count lone-pair electrons and bonding electrons around every atom, then calculate formal charge.",
+      nextStepHint: "Prefer a structure with sensible octets and the smallest reasonable formal charges; account for chlorine, nitrogen, and oxygen electronegativities.",
+    },
+    4: {
+      conceptHint: "When comparing resonance contributors, examine formal charges and which atoms carry them.",
+      strategyHint: "Calculate formal charges for each proposed O–C–N arrangement and check that the total charge remains −1.",
+      nextStepHint: "A negative formal charge is generally more favorable on the more electronegative oxygen than on carbon, provided octets and bonding remain reasonable.",
+    },
+    5: {
+      conceptHint: "Resonance means electrons are delocalized across multiple valid Lewis contributors; the real molecule is not rapidly switching between separate structures.",
+      strategyHint: "Draw the important resonance contributors for ozone, then compare what each predicts for the two O–O bonds.",
+      nextStepHint: "Equivalent bonds in the resonance hybrid have the same intermediate bond order rather than one permanent single bond and one permanent double bond.",
+    },
+    6: {
+      conceptHint: "Equal bond lengths can be evidence that resonance makes two bonds equivalent in the actual structure.",
+      strategyHint: "Compare the two major resonance contributors of acetate and track which C–O bond is double in each.",
+      nextStepHint: "Look for the pair of contributors that swaps the double bond between the two oxygens while leaving the atom connectivity unchanged.",
+    },
+    7: {
+      conceptHint: "VSEPR predicts bond angles from repulsion between electron domains; lone pairs generally repel more strongly than bonding pairs.",
+      strategyHint: "For each candidate, count electron domains around the central atom and distinguish lone pairs from bonded atoms.",
+      nextStepHint: "Compare the expected geometry and angle compression. A central atom with more lone-pair repulsion often has the smaller bond angle.",
+    },
+    8: {
+      conceptHint: "Molecular polarity depends on both bond dipoles and the three-dimensional molecular geometry.",
+      strategyHint: "Determine the shape of BF₃ and NF₃ separately, then consider whether the individual B–F or N–F bond dipoles cancel as vectors.",
+      nextStepHint: "A symmetric trigonal-planar arrangement can cancel equal bond dipoles; a trigonal-pyramidal arrangement does not cancel them completely.",
+    },
+    9: {
+      conceptHint: "Use VSEPR to determine molecular geometry before deciding whether the bond dipoles cancel.",
+      strategyHint: "Count the central chlorine's electron domains, including lone pairs, and then identify the positions occupied by the three fluorine atoms.",
+      nextStepHint: "Three bonds and two lone pairs give five electron domains; the molecular shape is T-shaped, so the bond dipoles do not fully cancel.",
+    },
+    10: {
+      conceptHint: "Hybridization labels are assigned from the local bonding arrangement in each structure, not from the atom's identity alone.",
+      strategyHint: "For each carbon, count regions of electron density around it; a double bond counts as one region for geometry.",
+      nextStepHint: "Use two, three, or four regions to identify the corresponding sp, sp², or sp³ model, then repeat for the carbon after the reaction.",
+    },
+  },
+  "topics-5-1-5-3-mcq": {
+    1: {
+      conceptHint: "For a reaction involving a solid, the exposed surface area can affect how often dissolved reactant particles reach reactive sites.",
+      strategyHint: "Compare the amount of magnesium and acid first, then compare how much magnesium surface is exposed in the particle models.",
+      nextStepHint: "The sample with more exposed reactive surface should have the faster initial rate, assuming other conditions are the same.",
+    },
+    2: {
+      conceptHint: "Reaction rate can increase when reactant concentration is higher or when a solid reactant has greater exposed surface area.",
+      strategyHint: "Find the trial combining the greatest acid concentration with the smallest solid-particle size; keep mass and solution volume in view.",
+      nextStepHint: "The fastest trial should require the least time to finish because both conditions favor more frequent effective collisions.",
+    },
+    3: {
+      conceptHint: "Rates of disappearance and formation are related by the coefficients in the balanced chemical equation.",
+      strategyHint: "Write the rate ratio for oxalic acid and permanganate using their coefficients, 5 and 2.",
+      nextStepHint: "The disappearance rate of permanganate is the oxalic-acid disappearance rate multiplied by 2/5.",
+    },
+    4: {
+      conceptHint: "The rate law describes concentration effects; the rate constant stays fixed when temperature and the reaction conditions defining k stay fixed.",
+      strategyHint: "Substitute the concentration changes into rate = k[H₂][I₂], multiplying each concentration factor separately.",
+      nextStepHint: "Doubling both first-order reactants multiplies the initial rate by four, while the rate constant remains unchanged at the same temperature.",
+    },
+    5: {
+      conceptHint: "Integrated rate laws connect concentration to elapsed time; repeated equal-fraction decreases suggest first-order behavior.",
+      strategyHint: "Compare successive concentration ratios and determine whether the half-life is constant. For a first-order process, k = 0.693/t₁/₂.",
+      nextStepHint: "The data show a half-life of about 4.0 minutes, so calculate k in min⁻¹ using 0.693 divided by that half-life.",
+    },
+    6: {
+      conceptHint: "The method of initial rates isolates reaction orders by changing one reactant concentration at a time.",
+      strategyHint: "Compare trials 1 and 2 to find the order in X, then compare trials 2 and 3 to find the order in Y.",
+      nextStepHint: "A twofold increase in X makes the rate fourfold larger, while a twofold increase in Y doubles the rate. Translate those factors into exponents.",
+    },
+    7: {
+      conceptHint: "Use initial-rate comparisons to determine how the rate depends on each reactant concentration.",
+      strategyHint: "Identify pairs of experiments where only one starting concentration changes, then compare the rate ratio.",
+      nextStepHint: "For each reactant, solve the exponent that makes its concentration ratio predict the observed rate ratio; combine the exponents for the overall order.",
+    },
+    8: {
+      conceptHint: "A catalyst provides an alternative pathway and can change the rate without being consumed in the overall reaction.",
+      strategyHint: "Read the concentration-time data for the catalyzed decomposition and separate the observed concentration pattern from the catalyst's role.",
+      nextStepHint: "Use the requested evidence—such as rate changes or a transformed concentration plot—rather than assuming the catalyst changes the reaction's equilibrium or overall stoichiometry.",
+    },
+    9: {
+      conceptHint: "A rate law is supported by experimental relationships, not by balancing the overall reaction equation.",
+      strategyHint: "Read how the plotted rate or transformed data changes as the relevant concentration changes, then compare that pattern with each candidate law.",
+      nextStepHint: "Check which candidate predicts the observed proportionality across the full data set, not just one point.",
+    },
+    10: {
+      conceptHint: "Concentration-time data can be tested against integrated rate-law relationships to identify reaction order.",
+      strategyHint: "Compare [Q], ln[Q], and 1/[Q] against time, or inspect whether the data show a constant half-life.",
+      nextStepHint: "Once the order is identified, use the matching integrated equation and keep the time unit consistent when reporting k.",
+    },
+  },
+};
+
 function topicOrder(topic: string): number {
   const [unit, number] = topic.split(".").map(Number);
   return unit * 100 + number;
@@ -152,6 +259,7 @@ export const PACKET_QUESTION_INDEX: PacketQuestionEntry[] = PACKET_SOURCES.flatM
       const questionNumber = String(source.firstQuestion + index);
       const mappedTopicNumber = QUESTION_TOPIC_OVERRIDES[source.packetId]?.[Number(questionNumber)];
       const mappedTopicSlug = mappedTopicNumber ? TOPIC_SLUGS[mappedTopicNumber] : undefined;
+      const questionHints = QUESTION_HINTS[source.packetId]?.[Number(questionNumber)];
       return {
         id: `${source.packetId}-q${questionNumber}`,
         unitId: source.unitId,
@@ -163,9 +271,10 @@ export const PACKET_QUESTION_INDEX: PacketQuestionEntry[] = PACKET_SOURCES.flatM
         ...(mappedTopicNumber ? { topicNumber: mappedTopicNumber } : {}),
         topicSlugs: mappedTopicSlug ? [mappedTopicSlug] : getTopicSlugs(source.topicRange),
         skills: [],
+        ...(questionHints ?? {}),
         sourceStatus: "mapped",
         reviewNote: mappedTopicNumber
-          ? `Packet and question number indexed; mapped to topic ${mappedTopicNumber}. Question-specific hints and explanation still need review.`
+          ? `Packet and question number indexed; mapped to topic ${mappedTopicNumber}. Review question-specific help before adding a worked explanation.`
           : "Packet and printed question number indexed; exact subtopic mapping and question-specific help still need review.",
       };
     }
