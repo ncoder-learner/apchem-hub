@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { PacketCompanionLookup } from "@/components/PacketCompanionLookup";
-import { FrqWorkspace } from "@/components/FrqWorkspace";
+import { PacketCompanionModes } from "@/components/PacketCompanionModes";
 
 export default function PacketCompanionPage() {
   return (
@@ -15,22 +14,7 @@ export default function PacketCompanionPage() {
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Packet Companion</h1>
         <p className="mt-4 max-w-3xl leading-relaxed text-ink-dim">Open your multiple-choice or free-response packet beside structured chemistry help. The workspace keeps the original document visible while you work.</p>
       </header>
-      <div className="space-y-6">
-        <div className="grid gap-3 sm:grid-cols-2" aria-label="Packet type">
-          <a href="#mcq-workspace" className="rounded-xl border border-border bg-card/60 p-4 transition hover:border-accent/50">
-            <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Practice type 01</p>
-            <h2 className="mt-1 text-lg font-bold">Multiple Choice</h2>
-            <p className="mt-1 text-sm text-ink-dim">Navigate indexed questions and reveal available hints and worked answers.</p>
-          </a>
-          <a href="#frq-workspace" className="rounded-xl border border-border bg-card/60 p-4 transition hover:border-accent/50">
-            <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Practice type 02</p>
-            <h2 className="mt-1 text-lg font-bold">Free Response</h2>
-            <p className="mt-1 text-sm text-ink-dim">Open topic-based FRQ PDFs and use a structured response checklist.</p>
-          </a>
-        </div>
-        <section id="mcq-workspace" className="scroll-mt-6"><PacketCompanionLookup /></section>
-        <section id="frq-workspace" className="scroll-mt-6"><FrqWorkspace /></section>
-      </div>
+      <PacketCompanionModes />
       <section className="mt-8 rounded-xl border border-border p-5 sm:p-6">
         <h2 className="text-lg font-semibold">Need help with the underlying chemistry?</h2>
         <p className="mt-2 text-sm leading-relaxed text-ink-dim">Use the related unit lesson for concept explanations, visual models, and worked examples. Question-specific FRQ solutions will be labeled only after their prompts are mapped and checked.</p>
