@@ -77,9 +77,9 @@ export const UNIT_REVIEWS: Record<number, UnitReviewData> = {
     readiness: ["I can calculate average and instantaneous rates from data or graphs.", "I can determine rate-law orders and the rate constant from experiments.", "I can use integrated-rate and half-life relationships where applicable.", "I can interpret energy profiles and evaluate proposed mechanisms.", "I can explain collision theory and catalysis at the particle level."],
   },
   6: {
-    focus: "Endothermic and exothermic processes, calorimetry, enthalpy, entropy, and Gibbs free energy.",
+    focus: "Heat flow, energy diagrams, calorimetry, phase changes, reaction enthalpy, bond enthalpies, formation enthalpies, and Hess’s law.",
     examWeight: "7–9% of the multiple-choice section",
-    connect: "Thermodynamic conclusions depend on the system, surroundings, and conditions. Keep heat flow, enthalpy, entropy, and free energy conceptually distinct.",
+    connect: "Thermochemistry is energy bookkeeping: define the system, identify where heat goes, choose the equation that matches the process, and track the sign and units through every step.",
     strategies: [
       { title: "Solve calorimetry problems", summary: "Track which object gains heat and which loses it.", steps: ["Identify the system and surroundings.", "Use q = mcΔT for a solution or material when appropriate.", "Apply energy conservation so heat gained and lost balance for an isolated calorimetry setup.", "Convert between heat and molar enthalpy only after finding the amount reacted.", "Check the sign against whether the reaction is exothermic or endothermic."] },
       { title: "Evaluate spontaneity", summary: "Use the Gibbs relationship at the stated temperature.", steps: ["Identify the signs of ΔH and ΔS.", "Use ΔG = ΔH − TΔS with consistent units.", "Determine the sign of ΔG at the specified temperature.", "If the sign can change with temperature, solve for the threshold only after setting ΔG = 0.", "Do not equate spontaneity with speed."] },
