@@ -84,6 +84,7 @@ export function PacketCompanionLookup() {
     setPacketId(value);
     setQuestionNumber("1");
     setHintLevel(0);
+    setShowSolution(false);
     setPdfFile(null);
     setPdfError("");
   }
