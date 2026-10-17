@@ -74,6 +74,8 @@ Avoid pretending the review is a complete exam or promising a score. Do not copy
 - [ ] Audit every lesson file against the current CED.
 - [x] Implement initial Unit Review routes for all nine units and link them from lesson navigation.
 - [x] Move the general Unit 2 hybridization exam-scope callout out of the lesson body and replace it with a concise link to the Unit 2 Review. Full lesson-by-lesson cleanup remains.
+- [x] Remove the unit-wide multiple-choice exam-weighting sentence from Unit 3 Topic 3.9 and surface official unit weighting on all Unit Review pages instead.
+- [x] Correct the Unit 2 Topic 2.7 polarity explanation so lone pairs are not treated as ordinary bond dipoles; the net molecular dipole is determined from bond-dipole vectors and geometry.
 - [ ] Run typecheck and production build; GitHub contents edits do not execute a local build.
 - [ ] Inspect responsive rendering and interactions in a browser.
 
