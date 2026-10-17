@@ -77,6 +77,14 @@ export function LessonView({
           })}
         </nav>
 
+        <Link
+          href={`/units/${unitId}/review`}
+          className="mt-3 flex items-center justify-between rounded-xl border border-accent/20 bg-accent-soft px-3 py-3 text-sm font-semibold text-accent transition hover:border-accent/40"
+        >
+          <span>Unit {unitId} Review</span>
+          <span aria-hidden="true">→</span>
+        </Link>
+
         <LessonOutline articleId="lesson-article" />
       </aside>
 
