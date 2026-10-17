@@ -1,0 +1,76 @@
+name: Import private chemistry packets
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_branch:
+        description: "AP Chem Hub branch to receive packet PDFs"
+        required: true
+        default: "feature/packet-reader-unit-review-rebuild-unit-6"
+
+permissions:
+  contents: write
+
+jobs:
+  import-packets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out AP Chem Hub
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.target_branch }}
+          token: ${{ github.token }}
+
+      - name: Check out private packet repository
+        uses: actions/checkout@v4
+        with:
+          repository: ncoder-learner/CHem
+          ref: main
+          token: ${{ secrets.CHEM_REPO_TOKEN }}
+          path: private-packets
+          persist-credentials: false
+
+      - name: Copy approved packet PDFs into public assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p public/packets
+          cp "private-packets/Topics 1.1 - 1.3 MCQ Practice.pdf" public/packets/topics-1-1-1-3-mcq.pdf
+          cp "private-packets/Topics 1.4 - 1.6 MCQ Practice.pdf" public/packets/topics-1-4-1-6-mcq.pdf
+          cp "private-packets/Topics 1.7 - 1.8 MCQ Practice.pdf" public/packets/topics-1-7-1-8-mcq.pdf
+          cp "private-packets/Topics 2.1 - 2.4 MCQ Practice.pdf" public/packets/topics-2-1-2-4-mcq.pdf
+          cp "private-packets/Topics 2.5 - 2.7 MCQ Practice.pdf" public/packets/topics-2-5-2-7-mcq.pdf
+          cp "private-packets/Topics 3.1 - 3.2 MCQ Practice.pdf" public/packets/topics-3-1-3-2-mcq.pdf
+          cp "private-packets/Topics 3.3 - 3.6 MCQ Practice.pdf" public/packets/topics-3-3-3-6-mcq.pdf
+          cp "private-packets/Topics 3.7 - 3.13 MCQ Practice.pdf" public/packets/topics-3-7-3-13-mcq.pdf
+          cp "private-packets/Topics 4.1 - 4.4 MCQ Practice.pdf" public/packets/topics-4-1-4-4-mcq.pdf
+          cp "private-packets/Topics 4.5 - 4.6.pdf" public/packets/topics-4-5-4-6.pdf
+          cp "private-packets/Topics 4.7 - 4.9 MCQ Practice.pdf" public/packets/topics-4-7-4-9-mcq.pdf
+          cp "private-packets/Topics 5.1 - 5.3 MCQ Practice.pdf" public/packets/topics-5-1-5-3-mcq.pdf
+          cp "private-packets/Topics 5.4 - 5.11 MCQ Practice.pdf" public/packets/topics-5-4-5-11-mcq.pdf
+          cp "private-packets/Topics 6.1 - 6.5 MCQ Practice.pdf" public/packets/topics-6-1-6-5-mcq.pdf
+          cp "private-packets/Topics 6.6 - 6.9 MCQ Practice.pdf" public/packets/topics-6-6-6-9-mcq.pdf
+          cp "private-packets/Topics 7.1 - 7.5 MCQ Practice.pdf" public/packets/topics-7-1-7-5-mcq.pdf
+          cp "private-packets/Topics 7.11 - 7.12 MCQ Practice.pdf" public/packets/topics-7-11-7-12-mcq.pdf
+          cp "private-packets/Topics 7.6 - 7.10 MCQ Practice.pdf" public/packets/topics-7-6-7-10-mcq.pdf
+          cp "private-packets/Topics 8.1 - 8.3 MCQ Practice.pdf" public/packets/topics-8-1-8-3-mcq.pdf
+          cp "private-packets/Topics 8.1 - 8.3.pdf" public/packets/topics-8-1-8-3.pdf
+          cp "private-packets/Topics 8.4 - 8.5 MCQ Practice.pdf" public/packets/topics-8-4-8-5-mcq.pdf
+          cp "private-packets/Topics 8.6 - 8.11 MCQ Practice.pdf" public/packets/topics-8-6-8-11-mcq.pdf
+          cp "private-packets/Topics 9.1 - 9.7 MCQ Practice.pdf" public/packets/topics-9-1-9-7-mcq.pdf
+          cp "private-packets/Topics 9.8 - 9.11 MCQ Practice.pdf" public/packets/topics-9-8-9-11-mcq.pdf
+          test "$(find public/packets -maxdepth 1 -name '*.pdf' | wc -l)" -eq 24
+
+      - name: Commit packet PDFs to target branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/packets
+          if git diff --cached --quiet; then
+            echo "Packet PDFs are already up to date."
+            exit 0
+          fi
+          git commit -m "Add public packet PDFs for Packet Companion"
+          git push origin "HEAD:${{ inputs.target_branch }}"
