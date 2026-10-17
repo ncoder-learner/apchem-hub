@@ -317,11 +317,80 @@ function MechanismLab() {
   </Frame>;
 }
 function ConcentrationLab() {
-  const [order,setOrder]=useState(1);const [k,setK]=useState(.25);const [initial,setInitial]=useState(1);
-  const points=Array.from({length:41},(_,i)=>{const time=i*.25;let c=initial;if(order===0)c=Math.max(0,initial-k*time);if(order===1)c=initial*Math.exp(-k*time);if(order===2)c=initial/(1+k*initial*time);return {time,c};});
-  const value=points[20].c;const path=points.map((p,i)=>(i?"L":"M")+(35+i*9.3)+","+(15+(1-p.c/2)*145)).join(" ");
-  return <Frame unit="5 · Kinetics" title="Change the rate law and watch concentration change" takeaway="Reaction order changes the mathematical shape of a concentration–time curve. The slope at a point is the instantaneous rate; the integrated law tells how concentration evolves over time.">
-    <div className="grid gap-5 md:grid-cols-2"><div><label className="mb-1 block text-sm text-ink-dim" htmlFor="kinetics-order">Reaction order</label><select id="kinetics-order" value={order} onChange={e=>setOrder(Number(e.target.value))} className="mb-3 w-full rounded-lg border border-border bg-bg px-3 py-2"><option value={0}>Zero order</option><option value={1}>First order</option><option value={2}>Second order</option></select><Slider label="Rate constant (illustrative)" min={.05} max={.5} step={.05} value={k} onChange={setK}/><Slider label="Initial concentration" min={.5} max={2} step={.25} value={initial} onChange={setInitial} suffix=" M"/><div className="rounded-lg border border-border p-3"><div className="text-xs text-ink-dim">Concentration at t = 5</div><div className="text-2xl font-bold">{value.toFixed(3)} M</div><div className="mt-1 text-xs text-ink-dim">{order===0?"[A] = [A]₀ − kt":order===1?"[A] = [A]₀e⁻ᵏᵗ":"[A] = [A]₀/(1 + k[A]₀t)"}</div></div></div><div className="rounded-xl border border-border bg-bg/50 p-3"><svg viewBox="0 0 440 210" className="w-full" role="img" aria-label="Concentration versus time curve"><line x1="35" y1="160" x2="420" y2="160" stroke="var(--color-ink-dim)"/><line x1="35" y1="15" x2="35" y2="160" stroke="var(--color-ink-dim)"/><path d={path} fill="none" stroke="#34d399" strokeWidth="3"/><text x="225" y="192" textAnchor="middle" fill="var(--color-ink-dim)" fontSize="12">Time →</text><text x="15" y="88" transform="rotate(-90 15 88)" fill="var(--color-ink-dim)" fontSize="11">[A] (M)</text></svg><p className="text-xs text-ink-dim">Idealized model; compare shapes, not real-world rate constants across different orders.</p></div></div>
+  const [order, setOrder] = useState(1);
+  const [k, setK] = useState(.15);
+  const [initial, setInitial] = useState(1.5);
+  const points = Array.from({ length: 41 }, (_, i) => {
+    const time = i * .05;
+    let concentration = initial;
+    if (order === 0) concentration = Math.max(.001, initial - k * time);
+    if (order === 1) concentration = initial * Math.exp(-k * time);
+    if (order === 2) concentration = initial / (1 + k * initial * time);
+    return { time, concentration };
+  });
+  const concentrationAtTwo = points[points.length - 1].concentration;
+  const plots = [
+    { id: 0, title: "[A] vs. time", transform: (c: number) => c, yLabel: "[A] (M)" },
+    { id: 1, title: "ln[A] vs. time", transform: (c: number) => Math.log(c), yLabel: "ln[A]" },
+    { id: 2, title: "1/[A] vs. time", transform: (c: number) => 1 / c, yLabel: "1/[A] (M⁻¹)" },
+  ];
+  const matchingPlot = order === 0 ? 0 : order === 1 ? 1 : 2;
+  const matchingEquation = order === 0
+    ? "[A]ₜ = [A]₀ − kt"
+    : order === 1
+      ? "ln[A]ₜ = ln[A]₀ − kt"
+      : "1/[A]ₜ = 1/[A]₀ + kt";
+  const makePath = (values: number[]) => {
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    const span = max - min || 1;
+    return values.map((value, index) => {
+      const x = 28 + (index / (values.length - 1)) * 244;
+      const y = 18 + (1 - (value - min) / span) * 78;
+      return `${index === 0 ? "M" : "L"}${x.toFixed(2)},${y.toFixed(2)}`;
+    }).join(" ");
+  };
+
+  return <Frame unit="5 · Kinetics" title="Find the linear integrated rate-law plot" takeaway="The correct transformation produces a straight line: [A] versus time for zero order, ln[A] versus time for first order, and 1/[A] versus time for second order. Use the shape of the transformed data to identify which integrated rate law is supported.">
+    <div className="grid gap-5 lg:grid-cols-[minmax(220px,0.75fr)_minmax(0,1.5fr)]">
+      <div>
+        <label className="mb-1 block text-sm text-ink-dim" htmlFor="kinetics-order">Simulated reaction order</label>
+        <select id="kinetics-order" value={order} onChange={event => setOrder(Number(event.target.value))} className="mb-3 min-h-11 w-full rounded-lg border border-border bg-bg px-3 py-2">
+          <option value={0}>Zero order</option>
+          <option value={1}>First order</option>
+          <option value={2}>Second order</option>
+        </select>
+        <Slider label="Rate constant (illustrative)" min={.05} max={.2} step={.01} value={k} onChange={setK} suffix={order === 0 ? " M/s" : order === 1 ? " s⁻¹" : " M⁻¹s⁻¹"}/>
+        <Slider label="Initial concentration" min={.5} max={2} step={.25} value={initial} onChange={setInitial} suffix=" M"/>
+        <div className="mt-3 rounded-lg border border-border p-3">
+          <div className="text-xs text-ink-dim">Model concentration at t = 2</div>
+          <div className="text-2xl font-bold">{concentrationAtTwo.toFixed(3)} M</div>
+          <div className="mt-1 text-xs leading-relaxed text-ink-dim">{matchingEquation}</div>
+        </div>
+        <p className="mt-3 text-xs leading-relaxed text-ink-dim">The model generates concentration data, then transforms the same data three ways. These are simulated values, not experimental measurements.</p>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-3">
+        {plots.map(plot => {
+          const values = points.map(point => plot.transform(point.concentration));
+          const isMatch = plot.id === matchingPlot;
+          return <article key={plot.id} className={`rounded-xl border p-3 ${isMatch ? "border-emerald-300 bg-emerald-300/5" : "border-border bg-bg/50"}`}>
+            <div className="min-h-10 text-sm font-semibold">{plot.title}</div>
+            <svg viewBox="0 0 290 135" className="w-full" role="img" aria-label={`${plot.title} simulated for a ${order === 0 ? "zero" : order === 1 ? "first" : "second"}-order reaction`}>
+              <line x1="28" y1="100" x2="272" y2="100" stroke="var(--color-ink-dim)" strokeWidth="1"/>
+              <line x1="28" y1="18" x2="28" y2="100" stroke="var(--color-ink-dim)" strokeWidth="1"/>
+              <path d={makePath(values)} fill="none" stroke={isMatch ? "#34d399" : "#8b9bb0"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <text x="150" y="122" textAnchor="middle" fontSize="10" fill="var(--color-ink-dim)">Time (s)</text>
+              <text x="12" y="60" transform="rotate(-90 12 60)" textAnchor="middle" fontSize="9" fill="var(--color-ink-dim)">{plot.yLabel}</text>
+            </svg>
+            <p className={`text-xs font-semibold ${isMatch ? "text-emerald-300" : "text-ink-dim"}`}>{isMatch ? "Linear for this order" : "Not linear for this order"}</p>
+          </article>;
+        })}
+      </div>
+    </div>
+    <div className="mt-5 rounded-xl border border-border bg-bg/50 p-4">
+      <p className="text-sm font-semibold">Prediction check</p>
+      <p className="mt-1 text-sm leading-relaxed text-ink-dim">Change the reaction order and compare all three plots. Only the transformation that matches the selected model should be linear. In real data, measurement noise means you look for the best straight-line fit rather than a mathematically perfect line.</p>
+    </div>
   </Frame>;
 }
 function UnitFive({ topicNumber }: { topicNumber: string }) {

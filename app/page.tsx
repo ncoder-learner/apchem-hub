@@ -59,6 +59,9 @@ export default function HomePage() {
               <a href="#course-map" className="inline-flex items-center gap-2 rounded-xl border border-border bg-white/[0.03] px-5 py-3 text-sm font-semibold text-ink transition hover:border-ink-dim/50 hover:bg-white/[0.06]">
                 Explore course <span aria-hidden="true">↓</span>
               </a>
+              <Link href="/packet-companion" className="inline-flex items-center gap-2 rounded-xl border border-accent/30 bg-accent-soft px-5 py-3 text-sm font-semibold text-accent transition hover:border-accent/60">
+                Help with a packet question <span aria-hidden="true">→</span>
+              </Link>
             </div>
           </div>
           <div className="hero-molecule" aria-hidden="true">
@@ -154,7 +157,17 @@ export default function HomePage() {
                 <Link key={unit.id} href={`/units/${unit.id}/${firstTopic.slug}`} className="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">
                   {card}
                 </Link>
-              ) : <div key={unit.id}>{card}</div>;
+              ) : (
+                <div key={unit.id} className="flex h-full flex-col">
+                  <div className="flex-1">{card}</div>
+                  <Link
+                    href={`/units/${unit.id}/review`}
+                    className="mt-2 inline-flex min-h-10 items-center justify-between rounded-xl border border-border px-4 py-2.5 text-sm font-semibold text-accent transition hover:border-accent/40 hover:bg-card"
+                  >
+                    Open Unit {unit.id} Review <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              );
             })}
           </div>
         </section>

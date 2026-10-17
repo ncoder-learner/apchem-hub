@@ -1,0 +1,23 @@
+packet_id,filename,source_title,unit,topic_range,ap_official_topic_range_in_unit,total_pages_in_source_doc,pages_captured_in_archive,file_size_bytes,text_layer_present,is_duplicate,duplicate_of,notes
+P01,tab_22_2026-10-17.pdf,Topics 1.1 - 1.3 MCQ Practice.pdf,Unit 1 - Atomic Structure and Properties,1.1-1.3,1.1-1.8,3,1,103149,No (image screenshot),No,,Only page 1 of 3 captured
+P02,tab_21_2026-10-17.pdf,Topics 1.4 - 1.6 MCQ Practice.pdf,Unit 1 - Atomic Structure and Properties,1.4-1.6,1.1-1.8,3,1,140600,No (image screenshot),No,,Only page 1 of 3 captured
+P03,tab_20_2026-10-17.pdf,Topics 1.7 - 1.8 MCQ Practice.pdf,Unit 1 - Atomic Structure and Properties,1.7-1.8,1.1-1.8,4,1,134554,No (image screenshot),No,,Only page 1 of 4 captured
+P04,tab_19_2026-10-17.pdf,Topics 2.1 - 2.4 MCQ Practice.pdf,Unit 2 - Molecular and Ionic Compound Structure and Properties,2.1-2.4,2.1-2.7,5,1,119352,No (image screenshot),No,,Only page 1 of 5 captured
+P05,tab_18_2026-10-17.pdf,Topics 2.5 - 2.7 MCQ Practice.pdf,Unit 2 - Molecular and Ionic Compound Structure and Properties,2.5-2.7,2.1-2.7,4,1,115370,No (image screenshot),No,,Only page 1 of 4 captured
+P06,tab_17_2026-10-17.pdf,Topics 3.1 - 3.2 MCQ Practice.pdf,Unit 3 - Intermolecular Forces and Properties,3.1-3.2,3.1-3.13,5,1,159161,No (image screenshot),No,,Only page 1 of 5 captured
+P07,tab_16_2026-10-17.pdf,Topics 3.3 - 3.6 MCQ Practice.pdf,Unit 3 - Intermolecular Forces and Properties,3.3-3.6,3.1-3.13,6,1,136738,No (image screenshot),No,,Only page 1 of 6 captured
+P08,tab_15_2026-10-17.pdf,Topics 3.7 - 3.13 MCQ Practice.pdf,Unit 3 - Intermolecular Forces and Properties,3.7-3.13,3.1-3.13,8,1,117547,No (image screenshot),No,,Only page 1 of 8 captured
+P09,MISSING,"Topics 4.x MCQ Practice.pdf (inferred, not present)",Unit 4 - Chemical Reactions,UNKNOWN,4.1-4.9 (approx.),UNKNOWN,0,0,N/A,Unknown,,"No file for this unit exists anywhere in the archive. Entire unit is absent."
+P10,tab_12_2026-10-17.pdf,Topics 5.1 - 5.3 MCQ Practice.pdf,Unit 5 - Kinetics,5.1-5.3,5.1-5.11,6,1,238177,No (image screenshot),No,,Only page 1 of 6 captured
+P11,tab_11_2026-10-17.pdf,Topics 5.4 - 5.11 MCQ Practice.pdf,Unit 5 - Kinetics,5.4-5.11,5.1-5.11,6,1,146242,No (image screenshot),No,,Only page 1 of 6 captured
+P12,tab_10_2026-10-17.pdf,Topics 6.1 - 6.5 MCQ Practice.pdf,Unit 6 - Thermodynamics,6.1-6.9,6.1-6.9,6,1,166822,No (image screenshot),No,,Only page 1 of 6 captured
+P13,tab_9_2026-10-17.pdf,Topics 6.6 - 6.9 MCQ Practice.pdf,Unit 6 - Thermodynamics,6.6-6.9,6.1-6.9,6,1,154687,No (image screenshot),No,,Only page 1 of 6 captured
+P14,tab_8_2026-10-17.pdf,Topics 7.1 - 7.5 MCQ Practice.pdf,Unit 7 - Equilibrium,7.1-7.5,7.1-7.12,5,1,159298,No (image screenshot),No,,Only page 1 of 5 captured
+P15,MISSING,"Topics 7.6 - 7.10 MCQ Practice.pdf (inferred, not present)",Unit 7 - Equilibrium,7.6-7.10,7.1-7.12,UNKNOWN,0,0,N/A,Unknown,,"Gap between tab_8 (7.1-7.5) and tab_6/tab_7 (7.11-7.12). Likely corresponds to missing tab_5 in filename sequence."
+P16,tab_6_2026-10-17.pdf,Topics 7.11 - 7.12 MCQ Practice.pdf,Unit 7 - Equilibrium,7.11-7.12,7.1-7.12,3,1,117946,No (image screenshot),Yes,tab_7_2026-10-17.pdf,Identical title and content to tab_7; only page 1 of 3 captured
+P17,tab_7_2026-10-17.pdf,Topics 7.11 - 7.12 MCQ Practice.pdf,Unit 7 - Equilibrium,7.11-7.12,7.1-7.12,3,1,117946,No (image screenshot),Yes,tab_6_2026-10-17.pdf,Identical title and content to tab_6; only page 1 of 3 captured
+P18,MISSING,"Topics 8.1 - 8.3 MCQ Practice.pdf (inferred, not present)",Unit 8 - Acids and Bases,8.1-8.3,8.1-8.11,UNKNOWN,0,0,N/A,Unknown,,"Gap before tab_4 (8.4-8.5). Likely corresponds to one of missing tab_13/tab_14 in filename sequence."
+P19,tab_4_2026-10-17.pdf,Topics 8.4 - 8.5 MCQ Practice.pdf,Unit 8 - Acids and Bases,8.4-8.5,8.1-8.11,7,1,132002,No (image screenshot),No,,Only page 1 of 7 captured
+P20,tab_3_2026-10-17.pdf,Topics 8.6 - 8.11 MCQ Practice.pdf,Unit 8 - Acids and Bases,8.6-8.11,8.1-8.11,9,1,174036,No (image screenshot),No,,Only page 1 of 9 captured
+P21,tab_2_2026-10-17.pdf,Topics 9.1 - 9.7 MCQ Practice.pdf,Unit 9 - Applications of Thermodynamics,9.1-9.7,9.1-9.11,6,1,122239,No (image screenshot),No,,Only page 1 of 6 captured
+P22,tab_1_2026-10-17.pdf,Topics 9.8 - 9.11 MCQ Practice.pdf,Unit 9 - Applications of Thermodynamics,9.8-9.11,9.1-9.11,7,1,173869,No (image screenshot),No,,Only page 1 of 7 captured
