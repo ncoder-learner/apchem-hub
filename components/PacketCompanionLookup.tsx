@@ -149,6 +149,7 @@ export function PacketCompanionLookup() {
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wide text-accent">Verified packet match</p>
                 <h3 className="mt-1 font-semibold">{match.packetTitle} · Question {match.questionNumber}{match.partLabel ? ` (${match.partLabel})` : ""}</h3>
+                <p className="mt-1 text-sm text-ink-dim">Packet topic range: {match.topicRange.replace("-", "–")}</p>
               </div>
               <span className="rounded-full border border-border px-2.5 py-1 text-xs text-ink-dim">
                 {hintLevel === revealableSteps && match.solution ? "Explanation revealed" : `Help stage ${Math.min(hintLevel, hints.length)} of ${revealableSteps}`}
@@ -157,7 +158,7 @@ export function PacketCompanionLookup() {
 
             {hintLevel === 0 && (
               <p className="mt-3 text-sm leading-relaxed text-ink-dim">
-                Try the question first if you can. Reveal one step at a time to get a nudge without immediately seeing the full explanation.
+                This confirms the printed question number in the selected packet. The exact subtopic mapping and question-specific hints are still being reviewed. Try the question first, then use the lesson links or Unit Review while detailed help is prepared.
               </p>
             )}
 
@@ -196,22 +197,34 @@ export function PacketCompanionLookup() {
             )}
 
             {match.topicSlugs.length > 0 && (
-              <div className="mt-4 flex flex-wrap gap-2 border-t border-border pt-4">
+              <div className="mt-4 border-t border-border pt-4">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-ink-dim">Lessons in this packet's topic range</p>
+                <div className="flex flex-wrap gap-2">
                 {match.topicSlugs.map((slug) => (
                   <Link
                     key={slug}
                     href={`/units/${match.unitId}/${slug}`}
                     className="inline-flex min-h-10 items-center rounded-lg border border-border px-3 py-2 text-sm font-semibold text-accent hover:bg-card"
                   >
-                    Open related lesson
+                    Open lesson {slug.split("-").slice(0, 2).join(".")}
                   </Link>
                 ))}
+                </div>
               </div>
             )}
 
             {revealableSteps === 0 && (
-              <p className="mt-4 text-sm text-ink-dim">This question is mapped, but its hints and explanation still need to be written and reviewed.</p>
+              <p className="mt-4 text-sm text-ink-dim">Question-specific hints and a worked explanation are not available yet. The source match is verified, but this is not an answer key.</p>
             )}
+
+            <div className="mt-4 border-t border-border pt-4">
+              <Link
+                href={`/units/${match.unitId}/review`}
+                className="inline-flex min-h-10 items-center gap-2 text-sm font-semibold text-accent hover:underline"
+              >
+                Open Unit {match.unitId} Review <span aria-hidden="true">→</span>
+              </Link>
+            </div>
           </div>
         )}
 
@@ -221,7 +234,9 @@ export function PacketCompanionLookup() {
             <p className="mt-2 text-sm leading-relaxed text-ink-dim">
               {PACKET_QUESTION_INDEX.length === 0
                 ? "The question index has not been populated with verified packet mappings yet. Rather than risk showing help for a different question, start with the relevant unit lesson."
-                : "That unit, question type, and number do not match a verified entry. Check the printed number or use the relevant unit lesson."}
+                : packets.length > 1 && !packetId
+                  ? "Question numbers repeat across packet sets. Choose the packet or resource that matches the title on your PDF, then search again."
+                  : "That unit, question type, and number do not match an indexed entry. Check the printed number or use the relevant unit review."}
             </p>
             <Link
               href="/#course-map"
