@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ChangeEvent } from "react";
 
 type FrqPacket = {
   unit: number;
@@ -64,7 +64,7 @@ export function FrqWorkspace() {
     setLocalPdfName("");
   }
 
-  function chooseLocalPdf(event: React.ChangeEvent<HTMLInputElement>) {
+  function chooseLocalPdf(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
     event.target.value = "";
     if (!file) return;
