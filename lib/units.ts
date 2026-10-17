@@ -17,10 +17,10 @@ export const UNITS: UnitMeta[] = [
   { id: 3, title: "Intermolecular Forces and Properties" },
   { id: 4, title: "Chemical Reactions" },
   { id: 5, title: "Kinetics" },
-  { id: 6, title: "Thermodynamics" },
+  { id: 6, title: "Thermochemistry" },
   { id: 7, title: "Equilibrium" },
   { id: 8, title: "Acids and Bases" },
-  { id: 9, title: "Applications of Thermodynamics" },
+  { id: 9, title: "Thermodynamics and Electrochemistry" },
 ];
 
 export function getUnit(id: number): UnitMeta | undefined {
