@@ -3,7 +3,7 @@ import { PacketCompanionLookup } from "@/components/PacketCompanionLookup";
 
 export default function PacketCompanionPage() {
   return (
-    <main className="mx-auto min-h-screen max-w-5xl px-4 py-6 sm:px-7 sm:py-10">
+    <main className="mx-auto min-h-screen max-w-7xl px-4 py-6 sm:px-7 sm:py-10">
       <nav aria-label="Breadcrumb" className="mb-7 flex flex-wrap items-center gap-2 text-xs text-ink-dim">
         <Link href="/" className="hover:text-accent">AP Chem Hub</Link>
         <span aria-hidden="true">/</span>
