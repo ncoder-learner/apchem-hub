@@ -37,6 +37,7 @@ export function findPacketQuestion(lookup: PacketLookup): PacketQuestionEntry | 
   const number = lookup.questionNumber.trim().toLowerCase();
   const part = (lookup.partLabel ?? "").trim().toLowerCase();
   const matches = PACKET_QUESTION_INDEX.filter((entry) =>
+    entry.sourceStatus !== "unmapped" &&
     entry.unitId === lookup.unitId &&
     entry.questionType === lookup.questionType &&
     entry.questionNumber.trim().toLowerCase() === number &&
