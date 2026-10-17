@@ -72,9 +72,9 @@ Avoid pretending the review is a complete exam or promising a score. Do not copy
 - [x] Read `README.md`, `lib/content.ts`, `lib/units.ts`, the MDX component registry, lesson route, and `LessonView` on the curriculum branch.
 - [x] Read representative lessons from Units 1, 2, and 5.
 - [ ] Audit every lesson file against the current CED.
-- [ ] Implement Unit Review routes and lesson navigation.
-- [ ] Edit lessons to remove redundant or misplaced content.
-- [ ] Run typecheck and production build.
-- [ ] Inspect responsive rendering and interactions.
+- [x] Implement initial Unit Review routes for all nine units and link them from lesson navigation.
+- [x] Move the general Unit 2 hybridization exam-scope callout out of the lesson body and replace it with a concise link to the Unit 2 Review. Full lesson-by-lesson cleanup remains.
+- [ ] Run typecheck and production build; GitHub contents edits do not execute a local build.
+- [ ] Inspect responsive rendering and interactions in a browser.
 
 This audit is intentionally explicit about what has and has not been checked. Do not mark the whole curriculum audited until the remaining lesson files have been reviewed.
