@@ -10,11 +10,14 @@ export function PacketCompanionLookup() {
   const [packetId, setPacketId] = useState("");
   const [questionNumber, setQuestionNumber] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [hintLevel, setHintLevel] = useState(0);
+
   const packets = Array.from(new Map(
     PACKET_QUESTION_INDEX
       .filter((entry) => entry.unitId === Number(unitId) && entry.questionType === questionType)
       .map((entry) => [entry.packetId, entry.packetTitle])
   ).entries());
+
   const match =
     submitted && unitId && questionNumber.trim()
       ? findPacketQuestion({
@@ -25,8 +28,19 @@ export function PacketCompanionLookup() {
         })
       : undefined;
 
+  const hints = match
+    ? [match.conceptHint, match.strategyHint, match.nextStepHint].filter(
+        (hint): hint is string => Boolean(hint?.trim())
+      )
+    : [];
+  const revealableSteps = hints.length + (match?.solution ? 1 : 0);
+  const nextHintLabel = hintLevel < hints.length
+    ? hintLevel === 0 ? "Reveal first hint" : "Reveal next hint"
+    : "Reveal full explanation";
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setHintLevel(0);
     setSubmitted(true);
   }
 
@@ -48,6 +62,7 @@ export function PacketCompanionLookup() {
               onChange={(event) => {
                 setUnitId(event.target.value);
                 setPacketId("");
+                setHintLevel(0);
                 setSubmitted(false);
               }}
               className="mt-2 block min-h-12 w-full rounded-lg border border-border bg-card px-3 py-3 text-ink"
@@ -69,6 +84,7 @@ export function PacketCompanionLookup() {
               onChange={(event) => {
                 setQuestionType(event.target.value as "mcq" | "frq");
                 setPacketId("");
+                setHintLevel(0);
                 setSubmitted(false);
               }}
               className="mt-2 block min-h-12 w-full rounded-lg border border-border bg-card px-3 py-3 text-ink"
@@ -86,6 +102,7 @@ export function PacketCompanionLookup() {
                 value={packetId}
                 onChange={(event) => {
                   setPacketId(event.target.value);
+                  setHintLevel(0);
                   setSubmitted(false);
                 }}
                 className="mt-2 block min-h-12 w-full rounded-lg border border-border bg-card px-3 py-3 text-ink"
@@ -97,6 +114,7 @@ export function PacketCompanionLookup() {
               </select>
             </label>
           )}
+
           <label className="block text-sm font-medium" htmlFor="packet-question-number">
             Printed question number
             <input
@@ -105,6 +123,7 @@ export function PacketCompanionLookup() {
               value={questionNumber}
               onChange={(event) => {
                 setQuestionNumber(event.target.value);
+                setHintLevel(0);
                 setSubmitted(false);
               }}
               placeholder="e.g. 12 or 2(b)"
@@ -125,21 +144,59 @@ export function PacketCompanionLookup() {
 
       <div className="mt-5" aria-live="polite" aria-atomic="true">
         {submitted && match && (
-          <div className="rounded-xl border border-border bg-card p-4">
-            <h3 className="font-semibold">
-              {match.packetTitle} · Question {match.questionNumber}
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed">
-              {match.conceptHint ?? "A question-specific concept hint has not been written yet."}
-            </p>
-            {match.strategyHint && (
-              <p className="mt-3 text-sm leading-relaxed">{match.strategyHint}</p>
+          <div className="rounded-xl border border-border bg-card p-4 sm:p-5">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-accent">Verified packet match</p>
+                <h3 className="mt-1 font-semibold">{match.packetTitle} · Question {match.questionNumber}{match.partLabel ? ` (${match.partLabel})` : ""}</h3>
+              </div>
+              <span className="rounded-full border border-border px-2.5 py-1 text-xs text-ink-dim">
+                {hintLevel === revealableSteps && match.solution ? "Explanation revealed" : `Help stage ${Math.min(hintLevel, hints.length)} of ${revealableSteps}`}
+              </span>
+            </div>
+
+            {hintLevel === 0 && (
+              <p className="mt-3 text-sm leading-relaxed text-ink-dim">
+                Try the question first if you can. Reveal one step at a time to get a nudge without immediately seeing the full explanation.
+              </p>
             )}
-            {match.nextStepHint && (
-              <p className="mt-3 text-sm leading-relaxed">{match.nextStepHint}</p>
+
+            {hints.slice(0, hintLevel).map((hint, index) => (
+              <div key={index} className="mt-4 rounded-lg border border-border/70 bg-bg/40 p-3">
+                <p className="text-xs font-bold uppercase tracking-wide text-accent">
+                  {index === 0 ? "Concept hint" : index === 1 ? "Strategy hint" : "Next step"}
+                </p>
+                <p className="mt-1 text-sm leading-relaxed">{hint}</p>
+              </div>
+            ))}
+
+            {match.solution && hintLevel > hints.length && (
+              <div className="mt-4 rounded-lg border border-accent/30 bg-accent-soft/30 p-4">
+                <h4 className="font-semibold">Worked explanation</h4>
+                <p className="mt-2 whitespace-pre-line text-sm leading-relaxed">{match.solution}</p>
+                {match.commonMistakes && match.commonMistakes.length > 0 && (
+                  <div className="mt-4">
+                    <h5 className="text-sm font-semibold">Common mistakes</h5>
+                    <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-relaxed">
+                      {match.commonMistakes.map((mistake) => <li key={mistake}>{mistake}</li>)}
+                    </ul>
+                  </div>
+                )}
+              </div>
             )}
+
+            {revealableSteps > 0 && hintLevel < revealableSteps && (
+              <button
+                type="button"
+                onClick={() => setHintLevel((level) => Math.min(level + 1, revealableSteps))}
+                className="mt-4 min-h-11 rounded-lg bg-accent px-4 py-2.5 text-sm font-bold text-[#06251b] transition hover:opacity-90"
+              >
+                {nextHintLabel}
+              </button>
+            )}
+
             {match.topicSlugs.length > 0 && (
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-4 flex flex-wrap gap-2 border-t border-border pt-4">
                 {match.topicSlugs.map((slug) => (
                   <Link
                     key={slug}
@@ -150,6 +207,10 @@ export function PacketCompanionLookup() {
                   </Link>
                 ))}
               </div>
+            )}
+
+            {revealableSteps === 0 && (
+              <p className="mt-4 text-sm text-ink-dim">This question is mapped, but its hints and explanation still need to be written and reviewed.</p>
             )}
           </div>
         )}
