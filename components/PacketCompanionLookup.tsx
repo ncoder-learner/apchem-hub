@@ -248,12 +248,20 @@ export function PacketCompanionLookup() {
                   ? "Question numbers repeat across packet sets. Choose the packet or resource that matches the title on your PDF, then search again."
                   : "That unit, question type, and number do not match an indexed entry. Check the printed number or use the relevant unit review."}
             </p>
-            <Link
-              href="/#course-map"
-              className="mt-3 inline-flex min-h-10 items-center text-sm font-semibold text-accent hover:underline"
-            >
-              Browse AP Chemistry lessons →
-            </Link>
+            <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+              <Link
+                href={`/units/${unitId}/review`}
+                className="inline-flex min-h-10 items-center text-sm font-semibold text-accent hover:underline"
+              >
+                Open Unit {unitId} Review →
+              </Link>
+              <Link
+                href="/#course-map"
+                className="inline-flex min-h-10 items-center text-sm font-semibold text-accent hover:underline"
+              >
+                Browse AP Chemistry lessons →
+              </Link>
+            </div>
           </div>
         )}
       </div>
