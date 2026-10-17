@@ -55,11 +55,13 @@ export function PacketCompanionLookup() {
     setPacketId(value);
     setQuestionNumber("1");
     setHintLevel(0);
+    setPdfFile(null);
     setPdfError("");
   }
 
   function handleFile(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
+    event.target.value = "";
     if (!file) return;
     if (file.type !== "application/pdf" && !file.name.toLowerCase().endsWith(".pdf")) {
       setPdfError("Choose a PDF packet. Other file types are not supported.");
