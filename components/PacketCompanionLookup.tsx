@@ -7,14 +7,21 @@ import { PACKET_QUESTION_INDEX, findPacketQuestion } from "@/lib/packet-companio
 export function PacketCompanionLookup() {
   const [unitId, setUnitId] = useState("");
   const [questionType, setQuestionType] = useState<"mcq" | "frq">("mcq");
+  const [packetId, setPacketId] = useState("");
   const [questionNumber, setQuestionNumber] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const packets = Array.from(new Map(
+    PACKET_QUESTION_INDEX
+      .filter((entry) => entry.unitId === Number(unitId) && entry.questionType === questionType)
+      .map((entry) => [entry.packetId, entry.packetTitle])
+  ).entries());
   const match =
     submitted && unitId && questionNumber.trim()
       ? findPacketQuestion({
           unitId: Number(unitId),
           questionType,
           questionNumber: questionNumber.trim(),
+          ...(packetId ? { packetId } : {}),
         })
       : undefined;
 
@@ -40,6 +47,7 @@ export function PacketCompanionLookup() {
               value={unitId}
               onChange={(event) => {
                 setUnitId(event.target.value);
+                setPacketId("");
                 setSubmitted(false);
               }}
               className="mt-2 block min-h-12 w-full rounded-lg border border-border bg-card px-3 py-3 text-ink"
@@ -60,6 +68,7 @@ export function PacketCompanionLookup() {
               value={questionType}
               onChange={(event) => {
                 setQuestionType(event.target.value as "mcq" | "frq");
+                setPacketId("");
                 setSubmitted(false);
               }}
               className="mt-2 block min-h-12 w-full rounded-lg border border-border bg-card px-3 py-3 text-ink"
@@ -69,6 +78,25 @@ export function PacketCompanionLookup() {
             </select>
           </label>
 
+          {packets.length > 0 && (
+            <label className="block text-sm font-medium" htmlFor="packet-source">
+              Packet or resource
+              <select
+                id="packet-source"
+                value={packetId}
+                onChange={(event) => {
+                  setPacketId(event.target.value);
+                  setSubmitted(false);
+                }}
+                className="mt-2 block min-h-12 w-full rounded-lg border border-border bg-card px-3 py-3 text-ink"
+              >
+                <option value="">Choose a packet (if known)</option>
+                {packets.map(([id, title]) => (
+                  <option key={id} value={id}>{title}</option>
+                ))}
+              </select>
+            </label>
+          )}
           <label className="block text-sm font-medium" htmlFor="packet-question-number">
             Printed question number
             <input
