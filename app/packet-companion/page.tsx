@@ -14,10 +14,10 @@ export default function PacketCompanionPage() {
         <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-accent">Study alongside your physical packet</p>
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Packet Companion</h1>
         <p className="mt-4 max-w-3xl leading-relaxed text-ink-dim">
-          Keep your packet on the desk. Enter the unit and printed question number to find targeted help, then reveal hints one step at a time.
+          Load a packet PDF to scroll through it in the page, then use the question navigator to reveal hints and explanations as you work. If you only have a printed copy, keep it beside the reader and use the same question navigator.
         </p>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-dim">
-          The lookup is being prepared. Until packet questions are mapped and checked, this page will not guess a match or show an unrelated solution.
+          Packet files stay on the student’s device. The index currently covers printed question numbers and selected hints; it does not claim that every question has a verified answer.
         </p>
       </header>
 
