@@ -35,6 +35,7 @@ export function PacketCompanionLookup() {
   const [packetId, setPacketId] = useState("");
   const [questionNumber, setQuestionNumber] = useState("1");
   const [hintLevel, setHintLevel] = useState(0);
+  const [showSolution, setShowSolution] = useState(false);
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [pdfError, setPdfError] = useState("");
@@ -56,7 +57,7 @@ export function PacketCompanionLookup() {
   const hints = match
     ? [match.conceptHint, match.strategyHint, match.nextStepHint].filter((hint): hint is string => Boolean(hint?.trim()))
     : [];
-  const revealableSteps = hints.length + (match?.solution ? 1 : 0);
+  const revealableSteps = hints.length;
   const documentUrl = pdfUrl ?? PACKET_PDF_PATHS[packetId] ?? null;
 
   useEffect(() => {
@@ -74,6 +75,7 @@ export function PacketCompanionLookup() {
     setPacketId("");
     setQuestionNumber("1");
     setHintLevel(0);
+    setShowSolution(false);
     setPdfFile(null);
     setPdfError("");
   }
@@ -102,6 +104,7 @@ export function PacketCompanionLookup() {
   function selectQuestion(value: string) {
     setQuestionNumber(value);
     setHintLevel(0);
+    setShowSolution(false);
   }
 
   function moveQuestion(direction: -1 | 1) {
@@ -148,7 +151,7 @@ export function PacketCompanionLookup() {
         {pdfFile ? <p className="mt-3 text-xs text-ink-dim">Using your local copy: <span className="font-medium text-ink">{pdfFile.name}</span>.</p> : documentUrl && <p className="mt-3 text-xs text-ink-dim">Packet PDF loaded automatically. You can override it with a local copy if needed.</p>}
       </section>
 
-      <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1fr)_370px]">
+      <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(390px,0.78fr)]">
         <section className="overflow-hidden rounded-2xl border border-border bg-card/40">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border p-4 sm:px-5">
             <div><h2 className="font-semibold">Packet document</h2><p className="mt-1 text-xs text-ink-dim">Scroll the original PDF as you work through the printed questions.</p></div>
@@ -190,26 +193,62 @@ export function PacketCompanionLookup() {
             ) : <p className="mt-3 text-sm leading-relaxed text-ink-dim">Choose a unit and packet to load its question list. The reader does not assume question numbers from a different packet.</p>}
           </section>
 
-          <section className="rounded-2xl border border-border bg-card/60 p-4 sm:p-5" aria-live="polite" aria-atomic="true">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <p className="text-xs font-bold uppercase tracking-wide text-accent">Hints & explanation</p>
-              {match && <span className="rounded-full border border-border px-2 py-1 text-[11px] text-ink-dim">{match.topicNumber ? "Topic mapped" : "Topic under review"}</span>}
+          <section className="rounded-2xl border border-border bg-card/70 p-5 sm:p-6 lg:p-7" aria-live="polite" aria-atomic="true">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Question help</p>
+              {match && <span className="rounded-full border border-border px-3 py-1.5 text-xs text-ink-dim">{match.topicNumber ? "Topic mapped" : "Topic under review"}</span>}
             </div>
             {match ? (
               <>
-                <h3 className="mt-2 text-base font-semibold">Question {match.questionNumber}</h3>
-                <p className="mt-1 text-xs leading-relaxed text-ink-dim">{match.packetTitle} · Topics {match.topicRange.replace("-", "–")}</p>
-                {hintLevel === 0 && <p className="mt-3 text-sm leading-relaxed text-ink-dim">{hints.length ? "Try the question in the PDF first. Reveal one hint at a time, then open the worked explanation if one is available." : "This question number is indexed, but question-specific help is not available yet. Use the linked lesson or official practice resources rather than relying on a guessed answer."}</p>}
-                {hints.slice(0, hintLevel).map((hint, index) => <div key={index} className="mt-3 rounded-lg border border-border bg-bg/60 p-3"><p className="text-[11px] font-bold uppercase tracking-wide text-accent">{index === 0 ? "Hint 1 · Concept" : index === 1 ? "Hint 2 · Strategy" : "Hint 3 · Next step"}</p><p className="mt-1 text-sm leading-relaxed">{hint}</p></div>)}
-                {match.solution && hintLevel > hints.length && <div className="mt-3 rounded-lg border border-accent/30 bg-accent-soft/15 p-3"><p className="text-xs font-bold uppercase tracking-wide text-accent">Worked explanation</p><p className="mt-2 whitespace-pre-line text-sm leading-relaxed">{match.solution}</p>{match.commonMistakes?.length ? <ul className="mt-3 list-disc space-y-1 pl-4 text-xs leading-relaxed">{match.commonMistakes.map((mistake) => <li key={mistake}>{mistake}</li>)}</ul> : null}</div>}
-                {revealableSteps > 0 && hintLevel < revealableSteps && <button type="button" onClick={() => setHintLevel((level) => Math.min(level + 1, revealableSteps))} className="mt-4 min-h-11 w-full rounded-lg bg-accent px-4 py-2.5 text-sm font-bold text-[#06251b] transition hover:opacity-90">{hintLevel < hints.length ? (hintLevel === 0 ? "Reveal first hint" : "Reveal next hint") : "Reveal worked explanation"}</button>}
-                {hintLevel > 0 && <button type="button" onClick={() => setHintLevel(0)} className="mt-3 w-full text-xs font-semibold text-ink-dim hover:text-accent">Hide help and try again</button>}
-                {match.topicSlugs.length > 0 && <div className="mt-4 border-t border-border pt-4"><p className="text-[11px] font-bold uppercase tracking-wide text-ink-dim">Related lessons</p><div className="mt-2 flex flex-wrap gap-2">{match.topicSlugs.slice(0, 4).map((slug) => <Link key={slug} href={"/units/" + match.unitId + "/" + slug} className="rounded-md border border-border px-2.5 py-2 text-xs font-semibold text-accent hover:bg-bg">Lesson {slug.split("-").slice(0, 2).join(".")}</Link>)}</div></div>}
-                {revealableSteps === 0 && <p className="mt-3 text-xs leading-relaxed text-ink-dim">The packet and printed question number are indexed, but the exact question match and answer have not been independently verified.</p>}
-              </>
-            ) : <p className="mt-3 text-sm leading-relaxed text-ink-dim">Select a packet and question to see available help. Hints are not fabricated when a verified question-specific explanation is missing.</p>}
-          </section>
+                <h3 className="mt-3 text-xl font-bold tracking-tight">Question {match.questionNumber}</h3>
+                <p className="mt-2 text-sm leading-6 text-ink-dim">{match.packetTitle} · Topics {match.topicRange.replace("-", "–")}</p>
+                {hints.length > 0 ? (
+                  <div className="mt-6 space-y-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <h4 className="text-base font-bold">Hints, one step at a time</h4>
+                      <span className="shrink-0 text-xs tabular-nums text-ink-dim">{Math.min(hintLevel, hints.length)} of {hints.length} revealed</span>
+                    </div>
+                    {hintLevel === 0 && <p className="rounded-xl border border-border bg-bg/60 p-4 text-sm leading-6 text-ink-dim">Try the problem on your own first. Reveal a hint only when you need the next nudge. The full worked answer is separate, so you can open it whenever you are ready.</p>}
+                    {hints.slice(0, hintLevel).map((hint, index) => (
+                      <article key={index} className="rounded-xl border border-border bg-bg/70 p-4 sm:p-5">
+                        <div className="flex items-center gap-3">
+                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent-soft/25 text-sm font-bold text-accent">{index + 1}</span>
+                          <h5 className="text-sm font-bold">{index === 0 ? "Core concept" : index === 1 ? "Choose a strategy" : "Your next step"}</h5>
+                        </div>
+                        <p className="mt-3 text-[15px] leading-7 text-ink">{hint}</p>
+                      </article>
+                    ))}
+                    {hintLevel < hints.length && <button type="button" onClick={() => setHintLevel((level) => Math.min(level + 1, hints.length))} className="min-h-12 w-full rounded-xl bg-accent px-5 py-3 text-sm font-bold text-[#06251b] transition hover:opacity-90">{hintLevel === 0 ? "Reveal first hint" : "Reveal next hint"}</button>}
+                    {hintLevel > 0 && <button type="button" onClick={() => setHintLevel(0)} className="w-full py-2 text-sm font-semibold text-ink-dim hover:text-accent">Reset hints</button>}
+                  </div>
+                ) : (
+                  <p className="mt-5 rounded-xl border border-border bg-bg/60 p-4 text-sm leading-6 text-ink-dim">This question is indexed, but question-specific hints are not available yet. Use the related lesson or official practice resources instead of relying on a guessed answer.</p>
+                )}
 
+                <div className="mt-6 border-t border-border pt-5">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-[0.12em] text-accent">Worked answer</p>
+                      <h4 className="mt-1 text-lg font-bold">Full explanation</h4>
+                    </div>
+                    {match.solution && <span className="rounded-full border border-border px-3 py-1.5 text-xs text-ink-dim">Available now</span>}
+                  </div>
+                  {match.solution ? (
+                    <>
+                      <p className="mt-2 text-sm leading-6 text-ink-dim">Open this independently of the hints when you want to check your work.</p>
+                      <button type="button" onClick={() => setShowSolution((visible) => !visible)} aria-expanded={showSolution} className="mt-4 min-h-12 w-full rounded-xl border border-accent/40 bg-accent-soft/15 px-4 py-3 text-sm font-bold text-accent transition hover:bg-accent-soft/25">{showSolution ? "Hide worked answer" : "Show worked answer"}</button>
+                      {showSolution && <article className="mt-4 rounded-xl border border-accent/30 bg-accent-soft/10 p-4 sm:p-5">
+                        <p className="whitespace-pre-line text-[15px] leading-7 text-ink">{match.solution}</p>
+                        {match.commonMistakes?.length ? <div className="mt-5 border-t border-border pt-4"><h5 className="text-sm font-bold">Common mistakes to avoid</h5><ul className="mt-2 list-disc space-y-2 pl-5 text-sm leading-6 text-ink-dim">{match.commonMistakes.map((mistake) => <li key={mistake}>{mistake}</li>)}</ul></div> : null}
+                      </article>}
+                    </>
+                  ) : <p className="mt-3 text-sm leading-6 text-ink-dim">A verified worked answer has not been added for this question yet. We will not fabricate an answer where the source question has not been checked.</p>}
+                </div>
+
+                {match.topicSlugs.length > 0 && <div className="mt-6 border-t border-border pt-5"><p className="text-xs font-bold uppercase tracking-[0.12em] text-ink-dim">Related lessons</p><div className="mt-3 flex flex-wrap gap-2">{match.topicSlugs.slice(0, 4).map((slug) => <Link key={slug} href={"/units/" + match.unitId + "/" + slug} className="rounded-lg border border-border px-3 py-2.5 text-sm font-semibold text-accent hover:bg-bg">Lesson {slug.split("-").slice(0, 2).join(".")}</Link>)}</div></div>}
+              </>
+            ) : <p className="mt-4 rounded-xl border border-border bg-bg/60 p-4 text-sm leading-6 text-ink-dim">Select a packet and question to see the available hints and worked answer. Answers are shown only when a question-specific solution has been checked.</p>}
+          </section>
           <section className="rounded-xl border border-border p-4">
             <h3 className="text-sm font-semibold">Need released AP practice?</h3>
             <p className="mt-1 text-xs leading-relaxed text-ink-dim">Use official free-response questions and scoring guidelines, then compare your response against the rubric.</p>
