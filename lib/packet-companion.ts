@@ -36,11 +36,14 @@ export interface PacketLookup {
 export function findPacketQuestion(lookup: PacketLookup): PacketQuestionEntry | undefined {
   const number = lookup.questionNumber.trim().toLowerCase();
   const part = (lookup.partLabel ?? "").trim().toLowerCase();
-  return PACKET_QUESTION_INDEX.find((entry) =>
+  const matches = PACKET_QUESTION_INDEX.filter((entry) =>
     entry.unitId === lookup.unitId &&
     entry.questionType === lookup.questionType &&
     entry.questionNumber.trim().toLowerCase() === number &&
     (entry.partLabel ?? "").trim().toLowerCase() === part &&
     (!lookup.packetId || entry.packetId === lookup.packetId)
   );
+
+  // Never choose an arbitrary match when separate packets reuse a question number.
+  return matches.length === 1 ? matches[0] : undefined;
 }
