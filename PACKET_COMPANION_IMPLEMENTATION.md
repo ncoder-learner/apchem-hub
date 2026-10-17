@@ -1,7 +1,7 @@
 # Packet Companion Implementation Plan
 
 **Branch:** `curriculum/lesson-clutter-unit-review-audit`  
-**Status:** Initial index populated from extracted metadata for 22 MCQ Practice PDFs in the private `ncoder-learner/CHem` repository. Question-specific subtopic mappings, hints, solutions, and video references remain unreviewed.  
+**Status:** Initial index populated from extracted metadata for 22 MCQ Practice PDFs in the private `ncoder-learner/CHem` repository. A first batch of Unit 1–5 questions has topic-level mappings; remaining questions retain only the source packet's topic range. Question-specific hints, solutions, and video references remain unreviewed.  
 **Deployment constraint:** Do not merge to `master` or trigger a Netlify deployment as part of this work.
 
 ## Product goal
@@ -81,7 +81,7 @@ Keep topic-specific chemistry and graph-reading procedures inside the lesson. Co
 - The public AP Chem Hub repository contains metadata only: packet titles, question numbers, topic ranges, and links to existing lessons where available. It does not contain copied packet questions, diagrams, or answer keys.
 - The Topics 4.5–4.6 mixed packet is excluded from the MCQ index until its question types are classified. The separate Topics 8.1–8.3 instructional packet is not treated as an MCQ set.
 - The Topics 8.6–8.11 extraction begins with an unnumbered question before printed question 2. The index does not invent a number for that first item.
-- A packet index match confirms the source set and question number, not an exact subtopic mapping or a verified solution. Individual concept mappings, hint stages, original parallel practice, and independently derived solutions still need review.
+- A packet index match confirms the source set and question number. Where a `mapped topic` is shown, that question has also received a first-pass topic mapping based on the extracted prompt. Remaining entries show the packet's topic range only. All mappings still need source review, and no entry should be treated as a verified answer key.
 - No teacher-video URL or timestamp is marked as verified. Do not label a solution video-verified unless the matching walkthrough has actually been checked.
 
 The UI must keep these distinctions visible. It should never imply that a packet-specific answer is available when only the source and printed number have been indexed.
