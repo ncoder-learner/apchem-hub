@@ -119,6 +119,48 @@ const QUESTION_TOPIC_OVERRIDES: Record<string, Record<number, string>> = {
   "topics-1-4-1-6-mcq": { 1: "1.4", 2: "1.4", 3: "1.4", 4: "1.5", 5: "1.5", 6: "1.5", 7: "1.6", 8: "1.6", 9: "1.6" },
   "topics-1-7-1-8-mcq": { 1: "1.7", 2: "1.7", 3: "1.7", 4: "1.7", 5: "1.7", 6: "1.7", 7: "1.8", 8: "1.8", 9: "1.8" },
   "topics-2-1-2-4-mcq": { 1: "2.1", 2: "2.1", 3: "2.3", 4: "2.2", 5: "2.2", 6: "2.3", 7: "2.4", 8: "2.3", 9: "2.4" },
+  "topics-1-1-1-3-mcq": {
+    1: {
+      conceptHint: "Mass percent depends on the fraction of each formula unit's mass contributed by the element, not just the number of atoms in the formula.",
+      strategyHint: "Calculate each oxide's molar mass and the oxygen mass contained in one mole of that oxide.",
+      nextStepHint: "Compare (mass of oxygen in one mole of oxide) ÷ (molar mass of oxide). Each sample is 1.00 g, so the greatest oxygen mass corresponds to the greatest oxygen mass fraction.",
+    },
+    2: {
+      conceptHint: "A mass spectrum can show isotopes of the same element at different masses and their relative abundances.",
+      strategyHint: "Interpret peak position as mass-to-charge information and peak size as relative abundance; do not confuse isotope peaks with different oxidation states.",
+      nextStepHint: "Use the pattern of masses and abundances to decide which conclusion is directly supported by the spectrum, rather than inferring a property the graph does not measure.",
+    },
+    3: {
+      conceptHint: "An empirical formula gives the simplest whole-number ratio of atoms.",
+      strategyHint: "Convert each element's mass to moles using its molar mass, then divide all mole amounts by the smallest.",
+      nextStepHint: "If the ratios are not close to whole numbers, multiply every ratio by the same small integer until the simplest whole-number ratio is obtained.",
+    },
+    4: {
+      conceptHint: "Elements can have similar average atomic masses while having different isotope patterns.",
+      strategyHint: "Compare the mass spectrum's peak positions and relative abundances with the isotope patterns expected for the candidate elements.",
+      nextStepHint: "Base the conclusion on the observed isotope pattern, not on the average mass alone.",
+    },
+    5: {
+      conceptHint: "Combustion analysis uses product amounts to infer how much carbon and hydrogen were present in the original compound.",
+      strategyHint: "Convert CO₂ to moles of carbon and H₂O to moles of hydrogen atoms; then use the available choices and nitrogen information to test possible simplest ratios.",
+      nextStepHint: "Remember that one mole of CO₂ contains one mole of C, while one mole of H₂O contains two moles of H. Reduce the resulting atom ratio.",
+    },
+    6: {
+      conceptHint: "A precipitation reaction can reveal the amount of an unknown ion through a known mole ratio.",
+      strategyHint: "Use the AgCl precipitate mass to calculate moles of AgCl, then relate those moles to MCl and the unknown metal.",
+      nextStepHint: "Ag⁺ and Cl⁻ combine in a 1:1 ratio, and each MCl formula unit contains one M⁺. Once moles of M are known, use the sample mass to determine its molar mass.",
+    },
+    7: {
+      conceptHint: "Combustion converts each carbon atom to CO₂ and each pair of hydrogen atoms to one H₂O molecule.",
+      strategyHint: "Let the hydrocarbon formula be CₓHᵧ. Compare the mole relationship between CO₂ and H₂O to relate x and y.",
+      nextStepHint: "Equimolar CO₂ and H₂O means x = y/2, so the simplest carbon-to-hydrogen ratio must satisfy y = 2x.",
+    },
+    8: {
+      conceptHint: "In a hydrate experiment, the percentage of water is inferred from the mass lost during heating.",
+      strategyHint: "Compare the reported water loss with the true amount: a result that is too low means the measured mass loss was too small relative to the original sample.",
+      nextStepHint: "Look for a procedural error that leaves water in the solid or otherwise prevents the full expected water mass from being measured as lost.",
+    },
+  },
   "topics-2-5-2-7-mcq": { 1: "2.5", 2: "2.5", 3: "2.6", 4: "2.6", 5: "2.6", 6: "2.6", 7: "2.7", 8: "2.7", 9: "2.7", 10: "2.7" },
   "topics-3-1-3-2-mcq": { 1: "3.1", 2: "3.1", 3: "3.1", 4: "3.1", 5: "3.1", 6: "3.1", 7: "3.1", 11: "3.2", 12: "3.2" },
   "topics-3-3-3-6-mcq": { 1: "3.3", 2: "3.4", 3: "3.4", 4: "3.4", 5: "3.4", 6: "3.4", 7: "3.4", 8: "3.5", 9: "3.5", 10: "3.6", 11: "3.6" },
