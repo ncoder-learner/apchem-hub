@@ -400,10 +400,47 @@ function UnitFive({ topicNumber }: { topicNumber: string }) {
   if (topicNumber === "5.4" || topicNumber === "5.7" || topicNumber === "5.8" || topicNumber === "5.9") return <MechanismLab />;
   return <ConcentrationLab />;
 }
-function UnitSix() {
-  const [h,setH]=useState(-40);const [temp,setTemp]=useState(298);const [s,setS]=useState(-80);const dg=h-temp*s/1000;
-  return <Frame unit="6 · Thermodynamics" title="Test spontaneity with Gibbs energy" takeaway="At a specified temperature, ΔG = ΔH − TΔS. Negative ΔG means thermodynamically favorable under the stated conditions, not necessarily fast. Temperature is in kelvin and entropy units must be converted to match enthalpy.">
-    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Enthalpy change ΔH" min={-100} max={100} step={5} value={h} onChange={setH} suffix=" kJ/mol"/><Slider label="Temperature" min={100} max={800} step={10} value={temp} onChange={setTemp} suffix=" K"/><Slider label="Entropy change ΔS" min={-200} max={200} step={10} value={s} onChange={setS} suffix=" J/(mol·K)"/></div><div className="flex flex-col justify-center rounded-xl border border-border p-5"><div className="text-sm text-ink-dim">Calculated Gibbs energy</div><div className="my-2 text-3xl font-bold">{dg.toFixed(2)} kJ/mol</div><div className={dg<0?"text-emerald-300":dg>0?"text-rose-300":"text-amber-300"}>{dg<0?"Thermodynamically favorable":dg>0?"Not favorable as written":"At boundary (ΔG = 0)"}</div><p className="mt-3 text-sm text-ink-dim">ΔG = {h} − ({temp} × {s}/1000)</p></div></div>
+function UnitSix({ topicNumber }: { topicNumber: string }) {
+  const [activation, setActivation] = useState(50);
+  const [deltaH, setDeltaH] = useState(-20);
+  const [mass, setMass] = useState(50);
+  const [deltaT, setDeltaT] = useState(5);
+  const [specificHeat, setSpecificHeat] = useState(4.18);
+  const [phaseMoles, setPhaseMoles] = useState(1);
+  const [phaseEnthalpy, setPhaseEnthalpy] = useState(40);
+  const [first, setFirst] = useState(35);
+  const [second, setSecond] = useState(-70);
+
+  if (topicNumber === "6.2") {
+    const reactantY = 118;
+    const productY = reactantY - deltaH * 0.7;
+    const peakY = reactantY - activation * 0.8;
+    const path = `M 28 ${reactantY} C 85 ${reactantY}, 95 ${peakY}, 150 ${peakY} S 210 ${productY}, 275 ${productY}`;
+    return <Frame unit="6 · Thermochemistry" title="Explore a reaction energy diagram" takeaway="The peak-to-reactant difference is activation energy; the product-minus-reactant difference is ΔH. Changing the barrier does not change ΔH when the reactant and product levels stay fixed.">
+      <div className="grid gap-5 md:grid-cols-[minmax(220px,.7fr)_minmax(0,1.3fr)]">
+        <div><Slider label="Forward activation energy" min={25} max={80} step={5} value={activation} onChange={setActivation} suffix=" kJ/mol"/><Slider label="Reaction enthalpy ΔH" min={-40} max={40} step={5} value={deltaH} onChange={setDeltaH} suffix=" kJ/mol"/><div className="rounded-lg border border-border p-3 text-sm"><div>Products are <strong>{deltaH < 0 ? "lower" : deltaH > 0 ? "higher" : "at the same level"}</strong> than reactants.</div><div className="mt-1 text-ink-dim">Reverse activation energy: {activation - deltaH} kJ/mol</div></div></div>
+        <div className="rounded-xl border border-border bg-bg/50 p-3"><svg viewBox="0 0 310 205" className="w-full" role="img" aria-label="Interactive schematic reaction energy diagram"><line x1="28" y1="165" x2="285" y2="165" stroke="var(--color-ink-dim)"/><line x1="28" y1="20" x2="28" y2="165" stroke="var(--color-ink-dim)"/><path d={path} fill="none" stroke="#34d399" strokeWidth="3" strokeLinecap="round"/><line x1="28" y1={reactantY} x2="82" y2={reactantY} stroke="#5aa9ff" strokeDasharray="4 3"/><line x1="220" y1={productY} x2="285" y2={productY} stroke="#f5c454" strokeDasharray="4 3"/><text x="35" y={reactantY-8} fontSize="10" fill="#5aa9ff">Reactants</text><text x="222" y={productY-8} fontSize="10" fill="#f5c454">Products</text><text x="155" y="190" textAnchor="middle" fontSize="11" fill="var(--color-ink-dim)">Reaction progress →</text><text x="12" y="92" transform="rotate(-90 12 92)" textAnchor="middle" fontSize="10" fill="var(--color-ink-dim)">Potential energy</text></svg><p className="text-xs text-ink-dim">Schematic, not to scale. Values update with the controls.</p></div>
+      </div>
+    </Frame>;
+  }
+
+  if (topicNumber === "6.4") {
+    const qSolution = mass * specificHeat * deltaT;
+    return <Frame unit="6 · Calorimetry" title="Calculate heat transfer from temperature change" takeaway="q = mcΔT. The sign belongs to the measured material: if the solution warms, q_solution is positive and the reaction heat is approximately equal in magnitude but negative.">
+      <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Solution mass" min={25} max={150} step={5} value={mass} onChange={setMass} suffix=" g"/><Slider label="Solution temperature change" min={-10} max={10} step={1} value={deltaT} onChange={setDeltaT} suffix=" °C"/><Slider label="Specific heat capacity" min={2} max={5} step={.1} value={specificHeat} onChange={setSpecificHeat} suffix=" J/(g·°C)"/></div><div className="rounded-xl border border-border bg-bg/50 p-5"><div className="text-xs text-ink-dim">Heat gained/lost by solution</div><div className="mt-1 text-3xl font-bold">{qSolution.toFixed(0)} J</div><div className="mt-3 text-sm text-ink-dim">q_solution = mcΔT</div><div className="mt-4 border-t border-border pt-4"><div className="text-xs text-ink-dim">Approximate reaction heat</div><div className="text-2xl font-semibold">{(-qSolution).toFixed(0)} J</div><p className="mt-2 text-xs text-ink-dim">Assumes negligible heat absorbed by the cup and no heat exchange with the environment.</p></div></div></div>
+    </Frame>;
+  }
+
+  if (topicNumber === "6.5") {
+    const qPhase = phaseMoles * phaseEnthalpy;
+    return <Frame unit="6 · Phase changes" title="Energy during a phase change" takeaway="During melting or vaporization, temperature remains constant while energy changes the phase. Use q = nΔH_phase for a plateau, not q = mcΔT. Reverse the sign for freezing or condensation.">
+      <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Amount changing phase" min={.25} max={3} step={.25} value={phaseMoles} onChange={setPhaseMoles} suffix=" mol"/><Slider label="Molar phase-change enthalpy" min={5} max={60} step={1} value={phaseEnthalpy} onChange={setPhaseEnthalpy} suffix=" kJ/mol"/><p className="text-xs leading-relaxed text-ink-dim">Modelled as melting or vaporization. Select freezing or condensation by reversing the sign of q.</p></div><div className="rounded-xl border border-border bg-bg/50 p-4"><svg viewBox="0 0 310 180" className="w-full" role="img" aria-label="Schematic heating curve with temperature plateaus during phase changes"><line x1="32" y1="145" x2="290" y2="145" stroke="var(--color-ink-dim)"/><line x1="32" y1="15" x2="32" y2="145" stroke="var(--color-ink-dim)"/><path d="M32 132 L78 100 L126 100 L176 55 L224 55 L280 22" fill="none" stroke="#34d399" strokeWidth="3" strokeLinejoin="round"/><text x="100" y="91" textAnchor="middle" fontSize="10" fill="#f5c454">Melting</text><text x="200" y="46" textAnchor="middle" fontSize="10" fill="#f5c454">Boiling</text><text x="165" y="169" textAnchor="middle" fontSize="11" fill="var(--color-ink-dim)">Energy added →</text></svg><div className="mt-3 rounded-lg border border-border p-3"><div className="text-xs text-ink-dim">Energy for selected phase change</div><div className="text-2xl font-bold">+{qPhase.toFixed(2)} kJ</div><div className="text-xs text-ink-dim">q = nΔH_phase</div></div></div></div>
+    </Frame>;
+  }
+
+  const total = first + second;
+  return <Frame unit="6 · Hess's law" title="Combine reaction enthalpies" takeaway="When thermochemical equations are added, their ΔH values add too. Reversing an equation reverses its sign; scaling an equation scales its ΔH. The summed equation must match the target reaction.">
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Enthalpy change for equation 1" min={-100} max={100} step={5} value={first} onChange={setFirst} suffix=" kJ"/><Slider label="Enthalpy change for equation 2" min={-100} max={100} step={5} value={second} onChange={setSecond} suffix=" kJ"/><p className="text-xs text-ink-dim">Illustrative equations are assumed to add after any intermediate species cancel.</p></div><div className="flex flex-col justify-center rounded-xl border border-border bg-bg/50 p-5"><div className="text-xs text-ink-dim">Overall enthalpy change</div><div className="text-3xl font-bold">{total > 0 ? "+" : ""}{total} kJ</div><p className="mt-2 text-sm">{total < 0 ? "The combined process is exothermic." : total > 0 ? "The combined process is endothermic." : "The combined enthalpy change is zero."}</p><p className="mt-3 text-xs text-ink-dim">ΔH_overall = ΔH₁ + ΔH₂</p></div></div>
   </Frame>;
 }
 function UnitSeven() {
