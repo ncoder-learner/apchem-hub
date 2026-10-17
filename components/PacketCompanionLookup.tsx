@@ -159,7 +159,9 @@ export function PacketCompanionLookup() {
             {hintLevel === 0 && (
               <p className="mt-3 text-sm leading-relaxed text-ink-dim">
                 {match.topicNumber
-                  ? `This question is mapped to Topic ${match.topicNumber}. Question-specific hints and a worked explanation are still being prepared. Try it first, then use the lesson or Unit Review to check the underlying chemistry.`
+                  ? hints.length > 0
+                    ? `This question is mapped to Topic ${match.topicNumber}. Hints are available below; reveal them one at a time. A complete worked explanation is still being prepared.`
+                    : `This question is mapped to Topic ${match.topicNumber}. Question-specific hints and a worked explanation are still being prepared. Try it first, then use the lesson or Unit Review to check the underlying chemistry.`
                   : "This identifies the printed question number in the selected packet index. The exact subtopic mapping and question-specific hints are still being reviewed. Try the question first, then use the lesson links or Unit Review while detailed help is prepared."}
               </p>
             )}
