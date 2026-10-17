@@ -360,7 +360,7 @@ function ConcentrationLab() {
           <option value={1}>First order</option>
           <option value={2}>Second order</option>
         </select>
-        <Slider label="Rate constant (illustrative)" min={.05} max={.2} step={.01} value={k} onChange={setK} suffix=" s⁻¹ or model units"/>
+        <Slider label="Rate constant (illustrative)" min={.05} max={.2} step={.01} value={k} onChange={setK} suffix={order === 0 ? " M/s" : order === 1 ? " s⁻¹" : " M⁻¹s⁻¹"}/>
         <Slider label="Initial concentration" min={.5} max={2} step={.25} value={initial} onChange={setInitial} suffix=" M"/>
         <div className="mt-3 rounded-lg border border-border p-3">
           <div className="text-xs text-ink-dim">Model concentration at t = 2</div>
