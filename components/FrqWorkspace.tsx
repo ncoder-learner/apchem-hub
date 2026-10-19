@@ -37,7 +37,9 @@ const FRQ_PACKETS: FrqPacket[] = [
   { unit: 9, title: "Topics 9.8–9.11", topics: "Electrochemistry and thermodynamics", file: "topic-9-8-9-11.pdf" },
 ];
 
-// Candidate question-start pages extracted from PDF text for all 25 packets.\n// These are navigation aids, not answer-key mappings; verify the PDF page visually.\nconst FRQ_PAGE_CANDIDATES: Record<string, Record<string, number>> = {
+// Candidate question-start pages extracted from PDF text for all 25 packets.
+// These are navigation aids, not answer-key mappings; verify the PDF page visually.
+const FRQ_PAGE_CANDIDATES: Record<string, Record<string, number>> = {
   "topic-1-1-1-3.pdf": {
     1: 1,
     2: 1,
