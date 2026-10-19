@@ -8,7 +8,7 @@ const partMapPath = path.join(root, "lib", "frq-part-page-candidates.ts");
 const source = await readFile(componentPath, "utf8");
 const partMapSource = await readFile(partMapPath, "utf8");
 const audit = JSON.parse(await readFile(auditPath, "utf8"));
-const partMapMatch = partMapSource.match(/= (\\{[\\s\\S]*\\});\\s*$/);
+const partMapMatch = partMapSource.match(/= (\{[\s\S]*\});\s*$/);
 if (!partMapMatch) throw new Error("Could not parse FRQ part-page candidate index");
 const partMappings = JSON.parse(partMapMatch[1]);
 
