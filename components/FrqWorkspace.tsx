@@ -504,6 +504,22 @@ const RESPONSE_FRAMES = [
   { title: "Draw / represent", prompt: "Label species, axes, charges, units, and relevant features. Make the representation consistent with the chemistry and the conditions in the prompt." },
 ];
 
+// Part-level page candidates only where the PDF text explicitly exposes a part heading.
+ // Missing entries intentionally fall back to the question's candidate page.
+const FRQ_PART_PAGE_CANDIDATES: Record<string, Record<string, Record<string, number>>> = {
+  "topic-1-1-1-3.pdf": { "18": { c: 7 }, "22": { b: 9, c: 9, d: 9 } },
+  "topic-1-4-1-6.pdf": { "2": { b: 2 } },
+  "topic-1-7-1-8.pdf": { "5": { b: 3 } },
+  "topic-2-1-2-4.pdf": { "4": { a: 3 } },
+  "topic-2-7.pdf": { "1": { a: 2 }, "2": { a: 2 }, "3": { a: 2 }, "4": { a: 2 }, "5": { a: 2 } },
+  "topic-3-1.pdf": { "23": { a: 13 } },
+  "topic-4-5-4-6.pdf": { "12": { c: 11 }, "13": { c: 12 } },
+  "topic-5-1-5-3.pdf": { "12": { a: 9, c: 10, d: 10, e: 10 }, "13": { a: 11, b: 12, c: 12 } },
+  "topic-7-1-7-5.pdf": { "12": { a: 13 } },
+  "topic-7-6-7-10.pdf": { "16": { a: 15 } },
+  "topic-9-1-9-7.pdf": { "4": { a: 3 }, "5": { a: 3 }, "6": { a: 5 }, "7": { a: 5 }, "21": { a: 16 }, "22": { a: 17 }, "23": { a: 17 } },
+};
+
 export function FrqWorkspace() {
   const [unit, setUnit] = useState("1");
   const [selectedFile, setSelectedFile] = useState("");
@@ -575,7 +591,7 @@ export function FrqWorkspace() {
           <label className="text-sm font-semibold" htmlFor="frq-question-part">Lettered part (optional)
             <input id="frq-question-part" value={partLabel} onChange={(e) => { setPartLabel(e.target.value); setHelpLevel(0); }} placeholder="e.g. b(ii)" className="mt-2 min-h-11 w-full rounded-lg border border-border bg-card px-3 py-2 text-ink" />
           </label>
-          <button type="button" onClick={() => { const pages = selected ? FRQ_PAGE_CANDIDATES[selected.file] : undefined; const question = questionNumber.trim(); const part = partLabel.trim().toLowerCase().replace(/[()\s]/g, ""); const partPage = selected?.file === "topic-1-1-1-3.pdf" && question === "18" && part === "c" ? 7 : selected?.file === "topic-1-1-1-3.pdf" && question === "22" && ["b", "c", "d"].includes(part) ? 9 : undefined; const targetPage = partPage ?? pages?.[question]; if (targetPage) { setPage(String(targetPage)); setNavigationMessage(`Jumped to candidate page ${targetPage}. Check the printed question heading in the PDF.`); } else { setNavigationMessage("No question-start candidate was detected for this entry. Use the PDF page control to find it manually."); } setHelpLevel(0); }} className="min-h-11 rounded-lg bg-accent px-4 py-2 text-sm font-bold text-[#06251b]">Find question page</button>
+          <button type="button" onClick={() => { const pages = selected ? FRQ_PAGE_CANDIDATES[selected.file] : undefined; const question = questionNumber.trim(); const part = partLabel.trim().toLowerCase().replace(/[()\s]/g, ""); const partPage = selected ? FRQ_PART_PAGE_CANDIDATES[selected.file]?.[question]?.[part] : undefined; const targetPage = partPage ?? pages?.[question]; if (targetPage) { setPage(String(targetPage)); setNavigationMessage(`Jumped to candidate page ${targetPage}. Check the printed question heading in the PDF.`); } else { setNavigationMessage("No question-start candidate was detected for this entry. Use the PDF page control to find it manually."); } setHelpLevel(0); }} className="min-h-11 rounded-lg bg-accent px-4 py-2 text-sm font-bold text-[#06251b]">Find question page</button>
           <p className="text-xs leading-5 text-ink-dim sm:col-span-3">Question-start candidates are extracted for all 25 packets. Because PDF text extraction can miss headings or capture continuation pages, confirm the printed question in the PDF before relying on a jump.</p>
           {navigationMessage && <p role="status" className="text-sm leading-5 text-ink-dim sm:col-span-3">{navigationMessage}</p>}
         </div>
