@@ -588,9 +588,7 @@ const FRQ_WORKED_SOLUTIONS: Record<string, Record<string, WorkedSolution>> = {
     "14": { prompt: "Explain why solid NaCl does not conduct electricity.", steps: ["NaCl is an ionic solid containing Na+ and Cl− ions arranged in a crystal lattice.", "The ions are held at fixed lattice positions and cannot move freely through the solid.", "Without mobile charge carriers, solid NaCl does not conduct; molten or dissolved NaCl can conduct because ions are mobile."], answer: "The ions are fixed in the solid lattice and cannot carry charge through the material.", concept: "Electrical conduction requires mobile charged particles or mobile electrons." },
     "15": { prompt: "Name two changes that allow an ionic solid such as NaCl to conduct electricity.", steps: ["Melting disrupts the rigid lattice, allowing ions to move.", "Dissolving in water separates ions into mobile aqueous particles.", "In either case, mobile ions carry current."], answer: "Melt the ionic solid or dissolve it in water.", concept: "Ionic compounds conduct when their ions can move; solid ionic lattices generally do not." },
     "17": { prompt: "Explain why a metallic solid can conduct electricity.", steps: ["Metal atoms form a lattice of positive ion cores surrounded by delocalized valence electrons.", "These electrons can move through the solid under an electric field.", "Their motion transports charge."], answer: "Delocalized electrons are mobile and carry charge through the metal.", concept: "Metallic bonding includes a mobile electron population." }
-  }
-};
-
+  },
   "topic-4-5-4-6.pdf": {
     "4": { prompt: "100.0 g K reacts with 100.0 g Cl2 to form KCl. Identify the limiting reactant and calculate theoretical yield.", steps: ["Balance: 2K(s) + Cl2(g) → 2KCl(s).", "n(K) = 100.0/39.10 = 2.558 mol; n(Cl2) = 100.0/70.90 = 1.410 mol.", "The Cl2 amount would require 2.820 mol K, but only 2.558 mol K is available, so K limits. The 1:1 mole ratio K:KCl gives 2.558 mol KCl."], answer: "K is limiting; theoretical yield ≈ 190.7 g KCl.", concept: "Compare available mole ratios with the balanced-equation coefficients, then calculate product from the limiting reactant." }
   },
@@ -612,7 +610,9 @@ const FRQ_WORKED_SOLUTIONS: Record<string, Record<string, WorkedSolution>> = {
   },
   "topic-8-6-8-11.pdf": {
     "3": { prompt: "Write the balanced ionization equation for ethylamine, CH3CH2NH2, reacting with water.", steps: ["Ethylamine acts as a Brønsted–Lowry base and accepts a proton from water.", "The conjugate acid is CH3CH2NH3+ and water becomes OH−.", "Check that atoms and total charge balance."], answer: "CH3CH2NH2(aq) + H2O(l) ⇌ CH3CH2NH3+(aq) + OH−(aq).", concept: "Weak bases accept protons from water, producing their conjugate acids and hydroxide." }
-  },
+  }
+};
+
 const RESPONSE_FRAMES = [
   { title: "Explain", prompt: "Make a claim, then connect it to a specific chemical principle or particle-level model. State why the evidence supports the claim." },
   { title: "Calculate", prompt: "Write the governing equation, substitute values with units, show the calculation, and report a correctly rounded answer with units." },
