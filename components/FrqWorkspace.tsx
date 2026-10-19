@@ -498,6 +498,48 @@ const FRQ_PAGE_CANDIDATES: Record<string, Record<string, number>> = {
   }
 };
 
+
+type WorkedSolution = {
+  prompt: string;
+  steps: string[];
+  answer: string;
+  concept: string;
+};
+
+// Original, independently calculated walkthroughs for prompts whose text is
+// explicit in the packet extraction. These are not official scoring guides.
+const FRQ_WORKED_SOLUTIONS: Record<string, Record<string, WorkedSolution>> = {
+  "topic-1-1-1-3.pdf": {
+    "1": { prompt: "Calculate the mass of 0.0850 mol Ba(OH)2.", steps: ["Molar mass Ba(OH)2 = 137.33 + 2(16.00 + 1.008) = 171.34 g/mol.", "Mass = amount × molar mass = 0.0850 mol × 171.34 g/mol = 14.564 g.", "Round to three significant figures, matching 0.0850 mol."], answer: "14.6 g Ba(OH)2", concept: "Convert mol → g using molar mass." },
+    "2": { prompt: "Calculate the number of moles of C4H10 in 2.00 g.", steps: ["Molar mass C4H10 = 4(12.01) + 10(1.008) = 58.12 g/mol.", "n = m/M = 2.00 g ÷ 58.12 g/mol = 0.03441 mol.", "Round to three significant figures."], answer: "0.0344 mol C4H10", concept: "Convert g → mol by dividing by molar mass." },
+    "3": { prompt: "Calculate the number of atoms of Si in 35.0 mol Si.", steps: ["Use Avogadro's constant: 6.022 × 10^23 atoms/mol.", "Atoms = 35.0 mol × 6.022 × 10^23 atoms/mol = 2.1077 × 10^25 atoms.", "Keep three significant figures."], answer: "2.11 × 10^25 Si atoms", concept: "Convert mol → particles with Avogadro's constant." },
+    "4": { prompt: "Calculate the number of moles of O3 in 4.3 × 10^24 molecules.", steps: ["Convert molecules to moles by dividing by 6.022 × 10^23 molecules/mol.", "n = (4.3 × 10^24) ÷ (6.022 × 10^23) = 7.14 mol.", "The given count has two significant figures."], answer: "7.1 mol O3", concept: "Convert particles → mol by dividing by Avogadro's constant." },
+    "5": { prompt: "Calculate the mass of 8.2 × 10^22 molecules of CHCl3.", steps: ["Molar mass CHCl3 = 12.01 + 1.008 + 3(35.45) = 119.37 g/mol.", "Moles = (8.2 × 10^22 molecules) ÷ (6.022 × 10^23 molecules/mol) = 0.136 mol.", "Mass = 0.136 mol × 119.37 g/mol = 16.25 g; round to two significant figures."], answer: "16 g CHCl3", concept: "Convert molecules → mol → grams; keep units through both steps." },
+    "6": { prompt: "Calculate the number of formula units of Na2SO4 in 0.248 g.", steps: ["Molar mass Na2SO4 = 2(22.99) + 32.06 + 4(16.00) = 142.04 g/mol.", "Moles = 0.248 g ÷ 142.04 g/mol = 1.746 × 10^-3 mol.", "Formula units = 1.746 × 10^-3 mol × 6.022 × 10^23 units/mol."], answer: "1.05 × 10^21 formula units Na2SO4", concept: "Ionic compounds are counted as formula units, not molecules." },
+    "12": { prompt: "Calculate the percent composition by mass of each element in glucose, C6H12O6.", steps: ["Molar mass = 6(12.01) + 12(1.008) + 6(16.00) = 180.16 g/mol.", "Carbon: 72.06/180.16 × 100 = 40.0%. Hydrogen: 12.096/180.16 × 100 = 6.71%.", "Oxygen: 96.00/180.16 × 100 = 53.3%. The percentages sum to approximately 100%."], answer: "C = 40.0%, H = 6.71%, O = 53.3%", concept: "Element percent = mass contributed by that element in one mole ÷ molar mass × 100%." },
+    "13": { prompt: "Calculate the percent composition by mass of each element in erythrose, C4H8O4.", steps: ["Molar mass = 4(12.01) + 8(1.008) + 4(16.00) = 120.10 g/mol.", "Carbon: 48.04/120.10 × 100 = 40.0%. Hydrogen: 8.064/120.10 × 100 = 6.71%.", "Oxygen: 64.00/120.10 × 100 = 53.3%."], answer: "C = 40.0%, H = 6.71%, O = 53.3%", concept: "Glucose and erythrose have the same empirical formula, CH2O, so their percent compositions match." },
+    "14": { prompt: "What is the empirical formula of glucose, C6H12O6?", steps: ["Write the atom-count ratio C:H:O = 6:12:6.", "Divide every subscript by the greatest common factor, 6.", "The simplest whole-number ratio is 1:2:1."], answer: "CH2O", concept: "An empirical formula gives the simplest whole-number atom ratio, not necessarily the actual molecular formula." },
+    "21": { prompt: "Calculate the percentage of H2O by mass in CaCl2·2H2O.", steps: ["Mass of 2H2O per mole = 2[2(1.008) + 16.00] = 36.03 g/mol.", "Molar mass CaCl2·2H2O = 40.08 + 2(35.45) + 36.03 = 147.01 g/mol.", "Percent water = 36.03/147.01 × 100 = 24.51%."], answer: "24.5% H2O by mass", concept: "For a hydrate, include waters of crystallization in the total molar mass." }
+  },
+  "topic-1-7-1-8.pdf": {
+    "1": { prompt: "Which element, Li or Be, has a smaller atomic radius? Justify using atomic structure.", steps: ["Li and Be are in the same period, so their valence electrons occupy the same principal energy level.", "Be has more protons, increasing effective nuclear attraction across the period.", "The stronger attraction pulls Be's electron cloud closer to the nucleus."], answer: "Be has the smaller atomic radius.", concept: "Across a period, effective nuclear charge generally increases and atomic radius decreases." },
+    "2": { prompt: "Which element, Li or Na, has a smaller atomic radius? Justify using atomic structure.", steps: ["Li and Na are in the same group, but Na has one additional occupied principal energy level.", "Na's valence electrons are farther from the nucleus and experience more shielding.", "Therefore Na is larger despite having more protons."], answer: "Li has the smaller atomic radius.", concept: "Atomic radius generally increases down a group because additional shells and shielding dominate." },
+    "3": { prompt: "Arrange Li, Be, and Na in order of increasing atomic radius.", steps: ["Be is smaller than Li because effective nuclear charge is greater across period 2.", "Na is larger than Li because Na is one period below Li and has an additional occupied shell.", "Combine the comparisons from Questions 1 and 2."], answer: "Be < Li < Na", concept: "Apply the across-period and down-group trends together." },
+    "6": { prompt: "Explain why the F atom and F− ion have different ionic/atomic radii.", steps: ["F− has one more electron than neutral F, while the nuclear charge stays +9.", "The extra electron increases electron–electron repulsion in the same occupied shell.", "The electron cloud expands, so the anion is larger than the neutral atom."], answer: "F− is larger than F.", concept: "Adding electrons without changing nuclear charge generally increases electron-cloud repulsion and size." },
+    "8": { prompt: "Describe the general trend in a property as you move left to right across a period.", steps: ["Across a period, protons are added while valence electrons enter the same principal shell.", "Shielding does not increase enough to cancel the nuclear-charge increase.", "Effective nuclear charge rises; atomic radius generally falls and first ionization energy generally rises."], answer: "Atomic radius generally decreases; first ionization energy generally increases.", concept: "State the trend for the specific property asked in the printed prompt; these trends have known exceptions." },
+    "9": { prompt: "Describe the general trend in a property as you move down a group.", steps: ["Each step down adds an occupied principal energy level.", "Valence electrons are farther from the nucleus and more shielded by inner electrons.", "Atomic radius generally increases and first ionization energy generally decreases."], answer: "Atomic radius generally increases; first ionization energy generally decreases.", concept: "Additional shells and shielding weaken the nucleus's attraction to the valence electron." },
+    "13": { prompt: "Complete: The smaller the atomic radius is, the ___ the electronegativity value is.", steps: ["A smaller radius generally means bonding electrons are closer to the nucleus.", "A stronger effective nuclear attraction tends to pull shared bonding electrons more strongly."], answer: "Higher", concept: "Electronegativity generally increases as atomic radius decreases, especially across a period." }
+  },
+  "topic-2-7.pdf": {
+    "8": { prompt: "Arrange CH4, NH3, and H2O by molecular bond angle.", steps: ["Each central atom has four electron domains, giving a tetrahedral electron-domain arrangement.", "CH4 has no lone pairs, NH3 has one, and H2O has two.", "Lone pairs repel bonding pairs more strongly and compress bond angles as their number increases."], answer: "Bond angle: CH4 (~109.5°) > NH3 (~107°) > H2O (~104.5°).", concept: "VSEPR predicts that lone-pair repulsion compresses adjacent bond angles." }
+  },
+  "topic-2-1-2-4.pdf": {
+    "14": { prompt: "Explain why solid NaCl does not conduct electricity.", steps: ["NaCl is an ionic solid containing Na+ and Cl− ions arranged in a crystal lattice.", "The ions are held at fixed lattice positions and cannot move freely through the solid.", "Without mobile charge carriers, solid NaCl does not conduct; molten or dissolved NaCl can conduct because ions are mobile."], answer: "The ions are fixed in the solid lattice and cannot carry charge through the material.", concept: "Electrical conduction requires mobile charged particles or mobile electrons." },
+    "15": { prompt: "Name two changes that allow an ionic solid such as NaCl to conduct electricity.", steps: ["Melting disrupts the rigid lattice, allowing ions to move.", "Dissolving in water separates ions into mobile aqueous particles.", "In either case, mobile ions carry current."], answer: "Melt the ionic solid or dissolve it in water.", concept: "Ionic compounds conduct when their ions can move; solid ionic lattices generally do not." },
+    "17": { prompt: "Explain why a metallic solid can conduct electricity.", steps: ["Metal atoms form a lattice of positive ion cores surrounded by delocalized valence electrons.", "These electrons can move through the solid under an electric field.", "Their motion transports charge."], answer: "Delocalized electrons are mobile and carry charge through the metal.", concept: "Metallic bonding includes a mobile electron population." }
+  }
+};
+
 const RESPONSE_FRAMES = [
   { title: "Explain", prompt: "Make a claim, then connect it to a specific chemical principle or particle-level model. State why the evidence supports the claim." },
   { title: "Calculate", prompt: "Write the governing equation, substitute values with units, show the calculation, and report a correctly rounded answer with units." },
@@ -522,6 +564,7 @@ export function FrqWorkspace() {
   const packets = useMemo(() => FRQ_PACKETS.filter((packet) => packet.unit === Number(unit)), [unit]);
   const selected = FRQ_PACKETS.find((packet) => packet.file === selectedFile) ?? packets[0];
   const pdfUrl = localPdfUrl ?? (selected ? `/frq/${selected.file}#page=${Math.max(1, Number(page) || 1)}&toolbar=1&navpanes=0` : "");
+  const activeSolution = selected ? FRQ_WORKED_SOLUTIONS[selected.file]?.[questionNumber.trim()] : undefined;
 
   function chooseUnit(value: string) {
     setUnit(value);
@@ -607,6 +650,13 @@ export function FrqWorkspace() {
             <p className="text-xs font-bold uppercase tracking-[0.13em] text-accent">Question help</p>
             <h3 className="mt-1 text-xl font-bold">Q{questionNumber.trim() || "—"}{partLabel.trim() ? ` · ${partLabel.trim()}` : ""}</h3>
             <p className="mt-2 text-sm leading-6 text-ink-dim">Work through the prompt first. These are staged problem-solving cues, not a question-specific answer key.</p>
+            {activeSolution && <div className="mt-4 rounded-xl border border-emerald-400/30 bg-emerald-400/5 p-4">
+              <p className="text-xs font-bold uppercase tracking-wide text-emerald-300">Worked walkthrough · independently written</p>
+              <p className="mt-2 text-sm font-semibold text-ink">{activeSolution.prompt}</p>
+              <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm leading-6 text-ink-dim">{activeSolution.steps.map((step) => <li key={step}>{step}</li>)}</ol>
+              <p className="mt-3 rounded-lg border border-border bg-bg/60 p-3 text-sm font-semibold text-ink">Answer: {activeSolution.answer}</p>
+              <p className="mt-2 text-xs leading-5 text-ink-dim">Key idea: {activeSolution.concept} This is an original worked explanation, not an official answer key or College Board scoring guide.</p>
+            </div>}
             <label className="mt-4 block text-sm font-semibold" htmlFor="frq-response-type">What is the task asking you to do?
               <select id="frq-response-type" value={responseType} onChange={(e) => { setResponseType(e.target.value); setHelpLevel(0); }} className="mt-2 min-h-11 w-full rounded-lg border border-border bg-card px-3 py-2 text-ink">
                 <option value="explain">Explain / justify</option>
