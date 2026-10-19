@@ -48,6 +48,11 @@ export function FrqWorkspace() {
   const [unit, setUnit] = useState("1");
   const [selectedFile, setSelectedFile] = useState("");
   const [page, setPage] = useState("1");
+  const [questionNumber, setQuestionNumber] = useState("1");
+  const [partLabel, setPartLabel] = useState("");
+  const [responseType, setResponseType] = useState("explain");
+  const [helpLevel, setHelpLevel] = useState(0);
+  const [workNotes, setWorkNotes] = useState("");
   const [showFramework, setShowFramework] = useState(true);
   const [localPdfUrl, setLocalPdfUrl] = useState<string | null>(null);
   const [localPdfName, setLocalPdfName] = useState("");
@@ -60,6 +65,10 @@ export function FrqWorkspace() {
     setUnit(value);
     setSelectedFile("");
     setPage("1");
+    setQuestionNumber("1");
+    setPartLabel("");
+    setHelpLevel(0);
+    setWorkNotes("");
     setLocalPdfUrl(null);
     setLocalPdfName("");
   }
@@ -90,13 +99,23 @@ export function FrqWorkspace() {
               </select>
             </label>
             <label className="text-sm font-semibold" htmlFor="frq-packet">Topic packet
-              <select id="frq-packet" value={selected?.file ?? ""} onChange={(e) => { setSelectedFile(e.target.value); setPage("1"); setLocalPdfUrl(null); setLocalPdfName(""); }} className="mt-2 min-h-12 w-full rounded-lg border border-border bg-card px-3 py-3 text-ink">
+              <select id="frq-packet" value={selected?.file ?? ""} onChange={(e) => { setSelectedFile(e.target.value); setPage("1"); setQuestionNumber("1"); setPartLabel(""); setHelpLevel(0); setWorkNotes(""); setLocalPdfUrl(null); setLocalPdfName(""); }} className="mt-2 min-h-12 w-full rounded-lg border border-border bg-card px-3 py-3 text-ink">
                 {packets.map((packet) => <option key={packet.file} value={packet.file}>{packet.title}</option>)}
               </select>
             </label>
           </div>
         </div>
         {selected && <p className="mt-4 rounded-xl border border-border bg-bg/60 p-3 text-sm leading-6 text-ink-dim"><span className="font-semibold text-ink">Topics covered:</span> {selected.topics}</p>}
+        <div className="mt-4 grid gap-3 rounded-xl border border-border bg-bg/50 p-4 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
+          <label className="text-sm font-semibold" htmlFor="frq-question-number">Printed question number
+            <input id="frq-question-number" inputMode="numeric" value={questionNumber} onChange={(e) => { setQuestionNumber(e.target.value); setHelpLevel(0); }} placeholder="e.g. 4" className="mt-2 min-h-11 w-full rounded-lg border border-border bg-card px-3 py-2 text-ink" />
+          </label>
+          <label className="text-sm font-semibold" htmlFor="frq-question-part">Lettered part (optional)
+            <input id="frq-question-part" value={partLabel} onChange={(e) => { setPartLabel(e.target.value); setHelpLevel(0); }} placeholder="e.g. b(ii)" className="mt-2 min-h-11 w-full rounded-lg border border-border bg-card px-3 py-2 text-ink" />
+          </label>
+          <button type="button" onClick={() => { setPage("1"); setHelpLevel(0); }} className="min-h-11 rounded-lg bg-accent px-4 py-2 text-sm font-bold text-[#06251b]">Start question</button>
+          <p className="text-xs leading-5 text-ink-dim sm:col-span-3">Use the page control below to jump to the printed question in the PDF. Question numbers and page locations are not auto-mapped yet, so this workspace will not guess them.</p>
+        </div>
       </section>
 
       <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1.5fr)_minmax(320px,0.8fr)]">
@@ -120,6 +139,49 @@ export function FrqWorkspace() {
         </section>
 
         <aside className="space-y-4 xl:sticky xl:top-4">
+          <section className="rounded-2xl border border-border bg-card/60 p-5">
+            <p className="text-xs font-bold uppercase tracking-[0.13em] text-accent">Question help</p>
+            <h3 className="mt-1 text-xl font-bold">Q{questionNumber.trim() || "—"}{partLabel.trim() ? ` · ${partLabel.trim()}` : ""}</h3>
+            <p className="mt-2 text-sm leading-6 text-ink-dim">Work through the prompt first. These are staged problem-solving cues, not a question-specific answer key.</p>
+            <label className="mt-4 block text-sm font-semibold" htmlFor="frq-response-type">What is the task asking you to do?
+              <select id="frq-response-type" value={responseType} onChange={(e) => { setResponseType(e.target.value); setHelpLevel(0); }} className="mt-2 min-h-11 w-full rounded-lg border border-border bg-card px-3 py-2 text-ink">
+                <option value="explain">Explain / justify</option>
+                <option value="calculate">Calculate</option>
+                <option value="predict">Predict / compare</option>
+                <option value="draw">Draw / represent</option>
+                <option value="graph">Analyze a graph or data</option>
+              </select>
+            </label>
+            <label className="mt-4 block text-sm font-semibold" htmlFor="frq-work-notes">Prompt details or your attempt (optional)
+              <textarea id="frq-work-notes" value={workNotes} onChange={(e) => setWorkNotes(e.target.value)} rows={3} placeholder="Paste the relevant part of the prompt or note what you tried…" className="mt-2 w-full rounded-lg border border-border bg-card px-3 py-2 text-sm font-normal leading-6 text-ink" />
+            </label>
+            {helpLevel >= 1 && <div className="mt-4 rounded-xl border border-border bg-bg/60 p-4"><p className="text-xs font-bold uppercase tracking-wide text-accent">Hint 1 · Identify</p><p className="mt-2 text-sm leading-6 text-ink-dim">{({
+              explain: "Underline the claim the prompt asks you to support. Identify the chemical principle and the specific evidence from the prompt that connects to it.",
+              calculate: "List the target quantity, the given values, and their units. Choose an equation that relates the target to the given information before substituting.",
+              predict: "State what changes and what stays constant. Identify the relationship or chemical principle that determines the direction of the change.",
+              draw: "List every required species, particle, charge, label, axis, and unit. Decide which features must be shown for the representation to communicate the chemistry.",
+              graph: "Read the axes and units first. Identify the trend, compare relevant values, and distinguish what the data show from what you infer."
+            } as Record<string,string>)[responseType]}</p></div>}
+            {helpLevel >= 2 && <div className="mt-3 rounded-xl border border-border bg-bg/60 p-4"><p className="text-xs font-bold uppercase tracking-wide text-accent">Hint 2 · Build the reasoning</p><p className="mt-2 text-sm leading-6 text-ink-dim">{({
+              explain: "Use a claim → evidence → chemistry link structure. Name the particles, interactions, or governing principle; avoid repeating the evidence without explaining why it matters.",
+              calculate: "Write the equation symbolically, substitute values with units, show the algebra, and check the result's units and significant figures.",
+              predict: "Make the prediction explicit, then justify it using a cause-and-effect relationship. If comparing trials, identify which variable changed and which were controlled.",
+              draw: "Construct the representation from the required constraints, then audit atom counts, charge, geometry, labels, and consistency with the prompt.",
+              graph: "Use a specific comparison or trend as evidence, then explain it with the relevant chemical model. Include calculations when the prompt asks for a rate, slope, or quantitative comparison."
+            } as Record<string,string>)[responseType]}</p></div>}
+            {helpLevel >= 3 && <div className="mt-3 rounded-xl border border-accent/30 bg-accent-soft/10 p-4"><p className="text-xs font-bold uppercase tracking-wide text-accent">Final self-check</p><p className="mt-2 text-sm leading-6 text-ink-dim">{({
+              explain: "Can a reader point to your claim, the evidence, and the sentence that explains the chemistry connecting them?",
+              calculate: "Are the equation, substitutions, units, sign, significant figures, and final answer all visible?",
+              predict: "Did you answer the direction or comparison directly and justify it with the correct principle rather than intuition alone?",
+              draw: "Would another student be able to interpret your drawing without guessing what the symbols, axes, or labels mean?",
+              graph: "Did you cite actual data or a visible trend and connect it to chemistry without claiming more than the data support?"
+            } as Record<string,string>)[responseType]}</p></div>}
+            <div className="mt-4 flex flex-wrap gap-2">
+              <button type="button" onClick={() => setHelpLevel((level) => Math.min(3, level + 1))} disabled={helpLevel >= 3} className="rounded-lg bg-accent px-4 py-2.5 text-sm font-bold text-[#06251b] disabled:cursor-not-allowed disabled:opacity-50">{helpLevel === 0 ? "Reveal first hint" : helpLevel === 1 ? "Reveal next hint" : helpLevel === 2 ? "Show final check" : "All hints shown"}</button>
+              <button type="button" onClick={() => setHelpLevel(0)} className="rounded-lg border border-border px-3 py-2.5 text-sm font-semibold">Reset hints</button>
+            </div>
+            <p className="mt-3 text-xs leading-5 text-ink-dim">No worked solution is shown because the printed prompt has not been verified against an answer or scoring guide. Use the <a href={`/units/${unit}/review`} className="font-semibold text-accent underline underline-offset-2">Unit {unit} review</a> for related chemistry review.</p>
+          </section>
           <section className="rounded-2xl border border-border bg-card/60 p-5">
             <div className="flex items-start justify-between gap-3">
               <div><p className="text-xs font-bold uppercase tracking-[0.13em] text-accent">Writing support</p><h3 className="mt-1 text-xl font-bold">Build a point-worthy response</h3></div>
