@@ -13,7 +13,7 @@ if (!partMapMatch) throw new Error("Could not parse FRQ part-page candidate inde
 const partMappings = JSON.parse(partMapMatch[1]);
 
 const start = source.indexOf("const FRQ_PAGE_CANDIDATES");
-const end = source.indexOf("const RESPONSE_FRAMES", start);
+const end = source.indexOf("type WorkedSolution", start);
 if (start < 0 || end < 0) {
   throw new Error("Could not locate FRQ_PAGE_CANDIDATES in FrqWorkspace.tsx");
 }
