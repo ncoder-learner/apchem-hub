@@ -4,8 +4,13 @@ import path from "node:path";
 const root = process.cwd();
 const componentPath = path.join(root, "components", "FrqWorkspace.tsx");
 const auditPath = path.join(root, "frq-audit-output", "frq-page-audit.json");
+const partMapPath = path.join(root, "lib", "frq-part-page-candidates.ts");
 const source = await readFile(componentPath, "utf8");
+const partMapSource = await readFile(partMapPath, "utf8");
 const audit = JSON.parse(await readFile(auditPath, "utf8"));
+const partMapMatch = partMapSource.match(/= (\\{[\\s\\S]*\\});\\s*$/);
+if (!partMapMatch) throw new Error("Could not parse FRQ part-page candidate index");
+const partMappings = JSON.parse(partMapMatch[1]);
 
 const start = source.indexOf("const FRQ_PAGE_CANDIDATES");
 const end = source.indexOf("const RESPONSE_FRAMES", start);
@@ -49,8 +54,25 @@ for (const file of mappings.keys()) {
   if (!auditByFile.has(file)) errors.push(`${file}: mapping references a PDF absent from the audit`);
 }
 
+for (const [file, questions] of Object.entries(partMappings)) {
+  const packet = auditByFile.get(file);
+  if (!packet) {
+    errors.push(`${file}: part mapping references a PDF absent from the audit`);
+    continue;
+  }
+  for (const [question, parts] of Object.entries(questions)) {
+    for (const [part, page] of Object.entries(parts)) {
+      if (!/^[a-h]$/.test(part)) errors.push(`${file}: Q${question} has invalid part label "${part}"`);
+      if (!Number.isInteger(page) || page < 1 || page > packet.pageCount) {
+        errors.push(`${file}: Q${question}(${part}) maps to invalid page ${page} (PDF has ${packet.pageCount} pages)`);
+      }
+    }
+  }
+}
 const totalMappings = [...mappings.values()].reduce((sum, questions) => sum + questions.size, 0);
-console.log(`Validated ${mappings.size} packet maps and ${totalMappings} question-page mappings against ${audit.length} audited PDFs.`);
+const totalPartMappings = Object.values(partMappings).reduce((sum, questions) =>
+  sum + Object.values(questions).reduce((count, parts) => count + Object.keys(parts).length, 0), 0);
+console.log(`Validated ${mappings.size} packet maps, ${totalMappings} question-page mappings, and ${totalPartMappings} part-page candidates against ${audit.length} audited PDFs.`);
 if (warnings.length) console.warn(warnings.join("\n"));
 if (errors.length) {
   console.error(errors.join("\n"));
