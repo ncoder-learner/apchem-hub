@@ -1,0 +1,39 @@
+---
+title: "Calculating Equilibrium Concentrations"
+unit: 7
+topicNumber: "7.7"
+slug: "7-7-calculating-equilibrium-concentrations"
+summary: "Use stoichiometric changes and an ICE table to solve for unknown equilibrium concentrations."
+---
+
+When initial concentrations and K are known, the equilibrium concentrations can be found by tracking how the reaction changes each species. An ICE table organizes **Initial**, **Change**, and **Equilibrium** values.
+
+<TopicLab unitId={7} topicNumber="7.7" title="ICE Table Solver" />
+
+<LessonSection title="1. Build the change row from stoichiometry" description="The balanced coefficients link every change" defaultOpen>
+
+For aA + bB ⇌ cC, if the reaction proceeds forward by x, the changes are −ax, −bx, and +cx. Equilibrium concentrations are initial values plus changes. Use the balanced equation to keep the changes proportional.
+
+<WorkedExample title="Worked example: set up an ICE table">
+For A ⇌ B, start with [A] = 1.00 M and [B] = 0.00 M. If x reacts, the equilibrium values are [A] = 1.00 − x and [B] = x. Therefore Kc = x/(1.00 − x). The next step is to substitute the known K and solve for x, then check that the result is physically possible.
+</WorkedExample>
+
+<QuickCheck question="For A + 2B ⇌ C, if the forward reaction proceeds by x, what is the change in [B]?" options={["+2x","−2x","−x","−x/2"]} correctIndex={1} explanation="B is a reactant with coefficient 2, so its concentration decreases by 2x for a forward change of x." />
+
+</LessonSection>
+
+<LessonSection title="2. Solve and verify the physical meaning" description="Algebra is not the final check">
+
+After substituting the equilibrium row into K, solve the resulting equation. If a quadratic results, evaluate physically meaningful roots only. Reject any root that gives a negative concentration or exceeds the available amount. When the change is small compared with the initial concentration, an approximation may sometimes be used, but verify it against the stated tolerance.
+
+<WorkedExample title="Worked example: check a proposed root">
+An algebraic solution gives x = 1.20 M for a reactant that initially had only 0.50 M and is consumed in a 1:1 step. That root is impossible because it would produce a negative equilibrium reactant concentration. Choose a physically valid root and substitute it back into K.
+</WorkedExample>
+
+<QuickCheck question="Why must an ICE-table solution be checked after solving the equation?" options={["K is never reliable","A mathematical root can imply a negative or impossible concentration","Stoichiometric coefficients change at equilibrium","All equilibrium concentrations must be integers"]} correctIndex={1} explanation="Algebra can produce roots that do not match physical concentration constraints. Check the valid range and verify the result in the equilibrium expression." />
+
+</LessonSection>
+
+## Readiness check
+
+Write the ICE rows from stoichiometry, solve the K expression, reject impossible roots, and verify the concentrations satisfy K.
