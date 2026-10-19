@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PacketCompanionLookup } from "@/components/PacketCompanionLookup";
+import { PacketCompanionModes } from "@/components/PacketCompanionModes";
 
 export default function PacketCompanionPage() {
   return (
@@ -14,19 +14,19 @@ export default function PacketCompanionPage() {
         <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-accent">Study alongside your physical packet</p>
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Packet Companion</h1>
         <p className="mt-4 max-w-3xl leading-relaxed text-ink-dim">
-          Load a packet PDF to scroll through it in the page, then use the question navigator to reveal hints and explanations as you work. If you only have a printed copy, keep it beside the reader and use the same question navigator.
+          Choose multiple-choice or free-response practice. The FRQ workspace opens the topic packet PDFs directly in the page and provides a structured response checklist alongside the document.
         </p>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-dim">
-          Packet files stay on the student’s device. The index currently covers printed question numbers and selected hints; it does not claim that every question has a verified answer.
+          FRQ guidance is general problem-solving support, not an official answer key. Question-specific worked solutions will be added only when the exact prompt and chemistry have been checked.
         </p>
       </header>
 
-      <PacketCompanionLookup />
+      <PacketCompanionModes />
 
       <section className="mt-8 rounded-xl border border-border p-5 sm:p-6">
-        <h2 className="text-lg font-semibold">Need help before your packet is indexed?</h2>
+        <h2 className="text-lg font-semibold">Need help with the underlying chemistry?</h2>
         <p className="mt-2 text-sm leading-relaxed text-ink-dim">
-          Choose the chemistry topic you are stuck on and use the lesson's explanation, model, and worked examples.
+          Use the related unit lesson for concept explanations, visual models, and worked examples.
         </p>
         <Link href="/#course-map" className="mt-4 inline-flex rounded-lg bg-accent px-4 py-2.5 text-sm font-bold text-[#06251b] transition hover:opacity-90">
           Browse AP Chemistry lessons
