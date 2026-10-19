@@ -37,6 +37,20 @@ const FRQ_PACKETS: FrqPacket[] = [
   { unit: 9, title: "Topics 9.8–9.11", topics: "Electrochemistry and thermodynamics", file: "topic-9-8-9-11.pdf" },
 ];
 
+// Verified against the page-by-page audit for this packet only. Do not infer pages for other packets.
+const VERIFIED_FRQ_PAGE_MAP: Record<string, Record<string, number>> = {
+  "topic-1-1-1-3.pdf": {
+    "1": 1, "2": 1, "3": 1, "4": 1,
+    "5": 2, "6": 2, "7": 2,
+    "8": 3, "9": 3,
+    "10": 4, "11": 4,
+    "12": 5, "13": 5, "14": 5, "15": 5,
+    "16": 6, "17": 6, "18": 6,
+    "19": 7,
+    "20": 8, "21": 8, "22": 8,
+  },
+};
+
 const RESPONSE_FRAMES = [
   { title: "Explain", prompt: "Make a claim, then connect it to a specific chemical principle or particle-level model. State why the evidence supports the claim." },
   { title: "Calculate", prompt: "Write the governing equation, substitute values with units, show the calculation, and report a correctly rounded answer with units." },
@@ -53,6 +67,7 @@ export function FrqWorkspace() {
   const [responseType, setResponseType] = useState("explain");
   const [helpLevel, setHelpLevel] = useState(0);
   const [workNotes, setWorkNotes] = useState("");
+  const [navigationMessage, setNavigationMessage] = useState("");
   const [showFramework, setShowFramework] = useState(true);
   const [localPdfUrl, setLocalPdfUrl] = useState<string | null>(null);
   const [localPdfName, setLocalPdfName] = useState("");
@@ -69,6 +84,7 @@ export function FrqWorkspace() {
     setPartLabel("");
     setHelpLevel(0);
     setWorkNotes("");
+    setNavigationMessage("");
     setLocalPdfUrl(null);
     setLocalPdfName("");
   }
@@ -99,7 +115,7 @@ export function FrqWorkspace() {
               </select>
             </label>
             <label className="text-sm font-semibold" htmlFor="frq-packet">Topic packet
-              <select id="frq-packet" value={selected?.file ?? ""} onChange={(e) => { setSelectedFile(e.target.value); setPage("1"); setQuestionNumber("1"); setPartLabel(""); setHelpLevel(0); setWorkNotes(""); setLocalPdfUrl(null); setLocalPdfName(""); }} className="mt-2 min-h-12 w-full rounded-lg border border-border bg-card px-3 py-3 text-ink">
+              <select id="frq-packet" value={selected?.file ?? ""} onChange={(e) => { setSelectedFile(e.target.value); setPage("1"); setQuestionNumber("1"); setPartLabel(""); setHelpLevel(0); setWorkNotes(""); setNavigationMessage(""); setLocalPdfUrl(null); setLocalPdfName(""); }} className="mt-2 min-h-12 w-full rounded-lg border border-border bg-card px-3 py-3 text-ink">
                 {packets.map((packet) => <option key={packet.file} value={packet.file}>{packet.title}</option>)}
               </select>
             </label>
@@ -113,8 +129,9 @@ export function FrqWorkspace() {
           <label className="text-sm font-semibold" htmlFor="frq-question-part">Lettered part (optional)
             <input id="frq-question-part" value={partLabel} onChange={(e) => { setPartLabel(e.target.value); setHelpLevel(0); }} placeholder="e.g. b(ii)" className="mt-2 min-h-11 w-full rounded-lg border border-border bg-card px-3 py-2 text-ink" />
           </label>
-          <button type="button" onClick={() => setHelpLevel(0)} className="min-h-11 rounded-lg border border-border px-4 py-2 text-sm font-semibold">Reset hints</button>
-          <p className="text-xs leading-5 text-ink-dim sm:col-span-3">Use the page control below to jump to the printed question in the PDF. Question numbers and page locations are not auto-mapped yet, so this workspace will not guess them.</p>
+          <button type="button" onClick={() => { const pages = selected ? VERIFIED_FRQ_PAGE_MAP[selected.file] : undefined; const question = questionNumber.trim(); const targetPage = pages?.[question]; if (targetPage) { setPage(String(targetPage)); setNavigationMessage(`Jumped to audited page ${targetPage}.`); } else { setNavigationMessage("No verified question-to-page mapping for this packet yet. Use the page control below to navigate manually."); } setHelpLevel(0); }} className="min-h-11 rounded-lg bg-accent px-4 py-2 text-sm font-bold text-[#06251b]">Find question page</button>
+          <p className="text-xs leading-5 text-ink-dim sm:col-span-3">Audited page mapping is currently available only for the Topics 1.1–1.3 packet. Other packets remain manual until their question boundaries are verified.</p>
+          {navigationMessage && <p role="status" className="text-sm leading-5 text-ink-dim sm:col-span-3">{navigationMessage}</p>}
         </div>
       </section>
 
