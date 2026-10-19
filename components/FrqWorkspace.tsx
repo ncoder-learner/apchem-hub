@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState, type ChangeEvent } from "react";
+import { FRQ_PART_PAGE_CANDIDATES } from "@/lib/frq-part-page-candidates";
 
 type FrqPacket = {
   unit: number;
@@ -503,22 +504,6 @@ const RESPONSE_FRAMES = [
   { title: "Justify / predict", prompt: "State the prediction first. Then justify it using a relevant relationship, equilibrium principle, collision model, or particle-level explanation." },
   { title: "Draw / represent", prompt: "Label species, axes, charges, units, and relevant features. Make the representation consistent with the chemistry and the conditions in the prompt." },
 ];
-
-// Part-level page candidates only where the PDF text explicitly exposes a part heading.
- // Missing entries intentionally fall back to the question's candidate page.
-const FRQ_PART_PAGE_CANDIDATES: Record<string, Record<string, Record<string, number>>> = {
-  "topic-1-1-1-3.pdf": { "18": { c: 7 }, "22": { b: 9, c: 9, d: 9 } },
-  "topic-1-4-1-6.pdf": { "2": { b: 2 } },
-  "topic-1-7-1-8.pdf": { "5": { b: 3 } },
-  "topic-2-1-2-4.pdf": { "4": { a: 3 } },
-  "topic-2-7.pdf": { "1": { a: 2 }, "2": { a: 2 }, "3": { a: 2 }, "4": { a: 2 }, "5": { a: 2 } },
-  "topic-3-1.pdf": { "23": { a: 13 } },
-  "topic-4-5-4-6.pdf": { "12": { c: 11 }, "13": { c: 12 } },
-  "topic-5-1-5-3.pdf": { "12": { a: 9, c: 10, d: 10, e: 10 }, "13": { a: 11, b: 12, c: 12 } },
-  "topic-7-1-7-5.pdf": { "12": { a: 13 } },
-  "topic-7-6-7-10.pdf": { "16": { a: 15 } },
-  "topic-9-1-9-7.pdf": { "4": { a: 3 }, "5": { a: 3 }, "6": { a: 5 }, "7": { a: 5 }, "21": { a: 16 }, "22": { a: 17 }, "23": { a: 17 } },
-};
 
 export function FrqWorkspace() {
   const [unit, setUnit] = useState("1");
