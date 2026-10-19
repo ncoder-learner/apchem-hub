@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import type { ReactNode } from "react";
 
 interface Props { topicNumber: string; }
 function Slider({ label, min, max, step, value, onChange, suffix = "" }: {
@@ -12,7 +13,7 @@ function Slider({ label, min, max, step, value, onChange, suffix = "" }: {
     <span className="flex justify-between text-xs text-ink-dim"><span>{min}{suffix}</span><span>{max}{suffix}</span></span>
   </label>;
 }
-function LabFrame({ title, takeaway, children }: { title: string; takeaway: string; children: React.ReactNode }) {
+function LabFrame({ title, takeaway, children }: { title: string; takeaway: string; children: ReactNode }) {
   return <section className="my-10 rounded-2xl border border-emerald-400/30 bg-card p-5 sm:p-7" aria-label={title}>
     <div className="mb-3 text-xs font-bold uppercase tracking-[.16em] text-emerald-300">Interactive lab · Unit 7</div>
     <h2 className="mb-2 text-xl font-bold text-ink">{title}</h2>
