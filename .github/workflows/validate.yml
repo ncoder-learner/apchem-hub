@@ -6,6 +6,7 @@ on:
     branches:
       - master
       - curriculum/rebuild-all-lessons
+      - feature/frq-workspace-readable-solutions
 
 permissions:
   contents: read
