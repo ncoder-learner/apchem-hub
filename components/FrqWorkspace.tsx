@@ -593,7 +593,7 @@ const FRQ_WORKED_SOLUTIONS: Record<string, Record<string, WorkedSolution>> = {
     "4": { prompt: "100.0 g K reacts with 100.0 g Cl2 to form KCl. Identify the limiting reactant and calculate theoretical yield.", steps: ["Balance: 2K(s) + Cl2(g) → 2KCl(s).", "n(K) = 100.0/39.10 = 2.558 mol; n(Cl2) = 100.0/70.90 = 1.410 mol.", "The Cl2 amount would require 2.820 mol K, but only 2.558 mol K is available, so K limits. The 1:1 mole ratio K:KCl gives 2.558 mol KCl."], answer: "K is limiting; theoretical yield ≈ 190.7 g KCl.", concept: "Compare available mole ratios with the balanced-equation coefficients, then calculate product from the limiting reactant." }
   },
   "topic-4-7-4-9.pdf": {
-    "3:a": { prompt: "When HCl reacts with water, does H2O act as an acid or a base?", steps: ["HCl donates a proton to H2O.", "Water accepts that proton to become H3O+.", "A Brønsted–Lowry proton acceptor is a base."], answer: "H2O acts as a base: HCl + H2O → H3O+ + Cl−.", concept: "Identify acid/base roles by tracking the proton, not by assuming water always has one role." },
+
 
   },
   "topic-5-1-5-3.pdf": {
