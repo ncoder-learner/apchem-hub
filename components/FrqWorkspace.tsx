@@ -523,8 +523,8 @@ const FRQ_WORKED_SOLUTIONS: Record<string, Record<string, WorkedSolution>> = {
     "15": { prompt: "Find the empirical formula for a compound that is 43.64% P and 56.36% O by mass.", steps: ["Assume 100 g: 43.64 g P and 56.36 g O.", "Moles: P = 43.64/30.97 = 1.408 mol; O = 56.36/16.00 = 3.523 mol.", "Divide by the smaller amount: P:O ≈ 1:2.50. Multiply both subscripts by 2."], answer: "P2O5", concept: "Convert mass percentages to mole ratios, then scale to whole numbers." },
     "16": { prompt: "Find the empirical formula for a compound that is 52.14% C, 13.13% H, and 34.73% O by mass.", steps: ["Assume 100 g: 52.14 g C, 13.13 g H, and 34.73 g O.", "Moles: C ≈ 4.341, H ≈ 13.03, O ≈ 2.171.", "Divide by 2.171: C:H:O ≈ 2:6:1."], answer: "C2H6O", concept: "Mass percentages become subscripts only after conversion to moles and simplification." },
     "17": { prompt: "A 6.18-g Sn sample is converted completely to tin oxide with a mass of 7.85 g. Determine the oxide's empirical formula.", steps: ["Oxygen mass = 7.85 − 6.18 = 1.67 g.", "Moles Sn = 6.18/118.71 = 0.0521 mol; moles O = 1.67/16.00 = 0.1044 mol.", "Divide by the smaller amount: Sn:O ≈ 1:2."], answer: "SnO2", concept: "Use the mass gain to determine oxygen mass, then convert each element's mass to moles." },
-    "18": { prompt: "A 15.00-g sample of compound X contains 9.81 g C, 1.37 g H, and 3.82 g N. Determine its empirical formula.", steps: ["Convert masses to moles: C = 9.81/12.01 ≈ 0.817 mol; H = 1.37/1.008 ≈ 1.359 mol; N = 3.82/14.01 ≈ 0.273 mol.", "Divide all values by the smallest, 0.273: C:H:N ≈ 3.00:4.98:1.", "Round to the nearest whole-number ratio supported by the data."], answer: "C3H5N", concept: "The empirical formula uses the simplest whole-number mole ratio." },
-    "20": { prompt: "A 25.00-g sample of CuSO4·5H2O: calculate the mass of CuSO4 present.", steps: ["Molar mass CuSO4 = 63.55 + 32.06 + 4(16.00) = 159.61 g/mol.", "Molar mass CuSO4·5H2O = 159.61 + 5(18.016) = 249.69 g/mol.", "Mass fraction CuSO4 = 159.61/249.69 = 0.6392. Multiply by 25.00 g."], answer: "15.98 g CuSO4", concept: "Use the anhydrous compound's mass fraction within one mole of the hydrate." }
+    "18:a": { prompt: "A 15.00-g sample of compound X contains 9.81 g C, 1.37 g H, and 3.82 g N. Determine its empirical formula.", steps: ["Convert masses to moles: C = 9.81/12.01 ≈ 0.817 mol; H = 1.37/1.008 ≈ 1.359 mol; N = 3.82/14.01 ≈ 0.273 mol.", "Divide all values by the smallest, 0.273: C:H:N ≈ 3.00:4.98:1.", "Round to the nearest whole-number ratio supported by the data."], answer: "C3H5N", concept: "The empirical formula uses the simplest whole-number mole ratio." },
+    "20:a": { prompt: "A 25.00-g sample of CuSO4·5H2O: calculate the mass of CuSO4 present.", steps: ["Molar mass CuSO4 = 63.55 + 32.06 + 4(16.00) = 159.61 g/mol.", "Molar mass CuSO4·5H2O = 159.61 + 5(18.016) = 249.69 g/mol.", "Mass fraction CuSO4 = 159.61/249.69 = 0.6392. Multiply by 25.00 g."], answer: "15.98 g CuSO4", concept: "Use the anhydrous compound's mass fraction within one mole of the hydrate." }
   },
   "topic-1-4-1-6.pdf": {
     "4": { prompt: "A mixture of CaCO3 and Na2CO3 contains 35.00% Na by mass. Calculate the percentage of Na2CO3 by mass.", steps: ["In Na2CO3, the sodium mass fraction is 2(22.99)/105.99 = 0.4338.", "Only Na2CO3 contributes sodium, so mixture mass fraction of Na2CO3 = 0.3500/0.4338.", "Convert the mass fraction to percent."], answer: "80.7% Na2CO3 by mass", concept: "The measured sodium fraction comes entirely from the sodium-containing component." },
@@ -640,8 +640,9 @@ export function FrqWorkspace() {
   const normalizedPart = partLabel.trim().toLowerCase().match(/[a-h]/)?.[0] ?? "";
   const localPacketMatches = !localPdfUrl || localPdfName === selected?.file;
   const activeSolution = selected && localPacketMatches
-    ? (FRQ_WORKED_SOLUTIONS[selected.file]?.[`${questionNumber.trim()}:${normalizedPart}`] ??
-       FRQ_WORKED_SOLUTIONS[selected.file]?.[questionNumber.trim()])
+    ? (normalizedPart
+        ? FRQ_WORKED_SOLUTIONS[selected.file]?.[`${questionNumber.trim()}:${normalizedPart}`]
+        : FRQ_WORKED_SOLUTIONS[selected.file]?.[questionNumber.trim()])
     : undefined;
 
   function chooseUnit(value: string) {
