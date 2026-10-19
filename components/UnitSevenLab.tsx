@@ -50,6 +50,7 @@ export function UnitSevenLab({ topicNumber }: Props) {
   const ksp = 0.0001;
   const phase = Number(time.toFixed(1));
   const [mode, setMode] = useState(0);
+  const [logK, setLogK] = useState(0);
 
   if (topicNumber === "7.1") return <LabFrame title="Watch a dynamic equilibrium settle" takeaway="Equilibrium is reached when forward and reverse rates match. The rates do not have to be zero, and equilibrium concentrations need not be equal.">
     <div className="grid gap-5 md:grid-cols-2"><div><Slider label="Forward rate" min={0} max={10} step={1} value={forwardRate} onChange={setForwardRate}/><Slider label="Reverse rate" min={0} max={10} step={1} value={reverseRate} onChange={setReverseRate}/></div><div className="space-y-3"><Metric label="Net rate" value={String(forwardRate-reverseRate)} note="Positive = net forward; negative = net reverse"/><div className="h-5 overflow-hidden rounded-full bg-white/5"><div className="h-full bg-emerald-400" style={{width:(Math.min(forwardRate,reverseRate)/10*100)+"%"}}/></div><p className="text-sm">{forwardRate===reverseRate?"Rates match: dynamic equilibrium.":"Not at equilibrium: the faster direction controls the net change."}</p></div></div>
@@ -64,7 +65,7 @@ export function UnitSevenLab({ topicNumber }: Props) {
   </LabFrame>;
 
   if (topicNumber === "7.5") return <LabFrame title="Explore the magnitude of K" takeaway="Large K generally means products are favored, and small K generally means reactants are favored. K describes equilibrium composition, not reaction speed.">
-    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="K (logarithmic interpretation)" min={0.001} max={1000} step={1} value={k} onChange={setK}/><p className="text-sm text-ink-dim">Move K across several orders of magnitude to compare the qualitative equilibrium position.</p></div><div className="rounded-xl border border-border p-5"><Metric label="K" value={k.toPrecision(3)}/><p className="mt-3 text-lg font-semibold">{k>10?"Products strongly favored":k<0.1?"Reactants strongly favored":"Neither side is overwhelmingly favored by this value alone"}</p></div></div>
+    <div className="grid gap-5 md:grid-cols-2"><div><Slider label="log10(K)" min={-3} max={3} step={1} value={logK} onChange={setLogK}/><p className="text-sm text-ink-dim">This logarithmic control spans six orders of magnitude.</p></div><div className="rounded-xl border border-border p-5"><Metric label="Equilibrium constant K" value={(10**logK).toExponential(0)}/><p className="mt-3 text-lg font-semibold">{logK>1?"Products strongly favored":logK< -1?"Reactants strongly favored":"Neither side is overwhelmingly favored by this value alone"}</p></div></div>
   </LabFrame>;
 
   if (topicNumber === "7.6") return <LabFrame title="Transform K when the equation changes" takeaway="Reverse a reaction to use 1/K; multiply all coefficients by n to use Kⁿ; add reactions to multiply their adjusted equilibrium constants.">
