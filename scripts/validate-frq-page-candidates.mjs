@@ -15,11 +15,11 @@ if (start < 0 || end < 0) {
 
 const mapSource = source.slice(start, end);
 const mappings = new Map();
-const packetPattern = /"([^"]+\\.pdf)"\\s*:\\s*\\{([\\s\\S]*?)\\n  \\}/g;
+const packetPattern = /"([^"]+\.pdf)"\s*:\s*\{([\s\S]*?)\n  \}/g;
 for (const match of mapSource.matchAll(packetPattern)) {
   const [, file, body] = match;
   const questions = new Map();
-  for (const entry of body.matchAll(/(\\d+)\\s*:\\s*(\\d+)/g)) {
+  for (const entry of body.matchAll(/(\d+)\s*:\s*(\d+)/g)) {
     questions.set(Number(entry[1]), Number(entry[2]));
   }
   mappings.set(file, questions);
@@ -51,9 +51,9 @@ for (const file of mappings.keys()) {
 
 const totalMappings = [...mappings.values()].reduce((sum, questions) => sum + questions.size, 0);
 console.log(`Validated ${mappings.size} packet maps and ${totalMappings} question-page mappings against ${audit.length} audited PDFs.`);
-if (warnings.length) console.warn(warnings.join("\\n"));
+if (warnings.length) console.warn(warnings.join("\n"));
 if (errors.length) {
-  console.error(errors.join("\\n"));
+  console.error(errors.join("\n"));
   process.exitCode = 1;
 } else {
   console.log("All mapped pages are within their PDF bounds; every audited packet has a non-empty map.");
