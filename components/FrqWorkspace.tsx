@@ -591,6 +591,28 @@ const FRQ_WORKED_SOLUTIONS: Record<string, Record<string, WorkedSolution>> = {
   }
 };
 
+  "topic-4-5-4-6.pdf": {
+    "4": { prompt: "100.0 g K reacts with 100.0 g Cl2 to form KCl. Identify the limiting reactant and calculate theoretical yield.", steps: ["Balance: 2K(s) + Cl2(g) → 2KCl(s).", "n(K) = 100.0/39.10 = 2.558 mol; n(Cl2) = 100.0/70.90 = 1.410 mol.", "The Cl2 amount would require 2.820 mol K, but only 2.558 mol K is available, so K limits. The 1:1 mole ratio K:KCl gives 2.558 mol KCl."], answer: "K is limiting; theoretical yield ≈ 190.7 g KCl.", concept: "Compare available mole ratios with the balanced-equation coefficients, then calculate product from the limiting reactant." }
+  },
+  "topic-4-7-4-9.pdf": {
+    "3:a": { prompt: "When HCl reacts with water, does H2O act as an acid or a base?", steps: ["HCl donates a proton to H2O.", "Water accepts that proton to become H3O+.", "A Brønsted–Lowry proton acceptor is a base."], answer: "H2O acts as a base: HCl + H2O → H3O+ + Cl−.", concept: "Identify acid/base roles by tracking the proton, not by assuming water always has one role." },
+    "13:a": { prompt: "Write the balanced net ionic equation for Ca(s) reacting with aqueous HCl.", steps: ["Molecular equation: Ca(s) + 2HCl(aq) → CaCl2(aq) + H2(g).", "Dissociate strong aqueous electrolytes into ions, then cancel spectator Cl−.", "Check atoms and charge on both sides."], answer: "Ca(s) + 2H+(aq) → Ca2+(aq) + H2(g).", concept: "Net ionic equations retain only species that undergo chemical change." }
+  },
+  "topic-5-1-5-3.pdf": {
+    "5": { prompt: "At what point during a typical reaction is the reaction rate greatest? Justify using concentration and rate.", steps: ["For a typical positive-order rate law, rate increases with reactant concentration.", "Reactant concentrations are usually greatest at the start of the reaction.", "As reactants are consumed, their concentrations and often the rate decrease."], answer: "Usually at the beginning, when reactant concentrations are highest, assuming the rate law depends positively on those reactants.", concept: "Use the stated rate law when available; the starting-rate conclusion is not universal for every possible mechanism." }
+  },
+  "topic-6-6-6-9.pdf": {
+    "9": { prompt: "What is the standard enthalpy of formation of an element in its standard state?", steps: ["Standard enthalpy of formation is defined for forming one mole of a substance from its constituent elements in their standard states.", "For an element already in its standard state, the formation process requires no net reaction.", "This is the reference value for formation-enthalpy tables."], answer: "ΔH°f = 0 kJ/mol for an element in its standard state.", concept: "The zero is a reference convention; it does not mean the element contains no energy." }
+  },
+  "topic-8-1-8-3.pdf": {
+    "4": { prompt: "As [H3O+] increases, does pH increase or decrease?", steps: ["pH = −log[H3O+].", "Increasing [H3O+] increases the logarithm's value.", "The negative sign means the pH value decreases."], answer: "pH decreases as [H3O+] increases.", concept: "pH is a logarithmic inverse measure of hydronium concentration." }
+  },
+  "topic-8-4-8-5.pdf": {
+    "6:a": { prompt: "Write the balanced ionization equation for HOCl in aqueous solution.", steps: ["HOCl donates a proton to water.", "Water accepts the proton to form H3O+; the conjugate base is OCl−.", "Check that atoms and total charge balance."], answer: "HOCl(aq) + H2O(l) ⇌ H3O+(aq) + OCl−(aq).", concept: "A weak acid ionizes reversibly in water and forms its conjugate base plus hydronium." }
+  },
+  "topic-8-6-8-11.pdf": {
+    "3": { prompt: "Write the balanced ionization equation for ethylamine, CH3CH2NH2, reacting with water.", steps: ["Ethylamine acts as a Brønsted–Lowry base and accepts a proton from water.", "The conjugate acid is CH3CH2NH3+ and water becomes OH−.", "Check that atoms and total charge balance."], answer: "CH3CH2NH2(aq) + H2O(l) ⇌ CH3CH2NH3+(aq) + OH−(aq).", concept: "Weak bases accept protons from water, producing their conjugate acids and hydroxide." }
+  },
 const RESPONSE_FRAMES = [
   { title: "Explain", prompt: "Make a claim, then connect it to a specific chemical principle or particle-level model. State why the evidence supports the claim." },
   { title: "Calculate", prompt: "Write the governing equation, substitute values with units, show the calculation, and report a correctly rounded answer with units." },
