@@ -113,7 +113,7 @@ export function FrqWorkspace() {
           <label className="text-sm font-semibold" htmlFor="frq-question-part">Lettered part (optional)
             <input id="frq-question-part" value={partLabel} onChange={(e) => { setPartLabel(e.target.value); setHelpLevel(0); }} placeholder="e.g. b(ii)" className="mt-2 min-h-11 w-full rounded-lg border border-border bg-card px-3 py-2 text-ink" />
           </label>
-          <button type="button" onClick={() => { setPage("1"); setHelpLevel(0); }} className="min-h-11 rounded-lg bg-accent px-4 py-2 text-sm font-bold text-[#06251b]">Start question</button>
+          <button type="button" onClick={() => setHelpLevel(0)} className="min-h-11 rounded-lg border border-border px-4 py-2 text-sm font-semibold">Reset hints</button>
           <p className="text-xs leading-5 text-ink-dim sm:col-span-3">Use the page control below to jump to the printed question in the PDF. Question numbers and page locations are not auto-mapped yet, so this workspace will not guess them.</p>
         </div>
       </section>
