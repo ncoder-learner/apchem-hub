@@ -18,22 +18,19 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-
       - name: Install locked dependencies
         run: npm ci
-
       - name: Audit FRQ PDF question candidates
         run: |
           sudo apt-get update
           sudo apt-get install -y poppler-utils
           node scripts/audit-frq-pdf-pages.mjs
-
+          node scripts/validate-frq-page-candidates.mjs
       - name: Upload FRQ page audit
         uses: actions/upload-artifact@v4
         with:
@@ -41,9 +38,7 @@ jobs:
           path: frq-audit-output/
           if-no-files-found: error
           retention-days: 7
-
       - name: Type-check TypeScript
         run: npm run typecheck
-
       - name: Build production site
         run: npm run build
