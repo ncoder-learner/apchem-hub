@@ -1,0 +1,41 @@
+---
+title: "Calculating the Equilibrium Constant"
+unit: 7
+topicNumber: "7.4"
+slug: "7-4-calculating-the-equilibrium-constant"
+summary: "Calculate K from equilibrium concentrations or gas partial pressures with correct exponents and omitted pure phases."
+---
+
+An equilibrium constant is calculated from the composition **at equilibrium**, not from arbitrary starting concentrations. The balanced equation determines the expression; measured equilibrium values supply the numbers.
+
+<TopicLab unitId={7} topicNumber="7.4" title="Calculate K" />
+
+<LessonSection title="1. Substitute equilibrium values carefully" description="The expression must match the reaction as written" defaultOpen>
+
+For aA + bB ⇌ cC + dD, substitute equilibrium concentrations into Kc = [C]ᶜ[D]ᵈ/([A]ᵃ[B]ᵇ). Raise each concentration to its coefficient's power before dividing. Pure solids and liquids are not included.
+
+<WorkedExample title="Worked example: calculate Kc">
+For H₂(g) + I₂(g) ⇌ 2HI(g), suppose equilibrium concentrations are [H₂] = 0.20 M, [I₂] = 0.20 M, and [HI] = 0.80 M.
+
+Kc = [HI]²/([H₂][I₂]) = (0.80)²/((0.20)(0.20)) = 0.64/0.040 = **16**.
+</WorkedExample>
+
+<QuickCheck question="For A(g) + 2B(g) ⇌ C(g), [A]eq = 0.50 M, [B]eq = 0.20 M, [C]eq = 0.10 M. What is Kc?" options={["0.10/(0.50 × 0.20)","0.10/(0.50 × 0.20²)","(0.50 × 0.20²)/0.10","0.10/(0.50 + 2 × 0.20)"]} correctIndex={1} explanation="Kc = [C]/([A][B]²) = 0.10/(0.50 × 0.040) = 5.0." />
+
+</LessonSection>
+
+<LessonSection title="2. Keep the reaction equation fixed" description="Changing coefficients changes the numerical K">
+
+If a reaction is reversed, the new equilibrium constant is 1/K. If all coefficients are multiplied by n, the new constant is Kⁿ. These relationships follow because the reaction expression changes with the stoichiometric exponents.
+
+<WorkedExample title="Worked example: reverse the reaction">
+If A ⇌ B has K = 5.0, then B ⇌ A has K' = 1/5.0 = 0.20. Reversing the reaction swaps numerator and denominator in the expression.
+</WorkedExample>
+
+<QuickCheck question="If the balanced equation is doubled and the original K is 3.0, what is the new K?" options={["1.5","3.0","6.0","9.0"]} correctIndex={3} explanation="Doubling all coefficients squares every term in the expression, so K' = K² = 9.0." />
+
+</LessonSection>
+
+## Readiness check
+
+Use equilibrium values, preserve coefficients as exponents, omit pure phases, and make sure the expression matches the equation as written.
