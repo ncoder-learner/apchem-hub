@@ -65,6 +65,12 @@ for (const [file, questions] of Object.entries(partMappings)) {
       if (!/^[a-h]$/.test(part)) errors.push(`${file}: Q${question} has invalid part label "${part}"`);
       if (!Number.isInteger(page) || page < 1 || page > packet.pageCount) {
         errors.push(`${file}: Q${question}(${part}) maps to invalid page ${page} (PDF has ${packet.pageCount} pages)`);
+      } else {
+        const pageRecord = packet.pages?.find((candidatePage) => candidatePage.page === page);
+        const detected = pageRecord?.partCandidates?.some((candidate) =>
+          String(candidate.question) === question && candidate.part === part
+        );
+        if (!detected) errors.push(`${file}: Q${question}(${part}) page ${page} has no matching extracted part heading`);
       }
     }
   }
