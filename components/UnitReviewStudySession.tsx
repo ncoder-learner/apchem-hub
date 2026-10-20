@@ -120,6 +120,8 @@ export function UnitReviewStudySession({ unitId, topics, review }: Props) {
                     <ul className="mt-4 space-y-2">
                       {section.keyRelations.map((relation) => <li key={relation} className="flex gap-2 text-sm leading-relaxed"><span className="text-accent">•</span><span>{relation}</span></li>)}
                     </ul>
+                    {section.workedExample && <div className="mt-4 rounded-lg border border-border bg-bg/70 p-4"><p className="text-[11px] font-bold uppercase tracking-wide text-accent">Worked example</p><p className="mt-2 whitespace-pre-line text-sm leading-relaxed">{section.workedExample}</p></div>}
+                    {section.decisionRule && <div className="mt-3"><p className="text-[11px] font-bold uppercase tracking-wide text-ink-dim">Decision rule</p><p className="mt-1 text-sm leading-relaxed">{section.decisionRule}</p></div>}
                   </article>
                 ))}
               </div>
@@ -133,15 +135,23 @@ export function UnitReviewStudySession({ unitId, topics, review }: Props) {
             </ul>
           </details>
           <section className="rounded-xl border border-border p-5 sm:p-6">
-            <div className="flex flex-wrap items-end justify-between gap-3">
-              <div><h3 className="text-lg font-semibold">Pick the lesson that fixes the gap</h3><p className="mt-1 text-sm text-ink-dim">Use these as targeted repairs, not as a requirement to reread everything.</p></div>
-              <span className="text-xs text-ink-dim">{topics.length} lessons available</span>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Apply the model</p>
+              <h3 className="mt-2 text-xl font-semibold">Problem-solving playbooks</h3>
+              <p className="mt-1 text-sm leading-relaxed text-ink-dim">Use these steps as a method, not a checklist to memorize. Write the setup first, justify each choice, and check whether the result makes chemical sense.</p>
             </div>
-            {topics.length > 0 ? (
-              <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                {topics.map((topic) => <Link key={topic.slug} href={"/units/" + unitId + "/" + topic.slug} className="group flex min-h-14 items-center justify-between gap-3 rounded-lg border border-border px-4 py-3 transition hover:border-accent/50 hover:bg-accent-soft/10"><span><span className="mr-2 font-mono text-xs text-accent">{topic.topicNumber}</span><span className="text-sm font-medium">{topic.title}</span></span><span className="text-ink-dim transition group-hover:translate-x-0.5 group-hover:text-accent">↗</span></Link>)}
-              </div>
-            ) : <p className="mt-3 text-sm text-ink-dim">Unit lessons are being added. Use the mental models, practice set, and official FRQ resource below while coverage is completed.</p>}
+            <div className="mt-4 grid gap-4 lg:grid-cols-2">
+              {review.strategies.map((strategy, index) => (
+                <article key={strategy.title} className="rounded-xl border border-border bg-card/35 p-4">
+                  <p className="text-xs font-bold uppercase tracking-wide text-accent">Method {index + 1}</p>
+                  <h4 className="mt-2 font-semibold">{strategy.title}</h4>
+                  <p className="mt-1 text-sm leading-relaxed text-ink-dim">{strategy.summary}</p>
+                  <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm leading-relaxed">
+                    {strategy.steps.map((step) => <li key={step}>{step}</li>)}
+                  </ol>
+                </article>
+              ))}
+            </div>
           </section>
           <section className="rounded-xl border border-border bg-card/30 p-5">
             <h3 className="text-lg font-semibold">Before you start the questions</h3>
@@ -192,7 +202,7 @@ export function UnitReviewStudySession({ unitId, topics, review }: Props) {
 
       {activeTab === "frq" && (
         <section className="space-y-5">
-          <div><p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Practice the written response</p><h2 className="mt-2 text-2xl font-bold">An FRQ is a chain of evidence</h2><p className="mt-2 max-w-3xl text-sm leading-relaxed text-ink-dim">Choose a released question on the official AP Central page, answer one relevant part on paper without notes, then score it with the official scoring guideline. Released FRQs can combine multiple units; use the focus list below to select a relevant prompt rather than assuming each question belongs to only one unit.</p></div>
+          <div><p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Practice the written response</p><h2 className="mt-2 text-2xl font-bold">An FRQ is a chain of evidence</h2><p className="mt-2 max-w-3xl text-sm leading-relaxed text-ink-dim">Start with the original multi-part questions below and attempt every part before revealing the scoring guidance. Show equations, substitutions, units, and particle-level reasoning. The official AP Central archive is an additional source for released questions and scoring guidelines, not a substitute for this unit's practice.</p></div>
           {practice.frqs && practice.frqs.length > 0 && (
             <section className="space-y-5">
               <div className="rounded-xl border border-accent/30 bg-accent-soft/10 p-4">
