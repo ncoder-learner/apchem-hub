@@ -391,6 +391,11 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
     2: { solution: "Answer: D (Se–Br < Se–Cl < Se–F). Bond polarity increases with electronegativity difference. Selenium's electronegativity differs least from bromine, more from chlorine, and most from fluorine, giving the listed order." },
     3: { solution: "Answer: C (Mg²⁺ and O²⁻). Coulombic attraction increases with the product of ionic charges and decreases as the distance between ion centers increases. The 2+ and 2− charges give a much larger charge product than the singly charged pairs, and Mg²⁺ is smaller than Ca²⁺, so Mg²⁺–O²⁻ has the strongest attraction and the greatest separation energy." },
     6: { solution: "Answer: B. Br⁻ has a larger ionic radius than Cl⁻, increasing the distance between Na⁺ and the anion. The weaker Coulombic attraction means less energy is required to separate NaBr into gaseous ions than NaCl, so NaBr's lattice energy is below 788 kJ mol⁻¹." }
+    4: { solution: "Answer: A. A C–F bond is shorter and stronger than a C–Cl bond, so its potential-energy curve has a shorter equilibrium internuclear distance and a deeper minimum. Option A assigns the shorter, deeper curve to C–F." },
+    5: { solution: "Answer: C. A C=C double bond is shorter and stronger than a C–C single bond. Its potential-energy curve therefore has a shorter equilibrium distance and a deeper minimum, shown by the dashed C=C curve in option C." },
+    7: { solution: "Answer: A. Boron atoms are much smaller than nickel atoms and can occupy interstitial holes in the metal lattice. Option A shows small B atoms in spaces between the larger Ni atoms, an interstitial alloy." },
+    8: { solution: "Answer: A. When ionic layers slide, like charges can become adjacent. The resulting cation–cation and anion–anion repulsions destabilize the lattice and cause it to cleave; option A shows this displacement and alignment." },
+    9: { solution: "Answer: B. Pd and Au have similar atomic radii (140 pm and 135 pm), so they form a substitutional alloy in which atoms replace one another in the metal lattice. With 25 mol% Pd, roughly one quarter of the sites should be Pd and distributed through the Au lattice; option B shows this." },
   },
   "topics-1-1-1-3-mcq": {
     1: {
