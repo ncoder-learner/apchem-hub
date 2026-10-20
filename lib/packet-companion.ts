@@ -206,6 +206,7 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
     8: { solution: "Answer: D. The particle diagram shows fewer HC₂H₃O₂ molecules and more C₂H₃O₂⁻ ions after the unknown solution is added. NaOH converts acid into its conjugate base, so the pH rises above 4.74." },
     9: { solution: "Answer: A. The titration curve has an equivalence volume of about 40 mL, so the NaOH concentration is (0.10 M × 20.0 mL)/40.0 mL = 0.050 M. At half-equivalence (about 20 mL), pH ≈ pKa ≈ 4.7." },
 
+    13: { solution: "Answer: C. HNO₃ is a strong acid, so the initial pH is lower than for weak acid HF. Both samples contain 0.00200 mol acid and require 20.0 mL of 0.10 M KOH to reach equivalence, but the strong-acid/strong-base equivalence point is at pH 7. Option C has a lower initial pH and a steep equivalence region centered at 20 mL." },
   },
 
   "topics-7-6-7-10-mcq": {
