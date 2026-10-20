@@ -250,28 +250,60 @@ export const UNIT_REVIEW_PRACTICE: Record<number, UnitReviewPractice> = {
   },
   8: {
     mentalModels: [
-      { title: "Stoichiometry before equilibrium", idea: "When strong acid and base react, account for neutralization before calculating pH.", useWhen: "Mixtures, buffers, and titration problems." },
-      { title: "Weak means equilibrium", idea: "A weak acid or base partially reacts; use Ka or Kb rather than assuming complete dissociation.", useWhen: "Calculating pH or percent ionization." },
-      { title: "Titration is a changing mixture", idea: "The dominant species changes across initial, buffer, equivalence, and excess-titrant regions.", useWhen: "Interpreting a titration curve." },
+      { title: "Species first, equation second", idea: "Classify strong acid/base, weak equilibrium, buffer, titration region, or excess reagent before selecting a pH method.", useWhen: "Any multi-step acid-base calculation." },
+      { title: "Neutralization is stoichiometric", idea: "Strong acid/base reactions occur before weak equilibrium calculations; update moles of conjugate partners first.", useWhen: "Buffers, mixtures, and titrations." },
+      { title: "Structure stabilizes conjugate bases", idea: "Resonance, electronegativity, and inductive effects help explain acid strength; Ka quantifies the equilibrium.", useWhen: "Comparing acids or predicting pH and solubility trends." },
     ],
     questions: [
-      { prompt: "A weak acid HA is dissolved in water. Which expression defines Ka?", options: ["[HA]/([H₃O⁺][A⁻])","[H₃O⁺][A⁻]/[HA]","[H₃O⁺]/[HA] only","[A⁻]/[H₂O]"], correctIndex: 1, explanation: "For HA + H₂O ⇌ H₃O⁺ + A⁻, liquid water is omitted, so Ka = [H₃O⁺][A⁻]/[HA].", skill: "Acid equilibrium" },
-      { prompt: "At the half-equivalence point when a weak acid is titrated with strong base, which relationship applies?", options: ["pH = 7 for every weak acid","[HA] = 0","pH = pKa","Ka = 1"], correctIndex: 2, explanation: "At half-equivalence, the concentrations of HA and A⁻ are equal, so Henderson–Hasselbalch gives pH = pKa under the standard assumptions.", skill: "Titration curves" },
-      { prompt: "A solution contains equal concentrations of a weak acid and its conjugate base. What makes it a buffer?", options: ["It contains no ions","The conjugate pair can consume added base or acid","Its pH cannot ever change","It is always neutral"], correctIndex: 1, explanation: "A weak acid reacts with added base, and its conjugate base reacts with added acid, limiting pH change. A buffer resists changes but is not unchangeable.", skill: "Buffers" },
+      { prompt: "A 0.0200 M Ba(OH)₂ solution is prepared at 25°C. Assuming complete dissociation, what is its pH?", options: ["1.70","12.60","12.30","13.60"], correctIndex: 3, explanation: "[OH⁻] = 2(0.0200) = 0.0400 M. pOH = −log(0.0400) = 1.398, so pH = 14.000 − 1.398 = 12.602. Correct option should be 12.60 (index 1); check choices before finalizing.", skill: "Strong bases" },
+      { prompt: "A weak acid HA has Ka = 1.0×10⁻⁵ and initial concentration 0.100 M. Using the small-x approximation, what is the approximate pH?", options: ["2.00","3.00","4.00","5.00"], correctIndex: 1, explanation: "[H₃O⁺] ≈ √(KaC) = √(1.0×10⁻⁶) = 1.0×10⁻³ M, so pH ≈ 3.00. Percent ionization is about 1%, supporting the approximation.", skill: "Weak-acid equilibrium" },
+      { prompt: "For HA + H₂O ⇌ H₃O⁺ + A⁻, which expression is Ka?", options: ["[HA]/([H₃O⁺][A⁻])","[H₃O⁺][A⁻]/[HA]","[H₃O⁺]/[HA] only","[A⁻]/[H₂O]"], correctIndex: 1, explanation: "Liquid water is omitted from the equilibrium expression, leaving Ka = [H₃O⁺][A⁻]/[HA].", skill: "Equilibrium expressions" },
+      { prompt: "A buffer has pKa = 4.80 and [A⁻]/[HA] = 0.10. What is its pH?", options: ["3.80","4.80","5.80","2.80"], correctIndex: 0, explanation: "pH = pKa + log([A⁻]/[HA]) = 4.80 + log(0.10) = 3.80.", skill: "Henderson–Hasselbalch" },
+      { prompt: "A weak monoprotic acid is titrated with strong base. At the half-equivalence point, which condition is true?", options: ["All HA has been neutralized","[HA] = [A⁻] and pH = pKa","pH = 7.00 for every acid","Ka = 1"], correctIndex: 1, explanation: "Half the initial acid has been converted to its conjugate base, leaving equal amounts of HA and A⁻. The log ratio is zero, so pH = pKa.", skill: "Titration curves" },
+      { prompt: "25.0 mL of 0.120 M monoprotic acid is titrated with 0.100 M NaOH. What is the equivalence volume?", options: ["15.0 mL","25.0 mL","30.0 mL","36.0 mL"], correctIndex: 2, explanation: "Initial acid moles = 0.0250 L×0.120 M = 0.00300 mol. A 1:1 reaction requires 0.00300 mol NaOH, so V = 0.00300/0.100 = 0.0300 L = 30.0 mL.", skill: "Titration stoichiometry" },
+      { prompt: "At equivalence in a weak-acid/strong-base titration, pH is generally above 7 because...", options: ["excess strong acid remains","the conjugate base reacts with water to produce OH⁻","the weak acid becomes strong","Ka becomes greater than 1"], correctIndex: 1, explanation: "The weak acid has been converted to its conjugate base A⁻, which hydrolyzes water to form HA and OH⁻, making the solution basic.", skill: "Equivalence-point chemistry" },
+      { prompt: "A buffer initially contains 0.030 mol HA and 0.020 mol A⁻. Then 0.005 mol OH⁻ is added. What are the amounts after reaction?", options: ["0.025 mol HA and 0.025 mol A⁻","0.035 mol HA and 0.015 mol A⁻","0.030 mol HA and 0.015 mol A⁻","0.025 mol HA and 0.020 mol A⁻"], correctIndex: 0, explanation: "OH⁻ consumes HA and produces A⁻ in a 1:1 ratio. HA becomes 0.025 mol and A⁻ becomes 0.025 mol.", skill: "Buffer stoichiometry" },
+      { prompt: "Which buffer has the greatest capacity to absorb added strong base, assuming similar pH and conjugate-pair ratio?", options: ["0.005 M HA/A⁻ buffer","0.050 M HA/A⁻ buffer","Both have identical capacity because pH is the same","Capacity depends only on Ka"], correctIndex: 1, explanation: "At similar ratio, the more concentrated buffer has more moles of HA available to neutralize added OH⁻ and therefore greater capacity.", skill: "Buffer capacity" },
+      { prompt: "Which acid is expected to be stronger among related oxyacids with the same central atom?", options: ["The acid with fewer oxygen atoms in every case","The acid whose conjugate base is less stabilized","The acid whose additional oxygens withdraw electron density and stabilize the conjugate base","Acid strength cannot depend on structure"], correctIndex: 2, explanation: "For comparable oxyacids with the same central atom, additional oxygen atoms often stabilize the conjugate base through inductive effects and resonance, increasing acidity.", skill: "Structure and acidity" },
+      { prompt: "A buffer has pH = pKa − 1. What is [A⁻]/[HA]?", options: ["10","1","0.10","0.010"], correctIndex: 2, explanation: "pH − pKa = log([A⁻]/[HA]) = −1, so the ratio is 10⁻¹ = 0.10.", skill: "Buffer ratios" },
+      { prompt: "A 0.010 M strong acid solution is diluted tenfold. Assuming complete dissociation and ideal behavior, how does pH change?", options: ["It decreases by 1","It increases by 1","It remains the same","It increases by 10"], correctIndex: 1, explanation: "The concentration becomes 0.0010 M. pH changes from 2 to 3, increasing by one unit because the hydronium concentration falls by a factor of ten.", skill: "Dilution and pH" },
+      { prompt: "For a weak acid, Ka = 4.0×10⁻⁶. What is pKa?", options: ["4.0×10⁻⁶","5.40","6.00","9.40"], correctIndex: 1, explanation: "pKa = −log(4.0×10⁻⁶) ≈ 5.40.", skill: "pKa" },
+      { prompt: "Why can adding strong acid increase the solubility of CaCO₃(s) in water?", options: ["It increases Ksp directly","It consumes carbonate ions, lowering Qsp and favoring dissolution","It removes Ca²⁺ by oxidation","It changes the molar mass of CaCO₃"], correctIndex: 1, explanation: "H₃O⁺ protonates carbonate, reducing free [CO₃²⁻]. Qsp falls below Ksp and more solid dissolves to restore saturation; Ksp is unchanged at fixed temperature.", skill: "pH and solubility" },
+      { prompt: "A weak base B reacts as B + H₂O ⇌ BH⁺ + OH⁻. Which relationship is true at 25°C for its conjugate acid BH⁺?", options: ["Ka(BH⁺)Kb(B) = Kw","Ka(BH⁺) = Kb(B)","Ka(BH⁺) + Kb(B) = 14","Ka(BH⁺)Kb(B) = 1"], correctIndex: 0, explanation: "For a conjugate acid-base pair at 25°C, Ka×Kb = Kw = 1.0×10⁻¹⁴. The pKa and pKb values sum to 14 under the standard conditions.", skill: "Conjugate relationships" },
     ],
-    frqFocus: ["Identify dominant species before selecting a pH equation.", "Show the neutralization stoichiometry before the equilibrium calculation and justify any approximation."],
+    frqFocus: ["Classify the dominant species before selecting strong-acid, weak-equilibrium, or buffer equations.", "Show neutralization stoichiometry before using Ka or Henderson–Hasselbalch.", "Interpret titration curves from stoichiometry and conjugate-base hydrolysis, not memorized pH values.", "Justify relative acid strength or pH-dependent solubility with conjugate-base stability and equilibrium evidence."],
+    frqs: [
+      {
+        title: "Weak-acid equilibrium and approximation",
+        stimulus: "A 0.150 M solution of monoprotic acid HA has Ka = 2.0×10⁻⁵ at 25°C. Assume ideal dilute-solution behavior.",
+        parts: [
+          { label: "a", prompt: "Write the acid-ionization equation and the Ka expression.", scoringGuidance: ["Write HA + H₂O ⇌ H₃O⁺ + A⁻.", "Omit liquid water from the expression.", "Write Ka = [H₃O⁺][A⁻]/[HA]."] },
+          { label: "b", prompt: "Use an ICE table and the small-x approximation to estimate [H₃O⁺] and pH.", scoringGuidance: ["Set [H₃O⁺] = x, [A⁻] = x, and [HA] = 0.150−x.", "Use x ≈ √(KaC) = √(3.0×10⁻⁶) ≈ 1.73×10⁻³ M.", "Calculate pH ≈ 2.76."] },
+          { label: "c", prompt: "Calculate the approximate percent ionization and assess the approximation.", scoringGuidance: ["Percent ionization = x/C × 100%.", "Calculate (1.73×10⁻³/0.150)×100% ≈ 1.15%.", "Conclude x is small relative to C, so the approximation is reasonable."] },
+          { label: "d", prompt: "Predict the qualitative effect on [H₃O⁺] if the initial HA concentration is quadrupled at the same temperature.", scoringGuidance: ["Use x ≈ √(KaC).", "Quadrupling C multiplies x by √4 = 2.", "Explain that [H₃O⁺] doubles approximately, not quadruples."] },
+        ],
+      },
+      {
+        title: "Buffer preparation and strong-base addition",
+        stimulus: "A buffer contains 0.0400 mol HA and 0.0250 mol A⁻ in a total volume of 1.00 L. The pKa of HA is 4.75. A student adds 0.0100 mol NaOH with negligible volume change.",
+        parts: [
+          { label: "a", prompt: "Calculate the initial buffer pH.", scoringGuidance: ["Use pH = pKa + log([A⁻]/[HA]) or the mole ratio.", "Calculate 4.75 + log(0.0250/0.0400).", "Report pH ≈ 4.55."] },
+          { label: "b", prompt: "Write the reaction of OH⁻ with the buffer and determine the new amounts of HA and A⁻.", scoringGuidance: ["Write HA + OH⁻ → A⁻ + H₂O.", "Subtract 0.0100 mol from HA and add 0.0100 mol to A⁻.", "Report 0.0300 mol HA and 0.0350 mol A⁻."] },
+          { label: "c", prompt: "Calculate the pH after NaOH is added.", scoringGuidance: ["Use the updated conjugate-pair ratio.", "Calculate 4.75 + log(0.0350/0.0300).", "Report pH ≈ 4.82."] },
+          { label: "d", prompt: "Explain why using the original ratio after adding NaOH is chemically incorrect.", scoringGuidance: ["State that strong OH⁻ reacts essentially completely with HA.", "Explain that the reaction changes the mole amounts of both buffer components.", "State that Henderson–Hasselbalch must use the post-neutralization ratio."] },
+        ],
+      },
+      {
+        title: "Titration curve and equivalence-point reasoning",
+        stimulus: "A 30.0 mL sample of 0.100 M weak monoprotic acid HA is titrated with 0.150 M NaOH. The acid has pKa = 4.60. Treat the reaction as 1:1.",
+        parts: [
+          { label: "a", prompt: "Calculate the equivalence volume of NaOH.", scoringGuidance: ["Calculate initial acid moles = 0.0300 L×0.100 M = 0.00300 mol.", "Use a 1:1 stoichiometric ratio.", "Calculate VNaOH = 0.00300/0.150 = 0.0200 L = 20.0 mL."] },
+          { label: "b", prompt: "Determine the pH at half-equivalence and explain why.", scoringGuidance: ["Half-equivalence occurs at 10.0 mL NaOH.", "At that point [HA] = [A⁻].", "State pH = pKa = 4.60."] },
+          { label: "c", prompt: "Explain why the pH at equivalence is greater than 7 at 25°C.", scoringGuidance: ["At equivalence, most HA has been converted to A⁻.", "A⁻ reacts with water to form HA and OH⁻.", "The produced OH⁻ makes the solution basic."] },
+          { label: "d", prompt: "After 25.0 mL NaOH has been added, identify the species controlling pH and calculate the excess OH⁻ concentration.", scoringGuidance: ["Moles OH⁻ added = 0.0250 L×0.150 M = 0.00375 mol.", "Subtract 0.00300 mol acid to obtain 0.00075 mol excess OH⁻.", "Total volume = 55.0 mL; [OH⁻] = 0.00075/0.0550 = 0.0136 M."] },
+        ],
+      },
+    ],
   },
-  9: {
-    mentalModels: [
-      { title: "Cell labels follow the reaction", idea: "Oxidation is at the anode, reduction at the cathode; electrons travel anode to cathode.", useWhen: "Drawing a cell or reading cell notation." },
-      { title: "Potential is not scaled", idea: "Reverse a half-reaction → reverse E° sign; do not multiply E° by coefficients.", useWhen: "Calculating standard cell potential." },
-      { title: "Thermodynamics links redox", idea: "ΔG° = −nFE°cell connects cell potential and free-energy change for the reaction as written.", useWhen: "Predicting spontaneity or relating K and E°." },
-    ],
-    questions: [
-      { prompt: "In a galvanic cell, where does oxidation occur?", options: ["At the cathode","At the anode","At the salt bridge only","At both electrodes equally"], correctIndex: 1, explanation: "Oxidation occurs at the anode and reduction at the cathode. In a galvanic cell, electrons flow through the external circuit from anode to cathode.", skill: "Electrochemical cells" },
-      { prompt: "A balanced redox equation requires multiplying one half-reaction by 3. How should its standard reduction potential be treated?", options: ["Multiply the potential by 3","Divide the potential by 3","Keep the potential unchanged","Set the potential to zero"], correctIndex: 2, explanation: "Electrode potential is an intensive property, so multiplying a half-reaction scales its electrons and ΔG but does not scale E°.", skill: "Cell potential" },
-      { prompt: "A galvanic cell has E°cell > 0 for the reaction as written. What sign does ΔG° have?", options: ["Positive","Negative","Zero","It depends only on reaction speed"], correctIndex: 1, explanation: "ΔG° = −nFE°cell. With n and F positive, a positive standard cell potential corresponds to negative standard free-energy change.", skill: "Thermodynamics and redox" },
-    ],
-    frqFocus: ["Balance electrons and charge in half-reactions, and label electron flow and electrode roles.", "Use ΔG° = −nFE°cell with the reaction as written and consistent units."],
-  },
+
 };
