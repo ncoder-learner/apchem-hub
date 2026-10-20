@@ -528,7 +528,6 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
       conceptHint: "A catalyst provides an alternative pathway and can change the rate without being consumed in the overall reaction.",
       strategyHint: "Read the concentration-time data for the catalyzed decomposition and separate the observed concentration pattern from the catalyst's role.",
       nextStepHint: "Use the requested evidence—such as rate changes or a transformed concentration plot—rather than assuming the catalyst changes the reaction's equilibrium or overall stoichiometry.",
-      solution: "The concentration falls by approximately the same absolute amount, 0.040 M, every 100 s. A linear [XY]-versus-time pattern supports zero-order behavior, for which rate = k.",
     },
     9: {
       conceptHint: "A rate law is supported by experimental relationships, not by balancing the overall reaction equation.",
@@ -540,7 +539,6 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
       conceptHint: "Concentration-time data can be tested against integrated rate-law relationships to identify reaction order.",
       strategyHint: "Compare [Q], ln[Q], and 1/[Q] against time, or inspect whether the data show a constant half-life.",
       nextStepHint: "Once the order is identified, use the matching integrated equation and keep the time unit consistent when reporting k.",
-      solution: "The ln[Q] values decrease by about 0.30 every 25 s, giving a straight ln[Q]-versus-time trend. This supports first-order behavior, with k ≈ 0.30/25 s = 0.012 s⁻¹.",
     },
   },
 };
