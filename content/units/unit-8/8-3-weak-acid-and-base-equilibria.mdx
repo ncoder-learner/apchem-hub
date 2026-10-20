@@ -51,18 +51,21 @@ Do not assume a weak acid has a neutral pH. Its pH depends on its concentration 
 
 </LessonSection>
 
-<LessonSection title="4. Solve weak-acid equilibrium from an ICE table" description="Weak means partial ionization, not low concentration">
+<LessonSection title="4. Solve a weak-base equilibrium and connect conjugate strength" description="The same equilibrium logic applies to bases, with OH⁻ as the tracked product">
 
-For HA + H₂O⇌ H₃O⁺ + A⁻, if the initial acid concentration is C and the ionization amount is x, the equilibrium concentrations are [HA] = C - x, [H₃O⁺] = x, and [A⁻] = x. Thus Ka = x²/(C − x). If x is small relative to C, then C - x≈ C and x ≈ √(KaC), but this approximation must be checked after solving.
+For a weak base B, write `B + H₂O ⇌ BH⁺ + OH⁻`. If the initial base concentration is C and x reacts, then `[B]eq = C − x`, `[BH⁺]eq = x`, and `[OH⁻]eq = x`. Therefore:
 
-<WorkedExample title="Worked example: check the small-x approximation">
-For 0.10 M HA with Ka = 1.0×10⁻⁵, the approximation gives x≈sqrt(1.0 × 10⁻ 5)(0.10) = 1.0×10⁻³ M. The percent ionization is about (0.0010/0.10)×100 = 1.0%, so x is small relative to C and the approximation is reasonable. Then pH ≈ 3.00. If the percent ionization is not small, solve the quadratic or use a more exact method.
+`Kb = x²/(C − x)`.
+
+<WorkedExample title="Worked example: calculate pH for a weak base">
+
+A 0.100 M weak base has `Kb = 1.8×10⁻⁵`. Using the small-x estimate, `[OH⁻] ≈ √(KbC) = √(1.8×10⁻⁶) = 1.34×10⁻³ M`. Then `pOH = −log(1.34×10⁻³) = 2.87`, and at 25°C `pH = 14.00 − 2.87 = 11.13`. The percent ionization is about `(0.00134/0.100)×100% = 1.34%`, so the approximation is reasonable.
 
 </WorkedExample>
 
-For a weak base, use Kb and track OH⁻ production. Do not use the strong-acid assumption of complete dissociation. For a conjugate pair at 25°C, KaKb = K_w = 1.0 × 10⁻ 14.
+The conjugate acid BH⁺ is weak as well. For the pair at 25°C, `Ka(BH⁺)Kb(B) = Kw`, so `Ka(BH⁺) = (1.0×10⁻¹⁴)/(1.8×10⁻⁵) = 5.6×10⁻¹⁰`. A relatively larger Kb corresponds to a weaker conjugate acid. Strength is an equilibrium property; it is not the same as concentration.
 
-<QuickCheck question="If a weak acid's initial concentration is doubled while Ka stays constant, the small-x estimate of [H₃O⁺] changes by a factor of..." options={["1/2","√2","2","4"]} correctIndex={1} explanation="x ≈ √(KaC), so doubling C multiplies x by √2, not by 2." />
+<QuickCheck question="A 0.100 M weak base has Kb = 1.0×10⁻⁶. Which estimate is closest at 25°C?" options={["pH ≈ 7.00","pH ≈ 10.00","pH ≈ 11.00","pH ≈ 13.00"]} correctIndex={1} explanation="[OH⁻] ≈ √(KbC) = √(1.0×10⁻⁷) = 3.16×10⁻⁴ M. Thus pOH ≈ 3.50 and pH ≈ 10.50. The closest option is pH ≈ 10.00."} />
 
 </LessonSection>
 
