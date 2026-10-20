@@ -141,6 +141,37 @@ const QUESTION_TOPIC_OVERRIDES: Record<string, Record<number, string>> = {
 };
 
 const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "conceptHint" | "strategyHint" | "nextStepHint" | "solution">>> = {
+  "topics-9-1-9-7-mcq": {
+    1: { solution: "Answer: A. The reactants contain three moles of gas (2 H₂ + O₂), while the products contain two moles of gas (2 H₂O). A decrease in the number of gas particles generally corresponds to a decrease in entropy, so ΔS° is negative." },
+    2: { conceptHint: "A positive entropy change is associated with greater dispersal of matter and energy, often including more gas particles or more available particle arrangements.", strategyHint: "Compare the particle diagrams for changes in phase, number of gas particles, and mixing.", nextStepHint: "The diagrams are not represented in the extracted text, so the specific option cannot be verified from text alone." },
+    3: { solution: "Answer: B (−121 J K⁻¹ mol⁻¹). ΔS° = ΣS°products − ΣS°reactants = 2(262) − [223 + 2(211)] = 524 − 645 = −121 J K⁻¹ mol⁻¹ reaction." },
+    4: { solution: "Answer: B (200 J K⁻¹ mol⁻¹). ΔS°rxn = 2S°(HBr) − [S°(H₂) + S°(Br₂)]. Substitute 20 = 2S°(HBr) − (130 + 250), so 2S°(HBr) = 400 and S°(HBr) = 200 J K⁻¹ mol⁻¹." },
+    5: { solution: "Answer: A. ΔG° = ΔH° − TΔS° = −426 kJ mol⁻¹ − 298 K(−0.018 kJ K⁻¹ mol⁻¹) ≈ −420.6 kJ mol⁻¹, so ΔG° is negative. The magnitude of TΔS° is only about 5.4 kJ mol⁻¹, much smaller than |ΔH°|." },
+    6: { solution: "Answer: B. For a reaction to become favored as temperature rises, ΔG° = ΔH° − TΔS° must change from positive to negative. That requires both ΔH° > 0 and ΔS° > 0; reaction B has +484 kJ mol⁻¹ and +90.0 J K⁻¹ mol⁻¹." },
+    7: { solution: "Answer: C. ΔG° = ΔH° − TΔS° = −610 kJ mol⁻¹ − 298 K(−0.0073 kJ K⁻¹ mol⁻¹) ≈ −607.8 kJ mol⁻¹. The reaction is favorable because ΔG° is negative; the negative ΔS° opposes favorability, so the driving contribution is ΔH° only." },
+    8: { solution: "Answer: A. Thermodynamic favorability (ΔG° < 0) describes the direction favored at equilibrium, not how quickly equilibrium is reached. At 298 K, most collisions do not have enough energy to overcome the activation-energy barrier, so the reaction rate can be extremely slow." },
+    9: { solution: "Answer: D. The reaction is thermodynamically favorable from the negative ΔG° value, but it still requires an initial energy input to overcome the activation barrier. The spark supplies that activation energy; it does not make the reaction thermodynamically favorable." },
+    10: { solution: "Answer: B. When reactions are added, their equilibrium constants multiply. K₃ = K₁(K₂)² = (2 × 10⁻⁶)(1 × 10³)² = 2. Since K₃ > 1, the combined dissolution reaction is thermodynamically favorable under standard-state interpretation." },
+    11: { solution: "Answer: C. With ΔH° < 0 and ΔS° < 0, ΔG° = ΔH° − TΔS° becomes less favorable as temperature increases. The reaction is favored at low temperature, so Kₑq > 1 only at low temperatures." },
+    12: { solution: "Answer: B. Separating solvent molecules and separating solute particles both require energy to overcome attractions (ΔH° > 0) and increase dispersal (ΔS° > 0). Forming solute–solvent attractions releases energy (ΔH° < 0), while mixing the solute with solvent increases entropy (ΔS° > 0)." },
+    13: { solution: "Answer: D (−1319 kJ mol⁻¹). Reverse reaction 2 and multiply it by 2: 4 NO + 2 O₂ → 4 NO₂, ΔG° = −142 kJ. Add this to reaction 1 (−1011 kJ) and reaction 3 (−166 kJ). The intermediate NO and NO₂ cancel, giving the target reaction and ΔG° = −1011 − 142 − 166 = −1319 kJ mol⁻¹." }
+  },
+  "topics-9-8-9-11-mcq": {
+    1: { solution: "Answer: B. Pb²⁺/Pb has the more positive reduction potential, so Pb²⁺ is reduced at the cathode and Mg is oxidized at the anode. Cations from the salt bridge migrate toward the cathode (the Pb half-cell) to balance the excess negative charge developing there as cations are removed from solution." },
+    2: { solution: "Answer: B. E°cell = E°cathode − E°anode = 0.80 − (−0.74) = 1.54 V. The balanced reaction transfers n = 3 electrons, so ΔG° = −nFE° = −(3)(96,485 C mol⁻¹)(1.54 V) ≈ −446,000 J mol⁻¹ = −446 kJ mol⁻¹." },
+    3: { solution: "Answer: C. Ag⁺ has the more positive reduction potential and is reduced at the Ag electrode. Copper is therefore oxidized: Cu(s) → Cu²⁺(aq) + 2e⁻. Copper atoms leave the electrode and enter solution, so the Cu electrode loses mass." },
+    4: { solution: "Answer: A (0.46 V). Silver is the cathode and copper is the anode. E°cell = E°cathode − E°anode = 0.80 V − 0.34 V = 0.46 V." },
+    5: { solution: "Answer: B. The most thermodynamically favorable reaction has the largest positive E°cell and most negative ΔG°. For Rh³⁺ reduction and Al oxidation, E°cell = 0.80 − (−1.66) = +2.46 V, greater than the other listed combinations. Thus Rh³⁺(aq) + Al(s) → Rh(s) + Al³⁺(aq) is the most favorable." },
+    6: { solution: "Answer: A (−520 kJ mol⁻¹). Al is oxidized and Zn²⁺ is reduced, giving E°cell = −0.76 − (−1.66) = +0.90 V. The balanced equation transfers 6 electrons, so ΔG° = −nFE° = −(6)(96,485)(0.90) J mol⁻¹ ≈ −521 kJ mol⁻¹." },
+    7: { solution: "Answer: C. For the reaction as written, E° = −0.89 V, so ΔG° = −nFE° is positive. A positive ΔG° means Kₑq < 1 because ΔG° = −RT ln Kₑq." },
+    8: { solution: "Answer: C (about 1.4 V). The reaction requires ΔG° = +264 kJ mol⁻¹ and transfers n = 2 electrons. The minimum ideal voltage is E = ΔG°/(nF) = 264,000 J mol⁻¹ ÷ [2(96,485 C mol⁻¹)] ≈ 1.37 V, or about 1.4 V." },
+    9: { solution: "Answer: B. Precipitating Ag⁺ as AgCl lowers [Ag⁺]. For Al(s) + 3Ag⁺ → Al³⁺ + 3Ag(s), Q = [Al³⁺]/[Ag⁺]³, so lowering [Ag⁺] makes Q greater than 1. The Nernst equation E = E° − (RT/nF)ln Q then gives E < E°." },
+    10: { solution: "Answer: D. For Al(s) + 3Ag⁺ → Al³⁺ + 3Ag(s), Q = [Al³⁺]/[Ag⁺]³. Reducing [Al³⁺] from 1.0 M to 0.010 M lowers Q below 1, making ln Q negative. The Nernst correction therefore raises E above E°." },
+    11: { solution: "Answer: C (about 735 s). Au³⁺ requires 3 mol e⁻ per mole of Au deposited. n(Au) = 2.00 g ÷ 196.97 g mol⁻¹ = 0.01015 mol, so n(e⁻) = 0.03046 mol. Q = nF = 0.03046(96,485) ≈ 2.94 × 10³ C. At 4.00 A, t = Q/I ≈ 2.94 × 10³ C ÷ 4.00 C s⁻¹ = 735 s." },
+    12: { solution: "Answer: B (1.73 g Cu). The charge passed is Q = It = (2.50 A)(35.0 × 60 s) = 5250 C. n(e⁻) = Q/F = 5250/96,485 = 0.0544 mol. Cu²⁺ + 2e⁻ → Cu, so n(Cu) = 0.0544/2 = 0.0272 mol and m(Cu) = 0.0272(63.55) = 1.73 g." },
+    13: { solution: "Answer: D (2.6 A). Pb²⁺ + 2e⁻ → Pb, so 1 mol Pb requires 2 mol electrons. n(Pb) = 5.0 g ÷ 207.2 g mol⁻¹ = 0.0241 mol; n(e⁻) = 0.0483 mol. The charge is Q = nF ≈ 0.0483(96,485) = 4.66 × 10³ C. Average current I = Q/t = 4.66 × 10³ C ÷ 1800 s ≈ 2.59 A, or 2.6 A." }
+  },
+
   "topics-1-4-1-6-mcq": {
     1: { solution: "Answer: A (27%). The AgCl precipitate has mass 0.72 g, so n(AgCl) = 0.72 g ÷ 143 g mol⁻¹ = 0.00503 mol. Ag⁺ and Cl⁻ form AgCl in a 1:1 ratio, so the alloy contained 0.00503 mol Ag, or 0.543 g Ag. Percent Ag = (0.543 g ÷ 2.00 g) × 100% = 27.2%, which rounds to 27%." },
     2: { solution: "Answer: C (KCN). The impurity must contain a larger mass fraction of potassium than K₂SO₄ does. KCN is about 60% K by mass: 39.1 ÷ (39.1 + 12.0 + 14.0) × 100%. KBr, KI, and KMnO₄ all have lower potassium mass fractions, so they would lower rather than raise the sample's potassium percentage." },
