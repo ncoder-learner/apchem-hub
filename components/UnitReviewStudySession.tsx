@@ -5,15 +5,8 @@ import Link from "next/link";
 import type { UnitReviewData } from "@/lib/unit-reviews";
 import { UNIT_REVIEW_PRACTICE } from "@/lib/unit-review-practice";
 
-interface TopicLink {
-  slug: string;
-  topicNumber: string;
-  title: string;
-}
-
 interface Props {
   unitId: number;
-  topics: TopicLink[];
   review: UnitReviewData;
 }
 
@@ -25,7 +18,7 @@ const STUDY_BLOCKS = [
   { id: "finish", time: "55–60 min", title: "Close the gaps", detail: "Revisit one lesson, then redo missed questions without looking at the explanation." },
 ] as const;
 
-export function UnitReviewStudySession({ unitId, topics, review }: Props) {
+export function UnitReviewStudySession({ unitId, review }: Props) {
   const practice = UNIT_REVIEW_PRACTICE[unitId];
   const [activeTab, setActiveTab] = useState<"map" | "practice" | "frq">("map");
   const [checkedBlocks, setCheckedBlocks] = useState<string[]>([]);
