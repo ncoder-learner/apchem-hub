@@ -151,10 +151,6 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
     7: { conceptHint: "Balance X₂ + 2Y₂ → 2XY₂ and identify the limiting reactant from the initial particle diagram.", strategyHint: "Consume X₂ and Y₂ in a 1:2 ratio until one reactant is exhausted; preserve any excess reactant particles.", nextStepHint: "The particle diagram is missing from extracted text, so the product diagram cannot be selected reliably." },
     8: { conceptHint: "The reaction is 2QX(g) + X₂(g) → 2QX₂(g). For every two QX₂ product molecules, the starting mixture needs two QX molecules and one X₂ molecule.", strategyHint: "Reverse the stoichiometric change to infer the required starting particles.", nextStepHint: "The product and answer-choice diagrams are missing from extracted text, so the option cannot be confirmed." },
     9: { conceptHint: "Conserve each type of atom when writing a molecular reaction from particle diagrams.", strategyHint: "The choices differ in whether the reactants are monatomic A/X or diatomic A₂/X₂; count atoms in the original diagrams and product units.", nextStepHint: "The diagrams are missing from extracted text, so the correct balanced equation cannot be verified from the text alone." }
-    2: { solution: "Answer: D. Methanol molecules remain intact during boiling; only intermolecular attractions are overcome. The correct diagram shows intact CH₃OH molecules dispersed in the gas phase." },
-    7: { solution: "Answer: D. The initial mixture has three X₂ molecules and four Y₂ molecules. In X₂ + 2Y₂ → 2XY₂, four Y₂ molecules consume two X₂ molecules and form four XY₂ molecules, leaving one X₂ molecule and no Y₂. Option D shows four XY₂ molecules and one X₂ molecule remaining." },
-    8: { solution: "Answer: A. The product mixture contains four QX₂ molecules. From 2QX + X₂ → 2QX₂, that requires four QX molecules and two X₂ molecules initially, which is option A." },
-    9: { solution: "Answer: B. The reactant diagram shows monatomic A and diatomic X₂, while the product is AX₃. The balanced equation is 2A(g) + 3X₂(g) → 2AX₃(g)." },
   },
   "topics-5-4-5-11-mcq": {
     1: { solution: "Answer: A. Step 1 is an elementary step involving one NO molecule and one Cl₂ molecule. The rate law for an elementary step follows its reactant stoichiometry, so rate = k[NO][Cl₂]." },
@@ -168,10 +164,6 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
     9: { solution: "Answer: D. The slow elementary step in mechanism D is D₂ + Q₂X₂ → Q₂X + D₂X, so rate = k[D₂][Q₂X₂]. The preceding fast equilibrium 2QX ⇌ Q₂X₂ gives [Q₂X₂] proportional to [QX]², producing the observed rate law rate = k'[D₂][QX]²." },
     10: { conceptHint: "A two-step mechanism gives two transition-state peaks; the slow step has the larger activation barrier. The overall ΔH is negative, so products lie below reactants.", strategyHint: "Select the profile with two peaks, the first step's activation barrier larger than the second's, and products lower in energy than reactants.", nextStepHint: "The energy-profile diagrams are missing from extracted text, so the letter cannot be confirmed." },
     11: { conceptHint: "A catalyst provides an alternative pathway with lower activation energy but does not change reactant or product energies or ΔH.", strategyHint: "The catalyzed dashed curve should have a lower peak than the uncatalyzed curve while keeping the same starting and ending energy levels.", nextStepHint: "The answer-choice diagrams are missing from extracted text, so the letter cannot be verified." }
-    2: { solution: "Answer: B. The carbon end of CO must collide with a terminal oxygen atom of NO₃ so that oxygen can transfer to carbon and form CO₂. Option B points the black C atom toward a white O atom." },
-    4: { solution: "Answer: C. The reaction is exothermic, so the product energy level must be below the reactant level. Activation energy is measured vertically from the reactant level to the transition-state peak; option C labels that interval." },
-    10: { solution: "Answer: B. The two-step mechanism requires two transition-state peaks. The first step is slow, so its activation barrier is larger than the second step's, and the overall reaction is exothermic, so products lie below reactants. Option B matches all three features." },
-    11: { solution: "Answer: B. A catalyst lowers activation energy without changing the reactant or product energy levels. Option B shows the dashed catalyzed pathway with a lower peak and unchanged endpoints." },
   },
 
   "topics-7-1-7-5-mcq": {
@@ -211,11 +203,9 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
     4: { conceptHint: "At equivalence for a monoprotic acid, moles NaOH equal initial moles acid: MbaseVeq = MacidVacid.", strategyHint: "The acid initially contains (0.0500 L)(0.20 M) = 0.0100 mol. Read the equivalence volume from the titration curve, then divide 0.0100 mol by that volume in liters.", nextStepHint: "The titration curve itself is absent from extracted text, so the equivalence volume and answer letter cannot be verified." },
     5: { conceptHint: "If an indicator changes color after the equivalence point, the recorded titrant volume is too large.", strategyHint: "Use the equivalence volume read from the original titration curve and the 0.100 M NaOH concentration to calculate the acid amount.", nextStepHint: "The graph's equivalence volume is absent from the extracted text, so the baseline concentration and answer choice cannot be verified. The endpoint error makes the calculated acid concentration too high." },
     6: { conceptHint: "At the half-equivalence point of a weak-acid/strong-base titration, pH = pKa.", strategyHint: "Read the pH at half the equivalence volume on the original graph and compare it with each candidate acid's pKa.", nextStepHint: "The graph's pH and equivalence volume are absent from extracted text, so the acid identity cannot be verified without the image." },
-    4: { solution: "Answer: C (0.40 M). The equivalence point on the curve is at about 25.0 mL NaOH. Initial acid moles = (0.0500 L)(0.20 M) = 0.0100 mol. At equivalence, 0.0100 mol NaOH has been added, so [NaOH] = 0.0100 mol/0.0250 L = 0.40 M." },
-    5: { solution: "Answer: B. The graph shows equivalence at 40.0 mL of 0.100 M NaOH, giving n(HA) = 0.00400 mol in 0.0500 L, or 0.0800 M. If the indicator changes color slightly past equivalence, the recorded titrant volume is too large, so the calculated acid concentration is slightly greater than 0.0800 M." },
-    6: { solution: "Answer: C. At half-equivalence (about 20 mL NaOH), pH = pKa. The graph's pH there is about 3.8, matching HC₃H₅O₃ with Ka = 1.4 × 10⁻⁴ (pKa ≈ 3.85)." },
     8: { solution: "Answer: D. The particle diagram shows fewer HC₂H₃O₂ molecules and more C₂H₃O₂⁻ ions after the unknown solution is added. NaOH converts acid into its conjugate base, so the pH rises above 4.74." },
     9: { solution: "Answer: A. The titration curve has an equivalence volume of about 40 mL, so the NaOH concentration is (0.10 M × 20.0 mL)/40.0 mL = 0.050 M. At half-equivalence (about 20 mL), pH ≈ pKa ≈ 4.7." },
+
   },
 
   "topics-7-6-7-10-mcq": {
@@ -273,9 +263,6 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
     9: { solution: "Answer: B (Y = X). Trial 1 contains 0.0050 mol HCl and 0.0050 mol NaOH, so they react completely. Trial 2 contains twice as much HCl but the same amount of NaOH; NaOH remains limiting and the same number of moles reacts. Therefore the heat released is the same in both trials." },
     10: { solution: "Answer: C (25 g). Cooling 100. g of liquid Ga from 83.9°C to 29.8°C releases q = mcΔT = (100. g)(0.37 J g⁻¹ °C⁻¹)(54.1°C) ≈ 2.00 × 10³ J. This heat melts Ga at its melting point; m = q/(heat of fusion) = 2000 J ÷ 80. J g⁻¹ ≈ 25 g." },
     11: { conceptHint: "On a heating curve, the energy for vaporization is the plateau energy at the boiling point, proportional to the amount of liquid vaporized.", strategyHint: "Read the molar enthalpy of vaporization from the curve and multiply by n = 120 g ÷ molar mass CH₄.", nextStepHint: "The heating-curve numeric labels are missing from the text extraction, so the energy and answer letter need the original graph." }
-    1: { solution: "Answer: B. The graph shows the solution temperature rising from 20°C to about 32°C, so the reaction releases heat and is exothermic. Thermal energy lost by the reacting system is gained by the surroundings." },
-    3: { solution: "Answer: B (−50 kJ mol⁻¹). Products lie 50 kJ mol⁻¹ below reactants on the energy diagram, so ΔHrxn is negative and the reaction is exothermic." },
-    11: { solution: "Answer: C (about 62 kJ). The vaporization plateau gives ΔHvap = 8.2 kJ mol⁻¹. For 120 g CH₄, n = 120/16.0 = 7.5 mol, so q = nΔHvap = 7.5(8.2) ≈ 61.5 kJ." },
   },
   "topics-6-6-6-9-mcq": {
     1: { solution: "Answer: A (−884 kJ mol⁻¹). One gram NH₃ is 1.00/17.0 = 0.0588 mol and releases 13.0 kJ. The reaction consumes 4 mol NH₃ per mole of reaction as written, so ΔH° = −13.0 kJ × (4 mol NH₃/0.0588 mol NH₃) ≈ −884 kJ mol⁻¹ reaction." },
@@ -317,8 +304,6 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
     9: { conceptHint: "A lower temperature lowers the average kinetic energy of the gas particles.", strategyHint: "The lower-temperature distribution shifts left toward lower speeds and becomes taller and narrower.", nextStepHint: "The answer choices are graphs, so the exact letter must be selected from the rendered page." },
     10: { solution: "Answer: D. NH₃ molecules form hydrogen bonds and have stronger intermolecular attractions than nonpolar CH₄ molecules. Those attractions cause NH₃ to deviate more from the ideal-gas model, which assumes negligible intermolecular forces." },
     11: { solution: "Answer: D. At high pressure, the finite volume occupied by Ar atoms is no longer negligible relative to the container volume. This excluded-volume effect can make the observed pressure greater than the ideal-gas prediction." }
-    8: { solution: "Answer: A. At the same temperature, He is heavier than H₂, so its molecules have lower most-probable speeds. The He curve is shifted left and is taller/narrower than the H₂ curve; option A shows this." },
-    9: { solution: "Answer: C. Lower temperature shifts the Maxwell–Boltzmann speed distribution toward lower speeds and makes it taller and narrower. Option C shows the dashed lower-temperature curve shifted left with a higher peak." },
   },
   "topics-3-7-3-13-mcq": {
     1: { solution: "Answer: D (0.50 M Na⁺). Moles Na₂SO₄ = 7.1 g ÷ 142 g mol⁻¹ = 0.050 mol. In 0.2000 L, [Na₂SO₄] = 0.250 M. Each formula unit yields 2 Na⁺, so [Na⁺] = 2(0.250) = 0.500 M." },
@@ -334,10 +319,6 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
     11: { solution: "Answer: C (#5, water droplets). Absorbance should increase approximately linearly with concentration. Sample #5 has a concentration of 0.180 M but its absorbance (0.87) is lower than expected from the trend. Water left in the cuvette dilutes the sample, lowering the measured absorbance. A dirty cuvette would generally scatter or block light and raise apparent absorbance." },
     12: { solution: "Answer: A (550 nm). A red solution transmits red wavelengths and absorbs complementary colors, especially in the green region. 550 nm is in the green range listed and should be absorbed strongly; 650 nm is red light and is transmitted more readily." },
     13: { solution: "Answer: C (0.77). Beer–Lambert behavior gives absorbance proportional to concentration. From 0.050 M, A = 0.24, the slope is 0.24/0.050 = 4.8 M⁻¹. At 0.16 M, A ≈ 4.8(0.16) = 0.768, which rounds to 0.77." }
-    3: { solution: "Answer: D. CaCl₂ dissociates into Ca²⁺ and two Cl⁻ ions. The saturated-solution particle diagram should therefore show twice as many chloride ions as calcium ions; the diagram has too few chloride ions." },
-    4: { solution: "Answer: C (0.10 M MgCl₂). Container 2 shows a 1:2 ratio of Mg²⁺ to Cl⁻ and fewer total formula units than the 0.20 M NaCl reference. Equal volumes and the particle counts correspond to 0.10 M MgCl₂." },
-    6: { solution: "Answer: D. The nonpolar stationary phase retains the less polar compound more strongly. X moves farther down the column with water, so X is more water-soluble and more polar than Q." },
-    7: { solution: "Answer: B (CCl₄). Carbon tetrachloride is nonpolar and cannot hydrogen-bond with water. Acetone, methanol, and dimethyl ether have polar C–O or O–H bonds that interact more strongly with water, so CCl₄ is least soluble." },
   },
 
   "topics-4-7-4-9-mcq": {
@@ -350,7 +331,6 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
     7: { conceptHint: "HOCl donates H⁺ to water in a Brønsted–Lowry acid–base reaction.", strategyHint: "Write HOCl + H₂O ⇌ OCl⁻ + H₃O⁺; the acid loses H⁺ and water gains it.", nextStepHint: "Choose the particulate diagram that shows OCl⁻ and H₃O⁺ with the correct atom counts and charges. The option diagrams are not present in the extracted text, so the letter cannot be confirmed here." },
     8: { solution: "Answer: D (6 mol e⁻). Each Al atom is oxidized from 0 to +3 and loses 3 electrons. The balanced equation contains 2 Al atoms, so 2 × 3 = 6 mol electrons are transferred to Zn²⁺." },
     9: { solution: "Answer: D. The oxidation half-reaction is Cr → Cr³⁺ + 3e⁻ and the reduction half-reaction is O₂ + 4H⁺ + 4e⁻ → 2H₂O. The least common multiple of 3 and 4 is 12, so multiply the chromium half-reaction by 4 and the oxygen half-reaction by 3. Adding them gives 4Cr(s) + 3O₂(g) + 12H⁺(aq) → 4Cr³⁺(aq) + 6H₂O(l)." }
-    7: { solution: "Answer: C. HOCl donates H⁺ to water, producing OCl⁻ and H₃O⁺. Option C shows OCl⁻ (Cl bonded to O with a negative charge) and H₃O⁺." },
   },
 
   "topics-9-1-9-7-mcq": {
@@ -367,7 +347,6 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
     11: { solution: "Answer: C. With ΔH° < 0 and ΔS° < 0, ΔG° = ΔH° − TΔS° becomes less favorable as temperature increases. The reaction is favored at low temperature, so Kₑq > 1 only at low temperatures." },
     12: { solution: "Answer: B. Separating solvent molecules and separating solute particles both require energy to overcome attractions (ΔH° > 0) and increase dispersal (ΔS° > 0). Forming solute–solvent attractions releases energy (ΔH° < 0), while mixing the solute with solvent increases entropy (ΔS° > 0)." },
     13: { solution: "Answer: D (−1319 kJ mol⁻¹). Reverse reaction 2 and multiply it by 2: 4 NO + 2 O₂ → 4 NO₂, ΔG° = −142 kJ. Add this to reaction 1 (−1011 kJ) and reaction 3 (−166 kJ). The intermediate NO and NO₂ cancel, giving the target reaction and ΔG° = −1011 − 142 − 166 = −1319 kJ mol⁻¹." }
-    2: { solution: "Answer: B. The largest positive entropy change is from an ordered solid to dispersed gas particles, which greatly increases the number of accessible arrangements. Option B depicts that phase change." },
   },
   "topics-9-8-9-11-mcq": {
     1: { solution: "Answer: B. Pb²⁺/Pb has the more positive reduction potential, so Pb²⁺ is reduced at the cathode and Mg is oxidized at the anode. Cations from the salt bridge migrate toward the cathode (the Pb half-cell) to balance the excess negative charge developing there as cations are removed from solution." },
@@ -395,8 +374,6 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
     7: { solution: "Answer: A. The 1s electrons in Li and Be experience stronger attraction to the nucleus than in He because the nuclear charge increases from +2 to +3 to +4. Their binding energies therefore rise, with Li at 6.26 MJ mol⁻¹ and Be at 11.5 MJ mol⁻¹. The correct justification is the larger nuclear charge of Be than Li." },
     8: { conceptHint: "For isoelectronic species, compare nuclear charge: more protons attract the same electron count more strongly.", strategyHint: "The 1s electrons in Ca²⁺ and Ar have the same electron configuration, but Ca²⁺ has 20 protons while Ar has 18.", nextStepHint: "The Ca²⁺ 1s electrons are more tightly bound, so the correct peak is the one at higher binding energy; the diagram is needed to identify whether that is labeled X." },
     9: { conceptHint: "A complete photoelectron spectrum identifies subshells from peak positions and relative peak areas.", strategyHint: "Compare the number of occupied subshells and the relative electron counts represented by the peaks.", nextStepHint: "The choices Li, B, C, and N differ in 1s and 2s/2p electron counts; the spectrum image is required to identify the element without guessing." }
-    8: { solution: "Answer: D. Ca²⁺ and Ar are isoelectronic, but Ca²⁺ has 20 protons while Ar has 18. The stronger nuclear attraction makes Ca²⁺ 1s electrons more tightly bound, so peak X at higher binding energy belongs to Ca²⁺." },
-    9: { solution: "Answer: C (carbon). The spectrum has three subshell peaks with equal relative electron counts: 1s², 2s², and 2p². That electron configuration is carbon, 1s²2s²2p²." },
   },
   "topics-1-7-1-8-mcq": {
     1: { solution: "Answer: B (242 pm, 419 kJ mol⁻¹). Potassium is directly above calcium in Group 1 and lies one column to the left. K has a larger atomic radius than Ca and a lower first ionization energy, so the plausible values are 242 pm and 419 kJ mol⁻¹." },
@@ -490,13 +467,13 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
       conceptHint: "Resonance means electrons are delocalized across multiple valid Lewis contributors; the real molecule is not rapidly switching between separate structures.",
       strategyHint: "Draw the important resonance contributors for ozone, then compare what each predicts for the two O–O bonds.",
       nextStepHint: "Equivalent bonds in the resonance hybrid have the same intermediate bond order rather than one permanent single bond and one permanent double bond.",
-      solution: "Answer: D. The two important resonance contributors place the O=O double bond on opposite sides of ozone. Because the actual molecule is a resonance hybrid, the two O–O bonds are equivalent, with an average bond order of 1.5.",
+      solution: "Answer: D. Ozone is represented by two equivalent resonance structures, with the double bond on either side. The resonance hybrid has two equivalent O–O bonds with average bond order 1.5.",
     },
     6: {
       conceptHint: "Equal bond lengths can be evidence that resonance makes two bonds equivalent in the actual structure.",
       strategyHint: "Compare the two major resonance contributors of acetate and track which C–O bond is double in each.",
       nextStepHint: "Look for the pair of contributors that swaps the double bond between the two oxygens while leaving the atom connectivity unchanged.",
-      solution: "The two main acetate resonance contributors differ only in which oxygen is double-bonded to carbon. Their hybrid gives both C–O bonds the same partial double-bond character, so the bonds have equal lengths.",
+      solution: "Answer: A. The two equivalent resonance contributors for acetate place the C=O double bond on either oxygen and the negative charge on the other. Option A shows these two contributors; resonance makes both C–O bonds equivalent.",
     },
     7: {
       conceptHint: "VSEPR predicts bond angles from repulsion between electron domains; lone pairs generally repel more strongly than bonding pairs.",
@@ -507,29 +484,19 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
       conceptHint: "Molecular polarity depends on both bond dipoles and the three-dimensional molecular geometry.",
       strategyHint: "Determine the shape of BF₃ and NF₃ separately, then consider whether the individual B–F or N–F bond dipoles cancel as vectors.",
       nextStepHint: "A symmetric trigonal-planar arrangement can cancel equal bond dipoles; a trigonal-pyramidal arrangement does not cancel them completely.",
-      solution: "Answer: D. BF₃ is trigonal planar, so its three equivalent B–F bond dipoles cancel by symmetry. NF₃ is trigonal pyramidal because nitrogen has a lone pair; its N–F bond dipoles do not cancel, leaving a net molecular dipole.",
+      solution: "Answer: D. BF₃ is trigonal planar and its B–F bond dipoles cancel. NF₃ is trigonal pyramidal because N has a lone pair, so its N–F bond dipoles do not cancel and it is polar.",
     },
     9: {
       conceptHint: "Use VSEPR to determine molecular geometry before deciding whether the bond dipoles cancel.",
       strategyHint: "Count the central chlorine's electron domains, including lone pairs, and then identify the positions occupied by the three fluorine atoms.",
       nextStepHint: "Three bonds and two lone pairs give five electron domains; the molecular shape is T-shaped, so the bond dipoles do not fully cancel.",
-      solution: "Answer: A. Chlorine has five electron domains in ClF₃: three bonding pairs and two lone pairs. The lone pairs occupy equatorial positions, leaving a T-shaped molecule. Its bond dipoles do not cancel, so ClF₃ is polar.",
+      solution: "Answer: A. ClF₃ has five electron domains around Cl (three bonding pairs and two lone pairs). The two lone pairs occupy equatorial positions, giving a T-shaped molecular geometry; its bond dipoles do not cancel, so it is polar.",
     },
     10: {
       conceptHint: "Hybridization labels are assigned from the local bonding arrangement in each structure, not from the atom's identity alone.",
       strategyHint: "For each carbon, count regions of electron density around it; a double bond counts as one region for geometry.",
       nextStepHint: "Use two, three, or four regions to identify the corresponding sp, sp², or sp³ model, then repeat for the carbon after the reaction.",
     },
-    1: { solution: "Answer: D. C₃H₆ requires one C=C double bond and six hydrogens. Option D shows CH₃–CH=CH₂, a valid Lewis structure for propene." },
-    2: { solution: "Answer: B. NO₂⁺ has 16 valence electrons and a linear O=N=O structure with two double bonds. The formal charge is +1 on N and 0 on each O, giving the overall +1 charge." },
-    3: { solution: "Answer: C. The best Lewis structure for NOCl is O=N–Cl: a double bond to oxygen and a single bond to chlorine, with one lone pair on N. This gives formal charges of zero on all three atoms." },
-    4: { solution: "Answer: B. Diagram 1 places the negative formal charge on oxygen, the most electronegative atom, while diagram 2 places it on nitrogen. A negative charge is more stable on oxygen, so diagram 1 is the more favorable contributor." },
-    5: { solution: "Answer: D. Ozone is represented by two equivalent resonance structures, with the double bond on either side. The resonance hybrid has two equivalent O–O bonds with average bond order 1.5." },
-    6: { solution: "Answer: A. The two equivalent resonance contributors for acetate place the C=O double bond on either oxygen and the negative charge on the other. Option A shows these two contributors; resonance makes both C–O bonds equivalent." },
-    7: { solution: "Answer: B (NF₃). NF₃ is trigonal pyramidal and has a bond angle near 102°, smaller than the tetrahedral angle in CF₄ or the roughly 120° angles in bent SO₂ and linear O=S=O. The lone pair on N compresses the F–N–F angle." },
-    8: { solution: "Answer: D. BF₃ is trigonal planar and its B–F bond dipoles cancel. NF₃ is trigonal pyramidal because N has a lone pair, so its N–F bond dipoles do not cancel and it is polar." },
-    9: { solution: "Answer: A. ClF₃ has five electron domains around Cl (three bonding pairs and two lone pairs). The two lone pairs occupy equatorial positions, giving a T-shaped molecular geometry; its bond dipoles do not cancel, so it is polar." },
-    10: { solution: "Answer: A. In acetylene, each carbon has two electron domains and is sp hybridized. In ethylene, each carbon has three electron domains and is sp² hybridized." },
   },
   "topics-5-1-5-3-mcq": {
     1: {
