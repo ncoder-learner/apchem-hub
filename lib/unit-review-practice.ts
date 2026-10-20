@@ -6,10 +6,23 @@ export interface ReviewPracticeQuestion {
   skill: string;
 }
 
+export interface ReviewFRQPart {
+  label: string;
+  prompt: string;
+  scoringGuidance: string[];
+}
+
+export interface ReviewFRQ {
+  title: string;
+  stimulus: string;
+  parts: ReviewFRQPart[];
+}
+
 export interface UnitReviewPractice {
   mentalModels: { title: string; idea: string; useWhen: string }[];
   questions: ReviewPracticeQuestion[];
   frqFocus: string[];
+  frqs?: ReviewFRQ[];
 }
 
 export const UNIT_REVIEW_PRACTICE: Record<number, UnitReviewPractice> = {
