@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState, type ChangeEvent } from "react";
 import Link from "next/link";
 import { PACKET_QUESTION_INDEX, findPacketQuestion } from "@/lib/packet-companion";
+import { MCQ_PAGE_CANDIDATES } from "@/lib/mcq-page-candidates";
 
 const PACKET_PDF_PATHS: Record<string, string> = {
   "topics-1-1-1-3-mcq": "/packets/topics-1-1-1-3-mcq.pdf",
@@ -113,6 +114,12 @@ export function PacketCompanionLookup() {
     setQuestionNumber(value);
     setHintLevel(0);
     setShowWorkedAnswer(false);
+    // Use extracted page mappings only for the hosted source PDF. A local replacement may paginate differently.
+    const candidatePage = !pdfFile ? MCQ_PAGE_CANDIDATES[packetId]?.[value.trim()] : undefined;
+    if (candidatePage) {
+      setPdfPage(String(candidatePage));
+      setPdfPageInput(String(candidatePage));
+    }
   }
 
   function goToPdfPage() {
