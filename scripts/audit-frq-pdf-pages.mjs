@@ -34,7 +34,7 @@ for (const file of files) {
           line: line.trim().slice(0, 180),
           context: lines.slice(lineIndex + 1, lineIndex + 3).join(" ").trim().slice(0, 180),
         });
-        const sameLinePart = line.match(/^\s{0,12}\d{1,2}[.)]\s*\(([a-h])\)/i);
+        const sameLinePart = line.match(/^\s{0,12}\d{1,2}[.)]\s*\(([a-h])\)/);
         if (sameLinePart) partCandidates.push({
           question: activeQuestion,
           part: sameLinePart[1].toLowerCase(),
@@ -42,7 +42,7 @@ for (const file of files) {
         });
         continue;
       }
-      const partMatch = line.match(/^\s{0,20}\(([a-h])\)[.)]?\s+\S/i);
+      const partMatch = line.match(/^\s{0,20}\(([a-h])\)[.)]?\s+\S/);
       if (partMatch && activeQuestion !== null) {
         partCandidates.push({
           question: activeQuestion,
