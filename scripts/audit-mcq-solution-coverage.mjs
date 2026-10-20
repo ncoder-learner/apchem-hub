@@ -23,12 +23,12 @@ for (const match of sourceBlock.matchAll(packetPattern)) {
 }
 
 const solutionsByPacket = new Map();
-const packetSolutionPattern = /^  "([^"]+)": \\{\\n([\\s\\S]*?)^  \\},?$/gm;
+const packetSolutionPattern = /^  "([^"]+)": \{\n([\s\S]*?)^  \},?$/gm;
 for (const match of hintsBlock.matchAll(packetSolutionPattern)) {
   const packetId = match[1];
   const body = match[2];
   const keys = new Set();
-  for (const entry of body.matchAll(/^    (\\d+): \\{\\s*solution:/gm)) keys.add(Number(entry[1]));
+  for (const entry of body.matchAll(/^    (\d+): \{\s*solution:/gm)) keys.add(Number(entry[1]));
   solutionsByPacket.set(packetId, keys);
 }
 
