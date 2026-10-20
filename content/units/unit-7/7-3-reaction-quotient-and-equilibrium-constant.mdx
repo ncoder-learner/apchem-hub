@@ -38,7 +38,7 @@ For a reaction, Kc = 4.0 and the current Qc = 0.50. Since Qc < Kc, the mixture h
 
 </LessonSection>
 
-<LessonSection title="4. Calculate Q and compare it with K" description="Same expression, different snapshot">
+<LessonSection title="3. Calculate Q and compare it with K" description="Same expression, different snapshot">
 
 For aA + bB⇌ cC + dD, Qc = ([C]^c[D]^d) / ([A]^a[B]^b) using current concentrations. K has the same form but uses equilibrium concentrations. Pure solids and pure liquids are omitted. Compare the numerical values at the same temperature: Q < K means net reaction proceeds right; Q > K means it proceeds left; Q = K means the mixture is at equilibrium.
 
@@ -53,6 +53,18 @@ The direction prediction is not based on which side has more moles or larger con
 
 </LessonSection>
 
+
+<LessonSection title="4. Recalculate Q immediately after a disturbance" description="A changed concentration changes Q first; the system then responds">
+
+Suppose `A(aq) + B(aq) ⇌ C(aq)` is at equilibrium with `[A] = 0.20 M`, `[B] = 0.20 M`, and `[C] = 0.80 M`. Then `Kc = Qc = 0.80/[(0.20)(0.20)] = 20`.
+
+If more A is added so that its concentration instantly doubles to 0.40 M, B and C have not yet had time to respond. The new reaction quotient is `Qc = 0.80/[(0.40)(0.20)] = 10`. Since Q is now below K, the net reaction proceeds right, consuming some A and B and producing more C. At the new equilibrium Q returns to 20, but the equilibrium concentrations are different from the original values.
+
+This sequence is the precise meaning of a shift: the disturbance changes the current mixture and therefore Q; the reaction then changes composition until Q = K again. Do not say that K changes when a reactant is added at constant temperature.
+
+<QuickCheck question="A mixture is at equilibrium for A + B ⇌ C. A is added at constant temperature. Immediately afterward, before reaction occurs, which quantity changes?" options={["K only","Q only, because concentrations in the reaction quotient have changed","Neither Q nor K","Both Q and K must double"]} correctIndex={1} explanation="Adding A changes the current concentrations used in Q, but K remains fixed at the same temperature. The subsequent reaction shifts until Q returns to K."} />
+
+</LessonSection>
 ## Readiness check
 
 Write Q from a balanced equation, omit pure solids and liquids, and use the Q-versus-K comparison to predict direction.
