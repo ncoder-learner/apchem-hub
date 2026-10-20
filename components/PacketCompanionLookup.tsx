@@ -214,7 +214,7 @@ export function PacketCompanionLookup() {
                 )}
               </div>
               {showWorkedAnswer && match?.solution && (
-                <div role="region" aria-label="Teacher-style worked answer" className="absolute right-4 top-4 z-30 max-h-[48%] w-[min(34rem,calc(100%-2rem))] overflow-y-auto rounded-xl border-2 border-red-300 bg-white/95 px-5 py-4 text-red-700 shadow-2xl backdrop-blur-sm sm:px-8">
+                <div role="region" aria-label="Teacher-style worked answer" className="absolute right-4 top-4 z-30 max-h-[48%] w-[min(34rem,92%)] overflow-y-auto rounded-xl border-2 border-red-300 bg-white/95 px-5 py-4 text-red-700 shadow-2xl backdrop-blur-sm sm:px-8">
                   <div className="mx-auto max-w-4xl font-serif italic">
                     <p className="text-sm font-bold not-italic text-red-800">Worked answer · Question {questionNumber}</p>
                     <p className="mt-3 whitespace-pre-wrap text-base leading-7">{match.solution}</p>
