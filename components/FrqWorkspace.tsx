@@ -816,7 +816,9 @@ export function FrqWorkspace() {
   const pdfUrl = localPdfUrl ? `${localPdfUrl}#page=${boundedPage}&toolbar=1&navpanes=0` : (selected ? `/frq/${selected.file}#page=${boundedPage}&toolbar=1&navpanes=0` : "");
   const normalizedPart = partLabel.trim().toLowerCase().match(/^(?:part\s*)?\(?([a-h])\)?$/)?.[1] ?? "";
   const localPacketMatches = !localPdfUrl || localPdfName === selected?.file;
-  const frqProgressId = selected ? `${selected.file}:${questionNumber.trim()}:${normalizedPart || "whole"}` : "";\n  const activeProgress = frqProgressId ? frqProgress[frqProgressId] : undefined;\n  const activeSolution = selected && localPacketMatches
+  const frqProgressId = selected ? `${selected.file}:${questionNumber.trim()}:${normalizedPart || "whole"}` : "";
+  const activeProgress = frqProgressId ? frqProgress[frqProgressId] : undefined;
+  const activeSolution = selected && localPacketMatches
     ? (normalizedPart
         ? FRQ_WORKED_SOLUTIONS[selected.file]?.[`${questionNumber.trim()}:${normalizedPart}`]
         : FRQ_WORKED_SOLUTIONS[selected.file]?.[questionNumber.trim()])
