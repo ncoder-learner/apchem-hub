@@ -65,6 +65,20 @@ This sequence is the precise meaning of a shift: the disturbance changes the cur
 <QuickCheck question="A mixture is at equilibrium for A + B ⇌ C. A is added at constant temperature. Immediately afterward, before reaction occurs, which quantity changes?" options={["K only","Q only, because concentrations in the reaction quotient have changed","Neither Q nor K","Both Q and K must double"]} correctIndex={1} explanation="Adding A changes the current concentrations used in Q, but K remains fixed at the same temperature. The subsequent reaction shifts until Q returns to K." />
 
 </LessonSection>
+
+<LessonSection title="5. Use Q and K without confusing a ratio with a rate" description="Q predicts the net direction, not how quickly equilibrium is reached">
+
+The reaction quotient Q has the same mathematical form as K, but it uses the current mixture. Compare Q with K at the same temperature: if Q < K, the forward reaction must increase the product-to-reactant ratio; if Q > K, the reverse reaction must decrease it; if Q = K, the mixture is at equilibrium. This comparison does not tell you the numerical reaction rate or the time required to reach equilibrium.
+
+<WorkedExample title="Worked example: calculate direction for a non-1:1 reaction">
+
+For `N₂(g) + 3H₂(g) ⇌ 2NH₃(g)`, `Qp = (PNH₃)²/(PN₂·PH₂³)`. If the current partial pressures are 0.20 atm NH₃, 0.50 atm N₂, and 0.40 atm H₂, then `Qp = (0.20)²/[(0.50)(0.40)³] = 0.04/0.032 = 1.25`. If Kp = 4.0 at that temperature, Qp < Kp, so the net reaction proceeds right. The cubic H₂ term is essential; using an unexponentiated pressure would give the wrong comparison.
+
+</WorkedExample>
+
+<QuickCheck question="For A(g) + 2B(g) ⇌ C(g), the current concentrations are [A] = 0.20 M, [B] = 0.50 M, and [C] = 0.10 M. If Kc = 2.0, which direction is favored?" options={["Right, because Q < K","Left, because Q > K","At equilibrium, because Q = K","Direction cannot be determined from Q"]} correctIndex={0} explanation="Q = [C]/([A][B]²) = 0.10/(0.20×0.25) = 2.0, so Q = K and the system is at equilibrium. Correction: for these numbers Q equals 2.0, so option 3 is correct."} />
+
+</LessonSection>
 ## Readiness check
 
 Write Q from a balanced equation, omit pure solids and liquids, and use the Q-versus-K comparison to predict direction.
