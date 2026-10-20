@@ -141,6 +141,18 @@ const QUESTION_TOPIC_OVERRIDES: Record<string, Record<number, string>> = {
 };
 
 const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "conceptHint" | "strategyHint" | "nextStepHint" | "solution">>> = {
+  "topics-4-7-4-9-mcq": {
+    1: { solution: "Answer: A. Al changes from oxidation state 0 in Al(s) to +3 in Al₂(SO₄)₃, so Al is oxidized. Hydrogen changes from +1 in H₂SO₄ to 0 in H₂(g), so H⁺ is reduced. Oxidation and reduction occur together, making the reaction redox." },
+    2: { solution: "Answer: C. NH₃ accepts a proton from HCl to form NH₄⁺, while HCl donates the proton to form Cl⁻. This proton transfer is a Brønsted–Lowry acid–base reaction. The other choices are redox, decomposition, or precipitation reactions." },
+    3: { solution: "Answer: B. Ca²⁺ and CO₃²⁻ form the insoluble precipitate CaCO₃(s). Cl⁻ is a spectator ion: it does not enter the precipitate or change oxidation state, so it remains dissolved in the filtrate (along with Na⁺)." },
+    4: { solution: "Answer: C. In KClO₃, oxygen has oxidation state −2; in O₂, oxygen is 0. The oxygen atoms are oxidized, while chlorine changes from +5 to −1 and is reduced. Therefore this choice is not the answer if the question asks where O is reduced." },
+    5: { solution: "Answer: D. A conjugate acid–base pair differs by exactly one H⁺. HC₂O₄⁻ donates H⁺ to form C₂O₄²⁻, so these are a conjugate acid and conjugate base, respectively." },
+    6: { solution: "Answer: B. H₂O donates a proton to C₆H₅NH₂, producing OH⁻ and C₆H₅NH₃⁺. The conjugate base of the acid H₂O is OH⁻." },
+    7: { conceptHint: "HOCl donates H⁺ to water in a Brønsted–Lowry acid–base reaction.", strategyHint: "Write HOCl + H₂O ⇌ OCl⁻ + H₃O⁺; the acid loses H⁺ and water gains it.", nextStepHint: "Choose the particulate diagram that shows OCl⁻ and H₃O⁺ with the correct atom counts and charges. The option diagrams are not present in the extracted text, so the letter cannot be confirmed here." },
+    8: { solution: "Answer: D (6 mol e⁻). Each Al atom is oxidized from 0 to +3 and loses 3 electrons. The balanced equation contains 2 Al atoms, so 2 × 3 = 6 mol electrons are transferred to Zn²⁺." },
+    9: { solution: "Answer: D. The oxidation half-reaction is Cr → Cr³⁺ + 3e⁻ and the reduction half-reaction is O₂ + 4H⁺ + 4e⁻ → 2H₂O. The least common multiple of 3 and 4 is 12, so multiply the chromium half-reaction by 4 and the oxygen half-reaction by 3. Adding them gives 4Cr(s) + 3O₂(g) + 12H⁺(aq) → 4Cr³⁺(aq) + 6H₂O(l)." }
+  },
+
   "topics-9-1-9-7-mcq": {
     1: { solution: "Answer: A. The reactants contain three moles of gas (2 H₂ + O₂), while the products contain two moles of gas (2 H₂O). A decrease in the number of gas particles generally corresponds to a decrease in entropy, so ΔS° is negative." },
     2: { conceptHint: "A positive entropy change is associated with greater dispersal of matter and energy, often including more gas particles or more available particle arrangements.", strategyHint: "Compare the particle diagrams for changes in phase, number of gas particles, and mixing.", nextStepHint: "The diagrams are not represented in the extracted text, so the specific option cannot be verified from text alone." },
