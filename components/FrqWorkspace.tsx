@@ -734,7 +734,7 @@ export function FrqWorkspace() {
   const maxPage = selected ? FRQ_PDF_PAGE_COUNTS[selected.file] ?? 1 : 1;
   const boundedPage = Math.min(maxPage, Math.max(1, Number(page) || 1));
   const pdfUrl = localPdfUrl ? `${localPdfUrl}#page=${boundedPage}&toolbar=1&navpanes=0` : (selected ? `/frq/${selected.file}#page=${boundedPage}&toolbar=1&navpanes=0` : "");
-  const normalizedPart = partLabel.trim().toLowerCase().match(/^(?:part\\s*)?\\(?([a-h])\\)?$/)?.[1] ?? "";
+  const normalizedPart = partLabel.trim().toLowerCase().match(/^(?:part\s*)?\(?([a-h])\)?$/)?.[1] ?? "";
   const localPacketMatches = !localPdfUrl || localPdfName === selected?.file;
   const activeSolution = selected && localPacketMatches
     ? (normalizedPart
