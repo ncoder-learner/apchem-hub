@@ -25,7 +25,6 @@ export function UnitReviewStudySession({ unitId, review }: Props) {
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [checkedAnswers, setCheckedAnswers] = useState<number[]>([]);
   const [readiness, setReadiness] = useState<string[]>([]);
-  const [weakTopic, setWeakTopic] = useState("");
   const [frqResponses, setFrqResponses] = useState<Record<string, string>>({});
   const [revealedRubrics, setRevealedRubrics] = useState<string[]>([]);
 
@@ -181,15 +180,6 @@ export function UnitReviewStudySession({ unitId, review }: Props) {
               );
             })}
           </div>
-          <section className="mt-6 rounded-xl border border-border p-5">
-            <h3 className="font-semibold">Target your next 10 minutes</h3>
-            <p className="mt-1 text-sm text-ink-dim">Which area felt least automatic? Choose one and open only that lesson.</p>
-            <select value={weakTopic} onChange={(event) => setWeakTopic(event.target.value)} className="mt-3 min-h-11 w-full rounded-lg border border-border bg-card px-3 text-sm sm:max-w-lg">
-              <option value="">Choose a topic to repair</option>
-              {topics.map((topic) => <option key={topic.slug} value={topic.slug}>{topic.topicNumber} · {topic.title}</option>)}
-            </select>
-            {weakTopic && <Link href={"/units/" + unitId + "/" + weakTopic} className="mt-3 inline-flex min-h-10 items-center rounded-lg bg-accent px-4 py-2 text-sm font-bold text-[#06251b]">Open targeted lesson →</Link>}
-          </section>
         </section>
       )}
 
