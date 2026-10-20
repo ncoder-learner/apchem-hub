@@ -395,6 +395,9 @@ const FRQ_PAGE_CANDIDATES: Record<string, Record<string, number>> = {
     11: 13,
     12: 13,
     13: 13
+
+    "1": { prompt: "For H2(g) + I2(g) ⇌ 2 HI(g), Kc = 51, determine the equilibrium constants for the four modified equations in Question 1.", steps: ["Reversing 2 HI ⇌ H2 + I2 takes the reciprocal: Kc = 1/51 = 0.0196.", "Halving every coefficient gives ½ H2 + ½ I2 ⇌ HI, so Kc = 51^(1/2) ≈ 7.14.", "Doubling every coefficient gives 2 H2 + 2 I2 ⇌ 4 HI, so Kc = 51^2 = 2601.", "HI ⇌ ½ H2 + ½ I2 is the reverse reaction with all coefficients halved, so Kc = (1/51)^(1/2) ≈ 0.140."], answer: "In table order: 1/51 ≈ 0.020; √51 ≈ 7.1; 51² = 2.6 × 10³; and 1/√51 ≈ 0.14.", concept: "Reverse a reaction → take 1/K; multiply all coefficients by n → raise K to n." },
+    "2": { prompt: "Combine FeF2(s) ⇌ Fe2+(aq) + 2 F−(aq), Kc = 2.4 × 10⁻⁶, and HF(aq) ⇌ H+(aq) + F−(aq), Kc = 6.8 × 10⁻⁴, to obtain FeF2(s) + 2 H+(aq) ⇌ Fe2+(aq) + 2 HF(aq). Calculate Kc.", steps: ["Keep equation #1 as written. Reverse equation #2 so H+ and F− form HF; reversing gives K = 1/(6.8 × 10⁻⁴).", "Multiply the reversed equation by 2 to produce 2 H+ + 2 F− → 2 HF, so its equilibrium constant is [1/(6.8 × 10⁻⁴)]².", "Add the equations and cancel 2 F− on both sides. When equations are added, multiply their equilibrium constants: Kc = (2.4 × 10⁻⁶)/(6.8 × 10⁻⁴)² ≈ 5.19."], answer: "FeF2(s) + 2 H+(aq) ⇌ Fe2+(aq) + 2 HF(aq); Kc ≈ 5.2.", concept: "Reverse an equation by reciprocating K, scale an equation by raising K to that power, and multiply K values when equations are added." },
   },
   "topic-7-11-7-12.pdf": {
     1: 2,
