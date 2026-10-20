@@ -33,7 +33,7 @@ export default async function UnitReviewPage({ params }: PageProps) {
           <h1 className="max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">{unit.title}: the test-prep session</h1>
           <p className="mt-4 max-w-3xl leading-relaxed text-ink-dim">{review.focus}</p>
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-bg/60 px-3 py-1.5 text-sm"><span className="h-2 w-2 rounded-full bg-accent" />60-minute guided review</span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-bg/60 px-3 py-1.5 text-sm"><span className="h-2 w-2 rounded-full bg-accent" />90-minute guided review</span>
             <span className="rounded-full border border-border bg-bg/60 px-3 py-1.5 text-sm text-ink-dim">{review.examWeight} of MCQ</span>
             <a href="https://apcentral.collegeboard.org/courses/ap-chemistry/exam/past-exam-questions" target="_blank" rel="noreferrer" className="text-sm font-semibold text-accent hover:underline">Released AP FRQs ↗</a>
           </div>
