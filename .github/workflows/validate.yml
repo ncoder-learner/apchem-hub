@@ -35,6 +35,7 @@ jobs:
           node scripts/validate-frq-page-candidates.mjs
           node scripts/audit-frq-solution-coverage.mjs
           node scripts/audit-mcq-pdf-pages.mjs
+          node scripts/audit-mcq-solution-coverage.mjs
           mkdir -p mcq-audit-output/rendered
           for pdf in public/packets/*-mcq.pdf; do
             [ -f "$pdf" ] || continue
