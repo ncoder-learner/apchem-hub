@@ -55,6 +55,28 @@ For diprotic acids, there may be two equivalence points if the proton-loss steps
 
 </LessonSection>
 
+
+<LessonSection title="5. Follow one weak-acid titration through every region" description="The correct calculation changes as the dominant species change">
+
+For 25.00 mL of 0.1000 M HA with `Ka = 1.8×10⁻⁵`, titrated with 0.1000 M NaOH, the initial acid amount is 0.002500 mol and equivalence occurs at 25.00 mL of base. The same curve requires different reasoning at different volumes.
+
+<WorkedExample title="Worked example: four regions of one curve">
+
+**Initially (0.00 mL NaOH):** `[H₃O⁺] ≈ √(KaC) = √(1.8×10⁻⁶) = 1.34×10⁻³ M`, so pH ≈ 2.87. Percent ionization is 1.34%, supporting the small-x estimate.
+
+**Half-equivalence (12.50 mL):** Half the HA has reacted, so `n(HA) = n(A⁻)`. Henderson–Hasselbalch gives `pH = pKa = −log(1.8×10⁻⁵) = 4.74`.
+
+**Equivalence (25.00 mL):** All HA has been converted to A⁻. The total volume is 50.00 mL and `[A⁻] = 0.002500/0.05000 = 0.0500 M`. Since `Kb = Kw/Ka = 5.56×10⁻¹⁰`, `[OH⁻] ≈ √(KbC) = 5.27×10⁻⁶ M`, giving pH ≈ 8.72. The pH is above 7 because A⁻ hydrolyzes water.
+
+**After equivalence (30.00 mL):** Added OH⁻ = 0.003000 mol, leaving 0.000500 mol excess in 0.05500 L. Thus `[OH⁻] = 0.00909 M`, pOH ≈ 2.04, and pH ≈ 11.96. Excess strong base, not the buffer ratio, controls pH.
+
+</WorkedExample>
+
+This region-by-region method prevents a common error: using one equation for the whole curve. Stoichiometry determines what remains; equilibrium determines pH only when the controlling species require it.
+
+<QuickCheck question="At 20.00 mL NaOH added in the titration above, what is the approximate pH?" options={["2.87","4.74","5.35","8.72"]} correctIndex={2} explanation="Before equivalence, 0.002000 mol OH⁻ consumes HA. Remaining HA = 0.000500 mol and formed A⁻ = 0.002000 mol, so pH = pKa + log(0.002000/0.000500) = 4.745 + log(4) ≈ 5.35."} />
+
+</LessonSection>
 ## Readiness check
 
 You should be able to find equivalence volume from moles, identify the correct pH method in each region, interpret half-equivalence, and explain why equivalence pH is not always 7.
