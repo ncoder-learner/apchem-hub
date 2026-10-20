@@ -110,6 +110,20 @@ If a fourth trial with [A] = 0.100 M and [B] = 0.200 M reports a rate of 6.00×1
 
 </LessonSection>
 
+
+<LessonSection title="6. Derive a rate law from nonconsecutive experiments" description="Use ratios to eliminate the unknown rate constant">
+
+When two trials change more than one concentration, do not compare their rates until you account for every concentration factor. For `rate = k[A]^m[B]^n`, the ratio of rates between trials is `rate₂/rate₁ = ([A]₂/[A]₁)^m([B]₂/[B]₁)^n`. If one species is held constant, its factor becomes 1. Choose comparisons that isolate one order when possible, then use another comparison to determine the remaining order.
+
+<WorkedExample title="Worked example: solve two orders">
+
+Suppose doubling [A] while holding [B] constant makes the rate four times as large. Then `2^m = 4`, so m = 2. In another comparison, [B] triples while [A] stays constant and the rate triples; then `3^n = 3`, so n = 1. The rate law is `rate = k[A]²[B]`, and the overall order is 3. The overall order is the sum of exponents, not the exponent on the first reactant.
+
+</WorkedExample>
+
+<QuickCheck question="For rate = k[A]^m[B]^n, doubling [A] and halving [B] leaves the rate unchanged. If the reaction is first order in B, what is the order in A?" options={["Zero order","First order","Second order","Third order"]} correctIndex={1} explanation="The rate ratio is 1 = 2^m(1/2)^1, so 2^m = 2 and m = 1. The reaction is first order in A."} />
+
+</LessonSection>
 ## Readiness check
 
 You should be able to infer orders from initial-rate comparisons, write the empirical rate law, calculate k with units, and explain why overall reaction coefficients do not automatically give rate-law exponents.
