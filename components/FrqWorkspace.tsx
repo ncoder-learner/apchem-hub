@@ -38,6 +38,35 @@ const FRQ_PACKETS: FrqPacket[] = [
   { unit: 9, title: "Topics 9.8–9.11", topics: "Electrochemistry and thermodynamics", file: "topic-9-8-9-11.pdf" },
 ];
 
+// Page counts from the audited PDFs. Used to keep manual and candidate jumps in bounds.
+const FRQ_PDF_PAGE_COUNTS: Record<string, number> = {
+  "topic-1-1-1-3.pdf": 9,
+  "topic-1-4-1-6.pdf": 8,
+  "topic-1-7-1-8.pdf": 9,
+  "topic-2-1-2-4.pdf": 14,
+  "topic-2-5-2-6.pdf": 9,
+  "topic-2-7.pdf": 9,
+  "topic-3-1.pdf": 13,
+  "topic-3-2-3-4.pdf": 15,
+  "topic-3-5-3-8.pdf": 11,
+  "topic-3-9-3-13.pdf": 16,
+  "topic-4-1-4-4.pdf": 13,
+  "topic-4-5-4-6.pdf": 12,
+  "topic-4-7-4-9.pdf": 12,
+  "topic-5-1-5-3.pdf": 18,
+  "topic-5-4-5-11.pdf": 17,
+  "topic-6-1-6-5.pdf": 10,
+  "topic-6-6-6-9.pdf": 13,
+  "topic-7-1-7-5.pdf": 13,
+  "topic-7-11-7-12.pdf": 11,
+  "topic-7-6-7-10.pdf": 16,
+  "topic-8-1-8-3.pdf": 16,
+  "topic-8-4-8-5.pdf": 21,
+  "topic-8-6-8-11.pdf": 20,
+  "topic-9-1-9-7.pdf": 17,
+  "topic-9-8-9-11.pdf": 22,
+};
+
 // Candidate question-start pages extracted from PDF text for all 25 packets.
 // These are navigation aids, not answer-key mappings; verify the PDF page visually.
 const FRQ_PAGE_CANDIDATES: Record<string, Record<string, number>> = {
@@ -641,7 +670,9 @@ export function FrqWorkspace() {
 
   const packets = useMemo(() => FRQ_PACKETS.filter((packet) => packet.unit === Number(unit)), [unit]);
   const selected = FRQ_PACKETS.find((packet) => packet.file === selectedFile) ?? packets[0];
-  const pdfUrl = localPdfUrl ?? (selected ? `/frq/${selected.file}#page=${Math.max(1, Number(page) || 1)}&toolbar=1&navpanes=0` : "");
+  const maxPage = selected ? FRQ_PDF_PAGE_COUNTS[selected.file] ?? 1 : 1;
+  const boundedPage = Math.min(maxPage, Math.max(1, Number(page) || 1));
+  const pdfUrl = localPdfUrl ?? (selected ? `/frq/${selected.file}#page=${boundedPage}&toolbar=1&navpanes=0` : "");
   const normalizedPart = partLabel.trim().toLowerCase().match(/[a-h]/)?.[0] ?? "";
   const localPacketMatches = !localPdfUrl || localPdfName === selected?.file;
   const activeSolution = selected && localPacketMatches
@@ -723,9 +754,9 @@ export function FrqWorkspace() {
           <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border p-4">
             <p className="text-xs leading-5 text-ink-dim">Page jump works with browsers that support the PDF viewer fragment. It may not work in every embedded PDF viewer.</p>
             <label className="flex items-center gap-2 text-sm font-semibold">Go to page
-              <input type="number" min="1" value={page} onChange={(e) => setPage(e.target.value)} className="w-20 rounded-lg border border-border bg-card px-3 py-2 text-ink" />
+              <input type="number" min="1" max={maxPage} value={page} onChange={(e) => setPage(e.target.value)} onBlur={() => setPage(String(Math.min(maxPage, Math.max(1, Number(page) || 1))))} aria-label={`PDF page, 1 through ${maxPage}`} className="w-20 rounded-lg border border-border bg-card px-3 py-2 text-ink" />
             </label>
-            <button type="button" onClick={() => { const url = localPdfUrl ?? (selected ? `/frq/${selected.file}` : ""); if (url) window.open(url + `#page=${Math.max(1, Number(page) || 1)}&toolbar=1`, "_blank", "noopener,noreferrer"); }} className="rounded-lg border border-border px-3 py-2 text-sm font-semibold hover:border-accent/50">Jump in new tab</button>
+            <button type="button" onClick={() => { const url = localPdfUrl ?? (selected ? `/frq/${selected.file}` : ""); if (url) window.open(url + `#page=${boundedPage}&toolbar=1`, "_blank", "noopener,noreferrer"); }} className="rounded-lg border border-border px-3 py-2 text-sm font-semibold hover:border-accent/50">Jump in new tab</button>
           </div>
         </section>
 
@@ -778,7 +809,7 @@ export function FrqWorkspace() {
               <button type="button" onClick={() => setHelpLevel((level) => Math.min(3, level + 1))} disabled={helpLevel >= 3} className="rounded-lg bg-accent px-4 py-2.5 text-sm font-bold text-[#06251b] disabled:cursor-not-allowed disabled:opacity-50">{helpLevel === 0 ? "Reveal first hint" : helpLevel === 1 ? "Reveal next hint" : helpLevel === 2 ? "Show final check" : "All hints shown"}</button>
               <button type="button" onClick={() => setHelpLevel(0)} className="rounded-lg border border-border px-3 py-2.5 text-sm font-semibold">Reset hints</button>
             </div>
-            <p className="mt-3 text-xs leading-5 text-ink-dim">No worked solution is shown because the printed prompt has not been verified against an answer or scoring guide. Use the <a href={`/units/${unit}/review`} className="font-semibold text-accent underline underline-offset-2">Unit {unit} review</a> for related chemistry review.</p>
+            {!activeSolution && <p className="mt-3 text-xs leading-5 text-ink-dim">No question-specific worked solution is available for this selection yet. Use the <a href={`/units/${unit}/review`} className="font-semibold text-accent underline underline-offset-2">Unit {unit} review</a> for related chemistry review.</p>}
           </section>
           <section className="rounded-2xl border border-border bg-card/60 p-5">
             <div className="flex items-start justify-between gap-3">
