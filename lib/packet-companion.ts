@@ -140,8 +140,38 @@ const QUESTION_TOPIC_OVERRIDES: Record<string, Record<number, string>> = {
   "topics-5-4-5-11-mcq": { 2: "5.4", 3: "5.5", 10: "5.11" },
 };
 
-const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "conceptHint" | "strategyHint" | "nextStepHint" | "solution">>> = {  "topics-1-1-1-3-mcq": {
+const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "conceptHint" | "strategyHint" | "nextStepHint" | "solution">>> = {
+  "topics-1-4-1-6-mcq": {
+    1: { solution: "Answer: A (27%). The AgCl precipitate has mass 0.72 g, so n(AgCl) = 0.72 g ÷ 143 g mol⁻¹ = 0.00503 mol. Ag⁺ and Cl⁻ form AgCl in a 1:1 ratio, so the alloy contained 0.00503 mol Ag, or 0.543 g Ag. Percent Ag = (0.543 g ÷ 2.00 g) × 100% = 27.2%, which rounds to 27%." },
+    2: { solution: "Answer: C (KCN). The impurity must contain a larger mass fraction of potassium than K₂SO₄ does. KCN is about 60% K by mass: 39.1 ÷ (39.1 + 12.0 + 14.0) × 100%. KBr, KI, and KMnO₄ all have lower potassium mass fractions, so they would lower rather than raise the sample's potassium percentage." },
+    3: { solution: "Answer: B (30.5%). The lithium mass fraction in LiCl is 6.94 ÷ (6.94 + 35.45) = 0.1637. If the mixture is 5.00% Li by mass, the LiCl fraction is 0.0500 ÷ 0.1637 = 0.305, or 30.5%." },
+    4: { solution: "Answer: B. Tin has 50 electrons. Starting from krypton (36 electrons), the remaining 14 are 4d¹⁰5s²5p², giving [Kr] 4d¹⁰ 5s² 5p². The 4d sublevel is filled before the 5p electrons are added." },
+    5: { solution: "Answer: C. Sulfur is 3p⁴ and has two unpaired p electrons; Mg has no unpaired electrons in its filled 3s² sublevel. Cobalt has [Ar] 3d⁷4s², with three unpaired 3d electrons under Hund's rule. Titanium has 3d² and two unpaired d electrons, not four." },
+    6: { solution: "Answer: D. Neutral Mn is [Ar] 3d⁵4s². When forming a cation, electrons are removed from 4s before 3d: remove two 4s electrons and one 3d electron to form Mn³⁺ = [Ar] 3d⁴." },
+    7: { solution: "Answer: A. The 1s electrons in Li and Be experience stronger attraction to the nucleus than in He because the nuclear charge increases from +2 to +3 to +4. Their binding energies therefore rise, with Li at 6.26 MJ mol⁻¹ and Be at 11.5 MJ mol⁻¹. The correct justification is the larger nuclear charge of Be than Li." },
+    8: { conceptHint: "For isoelectronic species, compare nuclear charge: more protons attract the same electron count more strongly.", strategyHint: "The 1s electrons in Ca²⁺ and Ar have the same electron configuration, but Ca²⁺ has 20 protons while Ar has 18.", nextStepHint: "The Ca²⁺ 1s electrons are more tightly bound, so the correct peak is the one at higher binding energy; the diagram is needed to identify whether that is labeled X." },
+    9: { conceptHint: "A complete photoelectron spectrum identifies subshells from peak positions and relative peak areas.", strategyHint: "Compare the number of occupied subshells and the relative electron counts represented by the peaks.", nextStepHint: "The choices Li, B, C, and N differ in 1s and 2s/2p electron counts; the spectrum image is required to identify the element without guessing." }
+  },
+  "topics-1-7-1-8-mcq": {
+    1: { solution: "Answer: B (242 pm, 419 kJ mol⁻¹). Potassium is directly above calcium in Group 1 and lies one column to the left. K has a larger atomic radius than Ca and a lower first ionization energy, so the plausible values are 242 pm and 419 kJ mol⁻¹." },
+    2: { solution: "Answer: D. Ar has a higher first ionization energy than Cl because its valence electrons experience a greater effective nuclear charge across the same period. Both are in Period 3, and the increasing nuclear charge pulls the electrons closer; the filled-shell statement is not the best explanation for the trend." },
+    3: { solution: "Answer: C. Br is below Cl in Group 17, so Br has one additional occupied electron shell. Its valence electrons are farther from the nucleus and more shielded, giving Br a larger atomic radius than Cl." },
+    4: { solution: "Answer: C. Nitrogen has a half-filled 2p³ arrangement, while oxygen is 2p⁴ and has one pair of electrons in a 2p orbital. Repulsion between paired electrons makes it slightly easier to remove one electron from O than the smooth across-period trend would predict, so O's first ionization energy is lower than N's." },
+    5: { solution: "Answer: B. The large jump is between the third and fourth ionization energies, showing that three electrons are removed relatively easily before a core electron must be removed. The element therefore has three valence electrons; in the second period, that element is boron." },
+    6: { solution: "Answer: A (XO). The large increase from the second to the third ionization energy shows that X has two valence electrons. X therefore most commonly forms X²⁺; oxide is O²⁻, so the simplest neutral oxide formula is XO." },
+    7: { solution: "Answer: A. Potassium reacts more vigorously because its first ionization energy is lower than calcium's, so K loses a valence electron more readily. The stronger hydration attraction of Ca²⁺ is not the explanation for the faster reaction of K." },
+    8: { solution: "Answer: B (BaCl₂). Barium and calcium are both Group 2 metals and form +2 ions. Their chlorides are ionic salts with similar stoichiometry and chemical behavior; SCl₂, BCl₃, and CCl₄ are molecular covalent compounds." },
+    9: { solution: "Answer: C (MgCl₂ and MgBr₂). These compounds contain the same cation, Mg²⁺, and halide anions from the same group. Their ions have the same charges and analogous structures, so their chemical properties are most similar." }
+  },
+  "topics-2-1-2-4-mcq": {
+    1: { solution: "Answer: B (SCl₂, CdCl₂, BaCl₂). SCl₂ is molecular covalent and has the least ionic character. CdCl₂ is ionic but Cd²⁺ polarizes the chloride ions more strongly than Ba²⁺ does. BaCl₂ has the greatest ionic character because Ba²⁺ is large and less polarizing, so its bonding is more nearly ionic." },
+    2: { solution: "Answer: D (Se–Br < Se–Cl < Se–F). Bond polarity increases with electronegativity difference. Selenium's electronegativity differs least from bromine, more from chlorine, and most from fluorine, giving the listed order." },
+    3: { solution: "Answer: C (Mg²⁺ and O²⁻). Coulombic attraction increases with the product of ionic charges and decreases as the distance between ion centers increases. The 2+ and 2− charges give a much larger charge product than the singly charged pairs, and Mg²⁺ is smaller than Ca²⁺, so Mg²⁺–O²⁻ has the strongest attraction and the greatest separation energy." },
+    6: { solution: "Answer: B. Br⁻ has a larger ionic radius than Cl⁻, increasing the distance between Na⁺ and the anion. The weaker Coulombic attraction means less energy is required to separate NaBr into gaseous ions than NaCl, so NaBr's lattice energy is below 788 kJ mol⁻¹." }
+  },
+  "topics-1-1-1-3-mcq": {
     1: {
+      solution: "Answer: B (MgO). Each sample has a mass of 1.00 g, so compare the oxygen mass fraction in each oxide. For MgO, the fraction is 16.00 ÷ (24.31 + 16.00) = 0.397; for Na₂O it is 16.00 ÷ 61.98 = 0.258, for K₂O it is 16.00 ÷ 94.20 = 0.170, and for CaO it is 16.00 ÷ 56.08 = 0.285. MgO therefore contains the greatest mass of oxygen per gram.",
       conceptHint: "Mass percent depends on the fraction of each formula unit's mass contributed by the element, not just the number of atoms in the formula.",
       strategyHint: "Calculate each oxide's molar mass and the oxygen mass contained in one mole of that oxide.",
       nextStepHint: "Compare (mass of oxygen in one mole of oxide) ÷ (molar mass of oxide). Each sample is 1.00 g, so the greatest oxygen mass corresponds to the greatest oxygen mass fraction.",
@@ -158,6 +188,7 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
       solution: "The mole amounts are approximately 1.00 mol C, 2.98 mol H, and 0.500 mol O. Dividing by the smallest amount gives a ratio near 2:6:1, so the empirical formula is C₂H₆O.",
     },
     4: {
+      solution: "Answer: C. Iodine has one naturally occurring isotope, iodine-127, which has 74 neutrons (127 − 53 = 74). Tellurium has several naturally occurring isotopes. A mass spectrum showing multiple isotope peaks is therefore consistent with pure Te even though iodine and tellurium have similar average atomic masses.",
       conceptHint: "Elements can have similar average atomic masses while having different isotope patterns.",
       strategyHint: "Compare the mass spectrum's peak positions and relative abundances with the isotope patterns expected for the candidate elements.",
       nextStepHint: "Base the conclusion on the observed isotope pattern, not on the average mass alone.",
@@ -179,6 +210,7 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
       solution: "Complete combustion of CₓHᵧ produces x moles of CO₂ and y/2 moles of H₂O per mole of hydrocarbon. Equal product amounts require x = y/2, or H:C = 2:1. Choose a molecular formula consistent with that ratio.",
     },
     8: {
+      solution: "Answer: A. Moisture absorbed by the anhydrous salt before its final mass is recorded makes that final mass too high. The measured mass loss then appears smaller than the actual water originally present, so the calculated percent water is too low (38% instead of 51%). Spattering or decomposition would generally create extra mass loss and overestimate the water percentage.",
       conceptHint: "In a hydrate experiment, the percentage of water is inferred from the mass lost during heating.",
       strategyHint: "Compare the reported water loss with the true amount: a result that is too low means the measured mass loss was too small relative to the original sample.",
       nextStepHint: "Look for a procedural error that leaves water in the solid or otherwise prevents the full expected water mass from being measured as lost.",
