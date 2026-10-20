@@ -47,7 +47,7 @@ export function UnitReviewStudySession({ unitId, review }: Props) {
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent">Your 60-minute review</p>
             <h2 className="mt-2 text-2xl font-bold tracking-tight">Learn it. Retrieve it. Prove it.</h2>
-            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-dim">This is a guided study session, not another lesson. Work on paper, use the checks to find gaps, then revisit only the lesson that fixes them.</p>
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-dim">This is a guided study session, not another lesson. Work on paper, use the worked examples and decision rules to close gaps, then redo missed problems from a blank page.</p>
           </div>
           <div className="w-full shrink-0 sm:max-w-48">
             <div className="flex items-center justify-between text-xs text-ink-dim"><span>Session progress</span><span>{progress}%</span></div>
