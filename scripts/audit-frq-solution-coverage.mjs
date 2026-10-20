@@ -61,7 +61,12 @@ for (const packet of audit) {
       packetMissingQuestions.push(question);
     }
     for (const partKey of parts) {
-      if (!solutionKeys.has(partKey)) {
+      // Some packets subdivide a lettered part into roman-numeral subparts (a(i), a(ii)).
+      // The PDF heading extractor currently records the parent letter only. Treat the
+      // parent as represented when a parent solution or at least one nested solution exists;
+      // report nested-key completeness separately as a limitation rather than a false gap.
+      const hasNestedSolution = [...solutionKeys].some((key) => key.startsWith(`${partKey}(`));
+      if (!solutionKeys.has(partKey) && !hasNestedSolution) {
         const label = `${packet.file} Q${partKey.replace(":", "(")})`;
         missingParts.push(label);
         packetMissingParts.push(partKey.replace(":", "(") + ")");
@@ -69,8 +74,17 @@ for (const packet of audit) {
     }
   }
   for (const key of solutionKeys) {
-    const question = key.split(":")[0];
-    if (!detectedQuestions.has(question)) untrackedSolutions.push(`${packet.file} Q${key}`);
+    const [question, part] = key.split(":");
+    if (!detectedQuestions.has(question)) {
+      untrackedSolutions.push(`${packet.file} Q${key}`);
+      continue;
+    }
+    if (part) {
+      const parentPart = part.match(/^([a-h])/i)?.[1]?.toLowerCase();
+      if (parentPart && !detectedParts.has(`${question}:${parentPart}`)) {
+        untrackedSolutions.push(`${packet.file} Q${key} (no extracted heading for part ${parentPart})`);
+      }
+    }
   }
   packetRows.push(`| ${packet.file} | ${detectedQuestions.size} | ${detectedParts.size} | ${packetMissingQuestions.length} | ${packetMissingParts.length} |`);
 }
