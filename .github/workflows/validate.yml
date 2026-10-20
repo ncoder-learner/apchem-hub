@@ -33,12 +33,15 @@ jobs:
           sudo apt-get install -y poppler-utils
           node scripts/audit-frq-pdf-pages.mjs
           node scripts/validate-frq-page-candidates.mjs
+          node scripts/audit-mcq-pdf-pages.mjs
 
-      - name: Upload FRQ page audit
+      - name: Upload PDF page audits
         uses: actions/upload-artifact@v4
         with:
-          name: frq-page-audit
-          path: frq-audit-output/
+          name: packet-page-audits
+          path: |
+            frq-audit-output/
+            mcq-audit-output/
           if-no-files-found: error
           retention-days: 7
 
