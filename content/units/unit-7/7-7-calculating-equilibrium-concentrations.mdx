@@ -34,7 +34,7 @@ An algebraic solution gives x = 1.20 M for a reactant that initially had only 0.
 
 </LessonSection>
 
-<LessonSection title="4. Solve a quadratic and test the small-change approximation" description="An algebraic answer is only valid if the chemistry permits it">
+<LessonSection title="3. Solve a quadratic and test the small-change approximation" description="An algebraic answer is only valid if the chemistry permits it">
 
 Consider `A(g) ⇌ 2B(g)` with `[A]₀ = 0.500 M`, `[B]₀ = 0`, and `Kc = 0.200`. Let x M of A react. The equilibrium concentrations are `[A] = 0.500 − x` and `[B] = 2x`, so:
 
@@ -52,6 +52,22 @@ If you approximate `0.500 − x ≈ 0.500`, then `0.200 ≈ 4x²/0.500`, giving 
 
 </LessonSection>
 
+
+<LessonSection title="4. Start an ICE table when products are already present" description="Choose the sign of x from Q versus K before writing changes">
+
+When both reactants and products are present initially, do not automatically assume the reaction proceeds forward. Calculate Q first. For `A(g) ⇌ 2B(g)`, if `[A]₀ = 0.200 M`, `[B]₀ = 0.300 M`, and `Kc = 1.00`, then `Q = (0.300)²/0.200 = 0.450`. Because Q < K, the net reaction proceeds right, so A decreases by x and B increases by 2x.
+
+If instead the initial mixture had `[A]₀ = 0.200 M` and `[B]₀ = 0.800 M`, then `Q = (0.800)²/0.200 = 3.20 > K`. The reaction proceeds left. You can define x as the reverse change: A increases by x and B decreases by 2x. The algebra is valid either way, but the direction determines the signs in the change row.
+
+<WorkedExample title="Worked example: use Q to choose the ICE signs">
+
+For `A ⇌ 2B` with `Kc = 1.00`, `[A]₀ = 0.200 M`, and `[B]₀ = 0.800 M`, use `Q = 3.20` to predict a shift left. The ICE row is therefore `+x` for A and `−2x` for B, giving `[A]eq = 0.200 + x` and `[B]eq = 0.800 − 2x`. The physically allowed range is `0 ≤ x ≤ 0.400 M`; any root outside this interval would imply a negative concentration.
+
+</WorkedExample>
+
+<QuickCheck question="For A(g) ⇌ 2B(g), Kc = 0.50, [A]₀ = 0.10 M, and [B]₀ = 0.50 M. Which change row matches the initial net direction?" options={["A: −x; B: +2x","A: +x; B: −2x","A: −2x; B: +x","No changes because both species are present"]} correctIndex={1} explanation="Q = (0.50)²/0.10 = 2.5, which is greater than Kc = 0.50. The reaction proceeds left, so A increases and B decreases."} />
+
+</LessonSection>
 ## Readiness check
 
 Write the ICE rows from stoichiometry, solve the K expression, reject impossible roots, and verify the concentrations satisfy K.
