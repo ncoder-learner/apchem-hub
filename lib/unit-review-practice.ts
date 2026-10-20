@@ -132,7 +132,7 @@ export const UNIT_REVIEW_PRACTICE: Record<number, UnitReviewPractice> = {
           { label: "c", prompt: "The reactant energy is 18 kJ·mol⁻¹ and the first transition state is 74 kJ·mol⁻¹. Calculate the first-step forward activation energy.", scoringGuidance: ["Use transition-state energy minus reactant energy.", "Calculate 74 − 18.", "Report 56 kJ·mol⁻¹."] },
           { label: "d", prompt: "Explain what a catalyst changes and identify one quantity it does not change at constant temperature.", scoringGuidance: ["Describe an alternative pathway with lower activation barrier(s).", "State that it accelerates forward and reverse reactions.", "State that it does not change K or the net ΔH at fixed temperature."] },
         ],
-      },,
+      },
       {
         title: "Integrated kinetics: infer a model and test its consequences",
         stimulus: "A decomposition of A(g) is monitored at constant temperature. The measured concentrations are: t = 0 s, [A] = 0.800 M; 40 s, 0.400 M; 80 s, 0.200 M; 120 s, 0.100 M. Assume the measurements are reliable and the reaction is not approaching a competing equilibrium.",
@@ -231,7 +231,7 @@ export const UNIT_REVIEW_PRACTICE: Record<number, UnitReviewPractice> = {
           { label: "c", prompt: "Find ΔH° for the reverse of the reaction in part (a).", scoringGuidance: ["Reverse the equation and change the sign.", "Report +566.0 kJ."] },
           { label: "d", prompt: "Explain why the enthalpy result does not reveal how quickly CO oxidizes.", scoringGuidance: ["Distinguish thermodynamic state-function change from kinetics.", "Identify activation energy/pathway as relevant to rate.", "Do not equate exothermicity with fast reaction."] },
         ],
-      },,
+      },
       {
         title: "Coffee-cup calorimetry with a non-negligible calorimeter",
         stimulus: "A student mixes 50.0 mL of 0.500 M HCl with 50.0 mL of 0.500 M NaOH in a coffee-cup calorimeter. Both solutions begin at 22.10°C and the final temperature is 25.40°C. Assume density = 1.00 g·mL⁻¹, specific heat = 4.184 J·g⁻¹·°C⁻¹, and calorimeter heat capacity Ccal = 35.0 J·°C⁻¹. The reaction is H⁺(aq) + OH⁻(aq) → H₂O(l).",
@@ -330,7 +330,7 @@ export const UNIT_REVIEW_PRACTICE: Record<number, UnitReviewPractice> = {
           { label: "c", prompt: "Explain whether the numerical value of Ksp changes after NaF is added.", scoringGuidance: ["State Ksp remains constant at fixed temperature.", "Distinguish a changed equilibrium composition from a changed equilibrium constant."] },
           { label: "d", prompt: "Predict the effect of adding strong acid to a solution containing carbonate ions and justify the trend in solubility for a carbonate solid.", scoringGuidance: ["Explain that H₃O⁺ protonates and removes CO₃²⁻ from the free-ion pool.", "Qsp falls below Ksp, favoring more dissolution.", "Avoid claiming pH changes Ksp at constant temperature."] },
         ],
-      },,
+      },
       {
         title: "Equilibrium calculation followed by compression",
         stimulus: "At a fixed temperature, A(g) ⇌ 2B(g) has Kc = 0.200. A vessel initially contains [A]₀ = 0.500 M and no B. The system reaches equilibrium in a rigid vessel before a second experiment is performed by compressing an equilibrium mixture to half its original volume at the same temperature.",
@@ -429,7 +429,7 @@ export const UNIT_REVIEW_PRACTICE: Record<number, UnitReviewPractice> = {
           { label: "c", prompt: "Explain why the pH at equivalence is greater than 7 at 25°C.", scoringGuidance: ["At equivalence, most HA has been converted to A⁻.", "A⁻ reacts with water to form HA and OH⁻.", "The produced OH⁻ makes the solution basic."] },
           { label: "d", prompt: "After 25.0 mL NaOH has been added, identify the species controlling pH and calculate the excess OH⁻ concentration.", scoringGuidance: ["Moles OH⁻ added = 0.0250 L×0.150 M = 0.00375 mol.", "Subtract 0.00300 mol acid to obtain 0.00075 mol excess OH⁻.", "Total volume = 55.0 mL; [OH⁻] = 0.00075/0.0550 = 0.0136 M."] },
         ],
-      },,
+      },
       {
         title: "Weak-acid titration across four chemical regimes",
         stimulus: "A student titrates 25.00 mL of 0.1000 M monoprotic weak acid HA (Ka = 1.8×10⁻⁵) with 0.1000 M NaOH at 25°C. Assume ideal dilute-solution behavior and additive volumes.",
