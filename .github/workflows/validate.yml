@@ -34,6 +34,12 @@ jobs:
           node scripts/audit-frq-pdf-pages.mjs
           node scripts/validate-frq-page-candidates.mjs
           node scripts/audit-mcq-pdf-pages.mjs
+          mkdir -p mcq-audit-output/rendered
+          for pdf in public/packets/*-mcq.pdf; do
+            [ -f "$pdf" ] || continue
+            name="$(basename "$pdf" .pdf)"
+            pdftoppm -jpeg -jpegopt quality=65 -scale-to 1200 "$pdf" "mcq-audit-output/rendered/$name-page"
+          done
 
       - name: Upload PDF page audits
         uses: actions/upload-artifact@v4
