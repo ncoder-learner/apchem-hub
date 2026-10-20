@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getUnitTopics } from "@/lib/content";
 import { getUnit } from "@/lib/units";
 import { UNIT_REVIEWS } from "@/lib/unit-reviews";
 import { UnitReviewStudySession } from "@/components/UnitReviewStudySession";
@@ -15,8 +14,6 @@ export default async function UnitReviewPage({ params }: PageProps) {
   const unit = getUnit(unitId);
   const review = UNIT_REVIEWS[unitId];
   if (!unit || !review) return notFound();
-
-  const topics = getUnitTopics(unitId);
 
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-4 py-6 sm:px-7 sm:py-10">
@@ -43,7 +40,7 @@ export default async function UnitReviewPage({ params }: PageProps) {
         </div>
       </header>
 
-      <UnitReviewStudySession unitId={unitId} topics={topics} review={review} />
+      <UnitReviewStudySession unitId={unitId} review={review} />
 
       <footer className="mt-9 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-5 text-sm">
         <Link href="/" className="text-ink-dim hover:text-accent">← All units</Link>
