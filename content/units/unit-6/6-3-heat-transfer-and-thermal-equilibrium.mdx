@@ -75,6 +75,22 @@ Solving gives `Tf ≈ 23.1°C`. The final temperature is much closer to the wate
 <QuickCheck question="Two objects exchange heat in an insulated container. Object X has a much larger total heat capacity than object Y. For the same magnitude of heat transfer, which temperature change has the greater magnitude?" options={["X's, because it contains more material","Y's, because ΔT = q/C and its heat capacity is smaller","They must be equal","Cannot be determined without the final temperature being 0°C"]} correctIndex={1} explanation="For a fixed heat magnitude, |ΔT| = |q|/C. The object with the smaller total heat capacity changes temperature more." />
 
 </LessonSection>
+
+<LessonSection title="6. Solve a two-object mixing problem using energy conservation" description="The heat lost by the warmer object equals the heat gained by the cooler object">
+
+For two objects in an insulated system, energy conservation gives qhot + qcold = 0. With no phase change and constant specific heats, this becomes mhot chot(Tf − Thot) + mcold ccold(Tf − Tcold) = 0. The signs come from the temperature changes: the warmer object has Tf below its initial temperature, while the cooler object has Tf above its initial temperature. Do not set the magnitudes equal until you have accounted for the masses and specific heats.
+
+<WorkedExample title="Worked example: hot metal in water">
+
+A 50.0 g metal sample with specific heat 0.400 J·g⁻¹·°C⁻¹ at 100.0°C is placed in 100.0 g water at 20.0°C. Assume the metal and water exchange heat only with each other and use cwater = 4.184 J·g⁻¹·°C⁻¹. Then 20.0( Tf − 100.0) + 418.4( Tf − 20.0) = 0. Combining terms gives 438.4Tf = 10,368, so Tf ≈ 23.6°C. The water's much larger total heat capacity makes the final temperature much closer to its starting temperature.
+
+</WorkedExample>
+
+A final temperature must lie between the initial temperatures if no phase change or external heating occurs. A result outside that interval usually indicates a sign, unit, or arithmetic error. If the calorimeter absorbs heat, add its heat term to the energy balance rather than silently assuming it is negligible.
+
+<QuickCheck question="Two objects at different initial temperatures are placed in an insulated container and reach one final temperature without phase changes. Which equation expresses energy conservation?" options={["qhot = qcold","qhot + qcold = 0","qhot − qcold = 1","Both objects must have the same mass"]} correctIndex={1} explanation="The total heat exchanged within the isolated two-object system sums to zero. The signs of qhot and qcold are opposite."} />
+
+</LessonSection>
 ## Readiness check
 
 Identify each object's sign of q, write the energy balance, and explain why the final temperature should lie between the initial temperatures in an insulated two-object setup.
