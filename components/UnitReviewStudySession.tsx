@@ -33,6 +33,8 @@ export function UnitReviewStudySession({ unitId, topics, review }: Props) {
   const [checkedAnswers, setCheckedAnswers] = useState<number[]>([]);
   const [readiness, setReadiness] = useState<string[]>([]);
   const [weakTopic, setWeakTopic] = useState("");
+  const [frqResponses, setFrqResponses] = useState<Record<string, string>>({});
+  const [revealedRubrics, setRevealedRubrics] = useState<string[]>([]);
 
   const score = useMemo(
     () => checkedAnswers.filter((index) => answers[index] === practice.questions[index]?.correctIndex).length,
@@ -170,6 +172,36 @@ export function UnitReviewStudySession({ unitId, topics, review }: Props) {
       {activeTab === "frq" && (
         <section className="space-y-5">
           <div><p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Practice the written response</p><h2 className="mt-2 text-2xl font-bold">An FRQ is a chain of evidence</h2><p className="mt-2 max-w-3xl text-sm leading-relaxed text-ink-dim">Choose a released question on the official AP Central page, answer one relevant part on paper without notes, then score it with the official scoring guideline. Released FRQs can combine multiple units; use the focus list below to select a relevant prompt rather than assuming each question belongs to only one unit.</p></div>
+          {practice.frqs && practice.frqs.length > 0 && (
+            <section className="space-y-5">
+              <div className="rounded-xl border border-accent/30 bg-accent-soft/10 p-4">
+                <p className="text-sm font-semibold">Original AP-style practice · {practice.frqs.length} multi-part questions</p>
+                <p className="mt-1 text-sm leading-relaxed text-ink-dim">These are original practice questions, not copied College Board questions. Work them on paper or draft below. Reveal the scoring guidance only after you attempt each part; the bullets describe the evidence a strong answer needs.</p>
+              </div>
+              {practice.frqs.map((frq, frqIndex) => (
+                <article key={frq.title} className="rounded-xl border border-border bg-card/35 p-5 sm:p-6">
+                  <p className="text-xs font-bold uppercase tracking-wide text-accent">FRQ {frqIndex + 1} · {frq.parts.length} parts</p>
+                  <h3 className="mt-2 text-xl font-semibold">{frq.title}</h3>
+                  <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-ink-dim">{frq.stimulus}</p>
+                  <div className="mt-5 space-y-5">
+                    {frq.parts.map((part) => {
+                      const responseKey = unitId + "-" + frqIndex + "-" + part.label;
+                      const rubricOpen = revealedRubrics.includes(responseKey);
+                      return (
+                        <section key={part.label} className="border-t border-border pt-4">
+                          <h4 className="font-semibold">{part.label}. {part.prompt}</h4>
+                          <label className="mt-3 block text-xs font-semibold uppercase tracking-wide text-ink-dim" htmlFor={"response-" + responseKey}>Your response / working</label>
+                          <textarea id={"response-" + responseKey} value={frqResponses[responseKey] ?? ""} onChange={(event) => setFrqResponses((current) => ({ ...current, [responseKey]: event.target.value }))} rows={3} placeholder="Show equations, calculations, units, or particle-level reasoning..." className="mt-2 w-full rounded-lg border border-border bg-bg px-3 py-3 text-sm leading-relaxed outline-none focus:border-accent" />
+                          <button type="button" onClick={() => setRevealedRubrics((current) => rubricOpen ? current.filter((key) => key !== responseKey) : [...current, responseKey])} className="mt-3 min-h-10 rounded-lg border border-border px-3 py-2 text-sm font-semibold hover:border-accent/50">{rubricOpen ? "Hide scoring guidance" : "Reveal scoring guidance"}</button>
+                          {rubricOpen && <div className="mt-3 rounded-lg border border-accent/25 bg-accent-soft/10 p-4"><p className="text-xs font-bold uppercase tracking-wide text-accent">Self-scoring checklist</p><ul className="mt-2 space-y-2">{part.scoringGuidance.map((point) => <li key={point} className="flex gap-2 text-sm leading-relaxed"><span className="text-accent">•</span><span>{point}</span></li>)}</ul></div>}
+                        </section>
+                      );
+                    })}
+                  </div>
+                </article>
+              ))}
+            </section>
+          )}
           <div className="grid gap-4 md:grid-cols-2">
             <a href="https://apcentral.collegeboard.org/courses/ap-chemistry/exam/past-exam-questions" target="_blank" rel="noreferrer" className="rounded-xl border border-accent/40 bg-accent-soft/15 p-5 transition hover:bg-accent-soft/25"><p className="text-xs font-bold uppercase tracking-wide text-accent">Official College Board resource</p><h3 className="mt-2 text-lg font-semibold">Released AP Chemistry FRQs</h3><p className="mt-2 text-sm leading-relaxed text-ink-dim">Question PDFs, scoring guidelines, and sample responses from recent exam years.</p><span className="mt-4 inline-flex text-sm font-bold text-accent">Open FRQ archive ↗</span></a>
             <a href="https://apcentral.collegeboard.org/courses/ap-chemistry/classroom-resources" target="_blank" rel="noreferrer" className="rounded-xl border border-border p-5 transition hover:border-accent/40"><p className="text-xs font-bold uppercase tracking-wide text-ink-dim">Teacher-assigned practice</p><h3 className="mt-2 text-lg font-semibold">AP Classroom question bank</h3><p className="mt-2 text-sm leading-relaxed text-ink-dim">Your teacher may assign secure, unit-specific MCQ and FRQ sets here. Access can require a class join code and sign-in.</p><span className="mt-4 inline-flex text-sm font-bold text-accent">Open AP Classroom info ↗</span></a>
