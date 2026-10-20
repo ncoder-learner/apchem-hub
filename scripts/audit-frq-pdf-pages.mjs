@@ -55,6 +55,9 @@ for (const file of files) {
       page: index + 1,
       candidates,
       partCandidates,
+      // Preserve the extracted page text in the artifact so reviewers can audit
+      // question-to-solution mappings instead of relying on short previews.
+      extractedText: text.trim(),
       preview: lines.filter((line) => line.trim()).slice(0, 5).join(" | ").slice(0, 500),
     };
   });
