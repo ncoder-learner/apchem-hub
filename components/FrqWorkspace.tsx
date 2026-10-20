@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type ChangeEvent } from "react";
+import { useMemo, useRef, useState, type ChangeEvent } from "react";
 import { FRQ_PART_PAGE_CANDIDATES } from "@/lib/frq-part-page-candidates";
 
 type FrqPacket = {
@@ -785,6 +785,7 @@ export function FrqWorkspace() {
   const [showFramework, setShowFramework] = useState(true);
   const [localPdfUrl, setLocalPdfUrl] = useState<string | null>(null);
   const [localPdfName, setLocalPdfName] = useState("");
+  const pdfSectionRef = useRef<HTMLElement | null>(null);
 
   const packets = useMemo(() => FRQ_PACKETS.filter((packet) => packet.unit === Number(unit)), [unit]);
   const selected = FRQ_PACKETS.find((packet) => packet.file === selectedFile) ?? packets[0];
@@ -852,29 +853,36 @@ export function FrqWorkspace() {
           <label className="text-sm font-semibold" htmlFor="frq-question-part">Lettered part (optional)
             <input id="frq-question-part" value={partLabel} onChange={(e) => { setPartLabel(e.target.value); setHelpLevel(0); }} placeholder="e.g. b(ii)" className="mt-2 min-h-11 w-full rounded-lg border border-border bg-card px-3 py-2 text-ink" />
           </label>
-          <button type="button" onClick={() => { if (localPdfUrl && localPdfName !== selected?.file) { setNavigationMessage("These page candidates belong to the selected hosted packet, not the different local PDF. Choose the matching packet or navigate the local PDF manually."); setHelpLevel(0); return; } const pages = selected ? FRQ_PAGE_CANDIDATES[selected.file] : undefined; const question = questionNumber.trim(); const part = partLabel.trim().toLowerCase().match(/^(?:part\s*)?\(?([a-h])/i)?.[1] ?? ""; const partPage = selected ? FRQ_PART_PAGE_CANDIDATES[selected.file]?.[question]?.[part] : undefined; const targetPage = partPage ?? pages?.[question]; if (targetPage) { setPage(String(targetPage)); setNavigationMessage(part && !partPage ? `Jumped to Q${question}'s candidate page ${targetPage}; no separate page candidate was found for part ${partLabel.trim()}. Confirm the printed part in the PDF.` : `Jumped to candidate page ${targetPage}. Confirm the printed question/part in the PDF.`); } else { setNavigationMessage("No question-start candidate was detected for this entry. Use the PDF page control to find it manually."); } setHelpLevel(0); }} className="min-h-11 rounded-lg bg-accent px-4 py-2 text-sm font-bold text-[#06251b]">Find question page</button>
+          <button type="button" onClick={() => { if (localPdfUrl && localPdfName !== selected?.file) { setNavigationMessage("These page candidates belong to the selected hosted packet, not the different local PDF. Choose the matching packet or navigate the local PDF manually."); setHelpLevel(0); return; } const pages = selected ? FRQ_PAGE_CANDIDATES[selected.file] : undefined; const question = questionNumber.trim(); const part = partLabel.trim().toLowerCase().match(/^(?:part\s*)?\(?([a-h])/i)?.[1] ?? ""; const partPage = selected ? FRQ_PART_PAGE_CANDIDATES[selected.file]?.[question]?.[part] : undefined; const targetPage = partPage ?? pages?.[question]; if (targetPage) { setPage(String(targetPage)); pdfSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }); setNavigationMessage(part && !partPage ? `Jumped to Q${question}'s candidate page ${targetPage}; no separate page candidate was found for part ${partLabel.trim()}. Confirm the printed part in the PDF.` : `Jumped to candidate page ${targetPage}. Confirm the printed question/part in the PDF.`); } else { setNavigationMessage("No question-start candidate was detected for this entry. Use the PDF page control to find it manually."); } setHelpLevel(0); }} className="min-h-11 rounded-lg bg-accent px-4 py-2 text-sm font-bold text-[#06251b]">Find question page</button>
           <p className="text-xs leading-5 text-ink-dim sm:col-span-3">Question and lettered-part page candidates are extracted from all 25 packets. If no part-specific candidate exists, the jump falls back to the question page. PDF text extraction can miss headings or capture continuation pages, so confirm the printed question and part before relying on a jump.</p>
           {navigationMessage && <p role="status" className="text-sm leading-5 text-ink-dim sm:col-span-3">{navigationMessage}</p>}
         </div>
       </section>
 
       <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1.5fr)_minmax(320px,0.8fr)]">
-        <section className="overflow-hidden rounded-2xl border border-border bg-card/40">
+        <section ref={pdfSectionRef} className="scroll-mt-4 overflow-hidden rounded-2xl border border-border bg-card/40">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border p-4 sm:px-5">
             <div><h3 className="font-semibold">Packet PDF</h3><p className="mt-1 text-xs text-ink-dim">{localPdfName ? `Using local copy: ${localPdfName}` : "Hosted packet · use the PDF toolbar to zoom, print, or download"}</p></div>
             <div className="flex flex-wrap items-center gap-2">
               <label className="cursor-pointer rounded-lg border border-border px-3 py-2 text-xs font-semibold hover:border-accent/50" htmlFor="frq-local-pdf">Open local PDF</label>
               <input id="frq-local-pdf" type="file" accept="application/pdf,.pdf" onChange={chooseLocalPdf} className="sr-only" />
-              <a href={localPdfUrl ?? (selected ? `/frq/${selected.file}` : "#")} target="_blank" rel="noreferrer" className="rounded-lg bg-accent px-3 py-2 text-xs font-bold text-[#06251b]">Open in new tab</a>
             </div>
           </div>
-          {pdfUrl ? <iframe key={pdfUrl.split("#")[0] + (localPdfUrl ?? "")} title="AP Chemistry FRQ packet PDF" src={pdfUrl} className="block h-[76vh] min-h-[620px] w-full bg-white" /> : <div className="flex min-h-[500px] items-center justify-center p-8 text-center text-sm text-ink-dim">Select a packet to open the PDF.</div>}
+          {pdfUrl ? <iframe key={pdfUrl} title="AP Chemistry FRQ packet PDF" src={pdfUrl} className="block h-[76vh] min-h-[620px] w-full bg-white" /> : <div className="flex min-h-[500px] items-center justify-center p-8 text-center text-sm text-ink-dim">Select a packet to open the PDF.</div>}
+          {activeSolution && <details className="border-t border-border bg-bg/70 p-4 sm:p-5">
+            <summary className="cursor-pointer text-sm font-bold text-accent">Show worked steps for Q{questionNumber.trim()}{partLabel.trim() ? ` · ${partLabel.trim()}` : ""} beside the PDF</summary>
+            <div className="mt-3 rounded-xl border border-border bg-card/70 p-4">
+              <p className="text-sm font-semibold text-ink">{activeSolution.prompt}</p>
+              <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm leading-6 text-ink-dim">{activeSolution.steps.map((step) => <li key={step}>{step}</li>)}</ol>
+              <p className="mt-3 rounded-lg border border-accent/25 bg-accent-soft/10 p-3 text-sm font-bold text-ink">Final answer: {activeSolution.answer}</p>
+              <p className="mt-2 text-xs leading-5 text-ink-dim">Scoring-focused structure: show the equation or chemical principle, include substitutions and units where relevant, explain the reasoning, and state the answer with appropriate precision. Original study solution, not an official scoring guide.</p>
+            </div>
+          </details>}
           <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border p-4">
             <p className="text-xs leading-5 text-ink-dim">Page jump works with browsers that support the PDF viewer fragment. It may not work in every embedded PDF viewer.</p>
             <label className="flex items-center gap-2 text-sm font-semibold">Go to page
               <input type="number" min="1" max={maxPage} value={page} onChange={(e) => setPage(e.target.value)} onBlur={() => setPage(String(Math.min(maxPage, Math.max(1, Number(page) || 1))))} aria-label={`PDF page, 1 through ${maxPage}`} className="w-20 rounded-lg border border-border bg-card px-3 py-2 text-ink" />
             </label>
-            <button type="button" onClick={() => { const url = localPdfUrl ?? (selected ? `/frq/${selected.file}` : ""); if (url) window.open(url + `#page=${boundedPage}&toolbar=1`, "_blank", "noopener,noreferrer"); }} className="rounded-lg border border-border px-3 py-2 text-sm font-semibold hover:border-accent/50">Jump in new tab</button>
           </div>
         </section>
 
