@@ -390,7 +390,7 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
       conceptHint: "An empirical formula gives the simplest whole-number ratio of atoms.",
       strategyHint: "Convert each element's mass to moles using its molar mass, then divide all mole amounts by the smallest.",
       nextStepHint: "If the ratios are not close to whole numbers, multiply every ratio by the same small integer until the simplest whole-number ratio is obtained.",
-      solution: "The mole amounts are approximately 1.00 mol C, 2.98 mol H, and 0.500 mol O. Dividing by the smallest amount gives a ratio near 2:6:1, so the empirical formula is C₂H₆O.",
+      solution: "Answer: C (C₂H₆O). The mole amounts are approximately 1.00 mol C, 2.98 mol H, and 0.500 mol O. Dividing by the smallest amount gives a ratio near 2:6:1, so the empirical formula is C₂H₆O.",
     },
     4: {
       solution: "Answer: C. Iodine has one naturally occurring isotope, iodine-127, which has 74 neutrons (127 − 53 = 74). Tellurium has several naturally occurring isotopes. A mass spectrum showing multiple isotope peaks is therefore consistent with pure Te even though iodine and tellurium have similar average atomic masses.",
@@ -414,7 +414,7 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
       conceptHint: "Combustion converts each carbon atom to CO₂ and each pair of hydrogen atoms to one H₂O molecule.",
       strategyHint: "Let the hydrocarbon formula be CₓHᵧ. Compare the mole relationship between CO₂ and H₂O to relate x and y.",
       nextStepHint: "Equimolar CO₂ and H₂O means x = y/2, so the simplest carbon-to-hydrogen ratio must satisfy y = 2x.",
-      solution: "Complete combustion of CₓHᵧ produces x moles of CO₂ and y/2 moles of H₂O per mole of hydrocarbon. Equal product amounts require x = y/2, or H:C = 2:1. Choose a molecular formula consistent with that ratio.",
+      solution: "Answer: C (C₄H₈). Complete combustion of CₓHᵧ produces x moles of CO₂ and y/2 moles of H₂O per mole of hydrocarbon. Equal product amounts require x = y/2, or H:C = 2:1. C₄H₈ is the listed formula with that ratio.",
     },
     8: {
       solution: "Answer: A. Moisture absorbed by the anhydrous salt before its final mass is recorded makes that final mass too high. The measured mass loss then appears smaller than the actual water originally present, so the calculated percent water is too low (38% instead of 51%). Spattering or decomposition would generally create extra mass loss and overestimate the water percentage.",
@@ -449,7 +449,7 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
       conceptHint: "Resonance means electrons are delocalized across multiple valid Lewis contributors; the real molecule is not rapidly switching between separate structures.",
       strategyHint: "Draw the important resonance contributors for ozone, then compare what each predicts for the two O–O bonds.",
       nextStepHint: "Equivalent bonds in the resonance hybrid have the same intermediate bond order rather than one permanent single bond and one permanent double bond.",
-      solution: "The two important resonance contributors place the O=O double bond on opposite sides of ozone. Because the actual molecule is a resonance hybrid, the two O–O bonds are equivalent, with an average bond order of 1.5.",
+      solution: "Answer: D. The two important resonance contributors place the O=O double bond on opposite sides of ozone. Because the actual molecule is a resonance hybrid, the two O–O bonds are equivalent, with an average bond order of 1.5.",
     },
     6: {
       conceptHint: "Equal bond lengths can be evidence that resonance makes two bonds equivalent in the actual structure.",
@@ -466,13 +466,13 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
       conceptHint: "Molecular polarity depends on both bond dipoles and the three-dimensional molecular geometry.",
       strategyHint: "Determine the shape of BF₃ and NF₃ separately, then consider whether the individual B–F or N–F bond dipoles cancel as vectors.",
       nextStepHint: "A symmetric trigonal-planar arrangement can cancel equal bond dipoles; a trigonal-pyramidal arrangement does not cancel them completely.",
-      solution: "BF₃ is trigonal planar, so its three equivalent B–F bond dipoles cancel by symmetry. NF₃ is trigonal pyramidal because nitrogen has a lone pair; its N–F bond dipoles do not cancel, leaving a net molecular dipole.",
+      solution: "Answer: D. BF₃ is trigonal planar, so its three equivalent B–F bond dipoles cancel by symmetry. NF₃ is trigonal pyramidal because nitrogen has a lone pair; its N–F bond dipoles do not cancel, leaving a net molecular dipole.",
     },
     9: {
       conceptHint: "Use VSEPR to determine molecular geometry before deciding whether the bond dipoles cancel.",
       strategyHint: "Count the central chlorine's electron domains, including lone pairs, and then identify the positions occupied by the three fluorine atoms.",
       nextStepHint: "Three bonds and two lone pairs give five electron domains; the molecular shape is T-shaped, so the bond dipoles do not fully cancel.",
-      solution: "Chlorine has five electron domains in ClF₃: three bonding pairs and two lone pairs. The lone pairs occupy equatorial positions, leaving a T-shaped molecule. Its bond dipoles do not cancel, so ClF₃ is polar.",
+      solution: "Answer: A. Chlorine has five electron domains in ClF₃: three bonding pairs and two lone pairs. The lone pairs occupy equatorial positions, leaving a T-shaped molecule. Its bond dipoles do not cancel, so ClF₃ is polar.",
     },
     10: {
       conceptHint: "Hybridization labels are assigned from the local bonding arrangement in each structure, not from the atom's identity alone.",
