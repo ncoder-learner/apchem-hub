@@ -480,6 +480,7 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
   },
   "topics-5-1-5-3-mcq": {
     1: {
+      solution: "Answer: C. The two Mg samples have equal mass, but the particle representation in Figure 2 exposes more Mg surface to the acid. Greater exposed surface area creates more opportunities for effective collisions per unit time, so Figure 2 reacts faster initially.",
       conceptHint: "For a reaction involving a solid, the exposed surface area can affect how often dissolved reactant particles reach reactive sites.",
       strategyHint: "Compare the amount of magnesium and acid first, then compare how much magnesium surface is exposed in the particle models.",
       nextStepHint: "The sample with more exposed reactive surface should have the faster initial rate, assuming other conditions are the same.",
@@ -515,11 +516,13 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
       solution: "Doubling [X] at constant [Y] multiplies rate by 4, so the reaction is second order in X. Doubling [Y] at constant [X] multiplies rate by 2, so it is first order in Y. The rate law is k[X]²[Y], third order overall.",
     },
     7: {
+      solution: "Answer: C. Comparing experiments 1 and 2, [XY] doubles while [A₂] is constant, and the rate doubles, so the reaction is first order in XY. Comparing experiments 2 and 3, [A₂] increases fourfold while [XY] is constant, and the rate increases from 5.0 × 10⁻⁴ to 8.0 × 10⁻³ M s⁻¹ (16-fold), so the reaction is second order in A₂. The rate law is rate = k[XY][A₂]².",
       conceptHint: "Use initial-rate comparisons to determine how the rate depends on each reactant concentration.",
       strategyHint: "Identify pairs of experiments where only one starting concentration changes, then compare the rate ratio.",
       nextStepHint: "For each reactant, solve the exponent that makes its concentration ratio predict the observed rate ratio; combine the exponents for the overall order.",
     },
     8: {
+      solution: "Answer: A (zero order). The concentration falls by 0.040 M every 100 s: 0.20→0.16→0.12→0.08 M. A constant absolute concentration change per equal time interval gives a linear [XY]-versus-time relationship, characteristic of zero-order kinetics (rate = k).",
       conceptHint: "A catalyst provides an alternative pathway and can change the rate without being consumed in the overall reaction.",
       strategyHint: "Read the concentration-time data for the catalyzed decomposition and separate the observed concentration pattern from the catalyst's role.",
       nextStepHint: "Use the requested evidence—such as rate changes or a transformed concentration plot—rather than assuming the catalyst changes the reaction's equilibrium or overall stoichiometry.",
@@ -531,6 +534,7 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
       nextStepHint: "Check which candidate predicts the observed proportionality across the full data set, not just one point.",
     },
     10: {
+      solution: "Answer: A (first order, k = 0.012 s⁻¹). The ln[Q] values decrease by about 0.30 every 25 s, so ln[Q] versus time is approximately linear. For a first-order reaction, slope = −k; k ≈ 0.30/25 s = 0.012 s⁻¹.",
       conceptHint: "Concentration-time data can be tested against integrated rate-law relationships to identify reaction order.",
       strategyHint: "Compare [Q], ln[Q], and 1/[Q] against time, or inspect whether the data show a constant half-life.",
       nextStepHint: "Once the order is identified, use the matching integrated equation and keep the time unit consistent when reporting k.",
