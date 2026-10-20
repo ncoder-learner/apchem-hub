@@ -86,25 +86,27 @@ For further reference, see [OpenStax Chemistry 2e: Rate Laws](https://openstax.o
 
 </LessonSection>
 
-<LessonSection title="5. Derive reaction orders from controlled experiments" description="Treat the table as evidence, not as a pattern-matching puzzle">
+<LessonSection title="5. Test whether one rate law explains every trial" description="A proposed rate law must predict all the data, not just the pair used to derive it">
 
-A rate law rate = k[A]^m[B]^n is an empirical relationship: the exponents must be determined from experimental data unless the reaction is known to be a single elementary step. To find m, compare two trials where [B] is constant. If [A] doubles and the rate doubles, 2^m = 2, so m = 1. If [A] doubles and the rate quadruples, 2^m = 4, so m = 2. If the rate is unchanged, m = 0.
+Consider these initial-rate data at one temperature:
 
-| Change in concentration | Rate factor | Inferred order |
-|---|---:|---:|
-| Concentration doubles | 1 | 0 |
-| Concentration doubles | 2 | 1 |
-| Concentration doubles | 4 | 2 |
-| Concentration triples | 9 | 2 |
+| Trial | [A] (M) | [B] (M) | Initial rate (M·s⁻¹) |
+|---|---:|---:|---:|
+| 1 | 0.100 | 0.100 | 2.00×10⁻³ |
+| 2 | 0.200 | 0.100 | 8.00×10⁻³ |
+| 3 | 0.200 | 0.300 | 2.40×10⁻² |
 
-<WorkedExample title="Worked example: find the full rate law">
-When [A] doubles at fixed [B], rate rises by a factor of 4. When [B] triples at fixed [A], rate rises by a factor of 3. Therefore m = 2, n = 1, and rate = k[A]^2[B]. The overall order is 3. If one trial has rate 0.024 M·s⁻¹, [A] = 0.20 M, and [B] = 0.10 M, then k = 0.024 / [(0.20)^2(0.10)] = 6.0 M⁻2s⁻1. Check the units from the rate law, not from memory.
+Comparing Trials 1 and 2 holds [B] constant. Doubling [A] quadruples the rate, so the order in A is 2. Comparing Trials 2 and 3 holds [A] constant. Tripling [B] triples the rate, so the order in B is 1. The candidate law is therefore rate = k[A]²[B].
+
+Calculate k independently from all three trials. Trial 1 gives k = (2.00×10⁻³)/[(0.100)²(0.100)] = 2.00 M⁻²·s⁻¹. Trial 2 and Trial 3 give the same value. This agreement is an important model check: a rate law should explain every trial within experimental uncertainty.
+
+<WorkedExample title="Worked example: diagnose an inconsistent trial">
+
+If a fourth trial with [A] = 0.100 M and [B] = 0.200 M reports a rate of 6.00×10⁻³ M·s⁻¹, the proposed law predicts (2.00)(0.100)²(0.200) = 4.00×10⁻³ M·s⁻¹. The discrepancy is too large to ignore automatically. Recheck the measurement, units, temperature control, and whether the same reaction conditions applied before changing the rate law.
 
 </WorkedExample>
 
-A common trap is comparing trials where more than one concentration changes. The observed rate factor then combines multiple effects, so you cannot assign an order to one reactant without isolating its change.
-
-<QuickCheck question="At fixed [B], tripling [A] changes the rate from 0.010 to 0.090 M·s⁻¹. What is the order in A?" options={["Zero","First","Second","Third"]} correctIndex={2} explanation="The rate factor is 9 while the concentration factor is 3. Since 3^m = 9, m = 2." />
+<QuickCheck question="A proposed rate law gives the same k from three trials but a value four times larger from a fourth trial with controlled conditions. What is the strongest conclusion?" options={["The reaction order must equal the balanced coefficients","The fourth result or the proposed model needs investigation","The rate constant changes whenever concentration changes","The equilibrium constant should replace k"]} correctIndex={1} explanation="At fixed temperature and for the same reaction regime, k should be consistent. A large mismatch indicates a measurement/setup issue or that the proposed rate law does not describe all the data."} />
 
 </LessonSection>
 
