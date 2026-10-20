@@ -167,6 +167,10 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
   },
 
   "topics-7-1-7-5-mcq": {
+    7: { solution: "Answer: B. Qp = P(AX₂)²P(X₂)/P(AX₃)² = (5.06)²(0.840)/(2.32)² ≈ 4.00. Since Kp = 4.0, Qp = Kp and the system is at equilibrium at t₃." },
+    8: { solution: "Answer: D. NaH₂PO₄ supplies H₂PO₄⁻ and Na₂HPO₄ supplies HPO₄²⁻. The third dissociation of phosphoric acid has Ka₃ = 4.5 × 10⁻¹³, so only a very small fraction of HPO₄²⁻ loses another proton to form PO₄³⁻. PO₄³⁻ is therefore present at the lowest concentration." },
+    9: { solution: "Answer: C. The reaction begins with equal amounts of CO and H₂O, and its stoichiometry consumes them in a 1:1 ratio while producing CO₂ and H₂ in a 1:1 ratio. Because Kc = 1.5 × 10³ is large, equilibrium strongly favors products, so [CO₂] > [CO]." },
+    10: { solution: "Answer: B (8.00 atm). The reaction is 2NO(g) + O₂(g) ⇌ 2NO₂(g). With initial partial pressures 6.00 atm NO and 5.00 atm O₂, NO is limiting: consuming 6.00 atm NO uses 3.00 atm O₂ and forms 6.00 atm NO₂. The remaining O₂ pressure is 2.00 atm, giving total pressure 2.00 + 6.00 = 8.00 atm. The very large Kp makes the reaction nearly complete." },
     1: { solution: "Answer: D. Between t₂ and t₃, the product partial pressure increases, showing net forward reaction. Before equilibrium, the forward rate is greater than the reverse rate; at equilibrium the two rates become equal and concentrations stop changing." },
     2: { solution: "Answer: D (3.50 atm). Let x be the equilibrium partial pressure of X₂ and Y₂ formed. At equilibrium PXY = 0.500 atm and Kp = x²/(0.500)² = 9.00, so x = 1.50 atm. Since 2XY decomposes to one X₂ and one Y₂, 2x = 3.00 atm of XY decomposed. Initial PXY = 0.500 + 3.00 = 3.50 atm." },
     3: { solution: "Answer: C. Initially only PCl₅ is present, so the forward rate is high and the reverse rate is zero. As PCl₅ decomposes, its concentration and the forward rate decrease, while products build and the reverse rate increases. At equilibrium, both rates are equal and nonzero." },
@@ -175,6 +179,11 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
     6: { solution: "Answer: B (0.050). Let x be the pressure of CO and Cl₂ formed. Total pressure increases from 1.0 to 1.2 atm, so x = 0.20 atm. The equilibrium pressures are P(COCl₂) = 0.80 atm and P(CO) = P(Cl₂) = 0.20 atm. Kp = [P(CO)P(Cl₂)]/P(COCl₂) = (0.20)(0.20)/0.80 = 0.050." }
   },
   "topics-8-1-8-3-mcq": {
+    8: { solution: "Answer: C (0.45 M). At pH 4.50, [H₃O⁺] = 10⁻⁴·⁵⁰ = 3.16 × 10⁻⁵ M. For HOBr ⇌ H₃O⁺ + OBr⁻, [OBr⁻] ≈ [H₃O⁺] = x, so Ka ≈ x²/[HOBr]. Therefore [HOBr] ≈ (3.16 × 10⁻⁵)²/(2.2 × 10⁻⁹) ≈ 0.45 M." },
+    9: { solution: "Answer: C. KNO₂ produces K⁺ and NO₂⁻. K⁺ is essentially neutral, while NO₂⁻ is the conjugate base of weak acid HNO₂ and reacts with water to form OH⁻: NO₂⁻(aq) + H₂O(l) ⇌ HNO₂(aq) + OH⁻(aq). NH₄NO₃ instead produces acidic NH₄⁺." },
+    10: { solution: "Answer: B (pH 8.3). For weak base caffeine, [OH⁻] ≈ √(KbC) = √[(4.3 × 10⁻¹⁰)(0.010)] ≈ 2.1 × 10⁻⁶ M. pOH ≈ 5.68, so pH = 14.00 − 5.68 ≈ 8.32." },
+    11: { solution: "Answer: D (pH 3.6; HC₃H₅O₂ is most abundant). For a weak acid, [H₃O⁺] ≈ √(KaC) = √[(1.3 × 10⁻⁵)(5 × 10⁻³)] ≈ 2.55 × 10⁻⁴ M, giving pH ≈ 3.59. Only a small fraction ionizes, so the undissociated acid remains at the highest concentration." },
+    12: { solution: "Answer: B (3.3 × 10⁻⁷). pOH = 14.00 − 9.96 = 4.04, so [OH⁻] = 10⁻⁴·⁰⁴ ≈ 9.1 × 10⁻⁵ M. Let x ≈ [OH⁻] = [HOCl]. Then Kb ≈ x²/[OCl⁻] ≈ (9.1 × 10⁻⁵)²/0.025 ≈ 3.3 × 10⁻⁷." },
     1: { solution: "Answer: B. In pure water, [H₃O⁺] = [OH⁻], so pH = pOH = 6.81. Thus pKw = pH + pOH = 13.62 and Kw = 10⁻¹³·⁶² ≈ 2.4 × 10⁻¹⁴ at 37°C." },
     2: { solution: "Answer: C (400 mL). The initial [H⁺] = 10⁻⁴·⁵⁰ = 3.16 × 10⁻⁵ M; the final [H⁺] = 10⁻⁵·²⁰ = 6.31 × 10⁻⁶ M. The dilution factor is 3.16×10⁻⁵ / 6.31×10⁻⁶ ≈ 5.0, so the final volume is about 5(100.0 mL) = 500 mL. Water added = 500 − 100 = 400 mL." },
     3: { solution: "Answer: B (pH 12.4). Moles NaOH = 2.0 g ÷ 40.0 g mol⁻¹ = 0.050 mol. In 2.0 × 10³ mL = 2.0 L, [OH⁻] = 0.025 M. pOH = −log(0.025) ≈ 1.60, so pH = 14.00 − 1.60 = 12.40." },
@@ -184,6 +193,10 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
     7: { solution: "Answer: C. HF and HCN are acids. Of the bases, trimethylamine has pKb = 4.19 and is much stronger than aniline, whose pKb is 9.42. A 0.1 M solution of the stronger weak base produces more OH⁻ and therefore has the highest pH." }
   },
   "topics-8-4-8-5-mcq": {
+    7: { solution: "Answer: D. The curve represents titration of a weak acid with a strong base. At equivalence, the weak acid has been converted to its conjugate base, which hydrolyzes water to produce OH⁻, so the equivalence-point pH is greater than 7." },
+    10: { solution: "Answer: B. Both acids are titrated with equal moles of NaOH, but CH₃CO₂H is the weak acid. At equivalence, acetate (its conjugate base) hydrolyzes water and makes solution 1 basic, so its pH is higher than that of the solution formed from strong acid CF₃CO₂H. The reason is the stronger conjugate base of CH₃CO₂H." },
+    11: { solution: "Answer: C. Both acids are monoprotic and have the same initial volume (50.0 mL) and concentration (0.10 M), so each contains 0.00500 mol acid. Since the NaOH concentration is also the same, each requires the same titrant volume to reach equivalence, regardless of acid strength." },
+    12: { solution: "Answer: C. As NaOH is added, it neutralizes HC₂H₃O₂ to form its conjugate base C₂H₃O₂⁻. Thus the acetate concentration increases. Br⁻ is a spectator ion, H⁺ is consumed, and the amount of undissociated acetic acid decreases." },
     1: { solution: "Answer: D (pH 11.10). n(HNO₃) = 0.3000 L × 0.050 M = 0.0150 mol. n(KOH) = 0.5000 L × 0.032 M = 0.0160 mol, leaving 0.0010 mol OH⁻ in 0.8000 L. [OH⁻] = 0.00125 M, pOH = 2.90, and pH = 14.00 − 2.90 = 11.10." },
     2: { solution: "Answer: C. The equilibrium favors products, so HF is converted to the weaker acid HOCl and the stronger base F⁻ is converted to the weaker base OCl⁻. Therefore HF is the stronger acid (HF > HOCl), and F⁻ is the weaker base (F⁻ < OCl⁻)." },
     3: { solution: "Answer: C. At the equivalence point, the weak acid HNO₂ has been converted to its conjugate base NO₂⁻. NO₂⁻ reacts with water to produce OH⁻, making the equivalence-point solution basic (pH > 7). The pH is not determined by equal formal concentrations of acid and base." },
