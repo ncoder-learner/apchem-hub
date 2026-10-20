@@ -234,23 +234,23 @@ export const UNIT_REVIEW_PRACTICE: Record<number, UnitReviewPractice> = {
       },
       {
         title: "Coffee-cup calorimetry with a non-negligible calorimeter",
-        stimulus: "A student mixes 50.0 mL of 0.500 M HCl with 50.0 mL of 0.500 M NaOH in a coffee-cup calorimeter. Both solutions begin at 22.10°C and the final temperature is 25.40°C. Assume density = 1.00 g·mL⁻¹, specific heat = 4.184 J·g⁻¹·°C⁻¹, and calorimeter heat capacity Ccal = 35.0 J·°C⁻¹. The reaction is H⁺(aq) + OH⁻(aq) → H₂O(l).",
+        stimulus: "A student mixes 50.0 mL of 0.500 M HCl with 50.0 mL of 0.500 M NaOH in a coffee-cup calorimeter. Both solutions begin at 22.10°C and the final temperature is 25.26°C. Assume density = 1.00 g·mL⁻¹, specific heat = 4.184 J·g⁻¹·°C⁻¹, and calorimeter heat capacity Ccal = 35.0 J·°C⁻¹. The reaction is H⁺(aq) + OH⁻(aq) → H₂O(l).",
         parts: [
           {
             label: "a",
             prompt: "Calculate the heat gained by the solution and by the calorimeter.",
             scoringGuidance: [
-              "Calculate ΔT = 25.40 − 22.10 = 3.30°C.",
-              "Use qsolution = (100.0 g)(4.184 J·g⁻¹·°C⁻¹)(3.30°C) = 1.38×10³ J.",
-              "Use qcal = CcalΔT = (35.0 J·°C⁻¹)(3.30°C) = 116 J; both are positive because they warm."
+              "Calculate ΔT = 25.26 − 22.10 = 3.16°C.",
+              "Use qsolution = (100.0 g)(4.184 J·g⁻¹·°C⁻¹)(3.16°C) = 1.32×10³ J.",
+              "Use qcal = CcalΔT = (35.0 J·°C⁻¹)(3.16°C) = 111 J; both are positive because they warm."
             ]
           },
           {
             label: "b",
             prompt: "Determine qreaction for the amount mixed and explain the sign.",
             scoringGuidance: [
-              "Add the heat gained by the solution and calorimeter: qsurroundings ≈ 1.496 kJ.",
-              "Apply energy conservation: qreaction ≈ −qsurroundings = −1.50 kJ.",
+              "Add the heat gained by the solution and calorimeter: qsurroundings ≈ 1.433 kJ.",
+              "Apply energy conservation: qreaction ≈ −qsurroundings = −1.43 kJ.",
               "The negative sign means the reaction releases heat; the surroundings gain it."
             ]
           },
@@ -259,7 +259,7 @@ export const UNIT_REVIEW_PRACTICE: Record<number, UnitReviewPractice> = {
             prompt: "Calculate the molar enthalpy of neutralization in kJ·mol⁻¹.",
             scoringGuidance: [
               "Find n(H⁺) = n(OH⁻) = (0.0500 L)(0.500 mol·L⁻¹) = 0.0250 mol.",
-              "Use ΔH ≈ −1.496 kJ / 0.0250 mol = −59.8 kJ·mol⁻¹ for the reaction as written.",
+              "Use ΔH ≈ −1.433 kJ / 0.0250 mol = −57.3 kJ·mol⁻¹ for the reaction as written.",
               "Report sign, units, and the mole basis; the 1:1 reactants are present in stoichiometric amounts."
             ]
           },
@@ -267,7 +267,7 @@ export const UNIT_REVIEW_PRACTICE: Record<number, UnitReviewPractice> = {
             label: "d",
             prompt: "Predict the bias if the student ignores the calorimeter heat capacity, and explain the energy-accounting error.",
             scoringGuidance: [
-              "Ignoring qcal uses only 1.381 kJ as surroundings heat and gives about −55.2 kJ·mol⁻¹.",
+              "Ignoring qcal uses only 1.322 kJ as surroundings heat and gives about −52.9 kJ·mol⁻¹.",
               "The calculated enthalpy would be less negative (underestimate the magnitude of heat released).",
               "The calorimeter also warms and absorbs energy, so its heat must be included in the surroundings balance."
             ]
