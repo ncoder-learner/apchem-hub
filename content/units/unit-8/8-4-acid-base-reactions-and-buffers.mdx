@@ -67,6 +67,22 @@ Capacity is not unlimited. If added OH⁻ consumes all HA, the solution no longe
 <QuickCheck question="Two buffers have the same pH and conjugate-pair ratio, but Buffer X contains ten times as many total moles of HA and A⁻ as Buffer Y. For the same small addition of strong base, which is expected?" options={["X undergoes the larger pH change because it has more particles","Y generally undergoes the larger pH change because it has less HA available per mole of added OH⁻","Both must have identical pH changes because their starting pH is the same","Neither buffer reacts with strong base"]} correctIndex={1} explanation="Both buffers initially have the same ratio and therefore similar pH, but X has more acid available to consume OH⁻. The same added amount changes Y's component ratio more strongly." />
 
 </LessonSection>
+
+<LessonSection title="6. Calculate buffer pH after a strong-base addition" description="Stoichiometry changes the mole amounts before the buffer equilibrium is evaluated">
+
+When a strong base is added to a buffer, OH⁻ reacts essentially completely with HA: `HA + OH⁻ → A⁻ + H₂O`. Subtract the moles of OH⁻ from HA and add the same amount to A⁻. Only after that neutralization step should you use `pH = pKa + log(nA⁻/nHA)`. Since both species occupy the same final volume, the volume cancels in their concentration ratio, provided both remain in appreciable amounts.
+
+<WorkedExample title="Worked example: buffer after added base">
+
+A buffer contains 0.030 mol HA and 0.020 mol A⁻. Add 0.005 mol NaOH. The reaction leaves 0.025 mol HA and produces 0.025 mol A⁻. The new ratio is 1, so pH ≈ pKa. The original ratio was 0.020/0.030, so the initial pH was about pKa − 0.176. Adding base moves the composition toward equal acid/base amounts and raises the pH.
+
+</WorkedExample>
+
+If added OH⁻ equals or exceeds the initial HA amount, do not continue using the buffer equation as though HA remains. First identify any excess strong base, or recognize that one buffer component has been essentially consumed and a different equilibrium calculation is needed.
+
+<QuickCheck question="A buffer has 0.040 mol HA and 0.010 mol A⁻. It receives 0.005 mol strong base. What is the new ratio n(A⁻)/n(HA)?" options={["0.125","0.25","0.429","0.50"]} correctIndex={2} explanation="OH⁻ converts 0.005 mol HA to A⁻. New amounts: HA = 0.035 mol and A⁻ = 0.015 mol, so ratio = 0.015/0.035 ≈ 0.429." />
+
+</LessonSection>
 ## Readiness check
 
 You should be able to identify conjugate pairs, predict proton-transfer products, distinguish buffers from nonbuffers, and explain how buffers consume added H₃O⁺ or OH⁻.
