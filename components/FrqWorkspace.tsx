@@ -872,7 +872,7 @@ export function FrqWorkspace() {
           </div>
           {pdfUrl ? <div className="relative">
             <iframe key={pdfUrl} title="AP Chemistry FRQ packet PDF" src={pdfUrl} className="block h-[76vh] min-h-[620px] w-full bg-white" />
-            {showPdfSolution && activeSolution && <div role="region" aria-label="Worked solution overlay" className="absolute right-3 top-3 z-10 max-h-[45vh] w-[min(24rem,calc(100%-1.5rem))] overflow-y-auto rounded-xl border border-accent/40 bg-card/95 p-4 text-ink shadow-2xl backdrop-blur">
+            {showPdfSolution && activeSolution && <div role="region" aria-label="Worked solution overlay" className="absolute right-3 top-3 z-10 max-h-[45vh] w-[min(24rem,95%)] overflow-y-auto rounded-xl border border-accent/40 bg-card/95 p-4 text-ink shadow-2xl backdrop-blur">
               <div className="flex items-start justify-between gap-3"><p className="text-xs font-bold uppercase tracking-wide text-accent">Q{questionNumber.trim()}{partLabel.trim() ? ` · ${partLabel.trim()}` : ""} · Worked steps</p><button type="button" onClick={() => setShowPdfSolution(false)} aria-label="Hide worked solution overlay" className="rounded-md border border-border px-2 py-1 text-xs">Hide</button></div>
               <p className="mt-2 text-sm font-semibold">{activeSolution.prompt}</p>
               <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm leading-5">{activeSolution.steps.map((step) => <li key={step}>{step}</li>)}</ol>
