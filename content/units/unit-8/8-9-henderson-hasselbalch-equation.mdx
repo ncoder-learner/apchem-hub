@@ -1,0 +1,41 @@
+---
+title: "The Henderson–Hasselbalch Equation"
+unit: 8
+topicNumber: "8.9"
+slug: "8-9-henderson-hasselbalch-equation"
+summary: "Use pH = pKa + log(base/acid) for buffer calculations and interpret the ratio physically."
+---
+
+For a weak acid HA and its conjugate base A⁻, the Henderson–Hasselbalch equation is:
+
+pH = pKa + log([A⁻]/[HA])
+
+It is derived from the weak-acid equilibrium expression and is most useful when both conjugate components are present in appreciable amounts.
+
+<LessonSection title="1. Choose the ratio correctly" description="Conjugate base over weak acid" defaultOpen>
+
+The numerator is the conjugate base A⁻ and the denominator is the weak acid HA. If both are in the same final solution, you can use concentrations or moles in the ratio because the common volume cancels.
+
+<WorkedExample title="Calculate a buffer pH">
+A buffer contains 0.30 M HA and 0.10 M A⁻, with pKa = 4.80. pH = 4.80 + log(0.10/0.30) = 4.80 + log(0.333) = 4.32. Since base/acid is less than 1, pH is below pKa.
+</WorkedExample>
+
+<QuickCheck question="A buffer has equal concentrations of HA and A⁻. What does Henderson–Hasselbalch predict?" options={["pH = pKa","pH = 7.00 in all cases","pH = 14 − pKa","pH = 0"]} correctIndex={0} explanation="The ratio is 1, and log(1) = 0, so pH = pKa." />
+
+</LessonSection>
+
+<LessonSection title="2. For titration questions, neutralize first" description="Do not use initial amounts if strong titrant has reacted">
+
+When strong acid or base is added to a buffer, first use the balanced neutralization equation to determine the new moles of HA and A⁻. Then apply Henderson–Hasselbalch to the post-reaction amounts. This avoids treating a strong reagent as though it simply joined the buffer without reacting.
+
+</LessonSection>
+
+<LessonSection title="3. Know the limits" description="The equation is not a universal pH formula">
+
+Henderson–Hasselbalch is not the first choice for a solution containing only a strong acid, only a strong base, or a weak acid before any appreciable conjugate base exists. For those situations, calculate pH from the controlling equilibrium or excess strong reagent.
+
+</LessonSection>
+
+## Readiness check
+
+You should be able to set up the base/acid ratio, calculate buffer pH, predict whether pH is above or below pKa, and update moles before using the equation.
