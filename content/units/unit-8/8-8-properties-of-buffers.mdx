@@ -1,0 +1,41 @@
+---
+title: "Properties of Buffers"
+unit: 8
+topicNumber: "8.8"
+slug: "8-8-properties-of-buffers"
+summary: "Explain buffer action, calculate the response to added acid or base, and identify limits of buffer capacity."
+---
+
+A buffer resists large pH changes because its components consume added acid or base. It does not keep pH perfectly constant, and it cannot neutralize unlimited additions.
+
+<LessonSection title="1. Explain the two buffer reactions" description="The conjugate pair consumes added strong reagent" defaultOpen>
+
+For HA/A⁻:
+- Added strong acid: A⁻ + H₃O⁺ → HA + H₂O.
+- Added strong base: HA + OH⁻ → A⁻ + H₂O.
+
+These reactions remove much of the added H₃O⁺ or OH⁻ and convert one buffer component into the other. The pH changes because the ratio of conjugate base to acid changes, but it changes less than it would in pure water.
+
+</LessonSection>
+
+<LessonSection title="2. Calculate after neutralization" description="Moles first, ratio second">
+
+If 0.020 mol HA and 0.020 mol A⁻ are present, adding 0.005 mol OH⁻ consumes 0.005 mol HA and forms 0.005 mol A⁻. The new amounts are 0.015 mol HA and 0.025 mol A⁻. Use these post-reaction amounts to calculate the new ratio; if total volume is common to both components, the mole ratio equals the concentration ratio.
+
+<WorkedExample title="Estimate the new pH">
+For a buffer with pKa = 4.76, the initial equal amounts give pH ≈ 4.76. After the addition above, pH = pKa + log(0.025/0.015) = 4.76 + 0.222 = 4.98. The pH rises modestly because added OH⁻ converts HA into A⁻.
+</WorkedExample>
+
+<QuickCheck question="A buffer contains HA and A⁻. What happens when a small amount of HCl is added?" options={["A⁻ is consumed and HA increases","HA is consumed and A⁻ increases","Both disappear completely","The pH cannot change at all"]} correctIndex={0} explanation="Added H₃O⁺ reacts with A⁻ to form HA. The pH changes, but the buffer limits the change." />
+
+</LessonSection>
+
+<LessonSection title="3. Buffer capacity and failure" description="Capacity depends on amounts and balance">
+
+Buffer capacity increases when the total amounts of buffer components increase. A buffer is most effective when both components are present in comparable amounts; a ratio far from 1 means the solution has less capacity against one direction of addition. Once one component is nearly exhausted, added strong acid or base can cause a large pH change.
+
+</LessonSection>
+
+## Readiness check
+
+You should be able to write the neutralization reactions, update component moles, estimate the new pH from the ratio, and explain why a buffer eventually fails.
