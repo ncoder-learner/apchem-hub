@@ -51,6 +51,22 @@ If the added strong base exceeds the available HA, the buffer calculation no lon
 
 </LessonSection>
 
+
+<LessonSection title="5. Infer a buffer ratio from pH data" description="Use logarithms carefully and distinguish a ratio from an amount">
+
+The equation can be rearranged to find the composition ratio: `[A⁻]/[HA] = 10^(pH − pKa)`. The exponent is the difference between pH and pKa. Do not interpret that difference itself as the ratio: a difference of 1.00 means a ratio of 10, not 1; a difference of 0.30 means a ratio near 2.
+
+<WorkedExample title="Worked example: infer the ratio and then the amounts">
+
+A buffer has pH = 5.20 and pKa = 4.80, so `[A⁻]/[HA] = 10^0.40 ≈ 2.51`. If the final volume is 0.500 L, the same ratio can be written as a concentration ratio. If total buffer concentration `[HA] + [A⁻] = 0.100 M`, then `[HA] = 0.100/(1 + 2.51) = 0.0285 M` and `[A⁻] = 0.0715 M`. The ratio and the total concentration are both needed to determine the two concentrations.
+
+</WorkedExample>
+
+The equation is useful only when appreciable amounts of both conjugate partners are present. If a strong acid or base has been added, update the amounts by stoichiometry first. If one partner has been essentially consumed, calculate pH from the excess strong reagent or the relevant weak-acid/base equilibrium instead.
+
+<QuickCheck question="If pH − pKa = −0.70, which is the approximate ratio [A⁻]/[HA]?" options={["5.0","2.0","0.20","0.050"]} correctIndex={2} explanation="The ratio is 10⁻⁰·⁷⁰ ≈ 0.20. A negative pH−pKa means the acid form is more abundant than the conjugate base."} />
+
+</LessonSection>
 ## Readiness check
 
 You should be able to set up the base/acid ratio, calculate buffer pH, predict whether pH is above or below pKa, and update moles before using the equation.
