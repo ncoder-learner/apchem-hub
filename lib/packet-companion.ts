@@ -141,6 +141,32 @@ const QUESTION_TOPIC_OVERRIDES: Record<string, Record<number, string>> = {
 };
 
 const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "conceptHint" | "strategyHint" | "nextStepHint" | "solution">>> = {
+  "topics-7-1-7-5-mcq": {
+    1: { solution: "Answer: D. Between t₂ and t₃, the product partial pressure increases, showing net forward reaction. Before equilibrium, the forward rate is greater than the reverse rate; at equilibrium the two rates become equal and concentrations stop changing." },
+    2: { solution: "Answer: D (3.50 atm). Let x be the equilibrium partial pressure of X₂ and Y₂ formed. At equilibrium PXY = 0.500 atm and Kp = x²/(0.500)² = 9.00, so x = 1.50 atm. Since 2XY decomposes to one X₂ and one Y₂, 2x = 3.00 atm of XY decomposed. Initial PXY = 0.500 + 3.00 = 3.50 atm." },
+    3: { solution: "Answer: C. Initially only PCl₅ is present, so the forward rate is high and the reverse rate is zero. As PCl₅ decomposes, its concentration and the forward rate decrease, while products build and the reverse rate increases. At equilibrium, both rates are equal and nonzero." },
+    4: { solution: "Answer: D (2.22). Starting with 0.700 mol AX₂ in 1.00 L, formation of 0.200 mol A₂X₄ consumes 0.400 mol AX₂, leaving 0.300 mol AX₂. Kc = [A₂X₄]/[AX₂]² = 0.200/(0.300)² = 2.22." },
+    5: { solution: "Answer: B. Qp = P(OF₂)²/[P(F₂)²P(O₂)] = (0.64)²/[(0.36)²(0.68)] ≈ 4.65, or 4.6. The partial pressures continue to change after t₄ and reach constant values at t₅/t₆; the forward reaction is still proceeding at t₄, so Qp < Kp." },
+    6: { solution: "Answer: B (0.050). Let x be the pressure of CO and Cl₂ formed. Total pressure increases from 1.0 to 1.2 atm, so x = 0.20 atm. The equilibrium pressures are P(COCl₂) = 0.80 atm and P(CO) = P(Cl₂) = 0.20 atm. Kp = [P(CO)P(Cl₂)]/P(COCl₂) = (0.20)(0.20)/0.80 = 0.050." }
+  },
+  "topics-8-1-8-3-mcq": {
+    1: { solution: "Answer: B. In pure water, [H₃O⁺] = [OH⁻], so pH = pOH = 6.81. Thus pKw = pH + pOH = 13.62 and Kw = 10⁻¹³·⁶² ≈ 2.4 × 10⁻¹⁴ at 37°C." },
+    2: { solution: "Answer: C (400 mL). The initial [H⁺] = 10⁻⁴·⁵⁰ = 3.16 × 10⁻⁵ M; the final [H⁺] = 10⁻⁵·²⁰ = 6.31 × 10⁻⁶ M. The dilution factor is 3.16×10⁻⁵ / 6.31×10⁻⁶ ≈ 5.0, so the final volume is about 5(100.0 mL) = 500 mL. Water added = 500 − 100 = 400 mL." },
+    3: { solution: "Answer: B (pH 12.4). Moles NaOH = 2.0 g ÷ 40.0 g mol⁻¹ = 0.050 mol. In 2.0 × 10³ mL = 2.0 L, [OH⁻] = 0.025 M. pOH = −log(0.025) ≈ 1.60, so pH = 14.00 − 1.60 = 12.40." },
+    4: { solution: "Answer: D. At the same formal concentration, the stronger acid has the larger Ka and the greater percent ionization. Acid 2 has the lower pH at both listed concentrations, indicating greater [H₃O⁺] and a larger percent ionization; therefore Acid 2 is stronger." },
+    5: { solution: "Answer: D. Ka is constant at a fixed temperature and does not change upon dilution. As acetic acid is diluted, the equilibrium shifts toward ionization and the fraction of acid molecules that ionize increases, so percent ionization increases." },
+    6: { solution: "Answer: B. The first dissociation (Ka₁ = 1.5 × 10⁻²) is much more extensive than the second (Ka₂ = 8.5 × 10⁻⁷), so H₂A remains the most abundant species. The first dissociation produces similar amounts of H₃O⁺ and HA⁻, but the second dissociation adds a little extra H₃O⁺ and forms very little A²⁻. The expected order is H₂A > H₃O⁺ > HA⁻ > A²⁻." },
+    7: { solution: "Answer: C. HF and HCN are acids. Of the bases, trimethylamine has pKb = 4.19 and is much stronger than aniline, whose pKb is 9.42. A 0.1 M solution of the stronger weak base produces more OH⁻ and therefore has the highest pH." }
+  },
+  "topics-8-4-8-5-mcq": {
+    1: { solution: "Answer: D (pH 11.10). n(HNO₃) = 0.3000 L × 0.050 M = 0.0150 mol. n(KOH) = 0.5000 L × 0.032 M = 0.0160 mol, leaving 0.0010 mol OH⁻ in 0.8000 L. [OH⁻] = 0.00125 M, pOH = 2.90, and pH = 14.00 − 2.90 = 11.10." },
+    2: { solution: "Answer: C. The equilibrium favors products, so HF is converted to the weaker acid HOCl and the stronger base F⁻ is converted to the weaker base OCl⁻. Therefore HF is the stronger acid (HF > HOCl), and F⁻ is the weaker base (F⁻ < OCl⁻)." },
+    3: { solution: "Answer: C. At the equivalence point, the weak acid HNO₂ has been converted to its conjugate base NO₂⁻. NO₂⁻ reacts with water to produce OH⁻, making the equivalence-point solution basic (pH > 7). The pH is not determined by equal formal concentrations of acid and base." },
+    4: { conceptHint: "At equivalence for a monoprotic acid, moles NaOH equal initial moles acid: MbaseVeq = MacidVacid.", strategyHint: "The acid initially contains (0.0500 L)(0.20 M) = 0.0100 mol. Read the equivalence volume from the titration curve, then divide 0.0100 mol by that volume in liters.", nextStepHint: "The titration curve itself is absent from extracted text, so the equivalence volume and answer letter cannot be verified." },
+    5: { solution: "Answer: B, assuming the graph's equivalence volume is 40.0 mL. The equivalence point corresponds to 0.0800 M acid because n(HA) = (0.100 M)(0.0400 L) = 0.00400 mol in 0.0500 L. If the indicator changes color slightly after equivalence, the recorded NaOH volume is too large, so the calculated acid concentration is slightly greater than 0.0800 M. Confirm the graph's equivalence volume before publication." },
+    6: { solution: "Answer: C, if the curve's half-equivalence pH is near 3.85. At half-equivalence in a weak-acid/strong-base titration, pH = pKa. Of the listed acids, HC₃H₅O₃ has pKa = −log(1.4 × 10⁻⁴) ≈ 3.85, consistent with a half-equivalence pH near 3.9. The graph should be visually checked to confirm this match." }
+  },
+
   "topics-7-6-7-10-mcq": {
     1: { solution: "Answer: B (2.5). Equation #2 is the reverse of equation #1 and is divided by 2. Reversing an equation takes the reciprocal of K, so K = 1/0.16 = 6.25; halving all coefficients takes the square root, giving Kp = √6.25 = 2.5." },
     2: { solution: "Answer: D (7.8 × 10⁻²). The target reaction is equation 1 plus the reverse of equation 2 multiplied by 2. Reversing an equation takes 1/K, and multiplying coefficients by 2 squares K, so K₃ = K₁/(K₂)² = (3.6 × 10⁻⁸)/(6.8 × 10⁻⁴)² ≈ 7.8 × 10⁻²." },
