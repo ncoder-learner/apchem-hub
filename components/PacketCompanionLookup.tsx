@@ -35,6 +35,7 @@ export function PacketCompanionLookup() {
   const [packetId, setPacketId] = useState("");
   const [questionNumber, setQuestionNumber] = useState("1");
   const [pdfPage, setPdfPage] = useState("1");
+  const [pdfPageInput, setPdfPageInput] = useState("1");
   const [hintLevel, setHintLevel] = useState(0);
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
@@ -78,6 +79,7 @@ export function PacketCompanionLookup() {
     setPacketId("");
     setQuestionNumber("1");
     setPdfPage("1");
+    setPdfPageInput("1");
     setHintLevel(0);
     setPdfFile(null);
     setPdfError("");
@@ -86,7 +88,10 @@ export function PacketCompanionLookup() {
   function changePacket(value: string) {
     setPacketId(value);
     setQuestionNumber("1");
+    setPdfPage("1");
+    setPdfPageInput("1");
     setHintLevel(0);
+    setShowWorkedAnswer(false);
     setPdfFile(null);
     setPdfError("");
   }
@@ -107,6 +112,13 @@ export function PacketCompanionLookup() {
   function selectQuestion(value: string) {
     setQuestionNumber(value);
     setHintLevel(0);
+    setShowWorkedAnswer(false);
+  }
+
+  function goToPdfPage() {
+    const nextPage = String(Math.max(1, Math.floor(Number(pdfPageInput) || 1)));
+    setPdfPageInput(nextPage);
+    setPdfPage(nextPage);
   }
 
   function moveQuestion(direction: -1 | 1) {
@@ -157,12 +169,13 @@ export function PacketCompanionLookup() {
         <section className={isFullscreen ? "fixed inset-0 z-[100] overflow-auto border border-border bg-card" : "overflow-hidden rounded-2xl border border-border bg-card/40"}>
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border p-4 sm:px-5">
             <div><h2 className="font-semibold">Packet document</h2><p className="mt-1 text-xs text-ink-dim">Scroll the original PDF as you work through the printed questions.</p></div>
-            {documentUrl && <div className="flex flex-wrap gap-2"><a href={documentUrl} download={pdfFile?.name ?? "packet.pdf"} className="text-xs font-semibold text-accent hover:underline">Download a copy</a><button type="button" onClick={() => setIsFullscreen((value) => !value)} aria-pressed={isFullscreen} className="rounded-lg border border-border px-3 py-2 text-xs font-semibold">{isFullscreen ? "Exit full screen" : "Expand reader"}</button>{match?.solution && <button type="button" onClick={() => setShowWorkedAnswer((value) => !value)} aria-pressed={showWorkedAnswer} className="rounded-lg bg-accent px-3 py-2 text-xs font-bold text-[#06251b]">{showWorkedAnswer ? "Hide worked answer" : "Show worked answer"}</button>}</div>}
+            {documentUrl && <div className="flex flex-wrap gap-2"><a href={documentUrl} download={pdfFile?.name ?? "packet.pdf"} className="text-xs font-semibold text-accent hover:underline">Download a copy</a><button type="button" onClick={() => setIsFullscreen((value) => !value)} aria-pressed={isFullscreen} className="rounded-lg border border-border px-3 py-2 text-xs font-semibold">{isFullscreen ? "Exit full screen" : "Expand reader"}</button>{match && <button type="button" onClick={() => setShowWorkedAnswer((value) => !value)} aria-pressed={showWorkedAnswer} className="rounded-lg bg-accent px-3 py-2 text-xs font-bold text-[#06251b]">{showWorkedAnswer ? "Hide question help" : match.solution ? "Show worked answer" : "Show question help"}</button>}</div>}
           </div>
           {documentUrl ? (
             <>
               <div className={isFullscreen ? "group relative h-[calc(100vh-64px)]" : "relative"}>
                 <iframe
+                  key={documentUrl + "#page=" + Math.max(1, Number(pdfPage) || 1)}
                   title="Loaded chemistry packet PDF"
                   src={documentUrl + "#toolbar=1&navpanes=0&scrollbar=1&page=" + Math.max(1, Number(pdfPage) || 1)}
                   className={isFullscreen ? "block h-full min-h-0 w-full bg-white" : "block h-[72vh] min-h-[560px] w-full bg-white"}
@@ -188,9 +201,9 @@ export function PacketCompanionLookup() {
                       </select>
                     </label>
                     <label className="mt-3 block text-sm font-semibold">PDF page
-                      <input value={pdfPage} onChange={(event) => setPdfPage(event.target.value)} inputMode="numeric" type="number" min="1" placeholder="e.g. 4" className="mt-1 w-full rounded-lg border border-border bg-bg px-3 py-2" />
+                      <input value={pdfPageInput} onChange={(event) => setPdfPageInput(event.target.value)} inputMode="numeric" type="number" min="1" placeholder="e.g. 4" className="mt-1 w-full rounded-lg border border-border bg-bg px-3 py-2" />
                     </label>
-                    <button type="button" onClick={() => { const nextPage = Math.max(1, Number(pdfPage) || 1); setPdfPage(String(nextPage)); }} className="mt-2 w-full rounded-lg border border-border px-3 py-2 text-sm font-semibold">Go to PDF page</button>
+                    <button type="button" onClick={goToPdfPage} className="mt-2 w-full rounded-lg border border-border px-3 py-2 text-sm font-semibold">Go to PDF page</button>
                     <label className="mt-3 block text-sm font-semibold">Search question number
                       <input value={questionNumber} onChange={(event) => selectQuestion(event.target.value)} inputMode="numeric" placeholder="e.g. 16" className="mt-1 w-full rounded-lg border border-border bg-bg px-3 py-2" />
                     </label>
@@ -204,21 +217,21 @@ export function PacketCompanionLookup() {
                       <button type="button" onClick={() => moveQuestion(-1)} disabled={packetEntries[0]?.questionNumber === questionNumber} className="rounded-lg border border-border px-2 py-2 text-sm disabled:opacity-35">← Previous</button>
                       <button type="button" onClick={() => moveQuestion(1)} disabled={packetEntries[packetEntries.length - 1]?.questionNumber === questionNumber} className="rounded-lg border border-border px-2 py-2 text-sm disabled:opacity-35">Next →</button>
                     </div>
-                    {match?.solution && (
+                    {match && (
                       <div className="mt-4 rounded-xl border border-red-200 bg-white p-3 font-serif italic text-sm leading-6 text-red-700">
-                        <p className="font-bold">Q{questionNumber} · Worked answer</p>
-                        <p className="mt-2">{match.solution}</p>
+                        <p className="font-bold">Q{questionNumber} · {match.solution ? "Worked answer" : "Question help"}</p>
+                        {match.solution ? <p className="mt-2">{match.solution}</p> : <><p className="mt-2 not-italic text-xs text-red-500">A verified final answer is not indexed for this question yet.</p>{hints.map((hint, index) => <p key={index} className="mt-2"><span className="font-bold">Hint {index + 1}:</span> {hint}</p>)}</>}
                       </div>
                     )}
                   </aside>
                 )}
               </div>
-              {showWorkedAnswer && match?.solution && (
-                <div role="region" aria-label="Teacher-style worked answer" className="absolute right-4 top-4 z-30 max-h-[48%] w-[min(34rem,92%)] overflow-y-auto rounded-xl border-2 border-red-300 bg-white/95 px-5 py-4 text-red-700 shadow-2xl backdrop-blur-sm sm:px-8">
+              {showWorkedAnswer && match && (
+                <div role="region" aria-label="Worked answer or question help" className="absolute right-4 top-4 z-30 max-h-[48%] w-[min(34rem,92%)] overflow-y-auto rounded-xl border-2 border-red-300 bg-white/95 px-5 py-4 text-red-700 shadow-2xl backdrop-blur-sm sm:px-8">
                   <div className="mx-auto max-w-4xl font-serif italic">
-                    <p className="text-sm font-bold not-italic text-red-800">Worked answer · Question {questionNumber}</p>
-                    <p className="mt-3 whitespace-pre-wrap text-base leading-7">{match.solution}</p>
-                    <p className="mt-3 text-xs not-italic text-red-500">Study explanation from the indexed companion, not an official College Board scoring guide.</p>
+                    <p className="text-sm font-bold not-italic text-red-800">{match.solution ? "Worked answer" : "Question help"} · Question {questionNumber}</p>
+                    {match.solution ? <p className="mt-3 whitespace-pre-wrap text-base leading-7">{match.solution}</p> : <><p className="mt-3 text-sm not-italic">A verified final answer is not indexed for this question yet. Use these staged hints while the answer is being verified.</p>{hints.map((hint, index) => <p key={index} className="mt-3 whitespace-pre-wrap text-base leading-7"><strong>Hint {index + 1}.</strong> {hint}</p>)}</>}
+                    <p className="mt-3 text-xs not-italic text-red-500">Original study guidance, not an official College Board scoring guide.</p>
                   </div>
                 </div>
               )}
@@ -236,7 +249,7 @@ export function PacketCompanionLookup() {
             <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border p-4">
               <p className="text-xs leading-5 text-ink-dim">Enter a printed PDF page number. Question-to-page links are not assumed unless verified for that packet.</p>
               <label className="flex items-center gap-2 text-sm font-semibold">Go to page
-                <input type="number" min="1" value={pdfPage} onChange={(event) => setPdfPage(event.target.value)} onBlur={() => setPdfPage(String(Math.max(1, Number(pdfPage) || 1)))} aria-label="PDF page number" className="w-20 rounded-lg border border-border bg-card px-3 py-2 text-ink" />
+                <input type="number" min="1" value={pdfPageInput} onChange={(event) => setPdfPageInput(event.target.value)} aria-label="PDF page number" className="w-20 rounded-lg border border-border bg-card px-3 py-2 text-ink" /><button type="button" onClick={goToPdfPage} className="rounded-lg border border-border px-3 py-2 text-sm">Go</button>
               </label>
             </div>
           )}
