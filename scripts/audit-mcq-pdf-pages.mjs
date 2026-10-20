@@ -24,7 +24,7 @@ for (const file of files) {
     const candidates = [];
     for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
       const line = lines[lineIndex];
-      const match = line.match(/^\s{0,12}(\d{1,2})[.)]\s+\S/);
+      const match = line.match(/^\s{0,12}(\d{1,2})(?:[.)]\s+|\s{2,})\S/);
       if (match) candidates.push({
         number: Number(match[1]),
         line: line.trim().slice(0, 180),
