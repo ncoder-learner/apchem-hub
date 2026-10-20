@@ -11,11 +11,11 @@ interface Props {
 }
 
 const STUDY_BLOCKS = [
-  { id: "map", time: "0–8 min", title: "Build the unit map", detail: "Read the three mental models. Explain each in your own words before moving on." },
-  { id: "recall", time: "8–18 min", title: "Retrieve from memory", detail: "Hide the lesson links. Write the key relationships, symbols, and decision rules from memory." },
-  { id: "mcq", time: "18–38 min", title: "Practice and correct", detail: "Answer every question without notes. For each miss, identify the exact assumption or step that failed." },
-  { id: "frq", time: "38–55 min", title: "Write like an AP student", detail: "Attempt one released FRQ part on paper. Explain the chemistry, show work, and label units." },
-  { id: "finish", time: "55–60 min", title: "Close the gaps", detail: "Revisit one lesson, then redo missed questions without looking at the explanation." },
+  { id: "map", time: "0–10 min", title: "Build the unit map", detail: "Read the core knowledge guide. Explain the central relationships in your own words before moving on." },
+  { id: "recall", time: "10–20 min", title: "Retrieve from memory", detail: "Write key equations, assumptions, and decision rules from memory before checking the guide." },
+  { id: "mcq", time: "20–50 min", title: "Practice and correct", detail: "Complete all 15 MCQs without notes. For each miss, identify the exact assumption, representation, or calculation step that failed." },
+  { id: "frq", time: "50–85 min", title: "Write like an AP student", detail: "Attempt the four multi-part FRQs on paper or in the response fields. Show equations, substitutions, units, and particle-level justifications before revealing each scoring guide." },
+  { id: "finish", time: "85–90 min", title: "Close the gaps", detail: "Redo missed questions from a blank page and identify one concept that still needs practice." },
 ] as const;
 
 export function UnitReviewStudySession({ unitId, review }: Props) {
