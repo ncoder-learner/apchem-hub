@@ -68,6 +68,20 @@ For `A ⇌ 2B` with `Kc = 1.00`, `[A]₀ = 0.200 M`, and `[B]₀ = 0.800 M`, use
 <QuickCheck question="For A(g) ⇌ 2B(g), Kc = 0.50, [A]₀ = 0.10 M, and [B]₀ = 0.50 M. Which change row matches the initial net direction?" options={["A: −x; B: +2x","A: +x; B: −2x","A: −2x; B: +x","No changes because both species are present"]} correctIndex={1} explanation="Q = (0.50)²/0.10 = 2.5, which is greater than Kc = 0.50. The reaction proceeds left, so A increases and B decreases." />
 
 </LessonSection>
+
+<LessonSection title="5. Reject impossible ICE-table roots and check assumptions" description="An algebraic root is only useful if it produces physically possible concentrations">
+
+After solving an ICE-table expression, check every equilibrium concentration. A physically valid root cannot make a concentration negative or consume more reactant than was initially present. If a quadratic gives two mathematical roots, use the initial conditions and the meaning of x to determine which root is physically allowed. Then substitute the chosen concentrations back into the equilibrium expression to verify that they reproduce K within rounding.
+
+<WorkedExample title="Worked example: check the small-x approximation">
+
+For `A ⇌ B`, initially [A] = 0.100 M and [B] = 0, suppose K = [B]/[A] = 0.0100. Let x form B, so `K = x/(0.100 − x)`. Solving gives `0.0100(0.100 − x) = x`, or `0.00100 = 1.010x`, so x = 9.90×10⁻⁴ M. The approximation 0.100 − x ≈ 0.100 M is valid because x is only 0.99% of the initial A concentration. The resulting equilibrium concentrations are [B] = 9.90×10⁻⁴ M and [A] = 0.0990 M.
+
+</WorkedExample>
+
+<QuickCheck question="An ICE-table approximation replaces 0.200 − x with 0.200 and gives x = 0.0300 M. What should you do next?" options={["Accept it automatically because the algebra worked","Check whether x is small relative to 0.200 M; if not, solve the exact equation","Set x equal to zero","Replace K with 1"]} correctIndex={1} explanation="The 5% rule is a common AP-level screening tool: 0.0300/0.200 = 15%, so the approximation is not sufficiently small and the exact equation should be solved."} />
+
+</LessonSection>
 ## Readiness check
 
 Write the ICE rows from stoichiometry, solve the K expression, reject impossible roots, and verify the concentrations satisfy K.
