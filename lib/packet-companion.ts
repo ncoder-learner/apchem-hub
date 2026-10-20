@@ -560,6 +560,7 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
       nextStepHint: "Use the requested evidence—such as rate changes or a transformed concentration plot—rather than assuming the catalyst changes the reaction's equilibrium or overall stoichiometry.",
     },
     9: {
+      solution: "Source issue: this question asks for the rate law associated with a graph of experimental data, but the supplied Topics 5.1–5.3 PDF does not include that referenced graph. A linear [X] versus time plot indicates zero-order kinetics; a linear ln[X] versus time plot indicates first-order kinetics. The answer letter cannot be verified until the missing graph is restored.",
       conceptHint: "A rate law is supported by experimental relationships, not by balancing the overall reaction equation.",
       strategyHint: "Read how the plotted rate or transformed data changes as the relevant concentration changes, then compare that pattern with each candidate law.",
       nextStepHint: "Check which candidate predicts the observed proportionality across the full data set, not just one point.",
