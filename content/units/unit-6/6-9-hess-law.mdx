@@ -43,18 +43,25 @@ Write the transformed equations, label each adjusted ΔH, add the equations line
 
 </LessonSection>
 
-<LessonSection title="4. Build a Hess's-law path systematically" description="Manipulate reactions until unwanted species cancel">
+<LessonSection title="4. Solve a Hess's-law cycle with multiple source equations" description="Use cancellation to isolate the target formation reaction">
 
-Enthalpy is a state function, so the total ΔH depends on initial and final states rather than the path. To construct a target equation, reverse a source equation and reverse ΔH; multiply all coefficients and ΔH by the same factor; then add equations and adjusted enthalpies. Cancel species only when the same species and state appear on opposite sides.
+Hess's law can combine several reactions, not just one reversal and one addition. The reliable method is to write the target equation, select source equations that contain its species, transform each equation until unwanted substances cancel, and apply every transformation to ΔH. A source equation may need to be reversed even if only one of its species is visibly part of the target, because intermediates must cancel across the full sum.
 
-<WorkedExample title="Worked example: reverse and add">
-Given C(s) + O₂(g)→ CO₂(g), ΔH = - 394 kJ, and CO(g) + frac12O₂(g)→ CO₂(g), ΔH = - 283 kJ, find ΔH for C(s) + frac12O₂(g)→ CO(g). Reverse the second equation: CO₂→ CO + frac12O₂, ΔH = +283 kJ. Add it to the first; CO₂ cancels and the target remains. Thus ΔH = −394 + 283 = −111 kJ.
+<WorkedExample title="Worked example: derive the formation of methane">
+
+Use these data:
+
+- `C(s) + O₂(g) → CO₂(g)`, `ΔH = −393.5 kJ`
+- `2H₂(g) + O₂(g) → 2H₂O(l)`, `ΔH = −571.6 kJ`
+- `CH₄(g) + 2O₂(g) → CO₂(g) + 2H₂O(l)`, `ΔH = −890.3 kJ`
+
+The target is `C(s) + 2H₂(g) → CH₄(g)`. Reverse the methane-combustion equation so CH₄ appears as a product: its `ΔH` becomes +890.3 kJ. Add the first two equations to that reversed equation. CO₂, 2H₂O, and 2O₂ cancel, leaving exactly the target reaction. Therefore `ΔH = −393.5 − 571.6 + 890.3 = −74.8 kJ`.
 
 </WorkedExample>
 
-Write the target equation first and adjust one source equation at a time. Finally compare the net equation to the target; a plausible sum with the wrong net reaction is still wrong.
+Do not cancel species that appear on the same side of every equation, and do not cancel substances in different physical states as though they were identical. The final audit is always the net balanced equation plus the sum of the adjusted enthalpies.
 
-<QuickCheck question="If a thermochemical equation is multiplied by 1/2, what happens to ΔH?" options={["Its sign reverses only","Its magnitude is halved","It doubles","It remains unchanged"]} correctIndex={1} explanation="Enthalpy is extensive with reaction amount: scaling all coefficients by one-half also scales ΔH by one-half." />
+<QuickCheck question="In a Hess's-law calculation, a source equation is reversed. Which adjustment is required?" options={["Reverse the sign of ΔH","Square ΔH","Leave ΔH unchanged","Set ΔH to zero"]} correctIndex={0} explanation="Reversing a thermochemical equation reverses the energy change, so the sign of ΔH must also reverse." />
 
 </LessonSection>
 
