@@ -44,6 +44,35 @@ export function PacketCompanionLookup() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showReaderMenu, setShowReaderMenu] = useState(true);
   const [showWorkedAnswer, setShowWorkedAnswer] = useState(false);
+  const [questionProgress, setQuestionProgress] = useState<Record<string, "attempted" | "review" | "mastered">>({});
+  const progressStorageKey = "apchem-packet-companion-progress-v1";
+
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem(progressStorageKey);
+      if (saved) setQuestionProgress(JSON.parse(saved) as Record<string, "attempted" | "review" | "mastered">);
+    } catch {
+      // Progress is a convenience; the study tool still works if browser storage is unavailable.
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(progressStorageKey, JSON.stringify(questionProgress));
+    } catch {
+      // Do not block studying when browser storage is disabled or full.
+    }
+  }, [questionProgress]);
+
+  function setQuestionStatus(status: "attempted" | "review" | "mastered" | "unmarked") {
+    if (!match) return;
+    setQuestionProgress((current) => {
+      const next = { ...current };
+      if (status === "unmarked") delete next[match.id];
+      else next[match.id] = status;
+      return next;
+    });
+  }
 
   const packets = useMemo(
     () => Array.from(new Map(PACKET_QUESTION_INDEX.filter((entry) => entry.unitId === Number(unitId) && entry.questionType === "mcq").map((entry) => [entry.packetId, entry.packetTitle] as const)).entries()),
@@ -279,7 +308,7 @@ export function PacketCompanionLookup() {
                   <button type="button" onClick={() => moveQuestion(1)} disabled={packetEntries[packetEntries.length - 1]?.questionNumber === questionNumber} className="min-h-10 rounded-lg border border-border px-3 py-2 text-sm font-semibold disabled:opacity-35">Next →</button>
                 </div>
                 <div className="mt-4 flex flex-wrap gap-1.5" aria-label="Jump to question">
-                  {packetEntries.map((entry) => <button key={entry.id} type="button" aria-label={"Go to question " + entry.questionNumber} aria-current={entry.questionNumber === questionNumber ? "true" : undefined} onClick={() => selectQuestion(entry.questionNumber)} className={"flex h-9 min-w-9 items-center justify-center rounded-md border px-2 text-xs font-semibold transition " + (entry.questionNumber === questionNumber ? "border-accent bg-accent-soft/30 text-accent" : "border-border text-ink-dim hover:border-accent/40 hover:text-ink")}>{entry.questionNumber}</button>)}
+                  {packetEntries.map((entry) => <button key={entry.id} type="button" aria-label={"Go to question " + entry.questionNumber + (questionProgress[entry.id] ? ", status " + questionProgress[entry.id] : "")} aria-current={entry.questionNumber === questionNumber ? "true" : undefined} onClick={() => selectQuestion(entry.questionNumber)} title={questionProgress[entry.id] ? questionProgress[entry.id] : "Not marked"} className={"relative flex h-9 min-w-9 items-center justify-center rounded-md border px-2 text-xs font-semibold transition " + (entry.questionNumber === questionNumber ? "border-accent bg-accent-soft/30 text-accent" : "border-border text-ink-dim hover:border-accent/40 hover:text-ink")}>{entry.questionNumber}{questionProgress[entry.id] && <span aria-hidden="true" className={"absolute -right-1 -top-1 h-2 w-2 rounded-full " + (questionProgress[entry.id] === "mastered" ? "bg-accent" : questionProgress[entry.id] === "review" ? "bg-amber" : "bg-ink-dim")} />}</button>)}
                 </div>
               </>
             ) : <p className="mt-3 text-sm leading-relaxed text-ink-dim">Choose a unit and packet to load its question list. The reader does not assume question numbers from a different packet.</p>}
@@ -294,6 +323,19 @@ export function PacketCompanionLookup() {
               <>
                 <h3 className="mt-2 text-base font-semibold">Question {match.questionNumber}</h3>
                 <p className="mt-1 text-xs leading-relaxed text-ink-dim">{match.packetTitle} · Topics {match.topicRange.replace("-", "–")}</p>
+                <div className="mt-3 rounded-lg border border-border bg-bg/50 p-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="text-xs font-semibold">Your study progress</p>
+                    <span className="text-[11px] text-ink-dim">{Object.values(questionProgress).filter((status) => status === "mastered").length} mastered · {Object.values(questionProgress).filter((status) => status === "review").length} to review</span>
+                  </div>
+                  <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4 xl:grid-cols-2">
+                    <button type="button" onClick={() => setQuestionStatus("attempted")} aria-pressed={questionProgress[match.id] === "attempted"} className={"min-h-9 rounded-md border px-2 py-2 text-xs font-semibold " + (questionProgress[match.id] === "attempted" ? "border-accent bg-accent-soft/20 text-accent" : "border-border")}>Attempted</button>
+                    <button type="button" onClick={() => setQuestionStatus("review")} aria-pressed={questionProgress[match.id] === "review"} className={"min-h-9 rounded-md border px-2 py-2 text-xs font-semibold " + (questionProgress[match.id] === "review" ? "border-amber bg-amber/10 text-ink" : "border-border")}>Review again</button>
+                    <button type="button" onClick={() => setQuestionStatus("mastered")} aria-pressed={questionProgress[match.id] === "mastered"} className={"min-h-9 rounded-md border px-2 py-2 text-xs font-semibold " + (questionProgress[match.id] === "mastered" ? "border-accent bg-accent-soft/20 text-accent" : "border-border")}>Mastered</button>
+                    <button type="button" onClick={() => setQuestionStatus("unmarked")} className="min-h-9 rounded-md border border-border px-2 py-2 text-xs font-semibold text-ink-dim">Clear status</button>
+                  </div>
+                  <p className="mt-2 text-[11px] leading-relaxed text-ink-dim">Saved in this browser on this device. Mark a question mastered only after you can explain the reasoning without help.</p>
+                </div>
                 {hintLevel === 0 && <p className="mt-3 text-sm leading-relaxed text-ink-dim">{hints.length ? "Try the question in the PDF first. Reveal one hint at a time, then open the worked explanation if one is available." : "This question number is indexed, but question-specific help is not available yet. Use the linked lesson or official practice resources rather than relying on a guessed answer."}</p>}
                 {hints.slice(0, hintLevel).map((hint, index) => <div key={index} className="mt-3 rounded-lg border border-border bg-bg/60 p-3"><p className="text-[11px] font-bold uppercase tracking-wide text-accent">{index === 0 ? "Hint 1 · Concept" : index === 1 ? "Hint 2 · Strategy" : "Hint 3 · Next step"}</p><p className="mt-1 text-sm leading-relaxed">{hint}</p></div>)}
                 {match.solution && hintLevel > hints.length && <div className="mt-3 rounded-lg border border-accent/30 bg-accent-soft/15 p-3"><p className="text-xs font-bold uppercase tracking-wide text-accent">Worked explanation</p><p className="mt-2 whitespace-pre-line text-sm leading-relaxed">{match.solution}</p>{match.commonMistakes?.length ? <ul className="mt-3 list-disc space-y-1 pl-4 text-xs leading-relaxed">{match.commonMistakes.map((mistake) => <li key={mistake}>{mistake}</li>)}</ul> : null}</div>}
