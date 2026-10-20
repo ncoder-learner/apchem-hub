@@ -399,11 +399,13 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
       nextStepHint: "Base the conclusion on the observed isotope pattern, not on the average mass alone.",
     },
     5: {
+      solution: "Answer: B (CH₅N). The 44.0 g CO₂ corresponds to 1.00 mol CO₂ and therefore 1.00 mol C. The 45.0 g H₂O corresponds to 2.50 mol H₂O and therefore 5.00 mol H atoms. The H:C ratio is 5:1, so CH₅N is the listed formula with that ratio; nitrogen is present as stated in the problem.",
       conceptHint: "Combustion analysis uses product amounts to infer how much carbon and hydrogen were present in the original compound.",
       strategyHint: "Convert CO₂ to moles of carbon and H₂O to moles of hydrogen atoms; then use the available choices and nitrogen information to test possible simplest ratios.",
       nextStepHint: "Remember that one mole of CO₂ contains one mole of C, while one mole of H₂O contains two moles of H. Reduce the resulting atom ratio.",
     },
     6: {
+      solution: "Answer: B (KCl). The AgCl precipitate mass is 2.23 − 0.80 = 1.43 g. Using 143 g mol⁻¹, n(AgCl) = 1.43/143 = 0.0100 mol. Ag⁺ and Cl⁻ react 1:1, and each MCl contains one Cl⁻, so n(MCl) = 0.0100 mol. The molar mass of MCl is 0.74 g/0.0100 mol = 74 g mol⁻¹, matching KCl (about 74.6 g mol⁻¹).",
       conceptHint: "A precipitation reaction can reveal the amount of an unknown ion through a known mole ratio.",
       strategyHint: "Use the AgCl precipitate mass to calculate moles of AgCl, then relate those moles to MCl and the unknown metal.",
       nextStepHint: "Ag⁺ and Cl⁻ combine in a 1:1 ratio, and each MCl formula unit contains one M⁺. Once moles of M are known, use the sample mass to determine its molar mass.",
