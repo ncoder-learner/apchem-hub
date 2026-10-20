@@ -783,6 +783,7 @@ export function FrqWorkspace() {
   const [workNotes, setWorkNotes] = useState("");
   const [navigationMessage, setNavigationMessage] = useState("");
   const [showFramework, setShowFramework] = useState(true);
+  const [showPdfSolution, setShowPdfSolution] = useState(false);
   const [localPdfUrl, setLocalPdfUrl] = useState<string | null>(null);
   const [localPdfName, setLocalPdfName] = useState("");
   const pdfSectionRef = useRef<HTMLElement | null>(null);
@@ -866,9 +867,19 @@ export function FrqWorkspace() {
             <div className="flex flex-wrap items-center gap-2">
               <label className="cursor-pointer rounded-lg border border-border px-3 py-2 text-xs font-semibold hover:border-accent/50" htmlFor="frq-local-pdf">Open local PDF</label>
               <input id="frq-local-pdf" type="file" accept="application/pdf,.pdf" onChange={chooseLocalPdf} className="sr-only" />
+              {activeSolution && <button type="button" onClick={() => setShowPdfSolution((shown) => !shown)} aria-pressed={showPdfSolution} className="rounded-lg bg-accent px-3 py-2 text-xs font-bold text-[#06251b]">{showPdfSolution ? "Hide solution overlay" : "Overlay worked solution"}</button>}
             </div>
           </div>
-          {pdfUrl ? <iframe key={pdfUrl} title="AP Chemistry FRQ packet PDF" src={pdfUrl} className="block h-[76vh] min-h-[620px] w-full bg-white" /> : <div className="flex min-h-[500px] items-center justify-center p-8 text-center text-sm text-ink-dim">Select a packet to open the PDF.</div>}
+          {pdfUrl ? <div className="relative">
+            <iframe key={pdfUrl} title="AP Chemistry FRQ packet PDF" src={pdfUrl} className="block h-[76vh] min-h-[620px] w-full bg-white" />
+            {showPdfSolution && activeSolution && <div role="region" aria-label="Worked solution overlay" className="absolute right-3 top-3 z-10 max-h-[45vh] w-[min(24rem,calc(100%-1.5rem))] overflow-y-auto rounded-xl border border-accent/40 bg-card/95 p-4 text-ink shadow-2xl backdrop-blur">
+              <div className="flex items-start justify-between gap-3"><p className="text-xs font-bold uppercase tracking-wide text-accent">Q{questionNumber.trim()}{partLabel.trim() ? ` · ${partLabel.trim()}` : ""} · Worked steps</p><button type="button" onClick={() => setShowPdfSolution(false)} aria-label="Hide worked solution overlay" className="rounded-md border border-border px-2 py-1 text-xs">Hide</button></div>
+              <p className="mt-2 text-sm font-semibold">{activeSolution.prompt}</p>
+              <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm leading-5">{activeSolution.steps.map((step) => <li key={step}>{step}</li>)}</ol>
+              <p className="mt-3 rounded-lg border border-accent/30 bg-accent-soft/10 p-3 text-sm font-bold">Answer: {activeSolution.answer}</p>
+              <p className="mt-2 text-[11px] leading-4 text-ink-dim">Study overlay only; it does not alter the source PDF.</p>
+            </div>}
+          </div> : <div className="flex min-h-[500px] items-center justify-center p-8 text-center text-sm text-ink-dim">Select a packet to open the PDF.</div>}
           {activeSolution && <details className="border-t border-border bg-bg/70 p-4 sm:p-5">
             <summary className="cursor-pointer text-sm font-bold text-accent">Show worked steps for Q{questionNumber.trim()}{partLabel.trim() ? ` · ${partLabel.trim()}` : ""} beside the PDF</summary>
             <div className="mt-3 rounded-xl border border-border bg-card/70 p-4">
