@@ -161,11 +161,11 @@ export function PacketCompanionLookup() {
           </div>
           {documentUrl ? (
             <>
-              <div className={isFullscreen ? "group relative" : "relative"}>
+              <div className={isFullscreen ? "group relative h-[calc(100vh-64px)]" : "relative"}>
                 <iframe
                   title="Loaded chemistry packet PDF"
                   src={documentUrl + "#toolbar=1&navpanes=0&scrollbar=1&page=" + Math.max(1, Number(pdfPage) || 1)}
-                  className={isFullscreen ? (showWorkedAnswer && match?.solution ? "block h-[calc(100vh-280px)] min-h-[280px] w-full bg-white" : "block h-[calc(100vh-64px)] min-h-0 w-full bg-white") : "block h-[72vh] min-h-[560px] w-full bg-white"}
+                  className={isFullscreen ? "block h-full min-h-0 w-full bg-white" : "block h-[72vh] min-h-[560px] w-full bg-white"}
                 />
                 {isFullscreen && (
                   <aside
@@ -214,7 +214,7 @@ export function PacketCompanionLookup() {
                 )}
               </div>
               {showWorkedAnswer && match?.solution && (
-                <div role="region" aria-label="Teacher-style worked answer" className="max-h-[32vh] overflow-y-auto border-t-2 border-red-300 bg-white px-5 py-4 text-red-700 shadow-inner sm:px-8">
+                <div role="region" aria-label="Teacher-style worked answer" className="absolute right-4 top-4 z-30 max-h-[48%] w-[min(34rem,calc(100%-2rem))] overflow-y-auto rounded-xl border-2 border-red-300 bg-white/95 px-5 py-4 text-red-700 shadow-2xl backdrop-blur-sm sm:px-8">
                   <div className="mx-auto max-w-4xl font-serif italic">
                     <p className="text-sm font-bold not-italic text-red-800">Worked answer · Question {questionNumber}</p>
                     <p className="mt-3 whitespace-pre-wrap text-base leading-7">{match.solution}</p>
