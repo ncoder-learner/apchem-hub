@@ -75,10 +75,45 @@ for (const [file, questions] of Object.entries(partMappings)) {
     }
   }
 }
+// Validate that every worked-solution key points to a question/part actually detected
+// in the corresponding PDF extraction. This catches numbering drift, not chemical correctness.
+const solutionStart = source.indexOf("const FRQ_WORKED_SOLUTIONS");
+const solutionEnd = source.indexOf("const RESPONSE_FRAMES", solutionStart);
+if (solutionStart < 0 || solutionEnd < 0) {
+  errors.push("Could not locate FRQ_WORKED_SOLUTIONS in FrqWorkspace.tsx");
+}
+let totalSolutions = 0;
+if (solutionStart >= 0 && solutionEnd > solutionStart) {
+  const solutionSource = source.slice(solutionStart, solutionEnd);
+  const solutionPackets = /"([^"]+\\.pdf)"\\s*:\\s*\\{([\\s\\S]*?)\\n  \\}/g;
+  for (const match of solutionSource.matchAll(solutionPackets)) {
+    const [, file, body] = match;
+    const packet = auditByFile.get(file);
+    if (!packet) {
+      errors.push(`Worked solutions reference ${file}, which is absent from the PDF audit`);
+      continue;
+    }
+    const detectedQuestions = new Set(packet.pages.flatMap((page) => page.candidates.map((candidate) => String(candidate.number))));
+    const detectedParts = new Set(packet.pages.flatMap((page) => page.partCandidates.map((candidate) => `${candidate.question}:${candidate.part}`)));
+    const entryPattern = /^\\s*"(\\d+)(?::([a-h]))?"\\s*:\\s*\\{\\s*prompt:/gm;
+    for (const entry of body.matchAll(entryPattern)) {
+      const [, question, part] = entry;
+      totalSolutions += 1;
+      if (!detectedQuestions.has(question)) {
+        errors.push(`${file}: worked solution Q${question}${part ? `(${part})` : ""} has no matching extracted question heading`);
+        continue;
+      }
+      if (part && !detectedParts.has(`${question}:${part}`)) {
+        errors.push(`${file}: worked solution Q${question}(${part}) has no matching extracted part heading`);
+      }
+    }
+  }
+}
+
 const totalMappings = [...mappings.values()].reduce((sum, questions) => sum + questions.size, 0);
 const totalPartMappings = Object.values(partMappings).reduce((sum, questions) =>
   sum + Object.values(questions).reduce((count, parts) => count + Object.keys(parts).length, 0), 0);
-console.log(`Validated ${mappings.size} packet maps, ${totalMappings} question-page mappings, and ${totalPartMappings} part-page candidates against ${audit.length} audited PDFs.`);
+console.log(`Validated ${mappings.size} packet maps, ${totalMappings} question-page mappings, ${totalPartMappings} part-page candidates, and ${totalSolutions} worked-solution keys against ${audit.length} audited PDFs.`);
 if (warnings.length) console.warn(warnings.join("\n"));
 if (errors.length) {
   console.error(errors.join("\n"));
