@@ -85,7 +85,7 @@ if (solutionStart < 0 || solutionEnd < 0) {
 let totalSolutions = 0;
 if (solutionStart >= 0 && solutionEnd > solutionStart) {
   const solutionSource = source.slice(solutionStart, solutionEnd);
-  const solutionPackets = /"([^"]+\\.pdf)"\\s*:\\s*\\{([\\s\\S]*?)\\n  \\}/g;
+  const solutionPackets = /"([^"]+\.pdf)"\s*:\s*\{([\s\S]*?)\n  \}/g;
   for (const match of solutionSource.matchAll(solutionPackets)) {
     const [, file, body] = match;
     const packet = auditByFile.get(file);
@@ -95,7 +95,7 @@ if (solutionStart >= 0 && solutionEnd > solutionStart) {
     }
     const detectedQuestions = new Set(packet.pages.flatMap((page) => page.candidates.map((candidate) => String(candidate.number))));
     const detectedParts = new Set(packet.pages.flatMap((page) => page.partCandidates.map((candidate) => `${candidate.question}:${candidate.part}`)));
-    const entryPattern = /^\\s*"(\\d+)(?::([a-h]))?"\\s*:\\s*\\{\\s*prompt:/gm;
+    const entryPattern = /^\s*"(\d+)(?::([a-h]))?"\s*:\s*\{\s*prompt:/gm;
     for (const entry of body.matchAll(entryPattern)) {
       const [, question, part] = entry;
       totalSolutions += 1;
