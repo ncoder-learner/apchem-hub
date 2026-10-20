@@ -104,6 +104,27 @@ export function UnitReviewStudySession({ unitId, topics, review }: Props) {
               </article>
             ))}
           </div>
+          {review.coreReview && review.coreReview.length > 0 && (
+            <section className="space-y-4">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Unit knowledge guide</p>
+                <h3 className="mt-2 text-2xl font-bold">The ideas and equations you must be able to use</h3>
+                <p className="mt-2 max-w-3xl text-sm leading-relaxed text-ink-dim">Use this as a self-contained summary before practice. For each relationship, be ready to explain what it means, when it applies, and which assumptions it depends on.</p>
+              </div>
+              <div className="grid gap-4 lg:grid-cols-2">
+                {review.coreReview.map((section, index) => (
+                  <article key={section.title} className="rounded-xl border border-border bg-card/35 p-5">
+                    <p className="text-xs font-bold uppercase tracking-wide text-accent">Core concept {index + 1}</p>
+                    <h4 className="mt-2 text-lg font-semibold">{section.title}</h4>
+                    <p className="mt-2 text-sm leading-relaxed">{section.explanation}</p>
+                    <ul className="mt-4 space-y-2">
+                      {section.keyRelations.map((relation) => <li key={relation} className="flex gap-2 text-sm leading-relaxed"><span className="text-accent">•</span><span>{relation}</span></li>)}
+                    </ul>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
           <details className="rounded-xl border border-border bg-card/30 p-5">
             <summary className="cursor-pointer list-none text-base font-semibold">Common traps to actively test yourself against <span className="ml-2 text-xs font-normal text-ink-dim">({review.traps.length})</span></summary>
             <p className="mt-2 text-sm leading-relaxed text-ink-dim">For each one, explain why it is wrong and what evidence or relationship should replace it.</p>
