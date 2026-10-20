@@ -44,7 +44,6 @@ export default async function UnitReviewPage({ params }: PageProps) {
 
       <footer className="mt-9 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-5 text-sm">
         <Link href="/" className="text-ink-dim hover:text-accent">← All units</Link>
-        {topics[0] && <Link href={"/units/" + unitId + "/" + topics[0].slug} className="font-semibold text-accent hover:underline">Start this unit’s lessons →</Link>}
       </footer>
     </main>
   );
