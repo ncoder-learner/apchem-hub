@@ -39,7 +39,7 @@ for (const match of hintsBlock.matchAll(packetSolutionPattern)) {
 }
 const exceptions = {
   // Source packet has an unnumbered first question; the printed numbering begins at 2.
-  "topics-8-6-8-11-mcq": "The source PDF starts with an unnumbered question; printed questions 2–16 are indexed."
+  "topics-8-6-8-11-mcq": "The source PDF starts with an unnumbered prompt stored under key 1; only printed questions 2–16 count toward indexed coverage."
 };
 const rows = [];
 const missing = [];
@@ -60,7 +60,8 @@ for (const packet of packets) {
     title: packet.title,
     expected: expected.length,
     withWorkedSolution: expected.filter((number) => keys.has(number)).length,
-    missing: absent
+    missing: absent,
+    unexpected: [...keys].filter((number) => number < packet.first || number > packet.last)
   });
 }
 
@@ -73,6 +74,7 @@ const report = [
   `- Expected numbered questions: ${expectedCount}`,
   `- Questions with a solution entry: ${solutionCount}`,
   `- Missing solution entries: ${missing.length}`,
+  `- Unexpected solution keys outside printed ranges: ${rows.reduce((sum, row) => sum + row.unexpected.length, 0)}`,
   `- Structural coverage: ${expectedCount ? (100 * solutionCount / expectedCount).toFixed(1) : "0.0"}%`,
   "",
   "| Unit | Packet | Expected | Solution entries | Missing |",
@@ -86,6 +88,7 @@ const report = [
   "## Source caveats",
   "",
   ...Object.entries(exceptions).map(([packet, note]) => `- ${packet}: ${note}`),
+  ...rows.flatMap((row) => row.unexpected.map((number) => `- ${row.packet}: solution key ${number} falls outside the printed range ${packets.find((packet) => packet.id === row.packet)?.first}–${packets.find((packet) => packet.id === row.packet)?.last}; review whether it represents an unnumbered prompt.`)),
   "",
 ].join("\n");
 
