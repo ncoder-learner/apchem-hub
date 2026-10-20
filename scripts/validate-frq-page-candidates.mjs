@@ -82,7 +82,7 @@ if (pageCountStart < 0 || pageCountEnd < 0) {
   errors.push("Could not locate FRQ_PDF_PAGE_COUNTS in FrqWorkspace.tsx");
 } else {
   const pageCountSource = source.slice(pageCountStart, pageCountEnd);
-  const pageCounts = new Map([...pageCountSource.matchAll(/"([^"]+\\.pdf)"\\s*:\\s*(\\d+)/g)].map((match) => [match[1], Number(match[2])]));
+  const pageCounts = new Map([...pageCountSource.matchAll(/"([^"]+\.pdf)"\s*:\s*(\d+)/g)].map((match) => [match[1], Number(match[2])]));
   for (const packet of audit) {
     if (!pageCounts.has(packet.file)) {
       errors.push(`${packet.file}: no UI page-count bound exists`);
