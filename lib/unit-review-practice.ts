@@ -132,7 +132,49 @@ export const UNIT_REVIEW_PRACTICE: Record<number, UnitReviewPractice> = {
           { label: "c", prompt: "The reactant energy is 18 kJ·mol⁻¹ and the first transition state is 74 kJ·mol⁻¹. Calculate the first-step forward activation energy.", scoringGuidance: ["Use transition-state energy minus reactant energy.", "Calculate 74 − 18.", "Report 56 kJ·mol⁻¹."] },
           { label: "d", prompt: "Explain what a catalyst changes and identify one quantity it does not change at constant temperature.", scoringGuidance: ["Describe an alternative pathway with lower activation barrier(s).", "State that it accelerates forward and reverse reactions.", "State that it does not change K or the net ΔH at fixed temperature."] },
         ],
-      },
+      },,
+      {
+        title: "Integrated kinetics: infer a model and test its consequences",
+        stimulus: "A decomposition of A(g) is monitored at constant temperature. The measured concentrations are: t = 0 s, [A] = 0.800 M; 40 s, 0.400 M; 80 s, 0.200 M; 120 s, 0.100 M. Assume the measurements are reliable and the reaction is not approaching a competing equilibrium.",
+        parts: [
+          {
+            label: "a",
+            prompt: "Use the concentration data to identify the most likely reaction order. Explain why the pattern is stronger evidence than simply observing that the concentration decreases.",
+            scoringGuidance: [
+              "Identify the repeated halving over equal 40 s intervals.",
+              "Explain that a constant half-life is characteristic of first-order kinetics; a decrease alone does not establish order.",
+              "Recognize that the conclusion is based on the observed pattern over the measured interval."
+            ]
+          },
+          {
+            label: "b",
+            prompt: "Calculate the rate constant k, including units.",
+            scoringGuidance: [
+              "Use t½ = 0.693/k for a first-order process.",
+              "Calculate k = 0.693/40.0 s = 1.73×10⁻² s⁻¹.",
+              "Include s⁻¹ because first-order k has inverse-time units."
+            ]
+          },
+          {
+            label: "c",
+            prompt: "Predict [A] after 100.0 s using the integrated first-order law.",
+            scoringGuidance: [
+              "Write ln([A]t/[A]₀) = −kt or [A]t = [A]₀e⁻ᵏᵗ.",
+              "Substitute [A]₀ = 0.800 M, k = 1.73×10⁻² s⁻¹, and t = 100.0 s.",
+              "Obtain approximately 0.142 M, with units and reasonable rounding."
+            ]
+          },
+          {
+            label: "d",
+            prompt: "A student claims the overall balanced equation alone proves the reaction is first order. Evaluate the claim and describe one independent kind of evidence that could test a proposed mechanism.",
+            scoringGuidance: [
+              "Reject the claim: overall stoichiometric coefficients do not generally determine rate-law exponents.",
+              "Explain that initial-rate comparisons or a suitable integrated-rate plot can support the order.",
+              "A mechanism must also sum to the net reaction and agree with the experimental rate law."
+            ]
+          }
+        ]
+      }
     ],
   },
   6: {
@@ -189,7 +231,49 @@ export const UNIT_REVIEW_PRACTICE: Record<number, UnitReviewPractice> = {
           { label: "c", prompt: "Find ΔH° for the reverse of the reaction in part (a).", scoringGuidance: ["Reverse the equation and change the sign.", "Report +566.0 kJ."] },
           { label: "d", prompt: "Explain why the enthalpy result does not reveal how quickly CO oxidizes.", scoringGuidance: ["Distinguish thermodynamic state-function change from kinetics.", "Identify activation energy/pathway as relevant to rate.", "Do not equate exothermicity with fast reaction."] },
         ],
-      },
+      },,
+      {
+        title: "Coffee-cup calorimetry with a non-negligible calorimeter",
+        stimulus: "A student mixes 50.0 mL of 0.500 M HCl with 50.0 mL of 0.500 M NaOH in a coffee-cup calorimeter. Both solutions begin at 22.10°C and the final temperature is 25.40°C. Assume density = 1.00 g·mL⁻¹, specific heat = 4.184 J·g⁻¹·°C⁻¹, and calorimeter heat capacity Ccal = 35.0 J·°C⁻¹. The reaction is H⁺(aq) + OH⁻(aq) → H₂O(l).",
+        parts: [
+          {
+            label: "a",
+            prompt: "Calculate the heat gained by the solution and by the calorimeter.",
+            scoringGuidance: [
+              "Calculate ΔT = 25.40 − 22.10 = 3.30°C.",
+              "Use qsolution = (100.0 g)(4.184 J·g⁻¹·°C⁻¹)(3.30°C) = 1.38×10³ J.",
+              "Use qcal = CcalΔT = (35.0 J·°C⁻¹)(3.30°C) = 116 J; both are positive because they warm."
+            ]
+          },
+          {
+            label: "b",
+            prompt: "Determine qreaction for the amount mixed and explain the sign.",
+            scoringGuidance: [
+              "Add the heat gained by the solution and calorimeter: qsurroundings ≈ 1.496 kJ.",
+              "Apply energy conservation: qreaction ≈ −qsurroundings = −1.50 kJ.",
+              "The negative sign means the reaction releases heat; the surroundings gain it."
+            ]
+          },
+          {
+            label: "c",
+            prompt: "Calculate the molar enthalpy of neutralization in kJ·mol⁻¹.",
+            scoringGuidance: [
+              "Find n(H⁺) = n(OH⁻) = (0.0500 L)(0.500 mol·L⁻¹) = 0.0250 mol.",
+              "Use ΔH ≈ −1.496 kJ / 0.0250 mol = −59.8 kJ·mol⁻¹ for the reaction as written.",
+              "Report sign, units, and the mole basis; the 1:1 reactants are present in stoichiometric amounts."
+            ]
+          },
+          {
+            label: "d",
+            prompt: "Predict the bias if the student ignores the calorimeter heat capacity, and explain the energy-accounting error.",
+            scoringGuidance: [
+              "Ignoring qcal uses only 1.381 kJ as surroundings heat and gives about −55.2 kJ·mol⁻¹.",
+              "The calculated enthalpy would be less negative (underestimate the magnitude of heat released).",
+              "The calorimeter also warms and absorbs energy, so its heat must be included in the surroundings balance."
+            ]
+          }
+        ]
+      }
     ],
   },
   7: {
@@ -246,7 +330,49 @@ export const UNIT_REVIEW_PRACTICE: Record<number, UnitReviewPractice> = {
           { label: "c", prompt: "Explain whether the numerical value of Ksp changes after NaF is added.", scoringGuidance: ["State Ksp remains constant at fixed temperature.", "Distinguish a changed equilibrium composition from a changed equilibrium constant."] },
           { label: "d", prompt: "Predict the effect of adding strong acid to a solution containing carbonate ions and justify the trend in solubility for a carbonate solid.", scoringGuidance: ["Explain that H₃O⁺ protonates and removes CO₃²⁻ from the free-ion pool.", "Qsp falls below Ksp, favoring more dissolution.", "Avoid claiming pH changes Ksp at constant temperature."] },
         ],
-      },
+      },,
+      {
+        title: "Equilibrium calculation followed by compression",
+        stimulus: "At a fixed temperature, A(g) ⇌ 2B(g) has Kc = 0.200. A vessel initially contains [A]₀ = 0.500 M and no B. The system reaches equilibrium in a rigid vessel before a second experiment is performed by compressing an equilibrium mixture to half its original volume at the same temperature.",
+        parts: [
+          {
+            label: "a",
+            prompt: "Write the Kc expression and set up the ICE table using x for the forward change.",
+            scoringGuidance: [
+              "Write Kc = [B]²/[A]; pure solids and liquids are not relevant here.",
+              "Use equilibrium [A] = 0.500 − x and [B] = 2x.",
+              "Substitute 0.200 = (2x)²/(0.500 − x)."
+            ]
+          },
+          {
+            label: "b",
+            prompt: "Solve for the physically meaningful equilibrium concentrations.",
+            scoringGuidance: [
+              "Rearrange to 4x² + 0.200x − 0.100 = 0.",
+              "Choose the positive, physically possible root x ≈ 0.135 M; reject the negative root.",
+              "Report [A]eq ≈ 0.365 M and [B]eq ≈ 0.270 M and check they satisfy Kc ≈ 0.200."
+            ]
+          },
+          {
+            label: "c",
+            prompt: "Immediately after the equilibrium mixture is compressed to half its volume, before any reaction occurs, compare Qc with Kc.",
+            scoringGuidance: [
+              "Concentrations instantly double, so Qc′ = (2[B])²/(2[A]) = 2[B]²/[A] = 2Kc.",
+              "Calculate Qc′ = 0.400, which is greater than Kc = 0.200.",
+              "Because Qc > Kc, the net reaction shifts left, consuming B and forming A."
+            ]
+          },
+          {
+            label: "d",
+            prompt: "Explain whether compression changes Kc and why the predicted shift agrees with the gas-mole model.",
+            scoringGuidance: [
+              "Kc remains 0.200 because temperature is unchanged.",
+              "The left side has one mole of gas per reaction event and the right side has two; compression favors the side with fewer gas particles.",
+              "Use this as a consistency check, not as a substitute for Q-versus-K reasoning."
+            ]
+          }
+        ]
+      }
     ],
   },
   8: {
@@ -303,7 +429,49 @@ export const UNIT_REVIEW_PRACTICE: Record<number, UnitReviewPractice> = {
           { label: "c", prompt: "Explain why the pH at equivalence is greater than 7 at 25°C.", scoringGuidance: ["At equivalence, most HA has been converted to A⁻.", "A⁻ reacts with water to form HA and OH⁻.", "The produced OH⁻ makes the solution basic."] },
           { label: "d", prompt: "After 25.0 mL NaOH has been added, identify the species controlling pH and calculate the excess OH⁻ concentration.", scoringGuidance: ["Moles OH⁻ added = 0.0250 L×0.150 M = 0.00375 mol.", "Subtract 0.00300 mol acid to obtain 0.00075 mol excess OH⁻.", "Total volume = 55.0 mL; [OH⁻] = 0.00075/0.0550 = 0.0136 M."] },
         ],
-      },
+      },,
+      {
+        title: "Weak-acid titration across four chemical regimes",
+        stimulus: "A student titrates 25.00 mL of 0.1000 M monoprotic weak acid HA (Ka = 1.8×10⁻⁵) with 0.1000 M NaOH at 25°C. Assume ideal dilute-solution behavior and additive volumes.",
+        parts: [
+          {
+            label: "a",
+            prompt: "Estimate the initial pH and justify the small-x approximation.",
+            scoringGuidance: [
+              "Set Ka = x²/(0.1000 − x) and estimate x ≈ √(KaC) = 1.34×10⁻³ M.",
+              "Calculate pH ≈ −log(1.34×10⁻³) = 2.87.",
+              "Percent ionization ≈ (0.00134/0.1000)×100% = 1.34%, so the approximation is reasonable."
+            ]
+          },
+          {
+            label: "b",
+            prompt: "Calculate the equivalence volume and the pH at the half-equivalence point.",
+            scoringGuidance: [
+              "Initial acid amount is (0.02500 L)(0.1000 M) = 0.002500 mol, so equivalence requires 25.00 mL NaOH.",
+              "At half-equivalence, equal amounts HA and A⁻ remain, so pH = pKa.",
+              "Calculate pKa = −log(1.8×10⁻⁵) = 4.74."
+            ]
+          },
+          {
+            label: "c",
+            prompt: "Predict whether the pH at equivalence is below, equal to, or above 7, and estimate its value.",
+            scoringGuidance: [
+              "At equivalence the solution contains A⁻, the conjugate base of a weak acid; A⁻ reacts with water to produce OH⁻, so pH > 7.",
+              "Calculate Kb = Kw/Ka = 5.6×10⁻¹⁰ and [A⁻] ≈ 0.002500 mol/0.05000 L = 0.0500 M.",
+              "Use [OH⁻] ≈ √(KbC) ≈ 5.3×10⁻⁶ M, giving pH ≈ 8.72."
+            ]
+          },
+          {
+            label: "d",
+            prompt: "After 30.00 mL NaOH has been added, determine the pH and explain why the buffer equation is no longer the correct primary method.",
+            scoringGuidance: [
+              "Moles OH⁻ added = 0.003000 mol; excess OH⁻ after neutralization = 0.003000 − 0.002500 = 0.000500 mol.",
+              "Total volume = 0.05500 L, so [OH⁻]excess = 0.00909 M and pH ≈ 11.96.",
+              "Beyond equivalence, excess strong base controls pH; use stoichiometry and excess OH⁻, not Henderson–Hasselbalch."
+            ]
+          }
+        ]
+      }
     ],
   },
 
