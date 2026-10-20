@@ -705,7 +705,7 @@ export function FrqWorkspace() {
   const selected = FRQ_PACKETS.find((packet) => packet.file === selectedFile) ?? packets[0];
   const maxPage = selected ? FRQ_PDF_PAGE_COUNTS[selected.file] ?? 1 : 1;
   const boundedPage = Math.min(maxPage, Math.max(1, Number(page) || 1));
-  const pdfUrl = localPdfUrl ?? (selected ? `/frq/${selected.file}#page=${boundedPage}&toolbar=1&navpanes=0` : "");
+  const pdfUrl = localPdfUrl ? `${localPdfUrl}#page=${boundedPage}&toolbar=1&navpanes=0` : (selected ? `/frq/${selected.file}#page=${boundedPage}&toolbar=1&navpanes=0` : "");
   const normalizedPart = partLabel.trim().toLowerCase().match(/[a-h]/)?.[0] ?? "";
   const localPacketMatches = !localPdfUrl || localPdfName === selected?.file;
   const activeSolution = selected && localPacketMatches
