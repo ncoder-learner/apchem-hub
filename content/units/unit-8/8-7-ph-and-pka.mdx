@@ -1,0 +1,69 @@
+---
+title: "pH and pKa"
+unit: 8
+topicNumber: "8.7"
+slug: "8-7-ph-and-pka"
+summary: "Interpret pKa as an acid-strength measure and use pH relative to pKa to compare conjugate-pair composition."
+---
+
+pKa is the negative logarithm of Ka: pKa = −log Ka. Because of the negative logarithm, a smaller pKa means a larger Ka and therefore a stronger acid.
+
+<LessonSection title="1. Compare acid strength" description="Translate between Ka and pKa" defaultOpen>
+
+If acid A has pKa = 3 and acid B has pKa = 5, acid A is stronger. Its Ka is 100 times larger because a two-unit pKa difference corresponds to a factor of 10² in Ka.
+
+Do not confuse pKa with pH. pKa is a characteristic equilibrium measure for an acid at a given temperature; pH describes the hydronium concentration in a particular solution.
+
+<QuickCheck question="Which acid is stronger: one with pKa = 2.0 or one with pKa = 6.0?" options={["pKa = 2.0","pKa = 6.0","They have equal strength","Strength depends only on concentration"]} correctIndex={0} explanation="Lower pKa means higher Ka and stronger acid." />
+
+</LessonSection>
+
+<LessonSection title="2. Predict the dominant form" description="Compare pH with pKa">
+
+For a weak acid/conjugate-base pair HA/A⁻:
+- If pH is below pKa, the protonated form HA predominates.
+- If pH is above pKa, the deprotonated form A⁻ predominates.
+- If pH = pKa, the two forms are present in equal concentrations.
+
+These statements follow from the ratio [A⁻]/[HA] = 10^(pH − pKa). A one-unit difference means a ten-to-one ratio, not a one-to-one difference.
+
+</LessonSection>
+
+<LessonSection title="3. Use the relationship as a reasoning tool" description="Estimate ratios without solving a full equilibrium">
+
+At pH 4 and pKa 6, pH − pKa = −2, so [A⁻]/[HA] = 10⁻² = 0.010. HA is present at about 100 times the concentration of A⁻. At pH 7 and pKa 5, the ratio is 10² = 100, so A⁻ predominates by about 100 to 1.
+
+</LessonSection>
+
+<LessonSection title="4. Relate pH, pKa, and the conjugate-pair ratio" description="pKa is an equilibrium property; pH describes the current solution">
+
+Since pKa = - log Ka, a lower pKa corresponds to a larger Ka and a stronger acid within comparable conditions. For a buffer containing HA and A⁻, pH = pKa + log([A⁻ ] / [HA]). If [A⁻] = [HA], the logarithm is zero and pH = pKa. If [A⁻]/[HA] = 10, pH is one unit above pKa; if the ratio is 0.10, pH is one unit below pKa.
+
+<WorkedExample title="Worked example: interpret a ratio">
+A buffer has pKa = 4.20 and [A⁻ ] / [HA] = 0.25. Then pH = 4.20 + log(0.25) = 4.20 - 0.602 = 3.60. Because the acid form is four times as abundant as the conjugate base, the pH lies below pKa.
+
+</WorkedExample>
+
+Henderson–Hasselbalch is most useful when both members of the conjugate pair are present in appreciable amounts. Do not use it to bypass strong-acid/strong-base neutralization, or when the ratio is undefined because one component is absent. At half-equivalence in a weak-acid titration, it applies because the conjugate pair amounts are equal.
+
+<QuickCheck question="A buffer has pH = pKa + 1. Which ratio is implied by Henderson–Hasselbalch?" options={["[A⁻]/[HA] = 0.10","[A⁻]/[HA] = 1","[A⁻]/[HA] = 10","[A⁻]/[HA] = 100"]} correctIndex={2} explanation="If pH − pKa = 1, then log([A⁻]/[HA]) = 1 and the ratio is 10." />
+
+</LessonSection>
+
+
+<LessonSection title="5. Use the pH–pKa difference to infer composition" description="A logarithmic difference is a multiplicative ratio">
+
+For a buffer, `pH − pKa = log([A⁻]/[HA])`. The difference tells you the ratio, not the individual concentrations. A pH one unit above pKa means ten times as much conjugate base as acid; one unit below pKa means one-tenth as much conjugate base as acid. A difference of 0.30 corresponds to a ratio of about 2, because `log(2) ≈ 0.301`.
+
+<WorkedExample title="Worked example: infer amounts from a measured pH">
+
+A buffer has pH = 5.20 and pKa = 4.80. Then `[A⁻]/[HA] = 10^(5.20−4.80) = 10^0.40 ≈ 2.51`. If the buffer contains 0.0350 mol total of HA and A⁻, let n(HA) = x and n(A⁻) = 2.51x. Then 3.51x = 0.0350 mol, giving n(HA) ≈ 0.00997 mol and n(A⁻) ≈ 0.0250 mol. The pH determines a ratio; the total amount is needed to determine each amount separately.
+
+</WorkedExample>
+
+<QuickCheck question="A buffer has pH = pKa + 0.30. Which ratio is closest?" options={["[A⁻]/[HA] = 0.50","[A⁻]/[HA] = 1.0","[A⁻]/[HA] = 2.0","[A⁻]/[HA] = 10"]} correctIndex={2} explanation="The ratio is 10^0.30 ≈ 2.0. A difference of 0.30 pH units corresponds to roughly a factor of two in the conjugate-base-to-acid ratio." />
+
+</LessonSection>
+## Readiness check
+
+You should be able to rank acids by pKa, distinguish pKa from pH, and use pH − pKa to estimate the relative amounts of conjugate forms.

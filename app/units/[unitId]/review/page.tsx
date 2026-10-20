@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getUnitTopics } from "@/lib/content";
 import { getUnit } from "@/lib/units";
 import { UNIT_REVIEWS } from "@/lib/unit-reviews";
 import { UnitReviewStudySession } from "@/components/UnitReviewStudySession";
@@ -15,8 +14,6 @@ export default async function UnitReviewPage({ params }: PageProps) {
   const unit = getUnit(unitId);
   const review = UNIT_REVIEWS[unitId];
   if (!unit || !review) return notFound();
-
-  const topics = getUnitTopics(unitId);
 
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-4 py-6 sm:px-7 sm:py-10">
@@ -36,18 +33,17 @@ export default async function UnitReviewPage({ params }: PageProps) {
           <h1 className="max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">{unit.title}: the test-prep session</h1>
           <p className="mt-4 max-w-3xl leading-relaxed text-ink-dim">{review.focus}</p>
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-bg/60 px-3 py-1.5 text-sm"><span className="h-2 w-2 rounded-full bg-accent" />60-minute guided review</span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-bg/60 px-3 py-1.5 text-sm"><span className="h-2 w-2 rounded-full bg-accent" />90-minute guided review</span>
             <span className="rounded-full border border-border bg-bg/60 px-3 py-1.5 text-sm text-ink-dim">{review.examWeight} of MCQ</span>
             <a href="https://apcentral.collegeboard.org/courses/ap-chemistry/exam/past-exam-questions" target="_blank" rel="noreferrer" className="text-sm font-semibold text-accent hover:underline">Released AP FRQs ↗</a>
           </div>
         </div>
       </header>
 
-      <UnitReviewStudySession unitId={unitId} topics={topics} review={review} />
+      <UnitReviewStudySession unitId={unitId} review={review} />
 
       <footer className="mt-9 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-5 text-sm">
         <Link href="/" className="text-ink-dim hover:text-accent">← All units</Link>
-        {topics[0] && <Link href={"/units/" + unitId + "/" + topics[0].slug} className="font-semibold text-accent hover:underline">Start this unit’s lessons →</Link>}
       </footer>
     </main>
   );

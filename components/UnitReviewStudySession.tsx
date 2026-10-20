@@ -5,34 +5,28 @@ import Link from "next/link";
 import type { UnitReviewData } from "@/lib/unit-reviews";
 import { UNIT_REVIEW_PRACTICE } from "@/lib/unit-review-practice";
 
-interface TopicLink {
-  slug: string;
-  topicNumber: string;
-  title: string;
-}
-
 interface Props {
   unitId: number;
-  topics: TopicLink[];
   review: UnitReviewData;
 }
 
 const STUDY_BLOCKS = [
-  { id: "map", time: "0–8 min", title: "Build the unit map", detail: "Read the three mental models. Explain each in your own words before moving on." },
-  { id: "recall", time: "8–18 min", title: "Retrieve from memory", detail: "Hide the lesson links. Write the key relationships, symbols, and decision rules from memory." },
-  { id: "mcq", time: "18–38 min", title: "Practice and correct", detail: "Answer every question without notes. For each miss, identify the exact assumption or step that failed." },
-  { id: "frq", time: "38–55 min", title: "Write like an AP student", detail: "Attempt one released FRQ part on paper. Explain the chemistry, show work, and label units." },
-  { id: "finish", time: "55–60 min", title: "Close the gaps", detail: "Revisit one lesson, then redo missed questions without looking at the explanation." },
+  { id: "map", time: "0–10 min", title: "Build the unit map", detail: "Read the core knowledge guide. Explain the central relationships in your own words before moving on." },
+  { id: "recall", time: "10–20 min", title: "Retrieve from memory", detail: "Write key equations, assumptions, and decision rules from memory before checking the guide." },
+  { id: "mcq", time: "20–50 min", title: "Practice and correct", detail: "Complete all 15 MCQs without notes. For each miss, identify the exact assumption, representation, or calculation step that failed." },
+  { id: "frq", time: "50–85 min", title: "Write like an AP student", detail: "Attempt the four multi-part FRQs on paper or in the response fields. Show equations, substitutions, units, and particle-level justifications before revealing each scoring guide." },
+  { id: "finish", time: "85–90 min", title: "Close the gaps", detail: "Redo missed questions from a blank page and identify one concept that still needs practice." },
 ] as const;
 
-export function UnitReviewStudySession({ unitId, topics, review }: Props) {
+export function UnitReviewStudySession({ unitId, review }: Props) {
   const practice = UNIT_REVIEW_PRACTICE[unitId];
   const [activeTab, setActiveTab] = useState<"map" | "practice" | "frq">("map");
   const [checkedBlocks, setCheckedBlocks] = useState<string[]>([]);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [checkedAnswers, setCheckedAnswers] = useState<number[]>([]);
   const [readiness, setReadiness] = useState<string[]>([]);
-  const [weakTopic, setWeakTopic] = useState("");
+  const [frqResponses, setFrqResponses] = useState<Record<string, string>>({});
+  const [revealedRubrics, setRevealedRubrics] = useState<string[]>([]);
 
   const score = useMemo(
     () => checkedAnswers.filter((index) => answers[index] === practice.questions[index]?.correctIndex).length,
@@ -53,7 +47,7 @@ export function UnitReviewStudySession({ unitId, topics, review }: Props) {
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent">Your 60-minute review</p>
             <h2 className="mt-2 text-2xl font-bold tracking-tight">Learn it. Retrieve it. Prove it.</h2>
-            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-dim">This is a guided study session, not another lesson. Work on paper, use the checks to find gaps, then revisit only the lesson that fixes them.</p>
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-dim">This is a guided study session, not another lesson. Work on paper, use the worked examples and decision rules to close gaps, then redo missed problems from a blank page.</p>
           </div>
           <div className="w-full shrink-0 sm:max-w-48">
             <div className="flex items-center justify-between text-xs text-ink-dim"><span>Session progress</span><span>{progress}%</span></div>
@@ -102,6 +96,29 @@ export function UnitReviewStudySession({ unitId, topics, review }: Props) {
               </article>
             ))}
           </div>
+          {review.coreReview && review.coreReview.length > 0 && (
+            <section className="space-y-4">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Unit knowledge guide</p>
+                <h3 className="mt-2 text-2xl font-bold">The ideas and equations you must be able to use</h3>
+                <p className="mt-2 max-w-3xl text-sm leading-relaxed text-ink-dim">Use this as a self-contained summary before practice. For each relationship, be ready to explain what it means, when it applies, and which assumptions it depends on.</p>
+              </div>
+              <div className="grid gap-4 lg:grid-cols-2">
+                {review.coreReview.map((section, index) => (
+                  <article key={section.title} className="rounded-xl border border-border bg-card/35 p-5">
+                    <p className="text-xs font-bold uppercase tracking-wide text-accent">Core concept {index + 1}</p>
+                    <h4 className="mt-2 text-lg font-semibold">{section.title}</h4>
+                    <p className="mt-2 text-sm leading-relaxed">{section.explanation}</p>
+                    <ul className="mt-4 space-y-2">
+                      {section.keyRelations.map((relation) => <li key={relation} className="flex gap-2 text-sm leading-relaxed"><span className="text-accent">•</span><span>{relation}</span></li>)}
+                    </ul>
+                    {section.workedExample && <div className="mt-4 rounded-lg border border-border bg-bg/70 p-4"><p className="text-[11px] font-bold uppercase tracking-wide text-accent">Worked example</p><p className="mt-2 whitespace-pre-line text-sm leading-relaxed">{section.workedExample}</p></div>}
+                    {section.decisionRule && <div className="mt-3"><p className="text-[11px] font-bold uppercase tracking-wide text-ink-dim">Decision rule</p><p className="mt-1 text-sm leading-relaxed">{section.decisionRule}</p></div>}
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
           <details className="rounded-xl border border-border bg-card/30 p-5">
             <summary className="cursor-pointer list-none text-base font-semibold">Common traps to actively test yourself against <span className="ml-2 text-xs font-normal text-ink-dim">({review.traps.length})</span></summary>
             <p className="mt-2 text-sm leading-relaxed text-ink-dim">For each one, explain why it is wrong and what evidence or relationship should replace it.</p>
@@ -110,15 +127,23 @@ export function UnitReviewStudySession({ unitId, topics, review }: Props) {
             </ul>
           </details>
           <section className="rounded-xl border border-border p-5 sm:p-6">
-            <div className="flex flex-wrap items-end justify-between gap-3">
-              <div><h3 className="text-lg font-semibold">Pick the lesson that fixes the gap</h3><p className="mt-1 text-sm text-ink-dim">Use these as targeted repairs, not as a requirement to reread everything.</p></div>
-              <span className="text-xs text-ink-dim">{topics.length} lessons available</span>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Apply the model</p>
+              <h3 className="mt-2 text-xl font-semibold">Problem-solving playbooks</h3>
+              <p className="mt-1 text-sm leading-relaxed text-ink-dim">Use these steps as a method, not a checklist to memorize. Write the setup first, justify each choice, and check whether the result makes chemical sense.</p>
             </div>
-            {topics.length > 0 ? (
-              <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                {topics.map((topic) => <Link key={topic.slug} href={"/units/" + unitId + "/" + topic.slug} className="group flex min-h-14 items-center justify-between gap-3 rounded-lg border border-border px-4 py-3 transition hover:border-accent/50 hover:bg-accent-soft/10"><span><span className="mr-2 font-mono text-xs text-accent">{topic.topicNumber}</span><span className="text-sm font-medium">{topic.title}</span></span><span className="text-ink-dim transition group-hover:translate-x-0.5 group-hover:text-accent">↗</span></Link>)}
-              </div>
-            ) : <p className="mt-3 text-sm text-ink-dim">Unit lessons are being added. Use the mental models, practice set, and official FRQ resource below while coverage is completed.</p>}
+            <div className="mt-4 grid gap-4 lg:grid-cols-2">
+              {review.strategies.map((strategy, index) => (
+                <article key={strategy.title} className="rounded-xl border border-border bg-card/35 p-4">
+                  <p className="text-xs font-bold uppercase tracking-wide text-accent">Method {index + 1}</p>
+                  <h4 className="mt-2 font-semibold">{strategy.title}</h4>
+                  <p className="mt-1 text-sm leading-relaxed text-ink-dim">{strategy.summary}</p>
+                  <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm leading-relaxed">
+                    {strategy.steps.map((step) => <li key={step}>{step}</li>)}
+                  </ol>
+                </article>
+              ))}
+            </div>
           </section>
           <section className="rounded-xl border border-border bg-card/30 p-5">
             <h3 className="text-lg font-semibold">Before you start the questions</h3>
@@ -155,21 +180,42 @@ export function UnitReviewStudySession({ unitId, topics, review }: Props) {
               );
             })}
           </div>
-          <section className="mt-6 rounded-xl border border-border p-5">
-            <h3 className="font-semibold">Target your next 10 minutes</h3>
-            <p className="mt-1 text-sm text-ink-dim">Which area felt least automatic? Choose one and open only that lesson.</p>
-            <select value={weakTopic} onChange={(event) => setWeakTopic(event.target.value)} className="mt-3 min-h-11 w-full rounded-lg border border-border bg-card px-3 text-sm sm:max-w-lg">
-              <option value="">Choose a topic to repair</option>
-              {topics.map((topic) => <option key={topic.slug} value={topic.slug}>{topic.topicNumber} · {topic.title}</option>)}
-            </select>
-            {weakTopic && <Link href={"/units/" + unitId + "/" + weakTopic} className="mt-3 inline-flex min-h-10 items-center rounded-lg bg-accent px-4 py-2 text-sm font-bold text-[#06251b]">Open targeted lesson →</Link>}
-          </section>
         </section>
       )}
 
       {activeTab === "frq" && (
         <section className="space-y-5">
-          <div><p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Practice the written response</p><h2 className="mt-2 text-2xl font-bold">An FRQ is a chain of evidence</h2><p className="mt-2 max-w-3xl text-sm leading-relaxed text-ink-dim">Choose a released question on the official AP Central page, answer one relevant part on paper without notes, then score it with the official scoring guideline. Released FRQs can combine multiple units; use the focus list below to select a relevant prompt rather than assuming each question belongs to only one unit.</p></div>
+          <div><p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Practice the written response</p><h2 className="mt-2 text-2xl font-bold">An FRQ is a chain of evidence</h2><p className="mt-2 max-w-3xl text-sm leading-relaxed text-ink-dim">Start with the original multi-part questions below and attempt every part before revealing the scoring guidance. Show equations, substitutions, units, and particle-level reasoning. The official AP Central archive is an additional source for released questions and scoring guidelines, not a substitute for this unit's practice.</p></div>
+          {practice.frqs && practice.frqs.length > 0 && (
+            <section className="space-y-5">
+              <div className="rounded-xl border border-accent/30 bg-accent-soft/10 p-4">
+                <p className="text-sm font-semibold">Original AP-style practice · {practice.frqs.length} multi-part questions</p>
+                <p className="mt-1 text-sm leading-relaxed text-ink-dim">These are original practice questions, not copied College Board questions. Work them on paper or draft below. Reveal the scoring guidance only after you attempt each part; the bullets describe the evidence a strong answer needs.</p>
+              </div>
+              {practice.frqs.map((frq, frqIndex) => (
+                <article key={frq.title} className="rounded-xl border border-border bg-card/35 p-5 sm:p-6">
+                  <p className="text-xs font-bold uppercase tracking-wide text-accent">FRQ {frqIndex + 1} · {frq.parts.length} parts</p>
+                  <h3 className="mt-2 text-xl font-semibold">{frq.title}</h3>
+                  <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-ink-dim">{frq.stimulus}</p>
+                  <div className="mt-5 space-y-5">
+                    {frq.parts.map((part) => {
+                      const responseKey = unitId + "-" + frqIndex + "-" + part.label;
+                      const rubricOpen = revealedRubrics.includes(responseKey);
+                      return (
+                        <section key={part.label} className="border-t border-border pt-4">
+                          <h4 className="font-semibold">{part.label}. {part.prompt}</h4>
+                          <label className="mt-3 block text-xs font-semibold uppercase tracking-wide text-ink-dim" htmlFor={"response-" + responseKey}>Your response / working</label>
+                          <textarea id={"response-" + responseKey} value={frqResponses[responseKey] ?? ""} onChange={(event) => setFrqResponses((current) => ({ ...current, [responseKey]: event.target.value }))} rows={3} placeholder="Show equations, calculations, units, or particle-level reasoning..." className="mt-2 w-full rounded-lg border border-border bg-bg px-3 py-3 text-sm leading-relaxed outline-none focus:border-accent" />
+                          <button type="button" onClick={() => setRevealedRubrics((current) => rubricOpen ? current.filter((key) => key !== responseKey) : [...current, responseKey])} className="mt-3 min-h-10 rounded-lg border border-border px-3 py-2 text-sm font-semibold hover:border-accent/50">{rubricOpen ? "Hide scoring guidance" : "Reveal scoring guidance"}</button>
+                          {rubricOpen && <div className="mt-3 rounded-lg border border-accent/25 bg-accent-soft/10 p-4"><p className="text-xs font-bold uppercase tracking-wide text-accent">Self-scoring checklist</p><ul className="mt-2 space-y-2">{part.scoringGuidance.map((point) => <li key={point} className="flex gap-2 text-sm leading-relaxed"><span className="text-accent">•</span><span>{point}</span></li>)}</ul></div>}
+                        </section>
+                      );
+                    })}
+                  </div>
+                </article>
+              ))}
+            </section>
+          )}
           <div className="grid gap-4 md:grid-cols-2">
             <a href="https://apcentral.collegeboard.org/courses/ap-chemistry/exam/past-exam-questions" target="_blank" rel="noreferrer" className="rounded-xl border border-accent/40 bg-accent-soft/15 p-5 transition hover:bg-accent-soft/25"><p className="text-xs font-bold uppercase tracking-wide text-accent">Official College Board resource</p><h3 className="mt-2 text-lg font-semibold">Released AP Chemistry FRQs</h3><p className="mt-2 text-sm leading-relaxed text-ink-dim">Question PDFs, scoring guidelines, and sample responses from recent exam years.</p><span className="mt-4 inline-flex text-sm font-bold text-accent">Open FRQ archive ↗</span></a>
             <a href="https://apcentral.collegeboard.org/courses/ap-chemistry/classroom-resources" target="_blank" rel="noreferrer" className="rounded-xl border border-border p-5 transition hover:border-accent/40"><p className="text-xs font-bold uppercase tracking-wide text-ink-dim">Teacher-assigned practice</p><h3 className="mt-2 text-lg font-semibold">AP Classroom question bank</h3><p className="mt-2 text-sm leading-relaxed text-ink-dim">Your teacher may assign secure, unit-specific MCQ and FRQ sets here. Access can require a class join code and sign-in.</p><span className="mt-4 inline-flex text-sm font-bold text-accent">Open AP Classroom info ↗</span></a>

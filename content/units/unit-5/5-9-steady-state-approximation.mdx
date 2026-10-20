@@ -62,6 +62,43 @@ For more background on mechanisms and kinetic models, see [OpenStax Chemistry 2e
 
 </LessonSection>
 
+<LessonSection title="4. Apply the steady-state idea carefully" description="An intermediate can remain at low, nearly constant concentration while still reacting">
+
+The steady-state approximation says that after a brief initial period, the rate of formation of an intermediate approximately equals its total rate of consumption, so d[I]/dt ≈ 0. It does **not** mean [I] is zero, and it does not mean the intermediate is at equilibrium. Steady state and pre-equilibrium are different assumptions.
+
+If I forms at rate k₁[A] and disappears through pathways at rates k₋₁[I][B] and k₂[I][C], the steady-state condition is k_1[A] - k_ - 1[I][B] - k_2[I][C]≈0. Rearranging gives [I]≈(k_1[A]) / (k_ - 1[B] + k_2[C]). Substitute this into the product-formation rate to remove I from the final law.
+
+<WorkedExample title="Worked example: balance formation and consumption">
+If I forms at 0.12 M·s⁻¹ and is consumed through two pathways at 0.07 and 0.05 M·s⁻¹, its net rate of change is approximately 0.12 − 0.07 − 0.05 = 0.00 M·s⁻¹. I is still being formed and consumed; its concentration is simply not building up.
+
+</WorkedExample>
+
+Use the approximation only when the mechanism and data justify it. If the intermediate accumulates substantially or the initial transient matters, assuming d[I] / dt≈0 may fail.
+
+<QuickCheck question="Which statement correctly describes steady state for an intermediate I?" options={["[I] = 0 at all times","Formation and total consumption rates are approximately equal","Every elementary step is at equilibrium","I is not involved in the reaction"]} correctIndex={1} explanation="Steady state balances the total rates of formation and consumption. The intermediate can have nonzero concentration and the steps need not be at equilibrium." />
+
+</LessonSection>
+
+
+<LessonSection title="5. Derive a steady-state intermediate expression" description="Balance formation and consumption rates, not the concentrations of different species">
+
+For a short-lived intermediate I, the steady-state approximation assumes that after an initial transient, its concentration changes very little because its formation rate approximately balances its total consumption rate. This is written `d[I]/dt ≈ 0`. It is not the same as equilibrium: the forward and reverse rates of each elementary step do not have to be equal.
+
+<WorkedExample title="Worked example: form and consume an intermediate">
+
+Suppose `A → I` occurs with rate `k₁[A]`, while I is consumed by `I → products` at rate `k₂[I]` and by `I + B → products` at rate `k₃[I][B]`. The intermediate balance is:
+
+`d[I]/dt = k₁[A] − k₂[I] − k₃[I][B] ≈ 0`.
+
+Rearranging gives `[I] ≈ k₁[A]/(k₂ + k₃[B])`. The denominator combines both pathways that consume I. If the product-forming rate is `rate = k₃[I][B]`, substitution gives `rate ≈ k₁k₃[A][B]/(k₂ + k₃[B])`. This expression shows how competing consumption pathways can change the observed dependence on B.
+
+</WorkedExample>
+
+Use the approximation only when the prompt or kinetic evidence supports a low, nearly constant intermediate concentration. Do not set `[I] = 0`; steady state means the rate of change is approximately zero, not that the intermediate is absent.
+
+<QuickCheck question="Under a steady-state approximation, which statement is correct for intermediate I?" options={["[I] must equal zero","The rate of formation of I approximately equals its total rate of consumption","Every elementary step is at equilibrium","The intermediate cannot appear in any rate expression"]} correctIndex={1} explanation="Steady state sets d[I]/dt ≈ 0, so formation and total consumption approximately balance. The intermediate can still have a nonzero concentration and may appear in an intermediate rate expression." />
+
+</LessonSection>
 ## Readiness check
 
 You should be able to explain d[X]/dt ≈ 0, write formation-minus-consumption equations for an intermediate, solve for [X] under a stated mechanism, and distinguish steady state from equilibrium.

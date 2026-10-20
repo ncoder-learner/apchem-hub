@@ -56,6 +56,37 @@ For additional reference, see [OpenStax Chemistry 2e: Reaction Mechanisms](https
 
 </LessonSection>
 
+<LessonSection title="4. Test whether a proposed mechanism is consistent" description="The steps must reproduce the net reaction and fit the kinetics">
+
+Add the elementary equations and cancel species that appear on both sides. The remaining equation must match the overall balanced reaction. A species formed in one step and consumed later is an **intermediate**; a species consumed and then regenerated is a **catalyst**. A mechanism that sums correctly is not automatically correct: it must also agree with the experimentally measured rate law.
+
+<WorkedExample title="Worked example: identify the intermediate">
+Step 1: A + B⇌ I. Step 2: I + C→ P. Adding the steps cancels I and gives A + B + C→ P. I is an intermediate because it is produced and consumed. The equations alone do not prove the mechanism; its kinetic prediction must be tested against data.
+
+</WorkedExample>
+
+The slow step often controls the rate in simplified problems. If it contains an intermediate, the intermediate concentration must be related to stable reactant concentrations through a justified pre-equilibrium or steady-state treatment. Do not call a species a catalyst just because it appears in multiple steps.
+
+<QuickCheck question="Step 1: A + B → I; Step 2: I + C → A + P. Which species is regenerated and acts as a catalyst?" options={["B","I","A","P"]} correctIndex={2} explanation="A is consumed in Step 1 and regenerated in Step 2, so it cancels from the net equation and acts as a catalyst in this proposed sequence. I is the intermediate." />
+
+</LessonSection>
+
+
+<LessonSection title="5. Audit a mechanism by adding its steps" description="A valid net equation is necessary, but not sufficient, evidence for a mechanism">
+
+To add a mechanism, write each elementary step with its stoichiometric coefficients, add both sides, then cancel species that appear on both sides. An intermediate is produced in one step and consumed in another. A catalyst is consumed in an early step and regenerated later. Neither should remain in the net reaction if the mechanism is written consistently.
+
+<WorkedExample title="Worked example: identify the intermediate">
+
+Consider `NO₂ + F₂ → NO₂F + F` followed by `F + NO₂ → NO₂F`. Adding the steps gives `2NO₂ + F₂ → 2NO₂F` after the F atom cancels. F is an intermediate because it is formed in the first step and consumed in the second. It is not a catalyst here because it is not present as a reactant at the start of the proposed pathway; it is generated during the reaction.
+
+</WorkedExample>
+
+Even a mechanism whose steps sum to the correct net equation can be wrong if it predicts a rate law that conflicts with experiment. Conversely, a rate law that fits the data does not prove a unique mechanism; multiple pathways may be kinetically consistent. Mechanistic claims should be stated as supported or inconsistent with the evidence, not automatically as proven.
+
+<QuickCheck question="A species is consumed in step 1, produced in step 2, and appears in the net equation. What is the best next step?" options={["Call it an intermediate automatically","Check the algebra and stoichiometric cancellation; a true intermediate should cancel from the net equation","Delete it from every step","Assume the mechanism is proven"]} correctIndex={1} explanation="Intermediates are formed and consumed within the mechanism and cancel when steps are added. If the species remains in the net equation, recheck the step equations and coefficients." />
+
+</LessonSection>
 ## Readiness check
 
 You should be able to add elementary steps, identify intermediates and catalysts, and explain why a mechanism must match both the overall reaction and experimental rate law.

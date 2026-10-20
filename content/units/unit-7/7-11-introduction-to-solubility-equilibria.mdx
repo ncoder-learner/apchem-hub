@@ -32,6 +32,39 @@ For AgCl in pure water, let s be the molar solubility. At equilibrium [Ag⁺] = 
 
 </LessonSection>
 
+<LessonSection title="3. Connect Ksp to ion concentrations" description="The dissolution equation determines the powers in Ksp">
+
+For a sparingly soluble salt MₐXᵦ(s)⇌ aMᵇ⁺ (aq) + bXᵃ⁻ (aq), the pure solid is omitted and Ksp = [Mᵇ⁺]^a[Xᵃ⁻]^b at a given temperature. The exponents come from the balanced dissolution equation. Ksp is not generally equal to molar solubility because one mole of salt may produce more than one mole of an ion.
+
+<WorkedExample title="Worked example: convert solubility to Ksp">
+For CaF₂(s)⇌ Ca²⁺(aq) + 2F⁻(aq), let the molar solubility in pure water be s. Then [Ca²⁺] = s and [F⁻] = 2s, so Ksp = s(2s)^2 = 4s^3. The factor of 4 comes from the ion stoichiometry; using Ksp = s² would be incorrect.
+
+</WorkedExample>
+
+Compare the ion product Qsp with Ksp to predict precipitation. If Qsp > Ksp, the solution is supersaturated and precipitation is favored. If Qsp < Ksp, more solid can dissolve without reaching saturation. If Qsp = Ksp, the solution is at saturation equilibrium.
+
+<QuickCheck question="For Ag₂CrO₄(s) ⇌ 2Ag⁺ + CrO₄²⁻, what is Ksp?" options={["[Ag⁺][CrO₄²⁻]","[Ag⁺]²[CrO₄²⁻]","[Ag⁺][CrO₄²⁻]²","1/[Ag⁺]²[CrO₄²⁻]"]} correctIndex={1} explanation="The solid is omitted, and the ion concentrations are raised to their coefficients: Ksp = [Ag⁺]²[CrO₄²⁻]." />
+
+</LessonSection>
+
+
+<LessonSection title="4. Predict precipitation after mixing solutions" description="Dilution changes the ion concentrations before you calculate Qsp">
+
+A precipitation problem often mixes two solutions, so the ion concentrations after mixing are not the concentrations printed on the bottles. Calculate each ion's moles, divide by the **total mixed volume**, then calculate Qsp. Compare that value with Ksp at the same temperature.
+
+<WorkedExample title="Worked example: will AgCl precipitate?">
+
+Mix 50.0 mL of 1.00×10⁻³ M AgNO₃ with 50.0 mL of 1.00×10⁻³ M NaCl. Each solution contributes `(0.0500 L)(1.00×10⁻³ M) = 5.00×10⁻⁵ mol` of its relevant ion. The total volume is 0.1000 L, so after mixing `[Ag⁺] = [Cl⁻] = 5.00×10⁻⁴ M`.
+
+`Qsp = [Ag⁺][Cl⁻] = (5.00×10⁻⁴)² = 2.50×10⁻⁷`.
+
+For AgCl, `Ksp ≈ 1.8×10⁻¹⁰` at 25°C. Since Qsp is much larger than Ksp, the mixture is supersaturated and AgCl precipitation is favored. The final dissolved concentrations fall until Qsp equals Ksp; the initial mixed concentrations are not the final equilibrium concentrations.
+
+</WorkedExample>
+
+<QuickCheck question="Equal volumes of 2.0×10⁻⁴ M AgNO₃ and 2.0×10⁻⁴ M NaCl are mixed. Before precipitation, each ion concentration is 1.0×10⁻⁴ M. If Ksp(AgCl) = 1.8×10⁻¹⁰, what is the correct prediction?" options={["No precipitate; Qsp < Ksp","Precipitation is favored; Qsp > Ksp","The value of Ksp increases on mixing","Qsp cannot be calculated until equilibrium is reached"]} correctIndex={1} explanation="Qsp = (1.0×10⁻⁴)(1.0×10⁻⁴) = 1.0×10⁻⁸, which is greater than 1.8×10⁻¹⁰. Precipitation is favored. Qsp is specifically calculated from the current, not necessarily equilibrium, concentrations." />
+
+</LessonSection>
 ## Readiness check
 
 Balance the dissolution equation, write Ksp with correct exponents, and derive ion concentrations from molar solubility.

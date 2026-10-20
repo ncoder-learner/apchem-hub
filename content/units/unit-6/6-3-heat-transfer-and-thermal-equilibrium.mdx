@@ -40,6 +40,41 @@ A typical introductory calculation assumes the system is insulated, no material 
 
 </LessonSection>
 
+<LessonSection title="4. Distinguish heat transfer from temperature" description="Energy flows until the objects reach a shared thermal equilibrium">
+
+Heat is energy transferred because of a temperature difference; temperature is not an amount of energy. In an isolated setup, the warmer object loses energy and the cooler object gains it until they reach a common final temperature. The amount exchanged depends on mass, specific heat capacity, and temperature change.
+
+For two objects, q_1 + q_2 = 0, so m_1c_1(T_f - T_i,1) + m_2c_2(T_f - T_i,2) = 0. The final temperature is not generally the arithmetic mean: the object with larger total heat capacity mc changes temperature less for the same energy transfer.
+
+<WorkedExample title="Worked example: metal placed in water">
+A 50.0 g metal sample with c = 0.40 J g⁻ 1 °C⁻ 1 cools from 90.0°C to 30.0°C in 100.0 g of water initially at 20.0°C. Metal heat is q_m = (50.0)(0.40)(30.0 - 90.0) = - 1200 J. Assuming no heat escapes, water gains +1200 J, so 1200 = (100.0)(4.184)(T_f - 20.0), giving T_f≈22.9°C.
+
+</WorkedExample>
+
+The ideal balance can fail when the cup, thermometer, or outside environment absorbs heat. State that assumption when interpreting experimental data.
+
+<QuickCheck question="In an insulated experiment, the hot object has q = −850 J. What heat is gained by the cold object if no other component exchanges energy?" options={["−850 J","0 J","+850 J","+1700 J"]} correctIndex={2} explanation="Energy conservation requires the heat lost and gained to sum to zero, so the cold object gains +850 J." />
+
+</LessonSection>
+
+
+<LessonSection title="5. Calculate a final temperature from energy conservation" description="The final temperature is shared, but each material transfers a different amount of heat">
+
+When two objects exchange heat in an insulated container, the hot object loses energy and the cold object gains it until both reach the same final temperature. For each object, use `q = mc(Tf − Ti)`; the signs emerge from the temperature difference. The energy balance is `q₁ + q₂ = 0` if no calorimeter or outside environment absorbs heat.
+
+<WorkedExample title="Worked example: hot copper placed in water">
+
+A 50.0 g copper sample at 90.0°C is placed in 100.0 g water at 20.0°C. Use `cCu = 0.385 J·g⁻¹·°C⁻¹` and `cwater = 4.184 J·g⁻¹·°C⁻¹`, and assume no heat loss.
+
+`50.0(0.385)(Tf − 90.0) + 100.0(4.184)(Tf − 20.0) = 0`
+
+Solving gives `Tf ≈ 23.1°C`. The final temperature is much closer to the water's starting temperature because the water's total heat capacity, mc, is far larger than the copper sample's. Equal heat magnitudes do not require equal temperature changes.
+
+</WorkedExample>
+
+<QuickCheck question="Two objects exchange heat in an insulated container. Object X has a much larger total heat capacity than object Y. For the same magnitude of heat transfer, which temperature change has the greater magnitude?" options={["X's, because it contains more material","Y's, because ΔT = q/C and its heat capacity is smaller","They must be equal","Cannot be determined without the final temperature being 0°C"]} correctIndex={1} explanation="For a fixed heat magnitude, |ΔT| = |q|/C. The object with the smaller total heat capacity changes temperature more." />
+
+</LessonSection>
 ## Readiness check
 
 Identify each object's sign of q, write the energy balance, and explain why the final temperature should lie between the initial temperatures in an insulated two-object setup.

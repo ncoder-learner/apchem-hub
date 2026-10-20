@@ -75,6 +75,22 @@ For additional explanation, see [OpenStax Chemistry 2e: Integrated Rate Laws](ht
 
 </LessonSection>
 
+<LessonSection title="5. Test an integrated-rate model against a full time course" description="A good model explains the pattern across many measurements">
+
+Suppose [A] is measured as 0.800 M at 0 s, 0.400 M at 20 s, 0.200 M at 40 s, and 0.100 M at 60 s. The concentration halves every 20 s. This repeated half-life supports a first-order model. The rate constant is k = 0.693/(20 s) = 0.0347 s⁻¹.
+
+The model also makes predictions. After 50 s, [A] = [A]₀e⁻ᵏᵗ = (0.800)e⁻⁽⁰·⁰³⁴⁷⁾⁽⁵⁰⁾ ≈ 0.141 M. This prediction is between the 40 s and 60 s measurements, as expected. A model is more persuasive when it explains the full data set and predicts intermediate or future values, not merely when one equation can be fit to one point.
+
+<WorkedExample title="Worked example: compare transformed evidence">
+
+For first-order data, successive equal time intervals produce equal changes in ln[A], because ln[A] = ln[A]₀ − kt. Here each 20 s interval changes ln[A] by ln(0.5) ≈ −0.693. By contrast, 1/[A] changes from 1.25 to 2.50 to 5.00 to 10.0 M⁻¹, with unequal increments, so the reciprocal plot would not be linear. The transformed graph must be linear across the data, not just show a trend.
+
+</WorkedExample>
+
+<QuickCheck question="A data set shows [A] falls by the same absolute amount every 10 s, but the half-life becomes shorter as [A] falls. Which integrated model is most consistent?" options={["Zero order","First order","Second order","The data prove equilibrium"]} correctIndex={0} explanation="Zero-order kinetics gives [A]t = [A]₀ − kt, so equal time intervals remove equal concentration amounts. Its half-life depends on the initial concentration; it is not constant across repeated halvings." />
+
+</LessonSection>
+
 ## Readiness check
 
 You should be able to identify the linear integrated-rate plot for zero-, first-, and second-order reactions, use the first-order half-life relation, and infer order from concentration–time data.

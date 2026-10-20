@@ -42,6 +42,32 @@ Before calculating, convert mass to grams if c is in J g⁻¹ °C⁻¹, use ΔT 
 
 </LessonSection>
 
+<LessonSection title="4. Include every part of the calorimeter energy balance" description="The solution is not always the only surrounding material that absorbs heat">
+
+For a well-insulated coffee-cup setup, energy conservation gives:
+
+`q_rxn + q_solution + q_cal = 0`.
+
+The solution heat is usually calculated with `q_solution = m_solution c_solution ΔT`; the calorimeter heat is `q_cal = C_cal ΔT`. The same temperature change applies to both if the solution and calorimeter equilibrate together. If a problem provides a calorimeter constant, omitting it undercounts the energy absorbed by the surroundings.
+
+<WorkedExample title="Worked example: include the calorimeter and reacting amount">
+
+A mixture warms by 3.30°C. The 100.0 g solution has c = 4.184 J·g⁻¹·°C⁻¹, and the calorimeter constant is 35.0 J·°C⁻¹.
+
+`q_solution = (100.0)(4.184)(3.30) = 1.381 kJ`
+
+`q_cal = (35.0)(3.30) = 0.116 kJ`
+
+Thus `q_rxn = −(1.381 + 0.116) = −1.497 kJ`. If 0.0250 mol reacts, `ΔH ≈ −1.497/0.0250 = −59.9 kJ·mol⁻¹`. The sign is negative because the reaction releases the energy gained by the surroundings.
+
+</WorkedExample>
+
+For a mixture of reactants, determine the limiting reactant from the balanced equation before dividing by moles. The temperature change measures heat for the entire reaction event; molar enthalpy is that heat divided by the reaction extent, not automatically by total solution moles.
+
+<QuickCheck question="A solution gains 1.20 kJ and the calorimeter gains 0.08 kJ. If 0.020 mol of reaction occurs, what is the approximate molar reaction enthalpy?" options={["+64 kJ·mol⁻¹","−64 kJ·mol⁻¹","−60 kJ·mol⁻¹","+60 kJ·mol⁻¹"]} correctIndex={1} explanation="The surroundings gain 1.28 kJ, so the reaction loses 1.28 kJ. Dividing by 0.020 mol gives ΔH ≈ −64 kJ·mol⁻¹." />
+
+</LessonSection>
+
 ## Readiness check
 
 Calculate q for the measured material, assign the opposite heat to the reaction when the setup is insulated, then divide by moles only when a molar quantity is requested.

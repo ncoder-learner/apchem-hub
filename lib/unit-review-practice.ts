@@ -6,10 +6,23 @@ export interface ReviewPracticeQuestion {
   skill: string;
 }
 
+export interface ReviewFRQPart {
+  label: string;
+  prompt: string;
+  scoringGuidance: string[];
+}
+
+export interface ReviewFRQ {
+  title: string;
+  stimulus: string;
+  parts: ReviewFRQPart[];
+}
+
 export interface UnitReviewPractice {
   mentalModels: { title: string; idea: string; useWhen: string }[];
   questions: ReviewPracticeQuestion[];
   frqFocus: string[];
+  frqs?: ReviewFRQ[];
 }
 
 export const UNIT_REVIEW_PRACTICE: Record<number, UnitReviewPractice> = {
@@ -67,67 +80,399 @@ export const UNIT_REVIEW_PRACTICE: Record<number, UnitReviewPractice> = {
   },
   5: {
     mentalModels: [
-      { title: "Rate is a slope", idea: "Concentration is the graph's height; reaction rate comes from the slope.", useWhen: "Interpreting concentration-versus-time data." },
-      { title: "Order comes from data", idea: "Change one concentration at a time and compare rate factors.", useWhen: "Finding a rate law from experiments." },
-      { title: "Mechanism is a model", idea: "A valid mechanism must add to the net reaction and agree with kinetic evidence.", useWhen: "Evaluating elementary steps, intermediates, or catalysts." },
+      { title: "Rate is a derivative", idea: "Concentration is graph height; the slope is rate, and stoichiometric coefficients relate species rates.", useWhen: "Reading curved concentration-time graphs or comparing formation and disappearance." },
+      { title: "Rate laws are evidence-based", idea: "Experimental comparisons establish reaction orders; overall balanced coefficients do not, unless a step is elementary.", useWhen: "Determining exponents, k, or whether a mechanism is plausible." },
+      { title: "A mechanism must pass two tests", idea: "Elementary steps must sum to the net equation and produce a rate law consistent with measured kinetics.", useWhen: "Evaluating intermediates, catalysts, slow steps, or energy profiles." },
     ],
     questions: [
-      { prompt: "Doubling [A] quadruples the rate while [B] stays constant. What is the order in A?", options: ["Zero","First","Second","Fourth"], correctIndex: 2, explanation: "For rate ∝ [A]^m, doubling [A] multiplies rate by 2^m. Since the factor is 4, m = 2.", skill: "Rate laws" },
-      { prompt: "Which plot is linear for a first-order reaction?", options: ["[A] versus time","ln[A] versus time","1/[A] versus time","Rate versus product mass"], correctIndex: 1, explanation: "The first-order integrated law is ln[A] = ln[A]₀ − kt, a line with slope −k.", skill: "Integrated rate laws" },
-      { prompt: "What does a catalyst change in a reaction pathway?", options: ["The overall balanced equation","The equilibrium constant at fixed temperature","The activation barrier through an alternative pathway","The standard enthalpy of the net reaction"], correctIndex: 2, explanation: "A catalyst supplies an alternative pathway with a lower activation barrier. It does not change the net reaction or equilibrium constant at fixed temperature.", skill: "Catalysis" },
+      { prompt: "For 2A → B, [A] decreases from 0.84 M to 0.60 M in 12.0 s. What is the average rate of formation of B?", options: ["0.010 M·s⁻¹","0.020 M·s⁻¹","0.040 M·s⁻¹","0.080 M·s⁻¹"], correctIndex: 0, explanation: "A disappears at −Δ[A]/Δt = −(0.60−0.84)/12.0 = 0.020 M·s⁻¹. Two A are consumed per B formed, so B forms at half that rate: 0.010 M·s⁻¹.", skill: "Stoichiometric rates" },
+      { prompt: "At fixed [B], doubling [A] multiplies rate by 4. At fixed [A], tripling [B] multiplies rate by 3. Which rate law and overall order fit?", options: ["k[A][B], second order","k[A]²[B], third order","k[A]²[B]³, fifth order","k[A][B]², third order"], correctIndex: 1, explanation: "The factors give 2^m = 4, so m = 2; 3^n = 3, so n = 1. Overall order is m+n = 3.", skill: "Experimental rate laws" },
+      { prompt: "For rate = k[A]²[B], rate is in M·s⁻¹. What are the units of k?", options: ["s⁻¹","M⁻¹·s⁻¹","M⁻²·s⁻¹","M²·s⁻¹"], correctIndex: 2, explanation: "The concentration term has units M³. Thus k = (M·s⁻¹)/M³ = M⁻²·s⁻¹.", skill: "Rate-constant units" },
+      { prompt: "A first-order reaction has k = 0.0462 min⁻¹. What fraction of reactant remains after 30.0 min?", options: ["0.250","0.500","0.750","0.063"], correctIndex: 0, explanation: "For first order, [A]t/[A]0 = e^(−kt) = e^(−0.0462×30.0) ≈ e^(−1.386) = 0.250.", skill: "Integrated rate laws" },
+      { prompt: "Which experimental result most strongly supports second-order kinetics in A?", options: ["[A] versus time is linear","ln[A] versus time is linear","1/[A] versus time is linear with positive slope","The half-life is independent of [A]₀"], correctIndex: 2, explanation: "For a second-order reaction in one reactant, 1/[A] = kt + 1/[A]₀, a line with slope +k. A constant half-life instead supports first order.", skill: "Graph linearization" },
+      { prompt: "For an elementary step 2NO(g) + O₂(g) → 2NO₂(g), which rate law follows for that step?", options: ["k[NO][O₂]","k[NO]²[O₂]","k[NO₂]²","k[NO]²/[O₂]"], correctIndex: 1, explanation: "Because the reaction is explicitly an elementary step, its reactant molecularities give rate = k[NO]²[O₂]. This inference would not be justified from an overall equation alone.", skill: "Elementary reactions" },
+      { prompt: "A proposed mechanism's steps add to the correct net equation, but its predicted rate law conflicts with experiments. What is the best conclusion?", options: ["The mechanism is proven because atoms balance","The mechanism is inconsistent with the kinetic evidence","The measured rate law must be ignored","Any catalyst makes the mechanism valid"], correctIndex: 1, explanation: "A plausible mechanism must satisfy both stoichiometric cancellation and experimental kinetics. Matching only the net equation is insufficient.", skill: "Mechanism evaluation" },
+      { prompt: "A reaction has reactants at 25 kJ·mol⁻¹, a transition state at 90 kJ·mol⁻¹, and products at 5 kJ·mol⁻¹. What are forward Ea and ΔH?", options: ["Ea = 85; ΔH = −20 kJ·mol⁻¹","Ea = 65; ΔH = −20 kJ·mol⁻¹","Ea = 65; ΔH = +20 kJ·mol⁻¹","Ea = 90; ΔH = −85 kJ·mol⁻¹"], correctIndex: 1, explanation: "Ea,fwd = 90−25 = 65 kJ·mol⁻¹. ΔH = Hproducts−Hreactants = 5−25 = −20 kJ·mol⁻¹.", skill: "Energy profiles" },
+      { prompt: "A catalyst is added to a reversible reaction at constant temperature. Which changes are expected?", options: ["Forward rate rises but reverse rate does not","K increases because products form faster","Both directions are accelerated and K stays constant","ΔH becomes more negative"], correctIndex: 2, explanation: "A catalyst offers a lower-barrier pathway for both directions. It speeds the approach to equilibrium without changing ΔH or K.", skill: "Catalysis" },
+      { prompt: "For 2A(g) → B(g), the tangent to a [A]-versus-time curve has slope −1.20×10⁻² M·s⁻¹ at t = 10 s. What is the instantaneous normalized reaction rate and the rate of formation of B?", options: ["1.20×10⁻² and 1.20×10⁻² M·s⁻¹","6.00×10⁻³ and 6.00×10⁻³ M·s⁻¹","6.00×10⁻³ and 1.20×10⁻² M·s⁻¹","2.40×10⁻² and 6.00×10⁻³ M·s⁻¹"], correctIndex: 1, explanation: "The disappearance rate of A is −d[A]/dt = 1.20×10⁻² M·s⁻¹. Because 2 mol A are consumed per 1 mol B formed, the normalized reaction rate and B formation rate are both half the A disappearance rate: 6.00×10⁻³ M·s⁻¹.", skill: "Instantaneous and stoichiometric rates" },
+      { prompt: "When [A] is doubled, the rate is unchanged. When [B] is doubled, the rate quadruples. Which is the rate law?", options: ["k[A]²[B]","k[B]²","k[A][B]²","k[A]⁰[B]⁰"], correctIndex: 1, explanation: "No rate change on doubling A means zero order in A. A fourfold rate increase on doubling B means second order in B, so rate = k[B]².", skill: "Zero-order behavior" },
+      { prompt: "For a first-order reaction, a linear ln[A] versus time plot has slope −0.018 s⁻¹. What is the half-life?", options: ["0.018 s","18 s","38.5 s","55.6 s"], correctIndex: 2, explanation: "For first order, t₁/₂ = 0.693/k = 0.693/0.018 = 38.5 s.", skill: "Half-life" },
+      { prompt: "Which statement distinguishes a steady-state intermediate from a species at equilibrium?", options: ["Its concentration must be zero","Its formation rate approximately equals its total consumption rate; elementary steps need not be at equilibrium","It is never consumed","It changes the net reaction equation"], correctIndex: 1, explanation: "Steady state means d[I]/dt ≈ 0 because formation and total consumption balance. It does not require forward and reverse rates of each step to be equal.", skill: "Steady-state approximation" },
+      { prompt: "An experimentally determined law is rate = k[A]⁰[B]². In a new trial, [A] increases fourfold while [B] is halved. What happens to the initial rate?", options: ["It doubles","It falls to one quarter","It is unchanged","It increases fourfold"], correctIndex: 1, explanation: "A has zero-order dependence, so its fourfold increase has no effect. Halving B changes [B]² by (1/2)² = 1/4, so the rate falls to one quarter.", skill: "Combined reaction orders" },
+      { prompt: "Which change increases reaction rate by increasing the fraction of particles with energy at least Ea?", options: ["Adding more solid surface at fixed temperature","Increasing temperature","Diluting a solution","Adding an inert gas at constant volume without changing partial pressures"], correctIndex: 1, explanation: "Increasing temperature changes the molecular energy distribution so a larger fraction exceeds the activation-energy threshold. Surface area and concentration mainly affect collision frequency.", skill: "Collision theory" },
     ],
-    frqFocus: ["Use experimental comparisons to justify each reaction order.", "On an energy profile, label activation energy and ΔH separately and explain the catalyst's role."],
+    frqFocus: ["Determine rate-law orders from controlled trial comparisons and calculate k with units.", "Use concentration-time or transformed graphs as evidence; distinguish slope, concentration, and half-life.", "Evaluate mechanisms against both the net equation and kinetic evidence.", "On energy profiles, calculate activation barriers separately from ΔH."],
+    frqs: [
+      {
+        title: "Experimental kinetics: identify a rate law",
+        stimulus: "A student studies A(aq) + B(aq) → products at constant temperature. Initial-rate data are: Trial 1, [A] = 0.10 M, [B] = 0.10 M, rate = 2.0×10⁻³ M·s⁻¹; Trial 2, [A] = 0.20 M, [B] = 0.10 M, rate = 8.0×10⁻³ M·s⁻¹; Trial 3, [A] = 0.10 M, [B] = 0.30 M, rate = 6.0×10⁻³ M·s⁻¹.",
+        parts: [
+          { label: "a", prompt: "Determine the order in A and justify it using Trials 1 and 2.", scoringGuidance: ["Identify that [B] is held constant.", "Show that doubling [A] multiplies rate by four.", "Conclude second order in A because 2^m = 4."] },
+          { label: "b", prompt: "Determine the order in B and write the rate law.", scoringGuidance: ["Identify that [A] is held constant in Trials 1 and 3.", "Tripling [B] triples the rate, so the order in B is one.", "Write rate = k[A]²[B]."] },
+          { label: "c", prompt: "Calculate k from Trial 1, including units.", scoringGuidance: ["Substitute 2.0×10⁻³ = k(0.10)²(0.10).", "Calculate k = 2.0 M⁻²·s⁻¹.", "Derive units from rate divided by M³."] },
+          { label: "d", prompt: "Predict the initial rate if [A] = 0.15 M and [B] = 0.20 M.", scoringGuidance: ["Use the experimentally determined law, not the balanced equation.", "Substitute k = 2.0 M⁻²·s⁻¹, [A] = 0.15 M, [B] = 0.20 M.", "Obtain 9.0×10⁻³ M·s⁻¹."] },
+        ],
+      },
+      {
+        title: "Concentration-time data and integrated kinetics",
+        stimulus: "A first-order decomposition begins at [X]₀ = 0.800 M. A plot of ln[X] against time is linear with slope −2.31×10⁻² min⁻¹. Assume temperature remains constant.",
+        parts: [
+          { label: "a", prompt: "Identify the reaction order and determine k.", scoringGuidance: ["Identify ln[X] versus time as the linear first-order plot.", "State that slope = −k.", "Report k = 2.31×10⁻² min⁻¹."] },
+          { label: "b", prompt: "Calculate the half-life of X.", scoringGuidance: ["Use t₁/₂ = 0.693/k for first-order kinetics.", "Substitute k = 2.31×10⁻² min⁻¹.", "Report approximately 30.0 min."] },
+          { label: "c", prompt: "Calculate [X] after 45.0 min.", scoringGuidance: ["Use [X]t = [X]₀e⁻ᵏᵗ or the integrated ln form.", "Substitute 0.800e⁻⁽⁰·⁰²³¹⁾⁽⁴⁵·⁰⁾.", "Report approximately 0.283 M with appropriate units."] },
+          { label: "d", prompt: "Explain why the slope magnitude becomes smaller on an [X]-versus-time graph as the reaction proceeds.", scoringGuidance: ["Connect the tangent slope to instantaneous disappearance rate.", "Explain that lower [X] gives a lower rate for a first-order process.", "Do not confuse concentration height with rate."] },
+        ],
+      },
+      {
+        title: "Mechanism, energy profile, and catalysis",
+        stimulus: "A proposed mechanism is Step 1: A + B ⇌ I (fast), Step 2: I + B → P (slow). An energy profile for the uncatalyzed pathway shows two peaks and an intermediate valley. The net reaction is A + 2B → P.",
+        parts: [
+          { label: "a", prompt: "Show that the elementary steps sum to the stated net reaction and identify I.", scoringGuidance: ["Add the forward Step 1 to Step 2.", "Cancel I because it is formed and then consumed.", "Identify I as an intermediate."] },
+          { label: "b", prompt: "Using the fast pre-equilibrium assumption, derive a rate law in A and B.", scoringGuidance: ["From the slow step, rate = k₂[I][B].", "Use K = [I]/([A][B]) to write [I] = K[A][B].", "Substitute to obtain rate = k₂K[A][B]²."] },
+          { label: "c", prompt: "The reactant energy is 18 kJ·mol⁻¹ and the first transition state is 74 kJ·mol⁻¹. Calculate the first-step forward activation energy.", scoringGuidance: ["Use transition-state energy minus reactant energy.", "Calculate 74 − 18.", "Report 56 kJ·mol⁻¹."] },
+          { label: "d", prompt: "Explain what a catalyst changes and identify one quantity it does not change at constant temperature.", scoringGuidance: ["Describe an alternative pathway with lower activation barrier(s).", "State that it accelerates forward and reverse reactions.", "State that it does not change K or the net ΔH at fixed temperature."] },
+        ],
+      },
+      {
+        title: "Integrated kinetics: infer a model and test its consequences",
+        stimulus: "A decomposition of A(g) is monitored at constant temperature. The measured concentrations are: t = 0 s, [A] = 0.800 M; 40 s, 0.400 M; 80 s, 0.200 M; 120 s, 0.100 M. Assume the measurements are reliable and the reaction is not approaching a competing equilibrium.",
+        parts: [
+          {
+            label: "a",
+            prompt: "Use the concentration data to identify the most likely reaction order. Explain why the pattern is stronger evidence than simply observing that the concentration decreases.",
+            scoringGuidance: [
+              "Identify the repeated halving over equal 40 s intervals.",
+              "Explain that a constant half-life is characteristic of first-order kinetics; a decrease alone does not establish order.",
+              "Recognize that the conclusion is based on the observed pattern over the measured interval."
+            ]
+          },
+          {
+            label: "b",
+            prompt: "Calculate the rate constant k, including units.",
+            scoringGuidance: [
+              "Use t½ = 0.693/k for a first-order process.",
+              "Calculate k = 0.693/40.0 s = 1.73×10⁻² s⁻¹.",
+              "Include s⁻¹ because first-order k has inverse-time units."
+            ]
+          },
+          {
+            label: "c",
+            prompt: "Predict [A] after 100.0 s using the integrated first-order law.",
+            scoringGuidance: [
+              "Write ln([A]t/[A]₀) = −kt or [A]t = [A]₀e⁻ᵏᵗ.",
+              "Substitute [A]₀ = 0.800 M, k = 1.73×10⁻² s⁻¹, and t = 100.0 s.",
+              "Obtain approximately 0.142 M, with units and reasonable rounding."
+            ]
+          },
+          {
+            label: "d",
+            prompt: "A student claims the overall balanced equation alone proves the reaction is first order. Evaluate the claim and describe one independent kind of evidence that could test a proposed mechanism.",
+            scoringGuidance: [
+              "Reject the claim: overall stoichiometric coefficients do not generally determine rate-law exponents.",
+              "Explain that initial-rate comparisons or a suitable integrated-rate plot can support the order.",
+              "A mechanism must also sum to the net reaction and agree with the experimental rate law."
+            ]
+          }
+        ]
+      }
+    ],
   },
   6: {
     mentalModels: [
-      { title: "Heat is transferred energy", idea: "q describes energy transfer; ΔH describes enthalpy change for a process at constant pressure.", useWhen: "Choosing signs or interpreting calorimetry." },
-      { title: "Hess's law is bookkeeping", idea: "Reverse an equation → reverse ΔH; multiply an equation → multiply ΔH.", useWhen: "Combining reactions or using formation enthalpies." },
-      { title: "Enthalpy is a state function", idea: "Reverse a reaction → reverse ΔH; scale it → scale ΔH; add equations → add their ΔH values.", useWhen: "Combining thermochemical equations or checking a Hess’s-law result." },
+      { title: "Signs follow the system boundary", idea: "Heat gained by the solution is heat lost by the reaction in an ideal insulated calorimeter.", useWhen: "Interpreting temperature changes or assigning ΔH signs." },
+      { title: "Choose the equation by the process", idea: "Use mcΔT for a temperature change, nΔH for a phase change, and state-function sums for reaction enthalpy.", useWhen: "Heating curves, calorimetry, and thermochemical calculations." },
+      { title: "Enthalpy is bookkeeping", idea: "Formation data use products minus reactants; bond enthalpies use broken minus formed; Hess's law transforms whole equations.", useWhen: "Selecting and checking an enthalpy method." },
     ],
     questions: [
-      { prompt: "A reaction warms the surrounding solution in a coffee-cup calorimeter. What is the sign of the reaction's heat at constant pressure?", options: ["Positive; the reaction absorbs heat","Negative; the reaction releases heat","Zero; the solution temperature changed","It cannot be determined without the reaction rate"], correctIndex: 1, explanation: "The solution gains heat, so the reacting system loses heat. The reaction is exothermic and qₚ (approximately ΔH for this setup) is negative.", skill: "Calorimetry signs" },
-      { prompt: "Given A → B with ΔH = +25 kJ and B → C with ΔH = −70 kJ, what is ΔH for A → C?", options: ["+95 kJ","+45 kJ","−45 kJ","−95 kJ"], correctIndex: 2, explanation: "Add the two equations; B cancels. Hess’s law gives ΔH = +25 + (−70) = −45 kJ for A → C.", skill: "Hess’s law" },
-      { prompt: "A thermochemical equation is reversed. What happens to its ΔH value?", options: ["Its sign reverses","Its magnitude doubles","It becomes zero","It remains unchanged"], correctIndex: 0, explanation: "Enthalpy is a state function. Reversing the process reverses the sign of ΔH; scaling the equation scales ΔH by the same factor.", skill: "Hess's law" },
+      { prompt: "A reaction warms 75.0 g of solution (c = 4.18 J·g⁻¹·°C⁻¹) from 21.0°C to 27.0°C. What is the approximate reaction heat?", options: ["−1.88 kJ","+1.88 kJ","−18.8 kJ","+1.88 J"], correctIndex: 0, explanation: "qsolution = mcΔT = 75.0×4.18×6.0 = 1881 J = +1.88 kJ. The reaction loses this heat, so qreaction ≈ −1.88 kJ.", skill: "Calorimetry" },
+      { prompt: "A calorimeter solution cools by 3.0°C during a reaction. Assuming negligible heat loss to the outside, the reaction is...", options: ["exothermic, qreaction < 0","endothermic, qreaction > 0","at equilibrium, ΔH = 0","impossible to classify"], correctIndex: 1, explanation: "The solution (surroundings) loses heat, so the reaction system gains it. The process is endothermic and qreaction is positive.", skill: "Heat-flow signs" },
+      { prompt: "A 0.0250 mol sample reacts and releases 3.75 kJ at constant pressure. What is ΔH per mole of reaction as written?", options: ["−0.150 kJ·mol⁻¹","−150 kJ·mol⁻¹","+150 kJ·mol⁻¹","−3.75 kJ·mol⁻¹"], correctIndex: 1, explanation: "The reaction releases heat, so the sign is negative. ΔH = −3.75 kJ / 0.0250 mol = −150 kJ·mol⁻¹.", skill: "Molar enthalpy" },
+      { prompt: "How much heat is required to convert 100.0 g of ice at −10.0°C to liquid water at 20.0°C? Use c(ice) = 2.09 J·g⁻¹·°C⁻¹, ΔHfus = 6.01 kJ·mol⁻¹, c(liquid) = 4.18 J·g⁻¹·°C⁻¹, and M(H₂O) = 18.0 g·mol⁻¹.", options: ["10.5 kJ","33.4 kJ","43.9 kJ","53.8 kJ"], correctIndex: 2, explanation: "Warm ice: q₁ = (100.0)(2.09)(10.0) = 2.09 kJ. Melt it: n = 100.0/18.0 = 5.56 mol, so q₂ = (5.56)(6.01) = 33.4 kJ. Warm liquid: q₃ = (100.0)(4.18)(20.0) = 8.36 kJ. Total q = 2.09 + 33.4 + 8.36 = 43.9 kJ.", skill: "Multi-step heating curves" },
+      { prompt: "A 0.250 mol sample vaporizes on a heating-curve plateau after absorbing 10.2 kJ. Which interpretation is correct?", options: ["ΔHvap = 40.8 kJ·mol⁻¹, and average molecular kinetic energy stays approximately constant during the plateau","ΔHvap = 2.55 kJ·mol⁻¹, and average molecular kinetic energy rises sharply","ΔHvap = −40.8 kJ·mol⁻¹ because the sample absorbs heat","The sample's temperature must rise in proportion to the heat added"], correctIndex: 0, explanation: "ΔHvap = q/n = 10.2/0.250 = 40.8 kJ·mol⁻¹. During the plateau, energy separates particles against intermolecular attractions rather than raising temperature, so average kinetic energy remains approximately constant.", skill: "Phase-change energetics" },
+      { prompt: "A substance absorbs 12.0 kJ while 0.400 mol vaporizes. What is ΔHvap?", options: ["4.80 kJ·mol⁻¹","30.0 kJ·mol⁻¹","−30.0 kJ·mol⁻¹","12.4 kJ·mol⁻¹"], correctIndex: 1, explanation: "ΔHvap = q/n = 12.0 kJ/0.400 mol = +30.0 kJ·mol⁻¹ because vaporization is endothermic.", skill: "Phase changes" },
+      { prompt: "Reactants are at 45 kJ·mol⁻¹, products at 12 kJ·mol⁻¹, and the transition state at 100 kJ·mol⁻¹. Which pair is correct?", options: ["Ea,fwd = 55; ΔH = −33 kJ·mol⁻¹","Ea,fwd = 88; ΔH = −33 kJ·mol⁻¹","Ea,fwd = 55; ΔH = +33 kJ·mol⁻¹","Ea,fwd = 100; ΔH = +55 kJ·mol⁻¹"], correctIndex: 0, explanation: "Ea,fwd = 100−45 = 55 kJ·mol⁻¹; ΔH = 12−45 = −33 kJ·mol⁻¹. Both values are measured from their correct reference levels.", skill: "Energy diagrams" },
+      { prompt: "For a reaction, ΣD(bonds broken) = 920 kJ·mol⁻¹ and ΣD(bonds formed) = 1,070 kJ·mol⁻¹. Estimate ΔH.", options: ["+150 kJ·mol⁻¹","−150 kJ·mol⁻¹","+1,990 kJ·mol⁻¹","−1,990 kJ·mol⁻¹"], correctIndex: 1, explanation: "ΔH ≈ bonds broken − bonds formed = 920 − 1,070 = −150 kJ·mol⁻¹, an exothermic estimate.", skill: "Bond enthalpies" },
+      { prompt: "For a reaction, ΣΔHf°(products) = −420 kJ and ΣΔHf°(reactants) = −275 kJ. What is ΔH°rxn?", options: ["−695 kJ","−145 kJ","+145 kJ","+695 kJ"], correctIndex: 1, explanation: "ΔH°rxn = products − reactants = −420 − (−275) = −145 kJ.", skill: "Formation enthalpies" },
+      { prompt: "A thermochemical equation is reversed and then multiplied by 3. The original ΔH is −24 kJ. What is the transformed ΔH?", options: ["−72 kJ","+72 kJ","+8 kJ","−8 kJ"], correctIndex: 1, explanation: "Reverse first: ΔH = +24 kJ. Multiply the equation by 3, so ΔH = +72 kJ.", skill: "Hess's law" },
+      { prompt: "Given C(s) + O₂(g) → CO₂(g), ΔH = −394 kJ, and CO(g) + ½O₂(g) → CO₂(g), ΔH = −283 kJ, what is ΔH for C(s) + ½O₂(g) → CO(g)?", options: ["−677 kJ","−111 kJ","+111 kJ","+677 kJ"], correctIndex: 1, explanation: "Reverse the second equation to make CO; ΔH becomes +283 kJ. Add it to −394 kJ, giving −111 kJ.", skill: "Hess's law" },
+      { prompt: "For 2CO(g) + O₂(g) → 2CO₂(g), ΔHf°[CO(g)] = −110.5 kJ·mol⁻¹ and ΔHf°[CO₂(g)] = −393.5 kJ·mol⁻¹. What is ΔH°rxn?", options: ["−787.0 kJ","−566.0 kJ","−283.0 kJ","+566.0 kJ"], correctIndex: 1, explanation: "ΔH°rxn = ΣnΔHf°(products) − ΣnΔHf°(reactants) = 2(−393.5) − [2(−110.5) + 0] = −787.0 + 221.0 = −566.0 kJ. O₂(g) is an element in its standard state, so ΔHf° = 0.", skill: "Formation enthalpy with coefficients" },
+      { prompt: "Why is a bond-enthalpy estimate for a reaction only approximate?", options: ["The reaction violates energy conservation","Average bond enthalpies depend on molecular environment","Bond formation consumes energy in all cases","Coefficients cannot be used"], correctIndex: 1, explanation: "Tabulated bond enthalpies are average values across environments; exact bond energies differ among molecules.", skill: "Model limitations" },
+      { prompt: "A metal loses 2.4 kJ while water gains 2.4 kJ in an insulated calorimeter. Which statement is consistent?", options: ["The metal's q is positive and water's negative","qmetal + qwater = 0","The final temperatures must be equal to 0°C","The system creates 4.8 kJ"], correctIndex: 1, explanation: "Energy conservation requires the heat transfers to sum to zero: −2.4 + 2.4 = 0 kJ.", skill: "Thermal equilibrium" },
+      { prompt: "Which change leaves ΔH for a chemical process unchanged?", options: ["Reversing the equation","Multiplying all coefficients by 2","Adding an intermediate reaction step while keeping the same initial and final states","Changing products from gas to liquid"], correctIndex: 2, explanation: "Enthalpy is a state function: different paths between the same initial and final states have the same ΔH. Reversing or scaling the net equation changes its sign or magnitude.", skill: "State functions" },
     ],
-    frqFocus: ["Show q = mcΔT or q = nΔH_phase, identify the system, and explain the sign of heat transfer.", "For Hess’s law, show every equation transformation, cancel intermediate species, and sum the adjusted ΔH values."],
+    frqFocus: ["Track system and surroundings explicitly and show q = mcΔT with signs and units.", "Separate temperature-change segments from phase-change plateaus.", "Use bond enthalpies or formation enthalpies with correct counting and sign conventions.", "Show every reversal, scaling, cancellation, and adjusted ΔH in Hess's law."],
+    frqs: [
+      {
+        title: "Coffee-cup calorimetry and experimental uncertainty",
+        stimulus: "A student mixes 50.0 mL of 1.00 M HCl with 50.0 mL of 1.00 M NaOH in a coffee-cup calorimeter. Assume density = 1.00 g·mL⁻¹ and solution specific heat = 4.184 J·g⁻¹·°C⁻¹. The temperature rises from 22.4°C to 29.1°C.",
+        parts: [
+          { label: "a", prompt: "Calculate the heat absorbed by the solution.", scoringGuidance: ["Use 100.0 g total solution mass under the given density assumption.", "Calculate ΔT = 6.7°C and qsolution = mcΔT.", "Report qsolution ≈ +2.80 kJ."] },
+          { label: "b", prompt: "Determine the reaction heat and explain its sign.", scoringGuidance: ["Use qreaction ≈ −qsolution for the insulated calorimeter.", "Report qreaction ≈ −2.80 kJ.", "Explain that the solution warms by absorbing heat released by the reaction."] },
+          { label: "c", prompt: "Calculate the molar enthalpy per mole of water formed.", scoringGuidance: ["Use 0.0500 mol HCl and 0.0500 mol NaOH; 0.0500 mol H₂O forms.", "Divide −2.80 kJ by 0.0500 mol.", "Report approximately −56.0 kJ·mol⁻¹."] },
+          { label: "d", prompt: "Explain how heat loss to the cup or room would affect the calculated magnitude of ΔH.", scoringGuidance: ["Recognize the measured solution temperature rise would be smaller than the ideal value.", "The calculated |qsolution| would be underestimated.", "The calculated reaction ΔH would be less negative than the true value."] },
+        ],
+      },
+      {
+        title: "Heating curve and phase-change energy",
+        stimulus: "A 36.0 g sample of a pure substance is heated. Its temperature rises from 20°C to 80°C, stays at 80°C while the sample melts, then rises from 80°C to 110°C. For the solid, c = 1.50 J·g⁻¹·°C⁻¹; for the liquid, c = 2.00 J·g⁻¹·°C⁻¹. The enthalpy of fusion is 8.00 kJ·mol⁻¹ and molar mass is 60.0 g·mol⁻¹.",
+        parts: [
+          { label: "a", prompt: "Calculate the heat required to warm the solid to its melting point.", scoringGuidance: ["Use q = mcΔT for the solid segment.", "Substitute 36.0 g, 1.50 J·g⁻¹·°C⁻¹, and 60°C.", "Report 3.24 kJ."] },
+          { label: "b", prompt: "Calculate the heat required to melt the sample.", scoringGuidance: ["Convert 36.0 g to 0.600 mol.", "Use q = nΔHfus.", "Report 4.80 kJ."] },
+          { label: "c", prompt: "Calculate the heat required to warm the liquid from 80°C to 110°C and the total heat for all three segments.", scoringGuidance: ["Use q = mcΔT with the liquid specific heat to obtain 2.16 kJ.", "Add 3.24 + 4.80 + 2.16 kJ.", "Report total heat = 10.2 kJ."] },
+          { label: "d", prompt: "Explain why temperature remains constant during melting even though heat is absorbed.", scoringGuidance: ["State that energy disrupts/interchanges intermolecular arrangement during the phase change.", "Connect the plateau to changing potential energy rather than increasing average kinetic energy.", "Avoid claiming that no energy is absorbed."] },
+        ],
+      },
+      {
+        title: "Hess's law from formation data",
+        stimulus: "At a given temperature, the following standard formation enthalpies are supplied: ΔHf°[CO₂(g)] = −393.5 kJ·mol⁻¹, ΔHf°[CO(g)] = −110.5 kJ·mol⁻¹, and ΔHf°[O₂(g)] = 0.",
+        parts: [
+          { label: "a", prompt: "Calculate ΔH° for 2CO(g) + O₂(g) → 2CO₂(g).", scoringGuidance: ["Write products minus reactants using coefficients.", "Calculate 2(−393.5) − [2(−110.5) + 0].", "Report −566.0 kJ for the reaction as written."] },
+          { label: "b", prompt: "Explain why ΔHf° for O₂(g) is zero but ΔHf° for CO(g) is not.", scoringGuidance: ["State that O₂(g) is oxygen's standard elemental state.", "State that formation enthalpy is referenced to elements in standard states.", "CO is a compound formed from elements and has a measured nonzero value."] },
+          { label: "c", prompt: "Find ΔH° for the reverse of the reaction in part (a).", scoringGuidance: ["Reverse the equation and change the sign.", "Report +566.0 kJ."] },
+          { label: "d", prompt: "Explain why the enthalpy result does not reveal how quickly CO oxidizes.", scoringGuidance: ["Distinguish thermodynamic state-function change from kinetics.", "Identify activation energy/pathway as relevant to rate.", "Do not equate exothermicity with fast reaction."] },
+        ],
+      },
+      {
+        title: "Coffee-cup calorimetry with a non-negligible calorimeter",
+        stimulus: "A student mixes 50.0 mL of 0.500 M HCl with 50.0 mL of 0.500 M NaOH in a coffee-cup calorimeter. Both solutions begin at 22.10°C and the final temperature is 25.26°C. Assume density = 1.00 g·mL⁻¹, specific heat = 4.184 J·g⁻¹·°C⁻¹, and calorimeter heat capacity Ccal = 35.0 J·°C⁻¹. The reaction is H⁺(aq) + OH⁻(aq) → H₂O(l).",
+        parts: [
+          {
+            label: "a",
+            prompt: "Calculate the heat gained by the solution and by the calorimeter.",
+            scoringGuidance: [
+              "Calculate ΔT = 25.26 − 22.10 = 3.16°C.",
+              "Use qsolution = (100.0 g)(4.184 J·g⁻¹·°C⁻¹)(3.16°C) = 1.32×10³ J.",
+              "Use qcal = CcalΔT = (35.0 J·°C⁻¹)(3.16°C) = 111 J; both are positive because they warm."
+            ]
+          },
+          {
+            label: "b",
+            prompt: "Determine qreaction for the amount mixed and explain the sign.",
+            scoringGuidance: [
+              "Add the heat gained by the solution and calorimeter: qsurroundings ≈ 1.433 kJ.",
+              "Apply energy conservation: qreaction ≈ −qsurroundings = −1.43 kJ.",
+              "The negative sign means the reaction releases heat; the surroundings gain it."
+            ]
+          },
+          {
+            label: "c",
+            prompt: "Calculate the molar enthalpy of neutralization in kJ·mol⁻¹.",
+            scoringGuidance: [
+              "Find n(H⁺) = n(OH⁻) = (0.0500 L)(0.500 mol·L⁻¹) = 0.0250 mol.",
+              "Use ΔH ≈ −1.433 kJ / 0.0250 mol = −57.3 kJ·mol⁻¹ for the reaction as written.",
+              "Report sign, units, and the mole basis; the 1:1 reactants are present in stoichiometric amounts."
+            ]
+          },
+          {
+            label: "d",
+            prompt: "Predict the bias if the student ignores the calorimeter heat capacity, and explain the energy-accounting error.",
+            scoringGuidance: [
+              "Ignoring qcal uses only 1.322 kJ as surroundings heat and gives about −52.9 kJ·mol⁻¹.",
+              "The calculated enthalpy would be less negative (underestimate the magnitude of heat released).",
+              "The calorimeter also warms and absorbs energy, so its heat must be included in the surroundings balance."
+            ]
+          }
+        ]
+      }
+    ],
   },
   7: {
     mentalModels: [
-      { title: "Equilibrium is dynamic", idea: "Forward and reverse rates are equal; concentrations stay constant but need not be equal.", useWhen: "Explaining equilibrium at the particle level." },
-      { title: "Q is the current snapshot", idea: "Compare Q with K to predict the direction of net reaction.", useWhen: "Predicting shifts after mixing or a disturbance." },
-      { title: "Only temperature changes K", idea: "Concentration or pressure changes can change Q and composition without changing K at fixed temperature.", useWhen: "Le Châtelier questions." },
+      { title: "Equilibrium is a rate balance", idea: "Forward and reverse processes continue at equal rates; constant concentrations do not imply equal amounts.", useWhen: "Interpreting time-series data and particle diagrams." },
+      { title: "Q is now; K is the target", idea: "Q describes the current ratio and K the equilibrium ratio at the current temperature.", useWhen: "Predicting net direction after mixing or a disturbance." },
+      { title: "ICE changes follow coefficients", idea: "The balanced equation determines how each concentration changes as the system moves toward equilibrium.", useWhen: "Solving equilibrium concentrations or checking approximations." },
     ],
     questions: [
-      { prompt: "For a reaction at a fixed temperature, Q < K. Which direction will the system shift to reach equilibrium?", options: ["Toward reactants","Toward products","No net change is possible","K must decrease first"], correctIndex: 1, explanation: "Q < K means the current product-to-reactant ratio is too small compared with equilibrium, so net reaction proceeds toward products.", skill: "Reaction quotient" },
-      { prompt: "Which species is omitted from a Kc expression?", options: ["Aqueous ion","Gas","Aqueous molecule","Pure liquid water"], correctIndex: 3, explanation: "Pure solids and pure liquids have constant activity and are omitted from the equilibrium expression.", skill: "Equilibrium expressions" },
-      { prompt: "At equilibrium, which statement is always true?", options: ["Reactant and product concentrations are equal","Forward and reverse reaction rates are equal","All reactions have stopped","K equals 1"], correctIndex: 1, explanation: "Equilibrium is dynamic: both directions continue at equal rates. Concentrations need not be equal and K need not equal 1.", skill: "Dynamic equilibrium" },
+      { prompt: "For A(g) + B(g) ⇌ 2C(g), Kc = 4.0. At one moment [A] = 0.50 M, [B] = 0.50 M, and [C] = 0.50 M. What is the net direction?", options: ["Right because Q = 1.0 < K","Left because Q = 1.0 < K","Right because Q = 4.0","The mixture is at equilibrium"], correctIndex: 0, explanation: "Q = [C]²/([A][B]) = (0.50)²/[(0.50)(0.50)] = 1.0. Since Q < K = 4.0, net reaction proceeds right to form more C.", skill: "Reaction quotient" },
+      { prompt: "For CaF₂(s) ⇌ Ca²⁺ + 2F⁻, which expression is Ksp?", options: ["[Ca²⁺][F⁻]","[Ca²⁺][F⁻]²","[Ca²⁺]²[F⁻]","1/([Ca²⁺][F⁻]²)"], correctIndex: 1, explanation: "The pure solid is omitted, and each dissolved ion concentration is raised to its coefficient: Ksp = [Ca²⁺][F⁻]².", skill: "Solubility equilibrium" },
+      { prompt: "For N₂ + 3H₂ ⇌ 2NH₃, Kc = 2.0. What is Kc for 2NH₃ ⇌ N₂ + 3H₂?", options: ["−2.0","0.50","4.0","2.0"], correctIndex: 1, explanation: "Reversing a reaction inverts K: Kreverse = 1/2.0 = 0.50.", skill: "Transforming K" },
+      { prompt: "For A ⇌ 2B, Kc = 0.25. What is Kc when the equation is written as ½A ⇌ B?", options: ["0.125","0.25","0.50","2.0"], correctIndex: 2, explanation: "Multiplying all coefficients by 1/2 raises the original K to the 1/2 power: √0.25 = 0.50.", skill: "Transforming K" },
+      { prompt: "For A(aq) + 2B(aq) ⇌ C(aq), initial concentrations are [A] = 0.800 M, [B] = 0.600 M, and [C] = 0. If [C]eq = 0.200 M, what is Kc?", options: ["0.200","1.39","8.33","16.7"], correctIndex: 2, explanation: "Formation of 0.200 M C consumes 0.200 M A and 0.400 M B. Equilibrium values are [A] = 0.600 M, [B] = 0.200 M, and [C] = 0.200 M. Thus Kc = [C]/([A][B]²) = 0.200/[(0.600)(0.200)²] = 8.33.", skill: "ICE table and equilibrium constant" },
+      { prompt: "For H₂ + I₂ ⇌ 2HI, Kc = 16. Current concentrations are [H₂] = 0.20 M, [I₂] = 0.20 M, and [HI] = 0.40 M. What happens next?", options: ["Shifts right because Q = 4 < 16","Shifts left because Q = 4 < 16","At equilibrium because [HI] is largest","K increases to match Q"], correctIndex: 0, explanation: "Q = (0.40)²/[(0.20)(0.20)] = 4.0. Since Q < K, net reaction proceeds right.", skill: "Q versus K" },
+      { prompt: "A system at equilibrium is compressed at constant temperature for A(g) + 2B(g) ⇌ 3C(g). Which statement is correct?", options: ["K increases and the system shifts right","K stays constant and there is no shift from the gas-mole-count effect","K decreases and the system shifts left","The system shifts left because the reactant side has more gas moles"], correctIndex: 1, explanation: "Both sides contain three moles of gas, so compression does not favor either side by gas mole count. K is unchanged at fixed temperature.", skill: "Le Châtelier's principle" },
+      { prompt: "For an endothermic forward reaction, increasing temperature generally...", options: ["decreases K because heat is a product","increases K because heat acts like a reactant","leaves K unchanged at all temperatures","forces Q = 0"], correctIndex: 1, explanation: "Heat can be treated as a reactant for an endothermic forward reaction. Heating favors products and increases K for that reaction.", skill: "Temperature and equilibrium" },
+      { prompt: "Which change can alter K for a specified reaction?", options: ["Adding more reactant at constant temperature","Compressing the container at constant temperature","Adding a catalyst","Changing temperature"], correctIndex: 3, explanation: "K is temperature-dependent. Concentration, pressure, and catalysts may change Q or the time to equilibrium, but not K at fixed temperature.", skill: "Equilibrium constant" },
+      { prompt: "For 2A(g) ⇌ B(g), a vessel begins with [A]₀ = 1.00 M and [B]₀ = 0. At equilibrium [B] = 0.200 M. What is Kc?", options: ["0.200","0.278","0.556","1.25"], correctIndex: 2, explanation: "Forming 0.200 M B consumes 0.400 M A, leaving [A]eq = 0.600 M. Kc = [B]/[A]² = 0.200/(0.600)² = 0.556. The coefficient 2 controls the ICE change and the exponent in K.", skill: "Stoichiometry in equilibrium calculations" },
+      { prompt: "For A ⇌ 2B, initial [A] = 1.00 M and [B] = 0.00 M. If A decreases by x, which expression for Kc follows?", options: ["x/(1−x)","(2x)/(1−x)","(2x)²/(1−x)","(1−x)/(2x)²"], correctIndex: 2, explanation: "At equilibrium [A] = 1−x and [B] = 2x, so Kc = [B]²/[A] = (2x)²/(1−x).", skill: "ICE and K expressions" },
+      { prompt: "For Ag₂CrO₄(s) ⇌ 2Ag⁺ + CrO₄²⁻, Qsp is 3.0×10⁻¹² and Ksp is 1.0×10⁻¹². What occurs?", options: ["More solid dissolves because Qsp > Ksp","Precipitation is favored because Qsp > Ksp","The solution is unsaturated","Ksp rises until it equals Qsp"], correctIndex: 1, explanation: "Qsp > Ksp means the ion product is too large for equilibrium, so precipitation lowers dissolved-ion concentrations.", skill: "Precipitation prediction" },
+      { prompt: "Adding NaF to a saturated CaF₂ solution at fixed temperature generally lowers CaF₂ solubility because...", options: ["Na⁺ increases Ksp","F⁻ is a common ion and shifts dissolution left","CaF₂ becomes a liquid","the reaction becomes irreversible"], correctIndex: 1, explanation: "Added F⁻ increases the product-ion concentration and shifts CaF₂(s) ⇌ Ca²⁺ + 2F⁻ toward the solid. Ksp remains unchanged.", skill: "Common-ion effect" },
+      { prompt: "For CaCO₃(s) ⇌ CaO(s) + CO₂(g), a system at equilibrium has PCO₂ = 0.40 atm. The volume is suddenly halved at constant temperature. Immediately after compression, what are Qp and the net direction?", options: ["Qp = 0.20; shift right","Qp = 0.40; no shift","Qp = 0.80; shift left","Qp = 0.80; shift right"], correctIndex: 2, explanation: "Pure solids are omitted, so Kp = PCO₂ = 0.40 at the original equilibrium. Halving volume at constant temperature doubles the CO₂ partial pressure instantly, so Qp = 0.80 > Kp. The net reaction shifts left until PCO₂ returns to the equilibrium value.", skill: "Heterogeneous equilibrium and compression" },
+      { prompt: "A reaction has K = 2.0×10⁵ at a fixed temperature. Which conclusion is NOT justified by this value alone?", options: ["Products are strongly favored at equilibrium for the reaction as written","The equilibrium product/reactant ratio is large under the specified expression","The reaction must reach equilibrium rapidly","The reverse reaction's K is 5.0×10⁻⁶"], correctIndex: 2, explanation: "K describes equilibrium composition, not kinetics. A large K does not guarantee a fast reaction; a high activation barrier can make equilibrium slow to reach. Reversing the equation gives 1/K = 5.0×10⁻⁶.", skill: "Interpret magnitude of K" },
     ],
-    frqFocus: ["Write the correct K expression from the balanced equation and omit pure solids/liquids.", "Use Q versus K to justify direction and show the ICE setup for equilibrium amounts."],
+    frqFocus: ["Write K expressions from the balanced equation and justify omitted pure solids/liquids.", "Use Q versus K for net direction, then build ICE changes from stoichiometric coefficients.", "Explain shifts by distinguishing Q, K, and the disturbance; only temperature changes K.", "Use Ksp and Qsp to reason about precipitation, common ions, and pH-dependent solubility."],
+    frqs: [
+      {
+        title: "Equilibrium calculation from initial concentrations",
+        stimulus: "At a fixed temperature, A(g) ⇌ 2B(g) has Kc = 0.36. A sealed vessel initially contains [A] = 1.00 M and [B] = 0.00 M.",
+        parts: [
+          { label: "a", prompt: "Write the equilibrium-constant expression and construct the ICE expressions in terms of x.", scoringGuidance: ["Write Kc = [B]²/[A].", "Set equilibrium [A] = 1.00 − x and [B] = 2x.", "Substitute Kc = (2x)²/(1.00 − x)."] },
+          { label: "b", prompt: "Solve for the physically meaningful equilibrium concentrations.", scoringGuidance: ["Set 0.36 = 4x²/(1−x), giving 4x² + 0.36x − 0.36 = 0.", "Choose the positive root x ≈ 0.258 M.", "Report [A]eq ≈ 0.742 M and [B]eq ≈ 0.517 M."] },
+          { label: "c", prompt: "A student claims [B] must be twice [A] because of the equation coefficients. Explain the error.", scoringGuidance: ["State that coefficients define reaction changes, not equilibrium amounts.", "Use the calculated unequal ratio as evidence.", "Explain that K and initial conditions determine equilibrium composition."] },
+          { label: "d", prompt: "The volume is suddenly reduced at constant temperature. Predict the shift and whether K changes.", scoringGuidance: ["Count gas moles: left has 1, right has 2.", "Compression favors the side with fewer gas moles, so shift left.", "K stays constant because temperature is unchanged."] },
+        ],
+      },
+      {
+        title: "Reaction quotient and a disturbance",
+        stimulus: "For H₂(g) + I₂(g) ⇌ 2HI(g), Kc = 16 at the experiment temperature. At equilibrium, [H₂] = 0.20 M, [I₂] = 0.20 M, and [HI] = 0.80 M. A student then injects additional H₂ so its immediate concentration becomes 0.40 M.",
+        parts: [
+          { label: "a", prompt: "Verify that the initial concentrations satisfy Kc.", scoringGuidance: ["Write Kc = [HI]²/([H₂][I₂]).", "Substitute 0.80²/(0.20×0.20) = 16.", "Conclude the starting mixture is at equilibrium."] },
+          { label: "b", prompt: "Calculate Q immediately after H₂ is added, before the reaction composition changes.", scoringGuidance: ["Use the new [H₂] = 0.40 M while other concentrations are initially unchanged.", "Calculate Q = 0.80²/(0.40×0.20) = 8.0.", "Compare Q = 8.0 < K = 16."] },
+          { label: "c", prompt: "Predict the net direction and explain which species increase or decrease as equilibrium is re-established.", scoringGuidance: ["Because Q < K, net reaction proceeds right.", "H₂ and I₂ are consumed and HI forms.", "The process continues until Q returns to K."] },
+          { label: "d", prompt: "Explain why K does not change when H₂ is added.", scoringGuidance: ["State that K depends on temperature for a specified reaction.", "Concentration changes alter Q and composition.", "No temperature change was stated."] },
+        ],
+      },
+      {
+        title: "Solubility equilibrium and common-ion reasoning",
+        stimulus: "Calcium fluoride dissolves according to CaF₂(s) ⇌ Ca²⁺(aq) + 2F⁻(aq). A saturated solution is prepared at constant temperature, then NaF is added.",
+        parts: [
+          { label: "a", prompt: "Write the Ksp expression and express it in terms of molar solubility s in pure water.", scoringGuidance: ["Write Ksp = [Ca²⁺][F⁻]².", "Set [Ca²⁺] = s and [F⁻] = 2s in pure water.", "Obtain Ksp = 4s³."] },
+          { label: "b", prompt: "Predict how adding NaF affects the equilibrium and explain using Qsp versus Ksp.", scoringGuidance: ["Identify F⁻ as a common ion.", "Immediately after addition, Qsp increases above Ksp.", "Dissolution shifts left and some CaF₂ precipitates until Qsp = Ksp."] },
+          { label: "c", prompt: "Explain whether the numerical value of Ksp changes after NaF is added.", scoringGuidance: ["State Ksp remains constant at fixed temperature.", "Distinguish a changed equilibrium composition from a changed equilibrium constant."] },
+          { label: "d", prompt: "Predict the effect of adding strong acid to a solution containing carbonate ions and justify the trend in solubility for a carbonate solid.", scoringGuidance: ["Explain that H₃O⁺ protonates and removes CO₃²⁻ from the free-ion pool.", "Qsp falls below Ksp, favoring more dissolution.", "Avoid claiming pH changes Ksp at constant temperature."] },
+        ],
+      },
+      {
+        title: "Equilibrium calculation followed by compression",
+        stimulus: "At a fixed temperature, A(g) ⇌ 2B(g) has Kc = 0.200. A vessel initially contains [A]₀ = 0.500 M and no B. The system reaches equilibrium in a rigid vessel before a second experiment is performed by compressing an equilibrium mixture to half its original volume at the same temperature.",
+        parts: [
+          {
+            label: "a",
+            prompt: "Write the Kc expression and set up the ICE table using x for the forward change.",
+            scoringGuidance: [
+              "Write Kc = [B]²/[A]; pure solids and liquids are not relevant here.",
+              "Use equilibrium [A] = 0.500 − x and [B] = 2x.",
+              "Substitute 0.200 = (2x)²/(0.500 − x)."
+            ]
+          },
+          {
+            label: "b",
+            prompt: "Solve for the physically meaningful equilibrium concentrations.",
+            scoringGuidance: [
+              "Rearrange to 4x² + 0.200x − 0.100 = 0.",
+              "Choose the positive, physically possible root x ≈ 0.135 M; reject the negative root.",
+              "Report [A]eq ≈ 0.365 M and [B]eq ≈ 0.270 M and check they satisfy Kc ≈ 0.200."
+            ]
+          },
+          {
+            label: "c",
+            prompt: "Immediately after the equilibrium mixture is compressed to half its volume, before any reaction occurs, compare Qc with Kc.",
+            scoringGuidance: [
+              "Concentrations instantly double, so Qc′ = (2[B])²/(2[A]) = 2[B]²/[A] = 2Kc.",
+              "Calculate Qc′ = 0.400, which is greater than Kc = 0.200.",
+              "Because Qc > Kc, the net reaction shifts left, consuming B and forming A."
+            ]
+          },
+          {
+            label: "d",
+            prompt: "Explain whether compression changes Kc and why the predicted shift agrees with the gas-mole model.",
+            scoringGuidance: [
+              "Kc remains 0.200 because temperature is unchanged.",
+              "The left side has one mole of gas per reaction event and the right side has two; compression favors the side with fewer gas particles.",
+              "Use this as a consistency check, not as a substitute for Q-versus-K reasoning."
+            ]
+          }
+        ]
+      }
+    ],
   },
   8: {
     mentalModels: [
-      { title: "Stoichiometry before equilibrium", idea: "When strong acid and base react, account for neutralization before calculating pH.", useWhen: "Mixtures, buffers, and titration problems." },
-      { title: "Weak means equilibrium", idea: "A weak acid or base partially reacts; use Ka or Kb rather than assuming complete dissociation.", useWhen: "Calculating pH or percent ionization." },
-      { title: "Titration is a changing mixture", idea: "The dominant species changes across initial, buffer, equivalence, and excess-titrant regions.", useWhen: "Interpreting a titration curve." },
+      { title: "Species first, equation second", idea: "Classify strong acid/base, weak equilibrium, buffer, titration region, or excess reagent before selecting a pH method.", useWhen: "Any multi-step acid-base calculation." },
+      { title: "Neutralization is stoichiometric", idea: "Strong acid/base reactions occur before weak equilibrium calculations; update moles of conjugate partners first.", useWhen: "Buffers, mixtures, and titrations." },
+      { title: "Structure stabilizes conjugate bases", idea: "Resonance, electronegativity, and inductive effects help explain acid strength; Ka quantifies the equilibrium.", useWhen: "Comparing acids or predicting pH and solubility trends." },
     ],
     questions: [
-      { prompt: "A weak acid HA is dissolved in water. Which expression defines Ka?", options: ["[HA]/([H₃O⁺][A⁻])","[H₃O⁺][A⁻]/[HA]","[H₃O⁺]/[HA] only","[A⁻]/[H₂O]"], correctIndex: 1, explanation: "For HA + H₂O ⇌ H₃O⁺ + A⁻, liquid water is omitted, so Ka = [H₃O⁺][A⁻]/[HA].", skill: "Acid equilibrium" },
-      { prompt: "At the half-equivalence point when a weak acid is titrated with strong base, which relationship applies?", options: ["pH = 7 for every weak acid","[HA] = 0","pH = pKa","Ka = 1"], correctIndex: 2, explanation: "At half-equivalence, the concentrations of HA and A⁻ are equal, so Henderson–Hasselbalch gives pH = pKa under the standard assumptions.", skill: "Titration curves" },
-      { prompt: "A solution contains equal concentrations of a weak acid and its conjugate base. What makes it a buffer?", options: ["It contains no ions","The conjugate pair can consume added base or acid","Its pH cannot ever change","It is always neutral"], correctIndex: 1, explanation: "A weak acid reacts with added base, and its conjugate base reacts with added acid, limiting pH change. A buffer resists changes but is not unchangeable.", skill: "Buffers" },
+      { prompt: "A 0.0200 M Ba(OH)₂ solution is prepared at 25°C. Assuming complete dissociation, what is its pH?", options: ["1.70","12.60","12.30","13.60"], correctIndex: 1, explanation: "[OH⁻] = 2(0.0200) = 0.0400 M. pOH = −log(0.0400) = 1.398, so pH = 14.000 − 1.398 = 12.602 ≈ 12.60.", skill: "Strong bases" },
+      { prompt: "A weak acid HA has Ka = 1.0×10⁻⁵ and initial concentration 0.100 M. Using the small-x approximation, what is the approximate pH?", options: ["2.00","3.00","4.00","5.00"], correctIndex: 1, explanation: "[H₃O⁺] ≈ √(KaC) = √(1.0×10⁻⁶) = 1.0×10⁻³ M, so pH ≈ 3.00. Percent ionization is about 1%, supporting the approximation.", skill: "Weak-acid equilibrium" },
+      { prompt: "For HA + H₂O ⇌ H₃O⁺ + A⁻, which expression is Ka?", options: ["[HA]/([H₃O⁺][A⁻])","[H₃O⁺][A⁻]/[HA]","[H₃O⁺]/[HA] only","[A⁻]/[H₂O]"], correctIndex: 1, explanation: "Liquid water is omitted from the equilibrium expression, leaving Ka = [H₃O⁺][A⁻]/[HA].", skill: "Equilibrium expressions" },
+      { prompt: "A buffer has pKa = 4.80 and [A⁻]/[HA] = 0.10. What is its pH?", options: ["3.80","4.80","5.80","2.80"], correctIndex: 0, explanation: "pH = pKa + log([A⁻]/[HA]) = 4.80 + log(0.10) = 3.80.", skill: "Henderson–Hasselbalch" },
+      { prompt: "A weak monoprotic acid is titrated with strong base. At the half-equivalence point, which condition is true?", options: ["All HA has been neutralized","[HA] = [A⁻] and pH = pKa","pH = 7.00 for every acid","Ka = 1"], correctIndex: 1, explanation: "Half the initial acid has been converted to its conjugate base, leaving equal amounts of HA and A⁻. The log ratio is zero, so pH = pKa.", skill: "Titration curves" },
+      { prompt: "25.0 mL of 0.120 M monoprotic acid is titrated with 0.100 M NaOH. What is the equivalence volume?", options: ["15.0 mL","25.0 mL","30.0 mL","36.0 mL"], correctIndex: 2, explanation: "Initial acid moles = 0.0250 L×0.120 M = 0.00300 mol. A 1:1 reaction requires 0.00300 mol NaOH, so V = 0.00300/0.100 = 0.0300 L = 30.0 mL.", skill: "Titration stoichiometry" },
+      { prompt: "At equivalence in a weak-acid/strong-base titration, pH is generally above 7 because...", options: ["excess strong acid remains","the conjugate base reacts with water to produce OH⁻","the weak acid becomes strong","Ka becomes greater than 1"], correctIndex: 1, explanation: "The weak acid has been converted to its conjugate base A⁻, which hydrolyzes water to form HA and OH⁻, making the solution basic.", skill: "Equivalence-point chemistry" },
+      { prompt: "A buffer initially contains 0.030 mol HA and 0.020 mol A⁻. Then 0.005 mol OH⁻ is added. What are the amounts after reaction?", options: ["0.025 mol HA and 0.025 mol A⁻","0.035 mol HA and 0.015 mol A⁻","0.030 mol HA and 0.015 mol A⁻","0.025 mol HA and 0.020 mol A⁻"], correctIndex: 0, explanation: "OH⁻ consumes HA and produces A⁻ in a 1:1 ratio. HA becomes 0.025 mol and A⁻ becomes 0.025 mol.", skill: "Buffer stoichiometry" },
+      { prompt: "Which buffer has the greatest capacity to absorb added strong base, assuming similar pH and conjugate-pair ratio?", options: ["0.005 M HA/A⁻ buffer","0.050 M HA/A⁻ buffer","Both have identical capacity because pH is the same","Capacity depends only on Ka"], correctIndex: 1, explanation: "At similar ratio, the more concentrated buffer has more moles of HA available to neutralize added OH⁻ and therefore greater capacity.", skill: "Buffer capacity" },
+      { prompt: "Which acid is expected to be stronger among related oxyacids with the same central atom?", options: ["The acid with fewer oxygen atoms in every case","The acid whose conjugate base is less stabilized","The acid whose additional oxygens withdraw electron density and stabilize the conjugate base","Acid strength cannot depend on structure"], correctIndex: 2, explanation: "For comparable oxyacids with the same central atom, additional oxygen atoms often stabilize the conjugate base through inductive effects and resonance, increasing acidity.", skill: "Structure and acidity" },
+      { prompt: "A buffer contains 0.020 mol HA and 0.030 mol A⁻. Its pKa is 4.76. Then 0.005 mol HCl is added. Assuming volume change is negligible, what is the resulting pH?", options: ["4.28","4.58","4.76","4.94"], correctIndex: 2, explanation: "Added H₃O⁺ reacts with A⁻: A⁻ + H₃O⁺ → HA + H₂O. The remaining amounts are 0.025 mol A⁻ and 0.025 mol HA, so their ratio is 1 and pH = pKa = 4.76. The neutralization stoichiometry must come before Henderson–Hasselbalch.", skill: "Buffer stoichiometry before equilibrium" },
+      { prompt: "A 0.010 M strong acid solution is diluted tenfold. Assuming complete dissociation and ideal behavior, how does pH change?", options: ["It decreases by 1","It increases by 1","It remains the same","It increases by 10"], correctIndex: 1, explanation: "The concentration becomes 0.0010 M. pH changes from 2 to 3, increasing by one unit because the hydronium concentration falls by a factor of ten.", skill: "Dilution and pH" },
+      { prompt: "A 0.020 M weak acid has Ka = 5.0×10⁻⁴. A student uses [H₃O⁺] ≈ √(KaC). Which evaluation of this approximation is best?", options: ["Valid; estimated ionization is about 0.5%","Valid; Ka is less than 1","Not valid; estimated ionization is about 16%, so the quadratic should be solved","Not valid because weak acids cannot be analyzed with ICE tables"], correctIndex: 2, explanation: "The estimate is x ≈ √[(5.0×10⁻⁴)(0.020)] = √(1.0×10⁻⁵) = 3.16×10⁻³ M. Percent ionization is (0.00316/0.020)×100% ≈ 15.8%, so x is not small relative to C. Solve the quadratic rather than accepting the approximation.", skill: "Check the weak-acid approximation" },
+      { prompt: "Why can adding strong acid increase the solubility of CaCO₃(s) in water?", options: ["It increases Ksp directly","It consumes carbonate ions, lowering Qsp and favoring dissolution","It removes Ca²⁺ by oxidation","It changes the molar mass of CaCO₃"], correctIndex: 1, explanation: "H₃O⁺ protonates carbonate, reducing free [CO₃²⁻]. Qsp falls below Ksp and more solid dissolves to restore saturation; Ksp is unchanged at fixed temperature.", skill: "pH and solubility" },
+      { prompt: "A titration curve for a weak acid with a strong base has its steep equivalence region centered near pH 9. Which indicator range is most appropriate, and why?", options: ["pH 1–3, because all equivalence points are acidic","pH 4–6, because pH = pKa at equivalence","pH 8–10, because the indicator transition overlaps the steep equivalence region","pH 12–14, because excess base is always present at equivalence"], correctIndex: 2, explanation: "At equivalence the weak acid has been converted mainly to its conjugate base, which hydrolyzes water and makes pH greater than 7. An indicator whose transition range overlaps the steep pH change near 9 gives a clearer endpoint; a range far outside the vertical region would change color too early or too late.", skill: "Titration curve and indicator choice" },
     ],
-    frqFocus: ["Identify dominant species before selecting a pH equation.", "Show the neutralization stoichiometry before the equilibrium calculation and justify any approximation."],
+    frqFocus: ["Classify the dominant species before selecting strong-acid, weak-equilibrium, or buffer equations.", "Show neutralization stoichiometry before using Ka or Henderson–Hasselbalch.", "Interpret titration curves from stoichiometry and conjugate-base hydrolysis, not memorized pH values.", "Justify relative acid strength or pH-dependent solubility with conjugate-base stability and equilibrium evidence."],
+    frqs: [
+      {
+        title: "Weak-acid equilibrium and approximation",
+        stimulus: "A 0.150 M solution of monoprotic acid HA has Ka = 2.0×10⁻⁵ at 25°C. Assume ideal dilute-solution behavior.",
+        parts: [
+          { label: "a", prompt: "Write the acid-ionization equation and the Ka expression.", scoringGuidance: ["Write HA + H₂O ⇌ H₃O⁺ + A⁻.", "Omit liquid water from the expression.", "Write Ka = [H₃O⁺][A⁻]/[HA]."] },
+          { label: "b", prompt: "Use an ICE table and the small-x approximation to estimate [H₃O⁺] and pH.", scoringGuidance: ["Set [H₃O⁺] = x, [A⁻] = x, and [HA] = 0.150−x.", "Use x ≈ √(KaC) = √(3.0×10⁻⁶) ≈ 1.73×10⁻³ M.", "Calculate pH ≈ 2.76."] },
+          { label: "c", prompt: "Calculate the approximate percent ionization and assess the approximation.", scoringGuidance: ["Percent ionization = x/C × 100%.", "Calculate (1.73×10⁻³/0.150)×100% ≈ 1.15%.", "Conclude x is small relative to C, so the approximation is reasonable."] },
+          { label: "d", prompt: "Predict the qualitative effect on [H₃O⁺] if the initial HA concentration is quadrupled at the same temperature.", scoringGuidance: ["Use x ≈ √(KaC).", "Quadrupling C multiplies x by √4 = 2.", "Explain that [H₃O⁺] doubles approximately, not quadruples."] },
+        ],
+      },
+      {
+        title: "Buffer preparation and strong-base addition",
+        stimulus: "A buffer contains 0.0400 mol HA and 0.0250 mol A⁻ in a total volume of 1.00 L. The pKa of HA is 4.75. A student adds 0.0100 mol NaOH with negligible volume change.",
+        parts: [
+          { label: "a", prompt: "Calculate the initial buffer pH.", scoringGuidance: ["Use pH = pKa + log([A⁻]/[HA]) or the mole ratio.", "Calculate 4.75 + log(0.0250/0.0400).", "Report pH ≈ 4.55."] },
+          { label: "b", prompt: "Write the reaction of OH⁻ with the buffer and determine the new amounts of HA and A⁻.", scoringGuidance: ["Write HA + OH⁻ → A⁻ + H₂O.", "Subtract 0.0100 mol from HA and add 0.0100 mol to A⁻.", "Report 0.0300 mol HA and 0.0350 mol A⁻."] },
+          { label: "c", prompt: "Calculate the pH after NaOH is added.", scoringGuidance: ["Use the updated conjugate-pair ratio.", "Calculate 4.75 + log(0.0350/0.0300).", "Report pH ≈ 4.82."] },
+          { label: "d", prompt: "Explain why using the original ratio after adding NaOH is chemically incorrect.", scoringGuidance: ["State that strong OH⁻ reacts essentially completely with HA.", "Explain that the reaction changes the mole amounts of both buffer components.", "State that Henderson–Hasselbalch must use the post-neutralization ratio."] },
+        ],
+      },
+      {
+        title: "Titration curve and equivalence-point reasoning",
+        stimulus: "A 30.0 mL sample of 0.100 M weak monoprotic acid HA is titrated with 0.150 M NaOH. The acid has pKa = 4.60. Treat the reaction as 1:1.",
+        parts: [
+          { label: "a", prompt: "Calculate the equivalence volume of NaOH.", scoringGuidance: ["Calculate initial acid moles = 0.0300 L×0.100 M = 0.00300 mol.", "Use a 1:1 stoichiometric ratio.", "Calculate VNaOH = 0.00300/0.150 = 0.0200 L = 20.0 mL."] },
+          { label: "b", prompt: "Determine the pH at half-equivalence and explain why.", scoringGuidance: ["Half-equivalence occurs at 10.0 mL NaOH.", "At that point [HA] = [A⁻].", "State pH = pKa = 4.60."] },
+          { label: "c", prompt: "Explain why the pH at equivalence is greater than 7 at 25°C.", scoringGuidance: ["At equivalence, most HA has been converted to A⁻.", "A⁻ reacts with water to form HA and OH⁻.", "The produced OH⁻ makes the solution basic."] },
+          { label: "d", prompt: "After 25.0 mL NaOH has been added, identify the species controlling pH and calculate the excess OH⁻ concentration.", scoringGuidance: ["Moles OH⁻ added = 0.0250 L×0.150 M = 0.00375 mol.", "Subtract 0.00300 mol acid to obtain 0.00075 mol excess OH⁻.", "Total volume = 55.0 mL; [OH⁻] = 0.00075/0.0550 = 0.0136 M."] },
+        ],
+      },
+      {
+        title: "Weak-acid titration across four chemical regimes",
+        stimulus: "A student titrates 25.00 mL of 0.1000 M monoprotic weak acid HA (Ka = 1.8×10⁻⁵) with 0.1000 M NaOH at 25°C. Assume ideal dilute-solution behavior and additive volumes.",
+        parts: [
+          {
+            label: "a",
+            prompt: "Estimate the initial pH and justify the small-x approximation.",
+            scoringGuidance: [
+              "Set Ka = x²/(0.1000 − x) and estimate x ≈ √(KaC) = 1.34×10⁻³ M.",
+              "Calculate pH ≈ −log(1.34×10⁻³) = 2.87.",
+              "Percent ionization ≈ (0.00134/0.1000)×100% = 1.34%, so the approximation is reasonable."
+            ]
+          },
+          {
+            label: "b",
+            prompt: "Calculate the equivalence volume and the pH at the half-equivalence point.",
+            scoringGuidance: [
+              "Initial acid amount is (0.02500 L)(0.1000 M) = 0.002500 mol, so equivalence requires 25.00 mL NaOH.",
+              "At half-equivalence, equal amounts HA and A⁻ remain, so pH = pKa.",
+              "Calculate pKa = −log(1.8×10⁻⁵) = 4.74."
+            ]
+          },
+          {
+            label: "c",
+            prompt: "Predict whether the pH at equivalence is below, equal to, or above 7, and estimate its value.",
+            scoringGuidance: [
+              "At equivalence the solution contains A⁻, the conjugate base of a weak acid; A⁻ reacts with water to produce OH⁻, so pH > 7.",
+              "Calculate Kb = Kw/Ka = 5.6×10⁻¹⁰ and [A⁻] ≈ 0.002500 mol/0.05000 L = 0.0500 M.",
+              "Use [OH⁻] ≈ √(KbC) ≈ 5.3×10⁻⁶ M, giving pH ≈ 8.72."
+            ]
+          },
+          {
+            label: "d",
+            prompt: "After 30.00 mL NaOH has been added, determine the pH and explain why the buffer equation is no longer the correct primary method.",
+            scoringGuidance: [
+              "Moles OH⁻ added = 0.003000 mol; excess OH⁻ after neutralization = 0.003000 − 0.002500 = 0.000500 mol.",
+              "Total volume = 0.05500 L, so [OH⁻]excess = 0.00909 M and pH ≈ 11.96.",
+              "Beyond equivalence, excess strong base controls pH; use stoichiometry and excess OH⁻, not Henderson–Hasselbalch."
+            ]
+          }
+        ]
+      }
+    ],
   },
-  9: {
-    mentalModels: [
-      { title: "Cell labels follow the reaction", idea: "Oxidation is at the anode, reduction at the cathode; electrons travel anode to cathode.", useWhen: "Drawing a cell or reading cell notation." },
-      { title: "Potential is not scaled", idea: "Reverse a half-reaction → reverse E° sign; do not multiply E° by coefficients.", useWhen: "Calculating standard cell potential." },
-      { title: "Thermodynamics links redox", idea: "ΔG° = −nFE°cell connects cell potential and free-energy change for the reaction as written.", useWhen: "Predicting spontaneity or relating K and E°." },
-    ],
-    questions: [
-      { prompt: "In a galvanic cell, where does oxidation occur?", options: ["At the cathode","At the anode","At the salt bridge only","At both electrodes equally"], correctIndex: 1, explanation: "Oxidation occurs at the anode and reduction at the cathode. In a galvanic cell, electrons flow through the external circuit from anode to cathode.", skill: "Electrochemical cells" },
-      { prompt: "A balanced redox equation requires multiplying one half-reaction by 3. How should its standard reduction potential be treated?", options: ["Multiply the potential by 3","Divide the potential by 3","Keep the potential unchanged","Set the potential to zero"], correctIndex: 2, explanation: "Electrode potential is an intensive property, so multiplying a half-reaction scales its electrons and ΔG but does not scale E°.", skill: "Cell potential" },
-      { prompt: "A galvanic cell has E°cell > 0 for the reaction as written. What sign does ΔG° have?", options: ["Positive","Negative","Zero","It depends only on reaction speed"], correctIndex: 1, explanation: "ΔG° = −nFE°cell. With n and F positive, a positive standard cell potential corresponds to negative standard free-energy change.", skill: "Thermodynamics and redox" },
-    ],
-    frqFocus: ["Balance electrons and charge in half-reactions, and label electron flow and electrode roles.", "Use ΔG° = −nFE°cell with the reaction as written and consistent units."],
-  },
+
 };

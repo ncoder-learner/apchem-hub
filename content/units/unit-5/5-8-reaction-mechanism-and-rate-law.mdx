@@ -55,6 +55,37 @@ For further reference, see [OpenStax Chemistry 2e: Rate Laws](https://openstax.o
 
 </LessonSection>
 
+<LessonSection title="4. Connect a mechanism to the observed rate law" description="Do not leave an intermediate in the final prediction">
+
+If the slow elementary step contains only stable reactants, its molecularity can often give a direct candidate rate law. If it contains an intermediate, the first expression may not be experimentally useful. Eliminate that intermediate using a justified relationship, such as a fast pre-equilibrium or the steady-state approximation when appropriate.
+
+<WorkedExample title="Worked example: use a fast pre-equilibrium">
+Consider A + B⇌ I as a fast pre-equilibrium followed by slow I + C→ P. The slow step gives rate = k₂[I][C]. For the fast equilibrium, K = [I]/([A][B]), so [I] = K[A][B]. Substitution yields rate = k_2K[A][B][C]. This derivation depends on the pre-equilibrium assumption; it is not a universal rule for every mechanism.
+
+</WorkedExample>
+
+The net equation and rate law answer different questions. The net equation tracks what is consumed and formed; the rate law describes how measured speed responds to concentrations. A strong mechanism explanation accounts for both.
+
+<QuickCheck question="A slow step is I + B → products. What is needed before writing a rate law only in stable reactants?" options={["Product molar mass","A justified relationship between [I] and stable-reactant concentrations","Overall ΔH only","Product color"]} correctIndex={1} explanation="The elementary slow step gives rate = k[I][B], but an intermediate concentration must be eliminated using a justified kinetic relationship." />
+
+</LessonSection>
+
+
+<LessonSection title="5. Reject mechanisms that fail the experimental rate law" description="Stoichiometric cancellation and kinetic agreement are separate tests">
+
+A mechanism must pass two independent checks. First, adding the elementary steps must recover the observed net reaction. Second, the steps must predict a rate law consistent with experiments. A correct net equation does not rescue a mechanism whose predicted concentration dependence is wrong.
+
+<WorkedExample title="Worked example: a mechanism that balances but fails kinetics">
+
+Suppose a proposed slow elementary step is `A + B → I`, followed by a fast step that converts I to products. The slow step predicts `rate = k[A][B]` if its reactants are stable species. But experiments show that doubling [A] quadruples the rate while holding [B] constant. That observation supports second-order dependence on A, not first-order dependence. Unless an additional justified pre-equilibrium or intermediate relationship changes the derived law, the proposed mechanism is inconsistent with the data.
+
+</WorkedExample>
+
+Do not force a mechanism to fit by inserting an arbitrary exponent. If a slow step contains an intermediate, derive or use a justified relationship for that intermediate, then compare the resulting law with experiment. A mechanism is a model constrained by evidence, not a story inferred from the balanced equation alone.
+
+<QuickCheck question="A mechanism predicts rate = k[A][B], but experiments show that doubling [A] at fixed [B] quadruples the rate. What conclusion is supported?" options={["The mechanism is fully supported because its steps balance","The mechanism is inconsistent with the measured rate dependence unless another justified relationship changes the prediction","The experimental rate law must be ignored","The reaction must be at equilibrium"]} correctIndex={1} explanation="The proposed rate law predicts a twofold rate increase when [A] doubles, but experiments show a fourfold increase. The mechanism fails the kinetic-consistency test unless its full derivation provides a different dependence." />
+
+</LessonSection>
 ## Readiness check
 
 You should be able to derive a rate law from an explicitly stated elementary slow step, eliminate intermediates using a supplied equilibrium relationship, and evaluate a mechanism against both net stoichiometry and experimental kinetics.

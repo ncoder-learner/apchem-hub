@@ -86,6 +86,30 @@ For further reference, see [OpenStax Chemistry 2e: Rate Laws](https://openstax.o
 
 </LessonSection>
 
+<LessonSection title="5. Test whether one rate law explains every trial" description="A proposed rate law must predict all the data, not just the pair used to derive it">
+
+Consider these initial-rate data at one temperature:
+
+| Trial | [A] (M) | [B] (M) | Initial rate (M·s⁻¹) |
+|---|---:|---:|---:|
+| 1 | 0.100 | 0.100 | 2.00×10⁻³ |
+| 2 | 0.200 | 0.100 | 8.00×10⁻³ |
+| 3 | 0.200 | 0.300 | 2.40×10⁻² |
+
+Comparing Trials 1 and 2 holds [B] constant. Doubling [A] quadruples the rate, so the order in A is 2. Comparing Trials 2 and 3 holds [A] constant. Tripling [B] triples the rate, so the order in B is 1. The candidate law is therefore rate = k[A]²[B].
+
+Calculate k independently from all three trials. Trial 1 gives k = (2.00×10⁻³)/[(0.100)²(0.100)] = 2.00 M⁻²·s⁻¹. Trial 2 and Trial 3 give the same value. This agreement is an important model check: a rate law should explain every trial within experimental uncertainty.
+
+<WorkedExample title="Worked example: diagnose an inconsistent trial">
+
+If a fourth trial with [A] = 0.100 M and [B] = 0.200 M reports a rate of 6.00×10⁻³ M·s⁻¹, the proposed law predicts (2.00)(0.100)²(0.200) = 4.00×10⁻³ M·s⁻¹. The discrepancy is too large to ignore automatically. Recheck the measurement, units, temperature control, and whether the same reaction conditions applied before changing the rate law.
+
+</WorkedExample>
+
+<QuickCheck question="A proposed rate law gives the same k from three trials but a value four times larger from a fourth trial with controlled conditions. What is the strongest conclusion?" options={["The reaction order must equal the balanced coefficients","The fourth result or the proposed model needs investigation","The rate constant changes whenever concentration changes","The equilibrium constant should replace k"]} correctIndex={1} explanation="At fixed temperature and for the same reaction regime, k should be consistent. A large mismatch indicates a measurement/setup issue or that the proposed rate law does not describe all the data." />
+
+</LessonSection>
+
 ## Readiness check
 
 You should be able to infer orders from initial-rate comparisons, write the empirical rate law, calculate k with units, and explain why overall reaction coefficients do not automatically give rate-law exponents.

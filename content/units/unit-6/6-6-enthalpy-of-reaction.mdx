@@ -36,6 +36,39 @@ Do not assign signs from words such as “warm” or “cold” without identify
 
 </LessonSection>
 
+<LessonSection title="4. Choose an enthalpy calculation that matches the data" description="Bond enthalpies estimate energy; formation enthalpies use a state-function sum">
+
+Bond-enthalpy estimates use ΔH_rxn≈Σ D(bonds broken) - Σ D(bonds formed). Breaking bonds requires energy; forming bonds releases energy. Count every bond using the balanced equation and molecular structures. Because tabulated bond enthalpies are averages, this method estimates ΔH.
+
+Standard enthalpies of formation use ΔH°_rxn = Σ nΔHf°(products) - Σ nΔHf°(reactants). Multiply each value by its stoichiometric coefficient. An element in its standard state has ΔHf° = 0.
+
+<WorkedExample title="Worked example: bond bookkeeping">
+For H₂ + Cl_2→2HCl, one H–H bond and one Cl–Cl bond are broken, and two H–Cl bonds form. Using representative values 436, 243, and 431 kJ·mol⁻¹, ΔH≈436 + 243 - 2(431) = - 183 kJ per reaction as written. More energy is released forming product bonds than is required to break reactant bonds.
+
+</WorkedExample>
+
+Do not mix the two methods in one sum. One uses average bond energies and broken-minus-formed; the other uses formation enthalpies and products-minus-reactants.
+
+<QuickCheck question="For a bond-enthalpy estimate, which operation gives the correct sign convention?" options={["Bonds formed minus bonds broken","Bonds broken minus bonds formed","Sum all bond energies without signs","Products' coefficients minus reactants' coefficients"]} correctIndex={1} explanation="Energy is required to break bonds and released when bonds form, so ΔH is estimated as broken minus formed." />
+
+</LessonSection>
+
+
+<LessonSection title="5. Scale enthalpy to the amount that actually reacts" description="A thermochemical equation defines ΔH for the reaction amount written">
+
+A thermochemical equation associates an enthalpy change with its stoichiometric coefficients. If the equation is multiplied by a factor, its ΔH is multiplied by the same factor. For a reaction written with `ΔH = −572 kJ` per reaction event, that value corresponds to the full stoichiometric equation, not to one mole of every substance in the equation.
+
+<WorkedExample title="Worked example: use the reaction extent">
+
+For `2H₂(g) + O₂(g) → 2H₂O(l)`, suppose `ΔH = −572 kJ` as written. If 0.500 mol H₂ reacts completely with excess O₂, the reaction extent is `0.500/2 = 0.250` of the equation as written. Therefore `q = 0.250(−572) = −143 kJ`. The same amount forms 0.500 mol H₂O. Dividing −143 kJ by 0.500 mol H₂O gives −286 kJ per mole of water formed, consistent with the reaction equation scaled to one mole of H₂O.
+
+</WorkedExample>
+
+Do not divide by the number of moles of all reactants combined. Use the balanced equation to determine the amount of reaction that occurred, then scale ΔH accordingly. If a problem instead gives calorimetry data, first calculate the heat for the sample and then divide by the moles of reaction as defined by the balanced equation.
+
+<QuickCheck question="For 2H₂ + O₂ → 2H₂O(l), ΔH = −572 kJ. What heat is released when 1.00 mol H₂ reacts completely?" options={["−572 kJ","−286 kJ","−143 kJ","+286 kJ"]} correctIndex={1} explanation="One mole H₂ is half the 2 mol H₂ specified by the equation, so ΔH is scaled by 1/2: −572/2 = −286 kJ." />
+
+</LessonSection>
 ## Readiness check
 
 Explain what quantity ΔH represents for the equation as written, and predict how ΔH changes when the equation is reversed or scaled.

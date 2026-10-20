@@ -30,6 +30,37 @@ A solution has Qsp = 8.0 × 10⁻⁹ while Ksp = 2.0 × 10⁻⁹ for a specified
 
 </LessonSection>
 
+<LessonSection title="3. Predict how a common ion changes solubility" description="The ion product changes immediately; the equilibrium then re-establishes">
+
+A common ion is an ion already present in a solution that also appears in a salt's dissolution equilibrium. Adding it increases the corresponding ion concentration and makes Qsp exceed Ksp for the undisturbed composition. The net equilibrium shift then favors formation of more solid, decreasing molar solubility compared with pure water under the same temperature conditions.
+
+<WorkedExample title="Worked example: calcium fluoride in added fluoride">
+For CaF₂(s)⇌ Ca²⁺ + 2F⁻, adding a soluble fluoride salt raises [F⁻]. The equilibrium shifts left, and the equilibrium [Ca²⁺] becomes lower than it would be in pure water. Do not set [F⁻] = 2s if a substantial amount of fluoride was present before any CaF₂ dissolved; include the initial common-ion concentration in the equilibrium expression.
+
+</WorkedExample>
+
+The common-ion effect changes solubility, not the value of Ksp at fixed temperature. Complex-ion formation, pH changes, and nonideal activities can complicate real systems, but the AP-level prediction follows from Qsp versus Ksp and the dissolution stoichiometry.
+
+<QuickCheck question="Adding NaF to a saturated CaF₂ solution at fixed temperature generally..." options={["increases CaF₂ solubility because F⁻ is a product","decreases CaF₂ solubility because the equilibrium shifts toward solid","increases Ksp","has no effect because Na⁺ is a spectator"]} correctIndex={1} explanation="Added F⁻ increases the product ion concentration, so dissolution shifts left and less CaF₂ dissolves. Ksp itself remains fixed at constant temperature." />
+
+</LessonSection>
+
+
+<LessonSection title="4. Quantify the common-ion effect" description="A common ion can change solubility dramatically while Ksp remains fixed">
+
+For AgCl(s) ⇌ Ag⁺ + Cl⁻, `Ksp = [Ag⁺][Cl⁻]`. In pure water, if the molar solubility is s, then `Ksp = s²`, so `s = √Ksp`. Using `Ksp = 1.8×10⁻¹⁰`, the pure-water solubility is approximately `1.34×10⁻⁵ M`.
+
+Now consider AgCl dissolving in 0.100 M NaCl. If the added chloride concentration is much larger than the small amount of AgCl that dissolves, `[Cl⁻] ≈ 0.100 M`. Then `Ksp ≈ s(0.100)`, giving `s ≈ 1.8×10⁻⁹ M`. The approximation is reasonable because this added chloride concentration is vastly greater than s. The solubility is much lower than in pure water, but Ksp has not changed.
+
+<WorkedExample title="Worked example: test the approximation">
+
+The common-ion estimate `s = 1.8×10⁻⁹ M` is tiny compared with 0.100 M chloride, so ignoring the additional chloride from AgCl dissolution introduces negligible relative error. In a much more dilute common-ion solution, you may need to retain the added s term in `[Cl⁻] = Cadded + s` and solve the full expression.
+
+</WorkedExample>
+
+<QuickCheck question="For AgCl in 0.050 M NaCl, with Ksp = 1.8×10⁻¹⁰, the added chloride dominates the chloride from dissolution. What is the approximate molar solubility?" options={["3.6×10⁻⁹ M","1.8×10⁻¹⁰ M","1.3×10⁻⁵ M","9.0×10⁻⁴ M"]} correctIndex={0} explanation="With [Cl⁻] ≈ 0.050 M, Ksp = [Ag⁺][Cl⁻] ≈ s(0.050), so s ≈ (1.8×10⁻¹⁰)/(0.050) = 3.6×10⁻⁹ M." />
+
+</LessonSection>
 ## Readiness check
 
 Explain the common-ion effect with Qsp and Ksp, distinguish saturated from unsaturated solutions, and predict whether precipitation is favored.

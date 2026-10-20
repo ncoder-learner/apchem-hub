@@ -27,6 +27,30 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
+      - name: Audit FRQ PDF question candidates
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+          node scripts/audit-frq-pdf-pages.mjs
+          node scripts/validate-frq-page-candidates.mjs
+          node scripts/audit-mcq-pdf-pages.mjs
+          mkdir -p mcq-audit-output/rendered
+          for pdf in public/packets/*-mcq.pdf; do
+            [ -f "$pdf" ] || continue
+            name="$(basename "$pdf" .pdf)"
+            pdftoppm -jpeg -jpegopt quality=65 -scale-to 1200 "$pdf" "mcq-audit-output/rendered/$name-page"
+          done
+
+      - name: Upload PDF page audits
+        uses: actions/upload-artifact@v4
+        with:
+          name: packet-page-audits
+          path: |
+            frq-audit-output/
+            mcq-audit-output/
+          if-no-files-found: error
+          retention-days: 7
+
       - name: Type-check TypeScript
         run: npm run typecheck
 

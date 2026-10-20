@@ -1,0 +1,80 @@
+---
+title: "pH and pOH of Strong Acids and Bases"
+unit: 8
+topicNumber: "8.2"
+slug: "8-2-ph-and-poh-strong-acids-bases"
+summary: "Calculate pH and pOH from strong acid or base concentrations, account for stoichiometry, and convert between concentration and pH."
+---
+
+pH expresses hydronium concentration on a logarithmic scale. For strong acids and bases, the central step is usually to determine the concentration of the ions produced by essentially complete dissociation.
+
+<LessonSection title="1. Use the logarithmic definitions" description="Keep the concentration and logarithm signs straight" defaultOpen>
+
+pH = −log[H₃O⁺]
+
+pOH = −log[OH⁻]
+
+At 25 °C, pH + pOH = 14.00 and Kᵥ = [H₃O⁺][OH⁻] = 1.0 × 10⁻¹⁴. These relationships depend on temperature; use the stated temperature if a problem provides a different value.
+
+To reverse the logarithm, [H₃O⁺] = 10⁻ᵖᴴ and [OH⁻] = 10⁻ᵖᴼᴴ.
+
+<WorkedExample title="Find the pH of 0.0032 M HCl">
+HCl is a strong monoprotic acid, so [H₃O⁺] ≈ 0.0032 M. Then pH = −log(0.0032) = 2.49485…, so pH = 2.49. The two significant figures in the concentration correspond to two digits after the decimal in pH.
+</WorkedExample>
+
+<QuickCheck question="A strong monoprotic acid has [H₃O⁺] = 1.0 × 10⁻⁵ M. What is its pH?" options={["5.00","−5.00","9.00","1.0 × 10⁻⁵"]} correctIndex={0} explanation="pH = −log(1.0 × 10⁻⁵) = 5.00." />
+
+</LessonSection>
+
+<LessonSection title="2. Account for the formula and stoichiometry" description="Do not assume acid concentration always equals hydronium concentration">
+
+For a strong monoprotic acid such as HNO₃, one mole produces approximately one mole of H₃O⁺. For a strong base such as Ba(OH)₂, one mole produces two moles of OH⁻, so an ideal 0.010 M Ba(OH)₂ solution gives [OH⁻] ≈ 0.020 M before calculating pOH.
+
+<WorkedExample title="Calculate pH for a strong base">
+For 0.020 M Ca(OH)₂, assume complete dissociation: [OH⁻] = 2(0.020 M) = 0.040 M. pOH = −log(0.040) = 1.40. At 25 °C, pH = 14.00 − 1.40 = 12.60.
+</WorkedExample>
+
+</LessonSection>
+
+<LessonSection title="3. What the logarithmic scale means" description="A one-unit pH change is a tenfold concentration change">
+
+A solution at pH 3 has ten times the hydronium concentration of a solution at pH 4. A two-unit difference corresponds to a factor of 100. Do not describe pH as a linear measure of acidity.
+
+Common errors include dropping the negative sign, using pH = −log(acid molarity) without checking ion stoichiometry, and reporting too many decimal places.
+
+</LessonSection>
+
+<LessonSection title="4. Build pH calculations from concentration" description="Logarithms compress a concentration scale; they do not replace chemistry">
+
+At 25°C, pH = - log[H₃O⁺ ], pOH = - log[OH⁻ ], and pH + pOH = 14.00 for dilute aqueous solutions under the standard AP assumptions. Strong acids and bases are treated as essentially fully dissociated. Account for stoichiometry before calculating concentration: one mole of HCl gives one mole of H₃O⁺, while one mole of Ba(OH)₂ gives two moles of OH⁻.
+
+<WorkedExample title="Worked example: a strong base with two hydroxides">
+A 0.0150 M Ba(OH)₂ solution gives [OH⁻ ] = 2(0.0150) = 0.0300 M. Then pOH = - log(0.0300) = 1.523, and pH = 14.000 - 1.523 = 12.477. The factor of two comes from the balanced dissociation, not from a pH shortcut.
+
+</WorkedExample>
+
+Dilution changes concentration but not the moles of solute added, so use M₁V₁ = M₂V₂ only when the same solute is simply diluted and no reaction occurs. For a mixture of acid and base, first perform neutralization stoichiometry, then calculate the concentration of the excess species.
+
+<QuickCheck question="What is the pH of 2.0 × 10⁻³ M HCl at 25°C, assuming complete dissociation?" options={["2.70","3.00","11.30","12.00"]} correctIndex={0} explanation="Strong HCl gives [H₃O⁺] = 2.0 × 10⁻³ M, so pH = −log(2.0 × 10⁻³) ≈ 2.70." />
+
+</LessonSection>
+
+
+<LessonSection title="5. Neutralize mixtures before calculating pH" description="Strong acids and bases react essentially completely before the remaining solution is analyzed">
+
+When a strong acid and strong base are mixed, do not average their pH values or calculate pH from the starting acid concentration alone. First calculate moles of H₃O⁺ and OH⁻, use the neutralization stoichiometry, identify any excess reagent, divide its remaining moles by the total volume, and only then calculate pH or pOH.
+
+<WorkedExample title="Worked example: strong acid mixed with strong base">
+
+Mix 25.0 mL of 0.100 M HCl with 15.0 mL of 0.100 M NaOH. The initial amounts are `n(H₃O⁺) = 0.0250(0.100) = 0.00250 mol` and `n(OH⁻) = 0.0150(0.100) = 0.00150 mol`. Neutralization leaves 0.00100 mol excess H₃O⁺. The total volume is 0.0400 L, so `[H₃O⁺] = 0.00100/0.0400 = 0.0250 M` and `pH = −log(0.0250) = 1.60`.
+
+</WorkedExample>
+
+If the strong acid and base amounts are exactly equal, the excess strong acid/base calculation ends with neither in excess; at 25°C, a strong-acid/strong-base solution is approximately neutral at equivalence. If one reagent is in excess, its remaining concentration controls pH, assuming dilute-solution ideal behavior.
+
+<QuickCheck question="A 20.0 mL sample of 0.150 M HNO₃ is mixed with 10.0 mL of 0.100 M KOH. What is the approximate pH?" options={["1.18","1.30","1.70","7.00"]} correctIndex={0} explanation="Initial H₃O⁺ = 0.0200×0.150 = 0.00300 mol; OH⁻ = 0.0100×0.100 = 0.00100 mol. Excess H₃O⁺ = 0.00200 mol in 0.0300 L, so [H₃O⁺] = 0.0667 M and pH ≈ 1.18, matching the first option." />
+
+</LessonSection>
+## Readiness check
+
+You should be able to calculate pH and pOH, convert back to concentration, account for multiple OH⁻ ions per formula unit, and explain the logarithmic scale.

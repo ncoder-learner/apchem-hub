@@ -1,0 +1,82 @@
+---
+title: "Acid–Base Titrations"
+unit: 8
+topicNumber: "8.5"
+slug: "8-5-acid-base-titrations"
+summary: "Analyze titration curves and calculate pH before, at, and after the equivalence point."
+---
+
+A titration tracks a solution as measured titrant is added. The equivalence point occurs when stoichiometric amounts have reacted; it is not automatically the point where pH equals 7. The equivalence-point pH depends on the acid and base strengths.
+
+<LessonSection title="1. Solve the neutralization first" description="Use moles and the balanced equation" defaultOpen>
+
+For a monoprotic acid titrated with a strong base, the reaction is HA + OH⁻ → A⁻ + H₂O. Calculate initial moles, calculate added OH⁻ moles, and compare them before doing any pH equilibrium calculation.
+
+Before equivalence, excess weak acid and generated conjugate base may form a buffer. At equivalence, the original weak acid has been converted to its conjugate base, which may react with water. After equivalence, excess strong base controls pH.
+
+<WorkedExample title="Find the equivalence volume">
+A 25.0 mL sample of 0.100 M monoprotic acid is titrated with 0.100 M NaOH. Initial acid moles = 0.0250 L × 0.100 mol/L = 0.00250 mol. At equivalence, 0.00250 mol NaOH is required, so volume = 0.00250 mol / 0.100 mol/L = 0.0250 L = 25.0 mL.
+</WorkedExample>
+
+</LessonSection>
+
+<LessonSection title="2. Read the curve by region" description="Each region has a different controlling species">
+
+- **Initial solution:** the acid or base alone determines pH; for a weak acid, use Ka.
+- **Before equivalence:** both weak acid and conjugate base are present; use their mole ratio after neutralization.
+- **Half-equivalence:** for a weak monoprotic acid titrated by strong base, [HA] = [A⁻], so pH = pKa.
+- **Equivalence:** only the conjugate species remains in the idealized stoichiometric picture; account for its hydrolysis when weak acid/strong base or weak base/strong acid is involved.
+- **After equivalence:** excess strong titrant determines the pH after accounting for total volume.
+
+<QuickCheck question="At the half-equivalence point for a weak monoprotic acid titrated with strong base, what relationship holds?" options={["pH = 7.00 in every titration","pH = pKa","All acid has been consumed","The solution contains no conjugate base"]} correctIndex={1} explanation="Half the original HA has been neutralized, leaving equal amounts of HA and A⁻; the Henderson–Hasselbalch relationship gives pH = pKa." />
+
+</LessonSection>
+
+<LessonSection title="3. Explain curve features chemically" description="Do not infer strength from volume alone">
+
+A weak acid titrated with strong base generally has a buffer region and an equivalence point above pH 7 because its conjugate base reacts with water to make OH⁻. A weak base titrated with strong acid generally has an equivalence point below pH 7. A strong acid–strong base titration has an equivalence point near pH 7 at 25 °C.
+
+The steep region signals that a small volume addition causes a large pH change. An indicator is useful when its color-change range overlaps the steep region.
+
+</LessonSection>
+
+<LessonSection title="4. Read each region of a titration curve" description="The dominant chemistry changes before, at, and after equivalence">
+
+A titration curve is not one continuous formula. Before equivalence, a weak acid titrated by strong base forms a buffer; after neutralization stoichiometry, both HA and A⁻ are present. At half-equivalence, their amounts are equal and pH = pKa under the usual assumptions. At equivalence, the original acid has been stoichiometrically consumed; for a weak acid/strong base titration, A⁻ hydrolyzes water, so the equivalence pH is greater than 7 at 25°C. After equivalence, excess strong base controls pH.
+
+<WorkedExample title="Worked example: equivalence volume">
+A 25.0 mL sample of 0.120 M monoprotic acid is titrated with 0.100 M NaOH. Initial acid amount is (0.0250)(0.120) = 0.00300 mol. At equivalence, the same moles of NaOH are required, so V = 0.00300 / 0.100 = 0.0300 L = 30.0 mL. At 15.0 mL, the titration is at half-equivalence and pH = pKa if it is a weak-acid/strong-base titration.
+
+</WorkedExample>
+
+For diprotic acids, there may be two equivalence points if the proton-loss steps are sufficiently separated. Always use the balanced reaction and stoichiometric mole ratios rather than assuming every titration has a 1:1 relationship.
+
+<QuickCheck question="At the half-equivalence point for a weak monoprotic acid titrated with strong base, which statement is true?" options={["All acid has been consumed","[HA] = [A⁻] and pH = pKa","pH must equal 7.00","The solution contains no conjugate base"]} correctIndex={1} explanation="Half the initial HA has been neutralized, leaving equal amounts of HA and A⁻. Henderson–Hasselbalch then gives pH = pKa." />
+
+</LessonSection>
+
+
+<LessonSection title="5. Follow one weak-acid titration through every region" description="The correct calculation changes as the dominant species change">
+
+For 25.00 mL of 0.1000 M HA with `Ka = 1.8×10⁻⁵`, titrated with 0.1000 M NaOH, the initial acid amount is 0.002500 mol and equivalence occurs at 25.00 mL of base. The same curve requires different reasoning at different volumes.
+
+<WorkedExample title="Worked example: four regions of one curve">
+
+**Initially (0.00 mL NaOH):** `[H₃O⁺] ≈ √(KaC) = √(1.8×10⁻⁶) = 1.34×10⁻³ M`, so pH ≈ 2.87. Percent ionization is 1.34%, supporting the small-x estimate.
+
+**Half-equivalence (12.50 mL):** Half the HA has reacted, so `n(HA) = n(A⁻)`. Henderson–Hasselbalch gives `pH = pKa = −log(1.8×10⁻⁵) = 4.74`.
+
+**Equivalence (25.00 mL):** All HA has been converted to A⁻. The total volume is 50.00 mL and `[A⁻] = 0.002500/0.05000 = 0.0500 M`. Since `Kb = Kw/Ka = 5.56×10⁻¹⁰`, `[OH⁻] ≈ √(KbC) = 5.27×10⁻⁶ M`, giving pH ≈ 8.72. The pH is above 7 because A⁻ hydrolyzes water.
+
+**After equivalence (30.00 mL):** Added OH⁻ = 0.003000 mol, leaving 0.000500 mol excess in 0.05500 L. Thus `[OH⁻] = 0.00909 M`, pOH ≈ 2.04, and pH ≈ 11.96. Excess strong base, not the buffer ratio, controls pH.
+
+</WorkedExample>
+
+This region-by-region method prevents a common error: using one equation for the whole curve. Stoichiometry determines what remains; equilibrium determines pH only when the controlling species require it.
+
+<QuickCheck question="At 20.00 mL NaOH added in the titration above, what is the approximate pH?" options={["2.87","4.74","5.35","8.72"]} correctIndex={2} explanation="Before equivalence, 0.002000 mol OH⁻ consumes HA. Remaining HA = 0.000500 mol and formed A⁻ = 0.002000 mol, so pH = pKa + log(0.002000/0.000500) = 4.745 + log(4) ≈ 5.35." />
+
+</LessonSection>
+## Readiness check
+
+You should be able to find equivalence volume from moles, identify the correct pH method in each region, interpret half-equivalence, and explain why equivalence pH is not always 7.

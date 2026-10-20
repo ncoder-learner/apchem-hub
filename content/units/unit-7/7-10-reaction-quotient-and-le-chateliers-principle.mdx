@@ -30,6 +30,35 @@ Changing temperature can change K because it changes the relative favorability o
 
 </LessonSection>
 
+<LessonSection title="3. Use Q to verify a predicted shift" description="Le Châtelier's principle becomes quantitative when you calculate the ratio">
+
+For concentration or pressure disturbances, the most reliable approach is to calculate the new Q immediately after the disturbance while holding the other species fixed as appropriate, then compare it with the unchanged K at the same temperature. If Q > K, net reaction proceeds left; if Q < K, net reaction proceeds right. This prevents memorized “shift toward the side you add” rules from being misapplied to complicated changes.
+
+<WorkedExample title="Worked example: add product">
+For A⇌ B, K = 2.0. At equilibrium [A] = 0.50 M and [B] = 1.0 M. Adding B raises it to 1.5 M before reaction occurs, so the immediate quotient is Q = 1.5/0.50 = 3.0. Since Q > K, the system proceeds left, consuming B and forming A until Q returns to 2.0. The added B is not necessarily all consumed; it is the direction of net change that matters.
+
+</WorkedExample>
+
+At constant temperature, changing concentration or volume changes Q but not K. Changing temperature changes K, so the old equilibrium ratio is no longer the target.
+
+<QuickCheck question="After a disturbance, Q = 0.40 and K = 2.0. Which net change moves the system toward equilibrium?" options={["Products are consumed and reactants form","Reactants are consumed and products form","K instantly becomes 0.40","No change because Q is positive"]} correctIndex={1} explanation="Q < K means the current product/reactant ratio is too small, so the net reaction proceeds toward products." />
+
+</LessonSection>
+
+
+<LessonSection title="4. Use Q to reason through a temperature disturbance" description="Temperature changes K as well as the direction comparison">
+
+Concentration and pressure disturbances at constant temperature change Q while K remains fixed. A temperature change is different because it changes the equilibrium constant itself. Treat heat as a reactant for an endothermic forward reaction and as a product for an exothermic forward reaction: heating favors the endothermic direction.
+
+<WorkedExample title="Worked example: heat an exothermic equilibrium">
+
+For an exothermic reaction `A ⇌ B + heat`, suppose the system is initially at equilibrium with `Q = K = 4.0`. Heating favors the reverse direction, so the equilibrium constant for the forward reaction decreases, perhaps to `Knew = 2.0`. Immediately after heating, concentrations have not yet changed, so the old ratio still gives `Q = 4.0`. Now `Q > Knew`, so the net reaction proceeds left until Q reaches the new K. The initial Q is not magically reset when the temperature changes.
+
+</WorkedExample>
+
+<QuickCheck question="An exothermic forward reaction is at equilibrium. The temperature is increased. Which statement best describes the immediate response?" options={["K stays fixed and Q instantly becomes zero","K decreases; before concentrations adjust, Q retains its previous value and can exceed the new K","K increases because products are favored by heat","Both K and Q must increase by the same factor"]} correctIndex={1} explanation="Heating an exothermic forward reaction decreases K. Concentrations do not jump instantaneously, so Q initially reflects the old equilibrium mixture; Q > the new K drives a shift left." />
+
+</LessonSection>
 ## Readiness check
 
 After each disturbance, identify what changes immediately, compare the new Q with K, and state whether the net shift is forward or reverse.
