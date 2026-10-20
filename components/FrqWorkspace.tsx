@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState, type ChangeEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type ChangeEvent } from "react";
 import { FRQ_PART_PAGE_CANDIDATES } from "@/lib/frq-part-page-candidates";
 
 type FrqPacket = {
@@ -788,6 +788,25 @@ export function FrqWorkspace() {
   const [showReaderMenu, setShowReaderMenu] = useState(true);
   const [localPdfUrl, setLocalPdfUrl] = useState<string | null>(null);
   const [localPdfName, setLocalPdfName] = useState("");
+  const [frqProgress, setFrqProgress] = useState<Record<string, "attempted" | "review" | "mastered">>({});
+  const frqProgressStorageKey = "apchem-frq-workspace-progress-v1";
+
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem(frqProgressStorageKey);
+      if (saved) setFrqProgress(JSON.parse(saved) as Record<string, "attempted" | "review" | "mastered">);
+    } catch {
+      // The workspace remains usable when browser storage is unavailable.
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(frqProgressStorageKey, JSON.stringify(frqProgress));
+    } catch {
+      // Progress is optional and should never block FRQ practice.
+    }
+  }, [frqProgress]);
   const pdfSectionRef = useRef<HTMLElement | null>(null);
 
   const packets = useMemo(() => FRQ_PACKETS.filter((packet) => packet.unit === Number(unit)), [unit]);
@@ -797,7 +816,7 @@ export function FrqWorkspace() {
   const pdfUrl = localPdfUrl ? `${localPdfUrl}#page=${boundedPage}&toolbar=1&navpanes=0` : (selected ? `/frq/${selected.file}#page=${boundedPage}&toolbar=1&navpanes=0` : "");
   const normalizedPart = partLabel.trim().toLowerCase().match(/^(?:part\s*)?\(?([a-h])\)?$/)?.[1] ?? "";
   const localPacketMatches = !localPdfUrl || localPdfName === selected?.file;
-  const activeSolution = selected && localPacketMatches
+  const frqProgressId = selected ? `${selected.file}:${questionNumber.trim()}:${normalizedPart || "whole"}` : "";\n  const activeProgress = frqProgressId ? frqProgress[frqProgressId] : undefined;\n  const activeSolution = selected && localPacketMatches
     ? (normalizedPart
         ? FRQ_WORKED_SOLUTIONS[selected.file]?.[`${questionNumber.trim()}:${normalizedPart}`]
         : FRQ_WORKED_SOLUTIONS[selected.file]?.[questionNumber.trim()])
@@ -901,6 +920,17 @@ export function FrqWorkspace() {
           <section className="rounded-2xl border border-border bg-card/60 p-5">
             <p className="text-xs font-bold uppercase tracking-[0.13em] text-accent">Question help</p>
             <h3 className="mt-1 text-xl font-bold">Q{questionNumber.trim() || "—"}{partLabel.trim() ? ` · ${partLabel.trim()}` : ""}</h3>
+            <div className="mt-3 rounded-xl border border-border bg-bg/50 p-3">
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-xs font-semibold">Track this question</p>
+                <span className="text-[11px] text-ink-dim">{Object.values(frqProgress).filter((status) => status === "mastered").length} mastered · {Object.values(frqProgress).filter((status) => status === "review").length} to review</span>
+              </div>
+              <div className="mt-2 grid grid-cols-2 gap-2">
+                {(["attempted", "review", "mastered"] as const).map((status) => <button key={status} type="button" aria-pressed={activeProgress === status} onClick={() => { if (!frqProgressId) return; setFrqProgress((current) => ({ ...current, [frqProgressId]: status })); }} className={"min-h-9 rounded-md border px-2 py-2 text-xs font-semibold capitalize " + (activeProgress === status ? "border-accent bg-accent-soft/20 text-accent" : "border-border")}>{status === "review" ? "Review again" : status}</button>)}
+                <button type="button" onClick={() => { if (!frqProgressId) return; setFrqProgress((current) => { const next = { ...current }; delete next[frqProgressId]; return next; }); }} className="min-h-9 rounded-md border border-border px-2 py-2 text-xs font-semibold text-ink-dim">Clear status</button>
+              </div>
+              <p className="mt-2 text-[11px] leading-relaxed text-ink-dim">Progress is saved in this browser. Each question/part is tracked separately; mark it mastered only when you can earn the points without looking at the solution.</p>
+            </div>
             <p className="mt-2 text-sm leading-6 text-ink-dim">Work through the prompt first. These are staged problem-solving cues, not a question-specific answer key.</p>
             {activeSolution && <div className="mt-4 rounded-xl border border-emerald-400/30 bg-emerald-400/5 p-4">
               <p className="text-xs font-bold uppercase tracking-wide text-emerald-300">Worked walkthrough · independently written</p>
