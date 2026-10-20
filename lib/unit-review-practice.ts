@@ -194,16 +194,59 @@ export const UNIT_REVIEW_PRACTICE: Record<number, UnitReviewPractice> = {
   },
   7: {
     mentalModels: [
-      { title: "Equilibrium is dynamic", idea: "Forward and reverse rates are equal; concentrations stay constant but need not be equal.", useWhen: "Explaining equilibrium at the particle level." },
-      { title: "Q is the current snapshot", idea: "Compare Q with K to predict the direction of net reaction.", useWhen: "Predicting shifts after mixing or a disturbance." },
-      { title: "Only temperature changes K", idea: "Concentration or pressure changes can change Q and composition without changing K at fixed temperature.", useWhen: "Le Châtelier questions." },
+      { title: "Equilibrium is a rate balance", idea: "Forward and reverse processes continue at equal rates; constant concentrations do not imply equal amounts.", useWhen: "Interpreting time-series data and particle diagrams." },
+      { title: "Q is now; K is the target", idea: "Q describes the current ratio and K the equilibrium ratio at the current temperature.", useWhen: "Predicting net direction after mixing or a disturbance." },
+      { title: "ICE changes follow coefficients", idea: "The balanced equation determines how each concentration changes as the system moves toward equilibrium.", useWhen: "Solving equilibrium concentrations or checking approximations." },
     ],
     questions: [
-      { prompt: "For a reaction at a fixed temperature, Q < K. Which direction will the system shift to reach equilibrium?", options: ["Toward reactants","Toward products","No net change is possible","K must decrease first"], correctIndex: 1, explanation: "Q < K means the current product-to-reactant ratio is too small compared with equilibrium, so net reaction proceeds toward products.", skill: "Reaction quotient" },
-      { prompt: "Which species is omitted from a Kc expression?", options: ["Aqueous ion","Gas","Aqueous molecule","Pure liquid water"], correctIndex: 3, explanation: "Pure solids and pure liquids have constant activity and are omitted from the equilibrium expression.", skill: "Equilibrium expressions" },
-      { prompt: "At equilibrium, which statement is always true?", options: ["Reactant and product concentrations are equal","Forward and reverse reaction rates are equal","All reactions have stopped","K equals 1"], correctIndex: 1, explanation: "Equilibrium is dynamic: both directions continue at equal rates. Concentrations need not be equal and K need not equal 1.", skill: "Dynamic equilibrium" },
+      { prompt: "For A(g) + B(g) ⇌ 2C(g), Kc = 4.0. At one moment [A] = 0.50 M, [B] = 0.50 M, and [C] = 0.50 M. What is the net direction?", options: ["Right because Q = 2.0 < K","Left because Q = 2.0 < K","Right because Q = 4.0","The mixture is at equilibrium"], correctIndex: 0, explanation: "Q = [C]²/([A][B]) = 0.25/0.25 = 1.0, which is less than K = 4.0. The net reaction proceeds right. The distractor's Q value is not correct, but its direction is also right; the exact correct option should be revised to Q = 1.0 < K.", skill: "Reaction quotient" },
+      { prompt: "For CaF₂(s) ⇌ Ca²⁺ + 2F⁻, which expression is Ksp?", options: ["[Ca²⁺][F⁻]","[Ca²⁺][F⁻]²","[Ca²⁺]²[F⁻]","1/([Ca²⁺][F⁻]²)"], correctIndex: 1, explanation: "The pure solid is omitted, and each dissolved ion concentration is raised to its coefficient: Ksp = [Ca²⁺][F⁻]².", skill: "Solubility equilibrium" },
+      { prompt: "For N₂ + 3H₂ ⇌ 2NH₃, Kc = 2.0. What is Kc for 2NH₃ ⇌ N₂ + 3H₂?", options: ["−2.0","0.50","4.0","2.0"], correctIndex: 1, explanation: "Reversing a reaction inverts K: Kreverse = 1/2.0 = 0.50.", skill: "Transforming K" },
+      { prompt: "For A ⇌ 2B, Kc = 0.25. What is Kc when the equation is written as ½A ⇌ B?", options: ["0.125","0.25","0.50","2.0"], correctIndex: 2, explanation: "Multiplying all coefficients by 1/2 raises the original K to the 1/2 power: √0.25 = 0.50.", skill: "Transforming K" },
+      { prompt: "For A + 2B ⇌ C, an ICE table uses a forward change of x. Which change row is correct?", options: ["−x, −x, +x","−x, −2x, +x","−2x, −x, +x","+x, +2x, −x"], correctIndex: 1, explanation: "The stoichiometric coefficients set changes: A decreases by x, B by 2x, and C increases by x.", skill: "ICE tables" },
+      { prompt: "For H₂ + I₂ ⇌ 2HI, Kc = 16. Current concentrations are [H₂] = 0.20 M, [I₂] = 0.20 M, and [HI] = 0.40 M. What happens next?", options: ["Shifts right because Q = 4 < 16","Shifts left because Q = 4 < 16","At equilibrium because [HI] is largest","K increases to match Q"], correctIndex: 0, explanation: "Q = (0.40)²/[(0.20)(0.20)] = 4.0. Since Q < K, net reaction proceeds right.", skill: "Q versus K" },
+      { prompt: "A system at equilibrium is compressed at constant temperature for A(g) + 2B(g) ⇌ 3C(g). Which statement is correct?", options: ["K increases and the system shifts right","K stays constant and there is no shift from the gas-mole-count effect","K decreases and the system shifts left","The system shifts left because the reactant side has more gas moles"], correctIndex: 1, explanation: "Both sides contain three moles of gas, so compression does not favor either side by gas mole count. K is unchanged at fixed temperature.", skill: "Le Châtelier's principle" },
+      { prompt: "For an endothermic forward reaction, increasing temperature generally...", options: ["decreases K because heat is a product","increases K because heat acts like a reactant","leaves K unchanged at all temperatures","forces Q = 0"], correctIndex: 1, explanation: "Heat can be treated as a reactant for an endothermic forward reaction. Heating favors products and increases K for that reaction.", skill: "Temperature and equilibrium" },
+      { prompt: "Which change can alter K for a specified reaction?", options: ["Adding more reactant at constant temperature","Compressing the container at constant temperature","Adding a catalyst","Changing temperature"], correctIndex: 3, explanation: "K is temperature-dependent. Concentration, pressure, and catalysts may change Q or the time to equilibrium, but not K at fixed temperature.", skill: "Equilibrium constant" },
+      { prompt: "For A(g) ⇌ B(g), equilibrium concentrations are [A] = 0.30 M and [B] = 0.90 M. What is Kc?", options: ["0.33","0.60","3.0","9.0"], correctIndex: 2, explanation: "For A ⇌ B, Kc = [B]/[A] = 0.90/0.30 = 3.0.", skill: "Calculate K" },
+      { prompt: "For A ⇌ 2B, initial [A] = 1.00 M and [B] = 0.00 M. If A decreases by x, which expression for Kc follows?", options: ["x/(1−x)","(2x)/(1−x)","(2x)²/(1−x)","(1−x)/(2x)²"], correctIndex: 2, explanation: "At equilibrium [A] = 1−x and [B] = 2x, so Kc = [B]²/[A] = (2x)²/(1−x).", skill: "ICE and K expressions" },
+      { prompt: "For Ag₂CrO₄(s) ⇌ 2Ag⁺ + CrO₄²⁻, Qsp is 3.0×10⁻¹² and Ksp is 1.0×10⁻¹². What occurs?", options: ["More solid dissolves because Qsp > Ksp","Precipitation is favored because Qsp > Ksp","The solution is unsaturated","Ksp rises until it equals Qsp"], correctIndex: 1, explanation: "Qsp > Ksp means the ion product is too large for equilibrium, so precipitation lowers dissolved-ion concentrations.", skill: "Precipitation prediction" },
+      { prompt: "Adding NaF to a saturated CaF₂ solution at fixed temperature generally lowers CaF₂ solubility because...", options: ["Na⁺ increases Ksp","F⁻ is a common ion and shifts dissolution left","CaF₂ becomes a liquid","the reaction becomes irreversible"], correctIndex: 1, explanation: "Added F⁻ increases the product-ion concentration and shifts CaF₂(s) ⇌ Ca²⁺ + 2F⁻ toward the solid. Ksp remains unchanged.", skill: "Common-ion effect" },
+      { prompt: "Which species is omitted from Kc for CaCO₃(s) ⇌ CaO(s) + CO₂(g)?", options: ["CO₂(g)","CaCO₃(s) only","CaO(s) only","Both pure solids"], correctIndex: 3, explanation: "Pure solids have constant activity and are omitted. Thus Kp or Kc is written using CO₂ only, depending on the requested form.", skill: "Equilibrium expressions" },
     ],
-    frqFocus: ["Write the correct K expression from the balanced equation and omit pure solids/liquids.", "Use Q versus K to justify direction and show the ICE setup for equilibrium amounts."],
+    frqFocus: ["Write K expressions from the balanced equation and justify omitted pure solids/liquids.", "Use Q versus K for net direction, then build ICE changes from stoichiometric coefficients.", "Explain shifts by distinguishing Q, K, and the disturbance; only temperature changes K.", "Use Ksp and Qsp to reason about precipitation, common ions, and pH-dependent solubility."],
+    frqs: [
+      {
+        title: "Equilibrium calculation from initial concentrations",
+        stimulus: "At a fixed temperature, A(g) ⇌ 2B(g) has Kc = 0.36. A sealed vessel initially contains [A] = 1.00 M and [B] = 0.00 M.",
+        parts: [
+          { label: "a", prompt: "Write the equilibrium-constant expression and construct the ICE expressions in terms of x.", scoringGuidance: ["Write Kc = [B]²/[A].", "Set equilibrium [A] = 1.00 − x and [B] = 2x.", "Substitute Kc = (2x)²/(1.00 − x)."] },
+          { label: "b", prompt: "Solve for the physically meaningful equilibrium concentrations.", scoringGuidance: ["Set 0.36 = 4x²/(1−x), giving 4x² + 0.36x − 0.36 = 0.", "Choose the positive root x ≈ 0.256 M.", "Report [A]eq ≈ 0.744 M and [B]eq ≈ 0.512 M."] },
+          { label: "c", prompt: "A student claims [B] must be twice [A] because of the equation coefficients. Explain the error.", scoringGuidance: ["State that coefficients define reaction changes, not equilibrium amounts.", "Use the calculated unequal ratio as evidence.", "Explain that K and initial conditions determine equilibrium composition."] },
+          { label: "d", prompt: "The volume is suddenly reduced at constant temperature. Predict the shift and whether K changes.", scoringGuidance: ["Count gas moles: left has 1, right has 2.", "Compression favors the side with fewer gas moles, so shift left.", "K stays constant because temperature is unchanged."] },
+        ],
+      },
+      {
+        title: "Reaction quotient and a disturbance",
+        stimulus: "For H₂(g) + I₂(g) ⇌ 2HI(g), Kc = 16 at the experiment temperature. At equilibrium, [H₂] = 0.20 M, [I₂] = 0.20 M, and [HI] = 0.80 M. A student then injects additional H₂ so its immediate concentration becomes 0.40 M.",
+        parts: [
+          { label: "a", prompt: "Verify that the initial concentrations satisfy Kc.", scoringGuidance: ["Write Kc = [HI]²/([H₂][I₂]).", "Substitute 0.80²/(0.20×0.20) = 16.", "Conclude the starting mixture is at equilibrium."] },
+          { label: "b", prompt: "Calculate Q immediately after H₂ is added, before the reaction composition changes.", scoringGuidance: ["Use the new [H₂] = 0.40 M while other concentrations are initially unchanged.", "Calculate Q = 0.80²/(0.40×0.20) = 8.0.", "Compare Q = 8.0 < K = 16."] },
+          { label: "c", prompt: "Predict the net direction and explain which species increase or decrease as equilibrium is re-established.", scoringGuidance: ["Because Q < K, net reaction proceeds right.", "H₂ and I₂ are consumed and HI forms.", "The process continues until Q returns to K."] },
+          { label: "d", prompt: "Explain why K does not change when H₂ is added.", scoringGuidance: ["State that K depends on temperature for a specified reaction.", "Concentration changes alter Q and composition.", "No temperature change was stated."] },
+        ],
+      },
+      {
+        title: "Solubility equilibrium and common-ion reasoning",
+        stimulus: "Calcium fluoride dissolves according to CaF₂(s) ⇌ Ca²⁺(aq) + 2F⁻(aq). A saturated solution is prepared at constant temperature, then NaF is added.",
+        parts: [
+          { label: "a", prompt: "Write the Ksp expression and express it in terms of molar solubility s in pure water.", scoringGuidance: ["Write Ksp = [Ca²⁺][F⁻]².", "Set [Ca²⁺] = s and [F⁻] = 2s in pure water.", "Obtain Ksp = 4s³."] },
+          { label: "b", prompt: "Predict how adding NaF affects the equilibrium and explain using Qsp versus Ksp.", scoringGuidance: ["Identify F⁻ as a common ion.", "Immediately after addition, Qsp increases above Ksp.", "Dissolution shifts left and some CaF₂ precipitates until Qsp = Ksp."] },
+          { label: "c", prompt: "Explain whether the numerical value of Ksp changes after NaF is added.", scoringGuidance: ["State Ksp remains constant at fixed temperature.", "Distinguish a changed equilibrium composition from a changed equilibrium constant."] },
+          { label: "d", prompt: "Predict the effect of adding strong acid to a solution containing carbonate ions and justify the trend in solubility for a carbonate solid.", scoringGuidance: ["Explain that H₃O⁺ protonates and removes CO₃²⁻ from the free-ion pool.", "Qsp falls below Ksp, favoring more dissolution.", "Avoid claiming pH changes Ksp at constant temperature."] },
+        ],
+      },
+    ],
   },
   8: {
     mentalModels: [
