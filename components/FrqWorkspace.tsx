@@ -860,7 +860,7 @@ export function FrqWorkspace() {
       </section>
 
       <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1.5fr)_minmax(320px,0.8fr)]">
-        <section ref={pdfSectionRef} className="scroll-mt-4 overflow-hidden rounded-2xl border border-border bg-card/40">
+        <section ref={pdfSectionRef} className="order-2 scroll-mt-4 overflow-hidden rounded-2xl border border-border bg-card/40 xl:order-1">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border p-4 sm:px-5">
             <div><h3 className="font-semibold">Packet PDF</h3><p className="mt-1 text-xs text-ink-dim">{localPdfName ? `Using local copy: ${localPdfName}` : "Hosted packet · use the PDF toolbar to zoom, print, or download"}</p></div>
             <div className="flex flex-wrap items-center gap-2">
@@ -886,7 +886,7 @@ export function FrqWorkspace() {
           </div>
         </section>
 
-        <aside className="space-y-4 xl:sticky xl:top-4">
+        <aside className="order-1 space-y-4 xl:sticky xl:top-4 xl:order-2">
           <section className="rounded-2xl border border-border bg-card/60 p-5">
             <p className="text-xs font-bold uppercase tracking-[0.13em] text-accent">Question help</p>
             <h3 className="mt-1 text-xl font-bold">Q{questionNumber.trim() || "—"}{partLabel.trim() ? ` · ${partLabel.trim()}` : ""}</h3>
