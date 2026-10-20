@@ -648,7 +648,7 @@ const FRQ_WORKED_SOLUTIONS: Record<string, Record<string, WorkedSolution>> = {
   },
   "topic-8-6-8-11.pdf": {
     "3": { prompt: "Write the balanced ionization equation for ethylamine, CH3CH2NH2, reacting with water.", steps: ["Ethylamine acts as a Brønsted–Lowry base and accepts a proton from water.", "The conjugate acid is CH3CH2NH3+ and water becomes OH−.", "Check that atoms and total charge balance."], answer: "CH3CH2NH2(aq) + H2O(l) ⇌ CH3CH2NH3+(aq) + OH−(aq).", concept: "Weak bases accept protons from water, producing their conjugate acids and hydroxide." }
-  }
+  },
   "topic-2-5-2-6.pdf": {
     "3:a": { prompt: "Draw the two equivalent resonance structures for the methanoate ion, HCO2−.", steps: ["Keep the H−C−O−O skeleton fixed; resonance moves electrons, not atom positions.", "In one structure, draw H−C(=O)−O− with the negative charge on the singly bonded O.", "In the second structure, move the C=O double bond to the other oxygen and place the negative charge on the first oxygen."], answer: "H−C(=O)−O− ↔ H−C(−O−)=O; the two resonance forms are equivalent.", concept: "Resonance structures differ in electron placement while preserving atom connectivity." },
     "3:b": { prompt: "Predict whether the two C−O bonds in HCO2− have the same or different lengths, and justify.", steps: ["The two equivalent resonance structures place the C=O double bond on either oxygen.", "The actual ion is a resonance hybrid, not a molecule switching between separate structures.", "The bonding is delocalized across both C−O bonds."], answer: "The two C−O bonds have the same length because the resonance hybrid makes them equivalent.", concept: "Equivalent resonance positions produce equivalent average bonding in the resonance hybrid." },
