@@ -28,10 +28,15 @@ for (const match of hintsBlock.matchAll(packetSolutionPattern)) {
   const packetId = match[1];
   const body = match[2];
   const keys = new Set();
-  for (const entry of body.matchAll(/^    (\d+): \{\s*solution:/gm)) keys.add(Number(entry[1]));
+  const entryStarts = [...body.matchAll(/^    (\d+): \{/gm)];
+  for (let index = 0; index < entryStarts.length; index++) {
+    const entry = entryStarts[index];
+    const entryEnd = entryStarts[index + 1]?.index ?? body.length;
+    const entryBody = body.slice(entry.index, entryEnd);
+    if (/\bsolution\s*:/.test(entryBody)) keys.add(Number(entry[1]));
+  }
   solutionsByPacket.set(packetId, keys);
 }
-
 const exceptions = {
   // Source packet has an unnumbered first question; the printed numbering begins at 2.
   "topics-8-6-8-11-mcq": "The source PDF starts with an unnumbered question; printed questions 2–16 are indexed."
