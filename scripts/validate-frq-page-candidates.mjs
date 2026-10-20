@@ -75,6 +75,26 @@ for (const [file, questions] of Object.entries(partMappings)) {
     }
   }
 }
+// Ensure the page-count bounds used by the UI stay synchronized with the actual PDFs.
+const pageCountStart = source.indexOf("const FRQ_PDF_PAGE_COUNTS");
+const pageCountEnd = source.indexOf("const FRQ_PAGE_CANDIDATES", pageCountStart);
+if (pageCountStart < 0 || pageCountEnd < 0) {
+  errors.push("Could not locate FRQ_PDF_PAGE_COUNTS in FrqWorkspace.tsx");
+} else {
+  const pageCountSource = source.slice(pageCountStart, pageCountEnd);
+  const pageCounts = new Map([...pageCountSource.matchAll(/"([^"]+\\.pdf)"\\s*:\\s*(\\d+)/g)].map((match) => [match[1], Number(match[2])]));
+  for (const packet of audit) {
+    if (!pageCounts.has(packet.file)) {
+      errors.push(`${packet.file}: no UI page-count bound exists`);
+    } else if (pageCounts.get(packet.file) !== packet.pageCount) {
+      errors.push(`${packet.file}: UI page-count bound ${pageCounts.get(packet.file)} does not match PDF page count ${packet.pageCount}`);
+    }
+  }
+  for (const file of pageCounts.keys()) {
+    if (!auditByFile.has(file)) errors.push(`${file}: UI page-count bound references a PDF absent from the audit`);
+  }
+}
+
 // Validate that every worked-solution key points to a question/part actually detected
 // in the corresponding PDF extraction. This catches numbering drift, not chemical correctness.
 const solutionStart = source.indexOf("const FRQ_WORKED_SOLUTIONS");
