@@ -34,6 +34,7 @@ export function PacketCompanionLookup() {
   const [unitId, setUnitId] = useState("1");
   const [packetId, setPacketId] = useState("");
   const [questionNumber, setQuestionNumber] = useState("1");
+  const [pdfPage, setPdfPage] = useState("1");
   const [hintLevel, setHintLevel] = useState(0);
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
@@ -76,6 +77,7 @@ export function PacketCompanionLookup() {
     setUnitId(value);
     setPacketId("");
     setQuestionNumber("1");
+    setPdfPage("1");
     setHintLevel(0);
     setPdfFile(null);
     setPdfError("");
@@ -162,7 +164,7 @@ export function PacketCompanionLookup() {
               <div className={isFullscreen ? "group relative" : "relative"}>
                 <iframe
                   title="Loaded chemistry packet PDF"
-                  src={documentUrl + "#toolbar=1&navpanes=0&scrollbar=1"}
+                  src={documentUrl + "#toolbar=1&navpanes=0&scrollbar=1&page=" + Math.max(1, Number(pdfPage) || 1)}
                   className={isFullscreen ? (showWorkedAnswer && match?.solution ? "block h-[calc(100vh-280px)] min-h-[280px] w-full bg-white" : "block h-[calc(100vh-64px)] min-h-0 w-full bg-white") : "block h-[72vh] min-h-[560px] w-full bg-white"}
                 />
                 {isFullscreen && (
@@ -185,6 +187,10 @@ export function PacketCompanionLookup() {
                         {packets.map(([id, title]) => <option key={id} value={id}>{title}</option>)}
                       </select>
                     </label>
+                    <label className="mt-3 block text-sm font-semibold">PDF page
+                      <input value={pdfPage} onChange={(event) => setPdfPage(event.target.value)} inputMode="numeric" type="number" min="1" placeholder="e.g. 4" className="mt-1 w-full rounded-lg border border-border bg-bg px-3 py-2" />
+                    </label>
+                    <button type="button" onClick={() => { const nextPage = Math.max(1, Number(pdfPage) || 1); setPdfPage(String(nextPage)); }} className="mt-2 w-full rounded-lg border border-border px-3 py-2 text-sm font-semibold">Go to PDF page</button>
                     <label className="mt-3 block text-sm font-semibold">Search question number
                       <input value={questionNumber} onChange={(event) => selectQuestion(event.target.value)} inputMode="numeric" placeholder="e.g. 16" className="mt-1 w-full rounded-lg border border-border bg-bg px-3 py-2" />
                     </label>
@@ -224,6 +230,14 @@ export function PacketCompanionLookup() {
               <p className="mt-2 max-w-md text-sm leading-relaxed text-ink-dim">Choose a packet above and its PDF will open here automatically. The built-in viewer lets you scroll through the whole document without leaving this study page.</p>
               <label htmlFor="packet-pdf-file" className="mt-5 inline-flex min-h-11 cursor-pointer items-center rounded-lg bg-accent px-4 py-2.5 text-sm font-bold text-[#06251b]">Load a packet PDF</label>
               <p className="mt-4 max-w-md text-xs leading-relaxed text-ink-dim">Packet PDFs are hosted with the study site. If you are using a paper packet or a different version, you can load your own PDF instead.</p>
+            </div>
+          )}
+          {documentUrl && !isFullscreen && (
+            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border p-4">
+              <p className="text-xs leading-5 text-ink-dim">Enter a printed PDF page number. Question-to-page links are not assumed unless verified for that packet.</p>
+              <label className="flex items-center gap-2 text-sm font-semibold">Go to page
+                <input type="number" min="1" value={pdfPage} onChange={(event) => setPdfPage(event.target.value)} onBlur={() => setPdfPage(String(Math.max(1, Number(pdfPage) || 1)))} aria-label="PDF page number" className="w-20 rounded-lg border border-border bg-card px-3 py-2 text-ink" />
+              </label>
             </div>
           )}
         </section>
