@@ -8,6 +8,7 @@ export interface UnitReviewData {
   focus: string;
   examWeight: string;
   connect: string;
+  coreReview?: { title: string; explanation: string; keyRelations: string[] }[];
   strategies: UnitReviewSection[];
   traps: string[];
   frqChecklist: string[];
