@@ -115,7 +115,7 @@ if (solutionStart >= 0 && solutionEnd > solutionStart) {
     }
     const detectedQuestions = new Set(packet.pages.flatMap((page) => page.candidates.map((candidate) => String(candidate.number))));
     const detectedParts = new Set(packet.pages.flatMap((page) => page.partCandidates.map((candidate) => `${candidate.question}:${candidate.part}`)));
-    const entryPattern = /^\s*"(\d+)(?::([a-h]))?"\s*:\s*\{\s*prompt:/gm;
+    const entryPattern = /^\s*"(\d+)(?::([a-z](?:\([ivx]+\))?))?"\s*:\s*\{\s*prompt:/gm;
     for (const entry of body.matchAll(entryPattern)) {
       const [, question, part] = entry;
       totalSolutions += 1;
