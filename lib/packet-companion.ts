@@ -591,40 +591,56 @@ function getTopicSlugs(topicRange: string): string[] {
 
 // This index confirms packet title/range and printed question number only.
 // It deliberately contains no copied question text or unverified answers.
-export const PACKET_QUESTION_INDEX: PacketQuestionEntry[] = PACKET_SOURCES.flatMap((source) =>
-  Array.from(
-    { length: source.lastQuestion - source.firstQuestion + 1 },
-    (_, index): PacketQuestionEntry => {
-      const questionNumber = String(source.firstQuestion + index);
-      const mappedTopicNumber = QUESTION_TOPIC_OVERRIDES[source.packetId]?.[Number(questionNumber)];
-      const mappedTopicSlug = mappedTopicNumber ? TOPIC_SLUGS[mappedTopicNumber] : undefined;
-      const questionHints = QUESTION_HINTS[source.packetId]?.[Number(questionNumber)];
-      return {
-        id: `${source.packetId}-q${questionNumber}`,
-        unitId: source.unitId,
-        packetId: source.packetId,
-        packetTitle: source.packetTitle,
-        questionType: "mcq",
-        questionNumber,
-        topicRange: source.topicRange,
-        ...(mappedTopicNumber ? { topicNumber: mappedTopicNumber } : {}),
-        topicSlugs: mappedTopicSlug ? [mappedTopicSlug] : getTopicSlugs(source.topicRange),
-        skills: [],
-        ...(questionHints ?? {}),
-        // "indexed" confirms the printed packet/question number exists, but the exact topic has not been verified.
-        // Only assign "mapped" when a question-specific topic override has been reviewed.
-        sourceStatus: mappedTopicNumber ? "mapped" : "indexed",
-        reviewNote: mappedTopicNumber
-          ? questionHints?.solution
-            ? `Packet and question number indexed; mapped to topic ${mappedTopicNumber}; independently written explanation included and should be reviewed before publication.`
-            : questionHints
-              ? `Packet and question number indexed; mapped to topic ${mappedTopicNumber}; original staged hints included, but a worked explanation still needs review.`
-              : `Packet and question number indexed; mapped to topic ${mappedTopicNumber}. Question-specific hints and explanation still need review.`
-          : "Packet and printed question number indexed; exact subtopic mapping and question-specific help still need review.",
-      };
-    }
-  )
-);
+export const PACKET_QUESTION_INDEX: PacketQuestionEntry[] = [
+  ...PACKET_SOURCES.flatMap((source) =>
+    Array.from(
+      { length: source.lastQuestion - source.firstQuestion + 1 },
+      (_, index): PacketQuestionEntry => {
+        const questionNumber = String(source.firstQuestion + index);
+        const mappedTopicNumber = QUESTION_TOPIC_OVERRIDES[source.packetId]?.[Number(questionNumber)];
+        const mappedTopicSlug = mappedTopicNumber ? TOPIC_SLUGS[mappedTopicNumber] : undefined;
+        const questionHints = QUESTION_HINTS[source.packetId]?.[Number(questionNumber)];
+        return {
+          id: `${source.packetId}-q${questionNumber}`,
+          unitId: source.unitId,
+          packetId: source.packetId,
+          packetTitle: source.packetTitle,
+          questionType: "mcq",
+          questionNumber,
+          topicRange: source.topicRange,
+          ...(mappedTopicNumber ? { topicNumber: mappedTopicNumber } : {}),
+          topicSlugs: mappedTopicSlug ? [mappedTopicSlug] : getTopicSlugs(source.topicRange),
+          skills: [],
+          ...(questionHints ?? {}),
+          // "indexed" confirms the printed packet/question number exists, but the exact topic has not been verified.
+          // Only assign "mapped" when a question-specific topic override has been reviewed.
+          sourceStatus: mappedTopicNumber ? "mapped" : "indexed",
+          reviewNote: mappedTopicNumber
+            ? questionHints?.solution
+              ? `Packet and question number indexed; mapped to topic ${mappedTopicNumber}; independently written explanation included and should be reviewed before publication.`
+              : questionHints
+                ? `Packet and question number indexed; mapped to topic ${mappedTopicNumber}; original staged hints included, but a worked explanation still needs review.`
+                : `Packet and question number indexed; mapped to topic ${mappedTopicNumber}. Question-specific hints and explanation still need review.`
+            : "Packet and printed question number indexed; exact subtopic mapping and question-specific help still need review.",
+        };
+      }
+    )
+  ),
+  {
+    id: "topics-8-6-8-11-mcq-unnumbered",
+    unitId: 8,
+    packetId: "topics-8-6-8-11-mcq",
+    packetTitle: "Topics 8.6–8.11 MCQ Practice",
+    questionType: "mcq",
+    questionNumber: "Unnumbered",
+    topicRange: "8.6-8.11",
+    topicSlugs: getTopicSlugs("8.6-8.11"),
+    skills: [],
+    ...(QUESTION_HINTS["topics-8-6-8-11-mcq"]?.[1] ?? {}),
+    sourceStatus: "indexed",
+    reviewNote: "The source PDF begins with an unnumbered prompt before printed Question 2. This entry preserves that prompt without inventing a printed question number.",
+  },
+];
 
 export interface PacketLookup {
   unitId: number;
