@@ -80,7 +80,7 @@ for (const packet of audit) {
       continue;
     }
     if (part) {
-      const parentPart = part.match(/^([a-h])/i)?.[1]?.toLowerCase();
+      const parentPart = part.match(/^([a-z])/i)?.[1]?.toLowerCase();
       if (parentPart && !detectedParts.has(`${question}:${parentPart}`)) {
         untrackedSolutions.push(`${packet.file} Q${key} (no extracted heading for part ${parentPart})`);
       }
