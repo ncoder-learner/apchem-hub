@@ -15,12 +15,22 @@ if (solutionStart < 0 || solutionEnd < 0) {
 }
 const solutionSource = source.slice(solutionStart, solutionEnd);
 const solutionsByFile = new Map();
+const incompleteSolutionFields = [];
 const packetPattern = /^  "([^"]+\.pdf)": \{\n([\s\S]*?)^  \},?$/gm;
 for (const match of solutionSource.matchAll(packetPattern)) {
   const [, file, body] = match;
   const keys = new Set();
-  for (const entry of body.matchAll(/^    "(\d+)(?::([a-z](?:\([ivx]+\))?))?"\s*:\s*\{\s*prompt:/gm)) {
-    keys.add(entry[2] ? `${entry[1]}:${entry[2]}` : entry[1]);
+  const entries = [...body.matchAll(/^    "(\d+(?::[a-z](?:\([ivx]+\))?)?)"\s*:\s*\{/gm)];
+  for (let index = 0; index < entries.length; index++) {
+    const entry = entries[index];
+    const key = entry[1];
+    const entryBody = body.slice(entry.index, entries[index + 1]?.index ?? body.length);
+    keys.add(key);
+    for (const field of ["prompt", "steps", "answer", "concept"]) {
+      if (!new RegExp("\\b" + field + "\\s*:").test(entryBody)) {
+        incompleteSolutionFields.push(file + " Q" + key + ": missing " + field);
+      }
+    }
   }
   solutionsByFile.set(file, keys);
 }
@@ -99,6 +109,7 @@ const report = [
   `- Distinct extracted question numbers: ${detectedQuestionCount}`,
   `- Extracted lettered parts: ${detectedPartCount}`,
   `- Existing worked-solution entries: ${solutionCount}`,
+  `- Entries missing a required solution field (prompt/steps/answer/concept): ${incompleteSolutionFields.length}`,
   `- Missing whole-question answers where no parts were detected: ${missingQuestions.length}`,
   `- Missing part-specific worked answers: ${missingParts.length}`,
   `- Potentially stale solution keys: ${untrackedSolutions.length}`,
@@ -107,6 +118,10 @@ const report = [
   "| Packet | Questions | Parts | Missing question answers | Missing part answers |",
   "|---|---:|---:|---:|---:|",
   ...packetRows,
+  "",
+  "## Incomplete solution entries",
+  "",
+  ...(incompleteSolutionFields.length ? incompleteSolutionFields.map((item) => `- ${item}`) : ["None detected."]),
   "",
   "## Missing whole-question answers",
   "",
