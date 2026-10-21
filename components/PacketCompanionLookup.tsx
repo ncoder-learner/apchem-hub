@@ -123,9 +123,14 @@ export function PacketCompanionLookup() {
 
   function changePacket(value: string) {
     setPacketId(value);
-    setQuestionNumber("1");
-    setPdfPage("1");
-    setPdfPageInput("1");
+    const firstEntry = PACKET_QUESTION_INDEX
+      .filter((entry) => entry.unitId === Number(unitId) && entry.questionType === "mcq" && entry.packetId === value)
+      .sort((a, b) => a.questionNumber === "Unnumbered" ? -1 : b.questionNumber === "Unnumbered" ? 1 : Number(a.questionNumber) - Number(b.questionNumber))[0];
+    const firstQuestion = firstEntry?.questionNumber ?? "1";
+    const firstPage = MCQ_PAGE_CANDIDATES[value]?.[firstQuestion] ?? 1;
+    setQuestionNumber(firstQuestion);
+    setPdfPage(String(firstPage));
+    setPdfPageInput(String(firstPage));
     setHintLevel(0);
     setShowWorkedAnswer(false);
     setPdfFile(null);
