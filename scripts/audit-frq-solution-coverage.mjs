@@ -24,7 +24,8 @@ for (const match of solutionSource.matchAll(packetPattern)) {
   for (let index = 0; index < entries.length; index++) {
     const entry = entries[index];
     const key = entry[1];
-    const entryBody = body.slice(entry.index, entries[index + 1]?.index ?? body.length);
+    const lineEnd = body.indexOf("\n", entry.index);
+    const entryBody = body.slice(entry.index, lineEnd >= 0 ? lineEnd : body.length);
     keys.add(key);
     for (const field of ["prompt", "steps", "answer", "concept"]) {
       if (!new RegExp("\\b" + field + "\\s*:").test(entryBody)) {
