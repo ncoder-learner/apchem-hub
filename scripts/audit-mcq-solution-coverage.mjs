@@ -23,6 +23,7 @@ for (const match of sourceBlock.matchAll(packetPattern)) {
 }
 
 const solutionsByPacket = new Map();
+const missingExplicitAnswers = [];
 const packetSolutionPattern = /^  "([^"]+)": \{\n([\s\S]*?)^  \},?$/gm;
 for (const match of hintsBlock.matchAll(packetSolutionPattern)) {
   const packetId = match[1];
@@ -33,7 +34,14 @@ for (const match of hintsBlock.matchAll(packetSolutionPattern)) {
     const entry = entryStarts[index];
     const entryEnd = entryStarts[index + 1]?.index ?? body.length;
     const entryBody = body.slice(entry.index, entryEnd);
-    if (/\bsolution\s*:/.test(entryBody)) keys.add(Number(entry[1]));
+    const solutionMatch = entryBody.match(/\bsolution\s*:\s*"((?:\\.|[^"\\])*)"/s);
+    if (solutionMatch) {
+      keys.add(Number(entry[1]));
+      const solutionText = solutionMatch[1].replace(/\\\"/g, '"' );
+      if (!/\bAnswer:\s*[A-E]\b/i.test(solutionText)) {
+        missingExplicitAnswers.push({ packet: packetId, question: Number(entry[1]) });
+      }
+    }
   }
   solutionsByPacket.set(packetId, keys);
 }
@@ -74,12 +82,17 @@ const report = [
   `- Expected numbered questions: ${expectedCount}`,
   `- Questions with a solution entry: ${solutionCount}`,
   `- Missing solution entries: ${missing.length}`,
+  `- Solution entries missing an explicit answer letter (A–E): ${missingExplicitAnswers.length}`,
   `- Unexpected solution keys outside printed ranges: ${rows.reduce((sum, row) => sum + row.unexpected.length, 0)}`,
   `- Structural coverage: ${expectedCount ? (100 * solutionCount / expectedCount).toFixed(1) : "0.0"}%`,
   "",
   "| Unit | Packet | Expected | Solution entries | Missing |",
   "|---:|---|---:|---:|---:|",
   ...rows.map((row) => `| ${row.unit} | ${row.packet} | ${row.expected} | ${row.withWorkedSolution} | ${row.missing.length} |`),
+  "",
+  "## Entries missing an explicit answer letter",
+  "",
+  ...(missingExplicitAnswers.length ? missingExplicitAnswers.map((item) => `- ${item.packet}, Question ${item.question}`) : ["None detected."]),
   "",
   "## Missing solution entries",
   "",
