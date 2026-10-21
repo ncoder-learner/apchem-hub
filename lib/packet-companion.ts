@@ -556,8 +556,8 @@ const QUESTION_HINTS: Record<string, Record<number, Pick<PacketQuestionEntry, "c
     },
     8: {
       solution: "Answer: A (zero order). The concentration falls by 0.040 M every 100 s: 0.20→0.16→0.12→0.08 M. A constant absolute concentration change per equal time interval gives a linear [XY]-versus-time relationship, characteristic of zero-order kinetics (rate = k).",
-      conceptHint: "A catalyst provides an alternative pathway and can change the rate without being consumed in the overall reaction.",
-      strategyHint: "Read the concentration-time data for the catalyzed decomposition and separate the observed concentration pattern from the catalyst's role.",
+      conceptHint: "For zero-order kinetics, concentration decreases by the same absolute amount in equal time intervals.",
+      strategyHint: "Compare the change in [XY] over each 100 s interval; a constant absolute decrease indicates a linear [XY]-versus-time plot.",
       nextStepHint: "Use the requested evidence—such as rate changes or a transformed concentration plot—rather than assuming the catalyst changes the reaction's equilibrium or overall stoichiometry.",
     },
     9: {
