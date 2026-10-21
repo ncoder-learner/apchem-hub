@@ -57,11 +57,25 @@ for (const file of files) {
         });
         continue;
       }
+      const romanPartMatch = line.match(/^\s{0,20}\((i)\)[.)]?\s+\S/);
+      if (romanPartMatch && activeQuestion !== null) {
+        // A standalone (i) after (h) is the next lettered part, while (i) after
+        // another letter is normally a nested Roman-numeral subpart.
+        const isNextLetteredPart = activePart === "h";
+        const part = activePart !== null && !isNextLetteredPart ? activePart + "(i)" : "i";
+        if (isNextLetteredPart || activePart === null) activePart = "i";
+        partCandidates.push({
+          question: activeQuestion,
+          part,
+          line: line.trim().slice(0, 180),
+        });
+        continue;
+      }
       const nestedPartMatch = line.match(/^\s{0,20}\(([ivx]+)\)[.)]?\s+\S/);
       if (nestedPartMatch && activeQuestion !== null && activePart !== null) {
         partCandidates.push({
           question: activeQuestion,
-          part: `${activePart}(${nestedPartMatch[1].toLowerCase()})`,
+          part: activePart + "(" + nestedPartMatch[1].toLowerCase() + ")",
           line: line.trim().slice(0, 180),
         });
       }
