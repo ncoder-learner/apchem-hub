@@ -31,6 +31,10 @@ const PACKET_PDF_PATHS: Record<string, string> = {
 };
 
 
+function packetQuestionLabel(questionNumber: string): string {
+  return questionNumber === "Unnumbered" ? "Unnumbered prompt" : `Question ${questionNumber}`;
+}
+
 export function PacketCompanionLookup() {
   const [unitId, setUnitId] = useState("1");
   const [packetId, setPacketId] = useState("");
@@ -80,7 +84,9 @@ export function PacketCompanionLookup() {
   );
 
   const packetEntries = useMemo(
-    () => PACKET_QUESTION_INDEX.filter((entry) => entry.unitId === Number(unitId) && entry.questionType === "mcq" && entry.packetId === packetId),
+    () => PACKET_QUESTION_INDEX
+      .filter((entry) => entry.unitId === Number(unitId) && entry.questionType === "mcq" && entry.packetId === packetId)
+      .sort((a, b) => a.questionNumber === "Unnumbered" ? -1 : b.questionNumber === "Unnumbered" ? 1 : Number(a.questionNumber) - Number(b.questionNumber)),
     [unitId, packetId],
   );
 
@@ -246,7 +252,7 @@ export function PacketCompanionLookup() {
                     <label className="mt-3 block text-sm font-semibold">Or choose a question
                       <select value={questionNumber} onChange={(event) => selectQuestion(event.target.value)} className="mt-1 w-full rounded-lg border border-border bg-bg px-3 py-2">
                         <option value="">Choose question</option>
-                        {packetEntries.map((entry) => <option key={entry.id} value={entry.questionNumber}>Question {entry.questionNumber}</option>)}
+                        {packetEntries.map((entry) => <option key={entry.id} value={entry.questionNumber}>{packetQuestionLabel(entry.questionNumber)}</option>)}
                       </select>
                     </label>
                     <div className="mt-3 grid grid-cols-2 gap-2">
@@ -255,7 +261,7 @@ export function PacketCompanionLookup() {
                     </div>
                     {match && (
                       <div className="mt-4 rounded-xl border border-red-200 bg-white p-3 font-serif italic text-sm leading-6 text-red-700">
-                        <p className="font-bold">Q{questionNumber} · {match.solution ? "Worked answer" : "Question help"}</p>
+                        <p className="font-bold">{questionNumber === "Unnumbered" ? "Unnumbered prompt" : "Q" + questionNumber} · {match.solution ? "Worked answer" : "Question help"}</p>
                         {match.solution ? <p className="mt-2">{match.solution}</p> : <><p className="mt-2 not-italic text-xs text-red-500">A verified final answer is not indexed for this question yet.</p>{hints.map((hint, index) => <p key={index} className="mt-2"><span className="font-bold">Hint {index + 1}:</span> {hint}</p>)}</>}
                       </div>
                     )}
@@ -265,7 +271,7 @@ export function PacketCompanionLookup() {
               {showWorkedAnswer && match && (
                 <div role="region" aria-label="Worked answer or question help" className="absolute right-4 top-4 z-30 max-h-[48%] w-[min(34rem,92%)] overflow-y-auto rounded-xl border-2 border-red-300 bg-white/95 px-5 py-4 text-red-700 shadow-2xl backdrop-blur-sm sm:px-8">
                   <div className="mx-auto max-w-4xl font-serif italic">
-                    <p className="text-sm font-bold not-italic text-red-800">{match.solution ? "Worked answer" : "Question help"} · Question {questionNumber}</p>
+                    <p className="text-sm font-bold not-italic text-red-800">{match.solution ? "Worked answer" : "Question help"} · {packetQuestionLabel(questionNumber)}</p>
                     {match.solution ? <p className="mt-3 whitespace-pre-wrap text-base leading-7">{match.solution}</p> : <><p className="mt-3 text-sm not-italic">A verified final answer is not indexed for this question yet. Use these staged hints while the answer is being verified.</p>{hints.map((hint, index) => <p key={index} className="mt-3 whitespace-pre-wrap text-base leading-7"><strong>Hint {index + 1}.</strong> {hint}</p>)}</>}
                     <p className="mt-3 text-xs not-italic text-red-500">Original study guidance, not an official College Board scoring guide.</p>
                   </div>
@@ -301,14 +307,14 @@ export function PacketCompanionLookup() {
               <>
                 <label htmlFor="packet-question-select" className="mt-4 block text-sm font-semibold">Jump to printed question</label>
                 <select id="packet-question-select" value={questionNumber} onChange={(event) => selectQuestion(event.target.value)} className="mt-2 min-h-12 w-full rounded-lg border border-border bg-card px-3 py-3 text-ink">
-                  {packetEntries.map((entry) => <option key={entry.id} value={entry.questionNumber}>Question {entry.questionNumber}{entry.topicNumber ? " · Topic " + entry.topicNumber : ""}</option>)}
+                  {packetEntries.map((entry) => <option key={entry.id} value={entry.questionNumber}>{packetQuestionLabel(entry.questionNumber)}{entry.topicNumber ? " · Topic " + entry.topicNumber : ""}</option>)}
                 </select>
                 <div className="mt-3 grid grid-cols-2 gap-2">
                   <button type="button" onClick={() => moveQuestion(-1)} disabled={packetEntries[0]?.questionNumber === questionNumber} className="min-h-10 rounded-lg border border-border px-3 py-2 text-sm font-semibold disabled:opacity-35">← Previous</button>
                   <button type="button" onClick={() => moveQuestion(1)} disabled={packetEntries[packetEntries.length - 1]?.questionNumber === questionNumber} className="min-h-10 rounded-lg border border-border px-3 py-2 text-sm font-semibold disabled:opacity-35">Next →</button>
                 </div>
                 <div className="mt-4 flex flex-wrap gap-1.5" aria-label="Jump to question">
-                  {packetEntries.map((entry) => <button key={entry.id} type="button" aria-label={"Go to question " + entry.questionNumber + (questionProgress[entry.id] ? ", status " + questionProgress[entry.id] : "")} aria-current={entry.questionNumber === questionNumber ? "true" : undefined} onClick={() => selectQuestion(entry.questionNumber)} title={questionProgress[entry.id] ? questionProgress[entry.id] : "Not marked"} className={"relative flex h-9 min-w-9 items-center justify-center rounded-md border px-2 text-xs font-semibold transition " + (entry.questionNumber === questionNumber ? "border-accent bg-accent-soft/30 text-accent" : "border-border text-ink-dim hover:border-accent/40 hover:text-ink")}>{entry.questionNumber}{questionProgress[entry.id] && <span aria-hidden="true" className={"absolute -right-1 -top-1 h-2 w-2 rounded-full " + (questionProgress[entry.id] === "mastered" ? "bg-accent" : questionProgress[entry.id] === "review" ? "bg-amber" : "bg-ink-dim")} />}</button>)}
+                  {packetEntries.map((entry) => <button key={entry.id} type="button" aria-label={"Go to " + (entry.questionNumber === "Unnumbered" ? "unnumbered prompt" : "question " + entry.questionNumber) + (questionProgress[entry.id] ? ", status " + questionProgress[entry.id] : "")} aria-current={entry.questionNumber === questionNumber ? "true" : undefined} onClick={() => selectQuestion(entry.questionNumber)} title={questionProgress[entry.id] ? questionProgress[entry.id] : "Not marked"} className={"relative flex h-9 min-w-9 items-center justify-center rounded-md border px-2 text-xs font-semibold transition " + (entry.questionNumber === questionNumber ? "border-accent bg-accent-soft/30 text-accent" : "border-border text-ink-dim hover:border-accent/40 hover:text-ink")}>{entry.questionNumber === "Unnumbered" ? "Intro" : entry.questionNumber}{questionProgress[entry.id] && <span aria-hidden="true" className={"absolute -right-1 -top-1 h-2 w-2 rounded-full " + (questionProgress[entry.id] === "mastered" ? "bg-accent" : questionProgress[entry.id] === "review" ? "bg-amber" : "bg-ink-dim")} />}</button>)}
                 </div>
               </>
             ) : <p className="mt-3 text-sm leading-relaxed text-ink-dim">Choose a unit and packet to load its question list. The reader does not assume question numbers from a different packet.</p>}
@@ -321,7 +327,7 @@ export function PacketCompanionLookup() {
             </div>
             {match ? (
               <>
-                <h3 className="mt-2 text-base font-semibold">Question {match.questionNumber}</h3>
+                <h3 className="mt-2 text-base font-semibold">{packetQuestionLabel(match.questionNumber)}</h3>
                 <p className="mt-1 text-xs leading-relaxed text-ink-dim">{match.packetTitle} · Topics {match.topicRange.replace("-", "–")}</p>
                 <div className="mt-3 rounded-lg border border-border bg-bg/50 p-3">
                   <div className="flex items-center justify-between gap-2">
