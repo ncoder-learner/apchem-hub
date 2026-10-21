@@ -59,7 +59,7 @@ export default function HomePage() {
               <a href="#course-map" className="inline-flex items-center gap-2 rounded-xl border border-border bg-white/[0.03] px-5 py-3 text-sm font-semibold text-ink transition hover:border-ink-dim/50 hover:bg-white/[0.06]">
                 Explore course <span aria-hidden="true">↓</span>
               </a>
-              <Link href="/glossary" className="inline-flex items-center gap-2 rounded-xl border border-border bg-white/[0.03] px-5 py-3 text-sm font-semibold text-ink transition hover:border-ink-dim/50 hover:bg-white/[0.06]">Search glossary <span aria-hidden="true">→</span></Link>
+              <Link href="/glossary" className="inline-flex items-center gap-2 rounded-xl border border-border bg-white/[0.03] px-5 py-3 text-sm font-semibold text-ink transition hover:border-ink-dim/50 hover:bg-white/[0.06]">Search glossary <span aria-hidden="true">→</span></Link> <Link href="/equation-sheet" className="inline-flex items-center gap-2 rounded-xl border border-border bg-white/[0.03] px-5 py-3 text-sm font-semibold text-ink transition hover:border-ink-dim/50 hover:bg-white/[0.06]">Equation sheet <span aria-hidden="true">→</span></Link>
               <Link href="/packet-companion" className="inline-flex items-center gap-2 rounded-xl border border-accent/30 bg-accent-soft px-5 py-3 text-sm font-semibold text-accent transition hover:border-accent/60">
                 Help with a packet question <span aria-hidden="true">→</span>
               </Link>
