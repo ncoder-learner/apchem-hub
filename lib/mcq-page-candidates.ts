@@ -32,3 +32,6 @@ export const MCQ_PAGE_CANDIDATES: Record<string, Record<string, number>> = Objec
     Object.fromEntries(data.pages.map((page, index) => [String(data.firstQuestion + index), page])),
   ]),
 );
+
+// This packet begins with an unnumbered prompt on page 1, followed by printed Question 2.
+MCQ_PAGE_CANDIDATES["topics-8-6-8-11-mcq"]["Unnumbered"] = 1;
