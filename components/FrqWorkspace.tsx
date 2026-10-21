@@ -1631,7 +1631,7 @@ export function FrqWorkspace() {
             <div className="mt-3 rounded-xl border border-border bg-card/70 p-4">
               <p className="text-sm font-semibold text-ink">{activeSolution.prompt}</p>
               <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm leading-6 text-ink-dim">{activeSolution.steps.map((step) => <li key={step}>{step}</li>)}</ol>
-              <p className="mt-3 rounded-lg border border-accent/25 bg-accent-soft/10 p-3 text-sm font-bold text-ink">Final answer: {activeSolution.answer}</p>
+              <p className="mt-3 rounded-lg border border-accent/25 bg-accent-soft/10 p-3 text-sm font-bold text-ink">Final answer: {activeSolution.answer}</p>{selected && needsSourceVisualReview(selected.file, questionNumber.trim(), normalizedPart) && <p role="note" className="mt-3 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-amber-950">Source-figure check still required. This entry explains the method, but its graph-, diagram-, or spectrum-dependent label/value has not been confirmed from the original visual. Do not treat it as a verified final numerical answer.</p>}
               <p className="mt-2 text-xs leading-5 text-ink-dim">Scoring-focused structure: show the equation or chemical principle, include substitutions and units where relevant, explain the reasoning, and state the answer with appropriate precision. Original study solution, not an official scoring guide.</p>
             </div>
           </details>}
