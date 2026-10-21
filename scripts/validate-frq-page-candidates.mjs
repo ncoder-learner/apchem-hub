@@ -62,7 +62,7 @@ for (const [file, questions] of Object.entries(partMappings)) {
   }
   for (const [question, parts] of Object.entries(questions)) {
     for (const [part, page] of Object.entries(parts)) {
-      if (!/^[a-h]$/.test(part)) errors.push(`${file}: Q${question} has invalid part label "${part}"`);
+      if (!/^[a-z]$/.test(part)) errors.push(`${file}: Q${question} has invalid part label "${part}"`);
       if (!Number.isInteger(page) || page < 1 || page > packet.pageCount) {
         errors.push(`${file}: Q${question}(${part}) maps to invalid page ${page} (PDF has ${packet.pageCount} pages)`);
       } else {
