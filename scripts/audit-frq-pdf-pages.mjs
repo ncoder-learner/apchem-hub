@@ -41,7 +41,7 @@ for (const file of files) {
           activePart = sameLinePart[1].toLowerCase();
           partCandidates.push({
             question: activeQuestion,
-            part: activePart + (sameLinePart[2] ? `(\${sameLinePart[2].toLowerCase()})` : ""),
+            part: activePart + (sameLinePart[2] ? `(${sameLinePart[2].toLowerCase()})` : ""),
             line: line.trim().slice(0, 180),
           });
         }
@@ -52,7 +52,7 @@ for (const file of files) {
         activePart = partMatch[1].toLowerCase();
         partCandidates.push({
           question: activeQuestion,
-          part: activePart + (partMatch[2] ? `(\${partMatch[2].toLowerCase()})` : ""),
+          part: activePart + (partMatch[2] ? `(${partMatch[2].toLowerCase()})` : ""),
           line: line.trim().slice(0, 180),
         });
         continue;
@@ -61,7 +61,7 @@ for (const file of files) {
       if (nestedPartMatch && activeQuestion !== null && activePart !== null) {
         partCandidates.push({
           question: activeQuestion,
-          part: `\${activePart}(\${nestedPartMatch[1].toLowerCase()})`,
+          part: `${activePart}(${nestedPartMatch[1].toLowerCase()})`,
           line: line.trim().slice(0, 180),
         });
       }
