@@ -20,6 +20,7 @@ for (const file of files) {
   const pages = result.stdout.split("\f");
   if (!pages[pages.length - 1]?.trim()) pages.pop();
   let activeQuestion = null;
+  let activePart = null;
   const pageRecords = pages.map((text, index) => {
     const lines = text.split(/\r?\n/);
     const candidates = [];
@@ -29,24 +30,38 @@ for (const file of files) {
       const match = line.match(/^\s{0,12}(\d{1,2})[.)]\s+\S/);
       if (match) {
         activeQuestion = Number(match[1]);
+        activePart = null;
         candidates.push({
           number: activeQuestion,
           line: line.trim().slice(0, 180),
           context: lines.slice(lineIndex + 1, lineIndex + 3).join(" ").trim().slice(0, 180),
         });
-        const sameLinePart = line.match(/^\s{0,12}\d{1,2}[.)]\s*\(([a-h])\)/);
-        if (sameLinePart) partCandidates.push({
+        const sameLinePart = line.match(/^\s{0,12}\d{1,2}[.)]\s*\(([a-h])\)(?:\(([ivx]+)\))?/);
+        if (sameLinePart) {
+          activePart = sameLinePart[1].toLowerCase();
+          partCandidates.push({
+            question: activeQuestion,
+            part: activePart + (sameLinePart[2] ? \`(\${sameLinePart[2].toLowerCase()})\` : ""),
+            line: line.trim().slice(0, 180),
+          });
+        }
+        continue;
+      }
+      const partMatch = line.match(/^\s{0,20}\(([a-h])\)(?:\(([ivx]+)\))?[.)]?\s+\S/);
+      if (partMatch && activeQuestion !== null) {
+        activePart = partMatch[1].toLowerCase();
+        partCandidates.push({
           question: activeQuestion,
-          part: sameLinePart[1].toLowerCase(),
+          part: activePart + (partMatch[2] ? \`(\${partMatch[2].toLowerCase()})\` : ""),
           line: line.trim().slice(0, 180),
         });
         continue;
       }
-      const partMatch = line.match(/^\s{0,20}\(([a-h])\)[.)]?\s+\S/);
-      if (partMatch && activeQuestion !== null) {
+      const nestedPartMatch = line.match(/^\s{0,20}\(([ivx]+)\)[.)]?\s+\S/);
+      if (nestedPartMatch && activeQuestion !== null && activePart !== null) {
         partCandidates.push({
           question: activeQuestion,
-          part: partMatch[1].toLowerCase(),
+          part: \`\${activePart}(\${nestedPartMatch[1].toLowerCase()})\`,
           line: line.trim().slice(0, 180),
         });
       }
