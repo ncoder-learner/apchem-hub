@@ -19,7 +19,7 @@ const packetPattern = /^  "([^"]+\.pdf)": \{\n([\s\S]*?)^  \},?$/gm;
 for (const match of solutionSource.matchAll(packetPattern)) {
   const [, file, body] = match;
   const keys = new Set();
-  for (const entry of body.matchAll(/^    "(\d+)(?::([a-h](?:\([ivx]+\))?))?"\s*:\s*\{\s*prompt:/gm)) {
+  for (const entry of body.matchAll(/^    "(\d+)(?::([a-z](?:\([ivx]+\))?))?"\s*:\s*\{\s*prompt:/gm)) {
     keys.add(entry[2] ? `${entry[1]}:${entry[2]}` : entry[1]);
   }
   solutionsByFile.set(file, keys);
