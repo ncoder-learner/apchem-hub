@@ -5,7 +5,7 @@ import { spawnSync } from "node:child_process";
 const directory = path.resolve("public/packets");
 const outputDirectory = path.resolve("mcq-audit-output");
 await mkdir(outputDirectory, { recursive: true });
-const files = (await readdir(directory)).filter((name) => name.toLowerCase().endsWith(".pdf")).sort();
+const files = (await readdir(directory)).filter((name) => name.toLowerCase().endsWith("-mcq.pdf")).sort();
 const audit = [];
 
 for (const file of files) {
