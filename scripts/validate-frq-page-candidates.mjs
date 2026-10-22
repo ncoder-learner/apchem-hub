@@ -125,7 +125,7 @@ if (solutionStart >= 0 && solutionEnd > solutionStart) {
         continue;
       }
       if (part && !detectedParts.has(`${question}:${part}`)) {
-        errors.push(`${file}: worked solution Q${question}(${part}) has no matching extracted part heading`);
+        warnings.push(`${file}: worked solution Q${question}(${part}) has no matching extracted part heading in pdftotext output; question exists, so verify the subpart against the rendered PDF audit artifact`);
       }
     }
   }
