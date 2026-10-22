@@ -49,6 +49,7 @@ const exceptions = {
   // Source packet has an unnumbered first question; the printed numbering begins at 2.
   "topics-8-6-8-11-mcq": 'The source PDF starts with an unnumbered prompt stored under key 1 and indexed separately as "Unnumbered"; only printed questions 2–16 count toward numbered-question coverage.'
 };
+const intentionalUnnumberedKeys = { "topics-8-6-8-11-mcq": new Set([1]) };
 const rows = [];
 const missing = [];
 let expectedCount = 0;
@@ -69,7 +70,7 @@ for (const packet of packets) {
     expected: expected.length,
     withWorkedSolution: expected.filter((number) => keys.has(number)).length,
     missing: absent,
-    unexpected: [...keys].filter((number) => number < packet.first || number > packet.last)
+    unexpected: [...keys].filter((number) => (number < packet.first || number > packet.last) && !intentionalUnnumberedKeys[packet.id]?.has(number))
   });
 }
 
@@ -102,6 +103,7 @@ const report = [
   "",
   ...Object.entries(exceptions).map(([packet, note]) => `- ${packet}: ${note}`),
   ...rows.flatMap((row) => row.unexpected.map((number) => `- ${row.packet}: solution key ${number} falls outside the printed range ${packets.find((packet) => packet.id === row.packet)?.first}–${packets.find((packet) => packet.id === row.packet)?.last}; review whether it represents an unnumbered prompt.`)),
+  "- topics-8-6-8-11-mcq: key 1 is the intentionally unnumbered opening prompt and is excluded from numbered-question coverage.",
   "",
 ].join("\n");
 

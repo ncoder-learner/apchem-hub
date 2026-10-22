@@ -37,7 +37,7 @@ for (const file of files) {
           line: line.trim().slice(0, 180),
           context: lines.slice(lineIndex + 1, lineIndex + 3).join(" ").trim().slice(0, 180),
         });
-        const sameLinePart = line.match(/^\s{0,12}\d{1,2}[.)]\s*\(([a-h])\)(?:\s*\(([ivx]+)\))?/i);
+        const sameLinePart = line.match(/^\s{0,12}\d{1,2}[.)]\s*\(([a-h])\)(?:\s*\(([ivx]+)\))?/);
         if (sameLinePart) {
           activePart = sameLinePart[1].toLowerCase();
           partCandidates.push({
@@ -58,12 +58,14 @@ for (const file of files) {
       // Some worksheets place two lettered parts side-by-side on one printed line.
       // Detect every clearly spaced part marker on that line, not just the first one.
       const partMatches = [
-        ...line.matchAll(/^\s{0,20}\(([a-h])\)[.)]?\s+\S/gi),
-        ...line.matchAll(/\s{2,}\(([a-h])\)[.)]?\s+\S/gi),
+        ...line.matchAll(/^\s{0,20}\(([a-h])\)[.)]?\s+\S/g),
+        ...line.matchAll(/\s{2,}\(([a-h])\)[.)]?\s+\S/g),
       ];
       if (partMatches.length && activeQuestion !== null) {
         for (const partMatch of partMatches) {
           const part = partMatch[1].toLowerCase();
+          const lineText = line.trim();
+          if (part === "g" && /\bsample\b/i.test(lineText) && !/^\(g\)\s+(?:calculate|write|explain|determine|use|if|what|how|state|identify|draw|complete|predict|justify|describe|compare|estimate|give|indicate)\b/i.test(lineText)) continue;
           activePart = part;
           if (!partCandidates.some((candidate) => candidate.question === activeQuestion && candidate.part === part)) {
             partCandidates.push({
@@ -75,7 +77,7 @@ for (const file of files) {
         }
       }
       // Also recognize forms such as `(d) (iii)` printed on a single line.
-      const sameLineNestedPart = line.match(/^\s{0,20}\(([a-h])\)[.)]?\s+\(([ivx]+)\)[.)]?\s+\S/i);
+      const sameLineNestedPart = line.match(/^\s{0,20}\(([a-h])\)[.)]?\s+\(([ivx]+)\)[.)]?\s+\S/);
       if (sameLineNestedPart && activeQuestion !== null) {
         const part = `${sameLineNestedPart[1].toLowerCase()}(${sameLineNestedPart[2].toLowerCase()})`;
         if (!partCandidates.some((candidate) => candidate.question === activeQuestion && candidate.part === part)) {
@@ -87,12 +89,17 @@ for (const file of files) {
         }
       }
       const romanPartMatches = [
-        ...line.matchAll(/^\s{0,20}\(([ivx]+)\)[.)]?\s+\S/gi),
-        ...line.matchAll(/\s{1,}\(([ivx]+)\)[.)]?\s+\S/gi),
+        ...line.matchAll(/^\s{0,20}\(([ivx]+)\)[.)]?\s+\S/g),
+        ...line.matchAll(/\s{1,}\(([ivx]+)\)[.)]?\s+\S/g),
       ];
       if (romanPartMatches.length && activeQuestion !== null && activePart !== null) {
         for (const romanMatch of romanPartMatches) {
-          const part = `${activePart}(${romanMatch[1].toLowerCase()})`;
+          const indent = romanMatch[0].match(/^\s*/)?.[0].length ?? 0;
+          const roman = romanMatch[1].toLowerCase();
+          // A same-level lowercase (i) is top-level part i; deeper Roman labels
+          // such as (i), (ii), and (iii) are nested beneath the current letter.
+          const part = roman === "i" && indent <= 6 ? "i" : `${activePart}(${roman})`;
+          if (part === "i") activePart = "i";
           if (!partCandidates.some((candidate) => candidate.question === activeQuestion && candidate.part === part)) {
             partCandidates.push({
               question: activeQuestion,
