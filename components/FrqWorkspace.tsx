@@ -535,6 +535,7 @@ type WorkedSolution = {
   concept: string;
 };
 
+// All previously flagged source-dependent prompts now have explicit worked answers.
 const FRQ_VISUAL_REVIEW_KEYS = new Set<string>();
 
 function needsSourceVisualReview(file: string, question: string, part: string): boolean {
