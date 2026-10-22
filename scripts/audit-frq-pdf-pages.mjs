@@ -20,6 +20,7 @@ for (const file of files) {
   const pages = result.stdout.split("\f");
   if (!pages[pages.length - 1]?.trim()) pages.pop();
   let activeQuestion = null;
+  let activePart = null;
   const pageRecords = pages.map((text, index) => {
     const lines = text.split(/\r?\n/);
     const candidates = [];
@@ -28,18 +29,23 @@ for (const file of files) {
       const line = lines[lineIndex];
       const match = line.match(/^\s{0,12}(\d{1,2})[.)]\s+\S/);
       if (match) {
-        activeQuestion = Number(match[1]);
+        const nextQuestion = Number(match[1]);
+        if (nextQuestion !== activeQuestion || !/continued/i.test(line)) activePart = null;
+        activeQuestion = nextQuestion;
         candidates.push({
           number: activeQuestion,
           line: line.trim().slice(0, 180),
           context: lines.slice(lineIndex + 1, lineIndex + 3).join(" ").trim().slice(0, 180),
         });
         const sameLinePart = line.match(/^\s{0,12}\d{1,2}[.)]\s*\(([a-h])\)/i);
-        if (sameLinePart) partCandidates.push({
-          question: activeQuestion,
-          part: sameLinePart[1].toLowerCase(),
-          line: line.trim().slice(0, 180),
-        });
+        if (sameLinePart) {
+          activePart = sameLinePart[1].toLowerCase();
+          partCandidates.push({
+            question: activeQuestion,
+            part: activePart,
+            line: line.trim().slice(0, 180),
+          });
+        }
         continue;
       }
       // Some worksheets place two lettered parts side-by-side on one printed line.
@@ -51,6 +57,23 @@ for (const file of files) {
       if (partMatches.length && activeQuestion !== null) {
         for (const partMatch of partMatches) {
           const part = partMatch[1].toLowerCase();
+          activePart = part;
+          if (!partCandidates.some((candidate) => candidate.question === activeQuestion && candidate.part === part)) {
+            partCandidates.push({
+              question: activeQuestion,
+              part,
+              line: line.trim().slice(0, 180),
+            });
+          }
+        }
+      }
+      const romanPartMatches = [
+        ...line.matchAll(/^\s{0,20}\(([ivx]+)\)[.)]?\s+\S/gi),
+        ...line.matchAll(/\s{2,}\(([ivx]+)\)[.)]?\s+\S/gi),
+      ];
+      if (romanPartMatches.length && activeQuestion !== null && activePart !== null) {
+        for (const romanMatch of romanPartMatches) {
+          const part = `${activePart}(${romanMatch[1].toLowerCase()})`;
           if (!partCandidates.some((candidate) => candidate.question === activeQuestion && candidate.part === part)) {
             partCandidates.push({
               question: activeQuestion,
