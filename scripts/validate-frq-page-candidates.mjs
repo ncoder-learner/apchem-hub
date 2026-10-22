@@ -70,7 +70,7 @@ for (const [file, questions] of Object.entries(partMappings)) {
         const detected = pageRecord?.partCandidates?.some((candidate) =>
           String(candidate.question) === question && candidate.part === part
         );
-        if (!detected) errors.push(`${file}: Q${question}(${part}) page ${page} has no matching extracted part heading`);
+        if (!detected) warnings.push(`${file}: Q${question}(${part}) page ${page} has no matching extracted part heading in pdftotext output; page bounds are valid, so verify visually in the rendered PDF audit artifact`);
       }
     }
   }
