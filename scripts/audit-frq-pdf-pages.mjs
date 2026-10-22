@@ -42,13 +42,23 @@ for (const file of files) {
         });
         continue;
       }
-      const partMatch = line.match(/^\s{0,20}\(([a-h])\)[.)]?\s+\S/i);
-      if (partMatch && activeQuestion !== null) {
-        partCandidates.push({
-          question: activeQuestion,
-          part: partMatch[1].toLowerCase(),
-          line: line.trim().slice(0, 180),
-        });
+      // Some worksheets place two lettered parts side-by-side on one printed line.
+      // Detect every clearly spaced part marker on that line, not just the first one.
+      const partMatches = [
+        ...line.matchAll(/^\s{0,20}\(([a-h])\)[.)]?\s+\S/gi),
+        ...line.matchAll(/\s{2,}\(([a-h])\)[.)]?\s+\S/gi),
+      ];
+      if (partMatches.length && activeQuestion !== null) {
+        for (const partMatch of partMatches) {
+          const part = partMatch[1].toLowerCase();
+          if (!partCandidates.some((candidate) => candidate.question === activeQuestion && candidate.part === part)) {
+            partCandidates.push({
+              question: activeQuestion,
+              part,
+              line: line.trim().slice(0, 180),
+            });
+          }
+        }
       }
     }
     return {

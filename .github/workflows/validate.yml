@@ -33,8 +33,15 @@ jobs:
           sudo apt-get install -y poppler-utils
           node scripts/audit-frq-pdf-pages.mjs
           node scripts/validate-frq-page-candidates.mjs
+          node scripts/audit-frq-solution-coverage.mjs
           node scripts/audit-mcq-pdf-pages.mjs
-          mkdir -p mcq-audit-output/rendered
+          node scripts/audit-mcq-solution-coverage.mjs
+          mkdir -p frq-audit-output/rendered mcq-audit-output/rendered
+          for pdf in public/frq/*.pdf; do
+            [ -f "$pdf" ] || continue
+            name="$(basename "$pdf" .pdf)"
+            pdftoppm -jpeg -jpegopt quality=65 -scale-to 1200 "$pdf" "frq-audit-output/rendered/$name-page"
+          done
           for pdf in public/packets/*-mcq.pdf; do
             [ -f "$pdf" ] || continue
             name="$(basename "$pdf" .pdf)"
