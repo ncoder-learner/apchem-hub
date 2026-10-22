@@ -37,7 +37,7 @@ for (const file of files) {
           line: line.trim().slice(0, 180),
           context: lines.slice(lineIndex + 1, lineIndex + 3).join(" ").trim().slice(0, 180),
         });
-        const sameLinePart = line.match(/^\s{0,12}\d{1,2}[.)]\s*\(([a-h])\)(?:\s*\(([ivx]+)\))?/i);
+        const sameLinePart = line.match(/^\s{0,12}\d{1,2}[.)]\s*\(([a-i])\)(?:\s*\(([ivx]+)\))?/);
         if (sameLinePart) {
           activePart = sameLinePart[1].toLowerCase();
           partCandidates.push({
@@ -58,8 +58,8 @@ for (const file of files) {
       // Some worksheets place two lettered parts side-by-side on one printed line.
       // Detect every clearly spaced part marker on that line, not just the first one.
       const partMatches = [
-        ...line.matchAll(/^\s{0,20}\(([a-h])\)[.)]?\s+\S/gi),
-        ...line.matchAll(/\s{2,}\(([a-h])\)[.)]?\s+\S/gi),
+        ...line.matchAll(/^\s{0,20}\(([a-i])\)[.)]?\s+\S/g),
+        ...line.matchAll(/\s{2,}\(([a-i])\)[.)]?\s+\S/g),
       ];
       if (partMatches.length && activeQuestion !== null) {
         for (const partMatch of partMatches) {
@@ -75,7 +75,7 @@ for (const file of files) {
         }
       }
       // Also recognize forms such as `(d) (iii)` printed on a single line.
-      const sameLineNestedPart = line.match(/^\s{0,20}\(([a-h])\)[.)]?\s+\(([ivx]+)\)[.)]?\s+\S/i);
+      const sameLineNestedPart = line.match(/^\s{0,20}\(([a-i])\)[.)]?\s+\(([ivx]+)\)[.)]?\s+\S/);
       if (sameLineNestedPart && activeQuestion !== null) {
         const part = `${sameLineNestedPart[1].toLowerCase()}(${sameLineNestedPart[2].toLowerCase()})`;
         if (!partCandidates.some((candidate) => candidate.question === activeQuestion && candidate.part === part)) {
@@ -87,12 +87,18 @@ for (const file of files) {
         }
       }
       const romanPartMatches = [
-        ...line.matchAll(/^\s{0,20}\(([ivx]+)\)[.)]?\s+\S/gi),
-        ...line.matchAll(/\s{1,}\(([ivx]+)\)[.)]?\s+\S/gi),
+        ...line.matchAll(/^\s{0,20}\(([ivx]+)\)[.)]?\s+\S/g),
+        ...line.matchAll(/\s{1,}\(([ivx]+)\)[.)]?\s+\S/g),
       ];
       if (romanPartMatches.length && activeQuestion !== null && activePart !== null) {
         for (const romanMatch of romanPartMatches) {
-          const part = `${activePart}(${romanMatch[1].toLowerCase()})`;
+          const indent = romanMatch[0].match(/^\s*/)?.[0].length ?? 0;
+          const roman = romanMatch[1].toLowerCase();
+          // Lowercase (i) at the same indentation as the lettered parts is a
+          // top-level part i, not a nested subpart such as e(i). Nested roman
+          // labels are indented farther beneath their parent letter.
+          const part = roman === "i" && indent <= 6 ? "i" : `${activePart}(${roman})`;
+          if (part === "i") activePart = "i";
           if (!partCandidates.some((candidate) => candidate.question === activeQuestion && candidate.part === part)) {
             partCandidates.push({
               question: activeQuestion,
