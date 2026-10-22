@@ -47,7 +47,7 @@ for (const match of hintsBlock.matchAll(packetSolutionPattern)) {
 }
 const exceptions = {
   // Source packet has an unnumbered first question; the printed numbering begins at 2.
-  "topics-8-6-8-11-mcq": "The source PDF starts with an unnumbered prompt stored under key 1 and indexed separately as "Unnumbered"; only printed questions 2–16 count toward numbered-question coverage."
+  "topics-8-6-8-11-mcq": 'The source PDF starts with an unnumbered prompt stored under key 1 and indexed separately as "Unnumbered"; only printed questions 2–16 count toward numbered-question coverage.'
 };
 const rows = [];
 const missing = [];
