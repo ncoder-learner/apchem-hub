@@ -88,3 +88,17 @@ Not every topic needs every visual type. Use the best available representation f
 3. Build Units 6–9 from the CED and official released assessment evidence using the same standard from the first topic; do not postpone visual work until after writing all the text.
 4. Add mixed-unit practice, cumulative retrieval, and full-length exam practice only after individual lessons cover the required content.
 5. Run a production build and inspect lessons on desktop and mobile after each batch. Track coverage explicitly; do not label the course complete while required CED subskills or topic-specific visual/interactivity coverage remain unverified.
+
+
+## Interactive model acceptance criteria
+
+Interactive models should be embedded in the lesson where they clarify a difficult or dynamic relationship, not used as decoration. Each model must:
+
+- State its assumptions and distinguish illustrative values from measured data.
+- Let students change a meaningful variable and observe a chemically valid consequence.
+- Label axes, units, species, and outputs where applicable.
+- Explain the connection between the model and the AP Chemistry learning objective.
+- Include a limitation or common misconception when simplification could mislead students.
+- Remain usable on narrow mobile screens and avoid requiring external simulation access unless a direct, verified simulation link is provided.
+
+Before merging a model, run the TypeScript check and production build, then inspect the rendered control and explanation on desktop and mobile.

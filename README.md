@@ -95,3 +95,8 @@ just cover the same topics:
 - No practice-question bank, flashcards, or score tracking yet (sidebar nav
   placeholders for these don't exist in this version — the original design
   had "Soon" placeholders; re-add if wanted).
+
+
+## Interactive chemistry models
+
+Lessons include learner-controlled chemistry models for selected topics in Units 1–5, including electrostatic relationships, molecular structure, gas behavior, reaction types, stoichiometry, titration, redox, and kinetics. Models are instructional simplifications; use the lesson explanation to understand their assumptions and limits.
