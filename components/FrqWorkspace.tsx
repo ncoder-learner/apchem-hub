@@ -535,6 +535,7 @@ type WorkedSolution = {
   concept: string;
 };
 
+// All previously flagged source-dependent prompts now have explicit worked answers.
 const FRQ_VISUAL_REVIEW_KEYS = new Set<string>();
 
 function needsSourceVisualReview(file: string, question: string, part: string): boolean {
@@ -841,8 +842,8 @@ const FRQ_WORKED_SOLUTIONS: Record<string, Record<string, WorkedSolution>> = {
     "16:c": {prompt:"Classify the forward formation of blue CoCl4^2- as endothermic or exothermic.",steps:["Heating shifts the equilibrium right toward blue CoCl4^2-.","An increase in temperature favors the endothermic direction."],answer:"The forward reaction is endothermic.",concept:"Temperature acts like a reactant for an endothermic reaction and a product for an exothermic reaction."},
     "7:a": { prompt: "Write the equilibrium-constant expression for X₂(g) + 2Y(g) ⇌ X₂Y₂(g).", steps: ["Write product concentration in the numerator.", "Raise each reactant concentration to its stoichiometric coefficient.", "All species are gases, so include each gas in Kc."], answer: "Kc = [X₂Y₂]/([X₂][Y]²).", concept: "Stoichiometric coefficients become exponents in equilibrium-constant expressions." },
 
-    "7:b": { prompt: "Calculate Kc from the equilibrium particle diagram for X₂(g) + 2 Y(g) ⇌ X₂Y₂(g).", steps: ["Count the equilibrium particles in 1.00 L: 8 X₂, 4 Y, and 2 X₂Y₂, so [X₂] = 8 M, [Y] = 4 M, and [X₂Y₂] = 2 M.", "Kc = [X₂Y₂]/([X₂][Y]²) = 2/(8 × 4²) = 2/128."], answer: "Kc = 1.56 × 10⁻².", concept: "Use particle counts as mole counts, convert to concentrations using volume, and substitute into the equilibrium expression." },
-    "7:c": { prompt: "Calculate Qc for each of the three particle diagrams and determine the direction of shift.", steps: ["Left diagram: 5 X₂Y₂, 3 X₂, and 2 Y give Qc = 5/(3 × 2²) = 0.417.", "Middle diagram: 3 X₂Y₂, 5 X₂, and 5 Y give Qc = 3/(5 × 5²) = 0.0240.", "Right diagram: 4 X₂Y₂, 4 X₂, and 4 Y give Qc = 4/(4 × 4²) = 0.0625.", "Each Qc is greater than Kc = 0.0156, so each mixture has too much product relative to equilibrium and shifts left toward reactants."], answer: "Left Qc ≈ 0.417, middle Qc ≈ 0.0240, right Qc ≈ 0.0625. All three are not at equilibrium and shift left.", concept: "If Qc > Kc, the system shifts toward reactants until Qc decreases to Kc." },
+    "7:b": { prompt: "Calculate Kc from the equilibrium particle diagram for X₂(g) + 2 Y(g) ⇌ X₂Y₂(g).", steps: ["Count the equilibrium particles in a 1.00 L vessel: 8 X₂, 2 Y, and 2 X₂Y₂, so [X₂] = 8 M, [Y] = 2 M, and [X₂Y₂] = 2 M.", "Kc = [X₂Y₂]/([X₂][Y]²) = 2/(8 × 2²) = 2/32 = 0.0625."], answer: "Kc = 6.25 × 10⁻².", concept: "Use particle counts as mole counts, convert to concentrations using volume, and substitute into the equilibrium expression." },
+    "7:c": { prompt: "Calculate Qc for each of the three particle diagrams and determine the direction of shift.", steps: ["Left diagram: 5 X₂Y₂, 3 X₂, and 2 Y give Qc = 5/(3 × 2²) = 0.417; because Qc > Kc, the system shifts left.", "Middle diagram: 3 X₂Y₂, 5 X₂, and 6 Y give Qc = 3/(5 × 6²) = 0.0167; because Qc < Kc, the system shifts right.", "Right diagram: 4 X₂Y₂, 4 X₂, and 4 Y give Qc = 4/(4 × 4²) = 0.0625 = Kc, so the system is at equilibrium."], answer: "Left Qc ≈ 0.417, shift left. Middle Qc ≈ 0.0167, shift right. Right Qc = 0.0625, at equilibrium.", concept: "Compare Qc with Kc: Qc > Kc shifts left, Qc < Kc shifts right, and Qc = Kc indicates equilibrium." },
 
   },
   "topic-7-11-7-12.pdf": {
