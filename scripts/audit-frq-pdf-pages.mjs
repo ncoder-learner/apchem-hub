@@ -37,7 +37,7 @@ for (const file of files) {
           line: line.trim().slice(0, 180),
           context: lines.slice(lineIndex + 1, lineIndex + 3).join(" ").trim().slice(0, 180),
         });
-        const sameLinePart = line.match(/^\s{0,12}\d{1,2}[.)]\s*\(([a-h])\)/i);
+        const sameLinePart = line.match(/^\s{0,12}\d{1,2}[.)]\s*\(([a-h])\)(?:\s*\(([ivx]+)\))?/i);
         if (sameLinePart) {
           activePart = sameLinePart[1].toLowerCase();
           partCandidates.push({
@@ -45,6 +45,13 @@ for (const file of files) {
             part: activePart,
             line: line.trim().slice(0, 180),
           });
+          if (sameLinePart[2]) {
+            partCandidates.push({
+              question: activeQuestion,
+              part: `${activePart}(${sameLinePart[2].toLowerCase()})`,
+              line: line.trim().slice(0, 180),
+            });
+          }
         }
         continue;
       }
@@ -67,9 +74,21 @@ for (const file of files) {
           }
         }
       }
+      // Also recognize forms such as `(d) (iii)` printed on a single line.
+      const sameLineNestedPart = line.match(/^\s{0,20}\(([a-h])\)[.)]?\s+\(([ivx]+)\)[.)]?\s+\S/i);
+      if (sameLineNestedPart && activeQuestion !== null) {
+        const part = `${sameLineNestedPart[1].toLowerCase()}(${sameLineNestedPart[2].toLowerCase()})`;
+        if (!partCandidates.some((candidate) => candidate.question === activeQuestion && candidate.part === part)) {
+          partCandidates.push({
+            question: activeQuestion,
+            part,
+            line: line.trim().slice(0, 180),
+          });
+        }
+      }
       const romanPartMatches = [
         ...line.matchAll(/^\s{0,20}\(([ivx]+)\)[.)]?\s+\S/gi),
-        ...line.matchAll(/\s{2,}\(([ivx]+)\)[.)]?\s+\S/gi),
+        ...line.matchAll(/\s{1,}\(([ivx]+)\)[.)]?\s+\S/gi),
       ];
       if (romanPartMatches.length && activeQuestion !== null && activePart !== null) {
         for (const romanMatch of romanPartMatches) {
