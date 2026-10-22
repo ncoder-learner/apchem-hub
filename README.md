@@ -1,17 +1,34 @@
 # AP Chem Hub
 
-Next.js (App Router, TypeScript, Tailwind v4) study site for the AP Chemistry course.
+AP Chem Hub is a Next.js App Router study site for AP Chemistry. It combines topic-by-topic lessons, interactive chemistry models, a packet companion for printed MCQ/FRQ practice, a glossary, and an equation sheet.
 
-## Running it
+## Current content coverage
 
-```
+There are **86 MDX topic files** across the nine course units.
+
+- **Units 1–8:** topic lessons are populated across the listed unit topics.
+- **Unit 9:** topics 9.1–9.3 are present; topics 9.4–9.11 still need lesson content.
+- Unit 1 and Unit 2 also include mastery-check lessons.
+
+Do not infer that a unit is complete merely because it has a folder. Check the files under `content/units/unit-{N}/` to see the topics that actually exist.
+
+## Running locally
+
+```bash
 npm install
 npm run dev
 ```
 
-Then open http://localhost:3000. Unit 2 → Topic 2.7 is the only populated lesson right now.
+Then open http://localhost:3000.
 
-## Content schema — read this before adding or editing any lesson
+For production validation:
+
+```bash
+npm run typecheck
+npm run build
+```
+
+## Lesson content schema
 
 **One MDX file = one topic.** Files live at:
 
@@ -19,84 +36,73 @@ Then open http://localhost:3000. Unit 2 → Topic 2.7 is the only populated less
 content/units/unit-{N}/{topicNumber}-{slug}.mdx
 ```
 
-e.g. `content/units/unit-2/2-7-vsepr-and-hybridization.mdx`.
+For example: `content/units/unit-2/2-7-vsepr-and-hybridization.mdx`.
 
-Every file must start with this exact frontmatter shape:
+Every file starts with frontmatter in this shape:
 
 ```yaml
 ---
 title: "Human-readable lesson title"
 unit: 2
 topicNumber: "2.7"
-slug: "2-7-vsepr-and-hybridization"   # must match the filename and the route
+slug: "2-7-vsepr-and-hybridization"
 summary: "One sentence describing the lesson, used on listing pages."
 ---
 ```
 
-That's the whole schema. There is **no** intro/topics[]/outro split and **no** magic
-`{/* END_TOPICS */}` marker anywhere in this version — that was the previous
-design, and it broke twice in production because intro content and topic
-content silently rendered through two different paths with two different
-sets of available components. One file = one topic = one render path,
-always. If you're ever unsure how a file is parsed, read `lib/content.ts` —
-it's short, fully commented, and is the actual source of truth, not this
-README and not a prior unit's file.
+The `slug` must match the filename and route. There is no intro/topics[]/outro split and no `{/* END_TOPICS */}` marker. One file is one topic and follows one render path. If parsing behavior is unclear, read `lib/content.ts`; it is the source of truth.
 
-**To add a new topic:** drop a new `.mdx` file in the right `content/units/unit-N/`
-folder with correct frontmatter. Nothing else needs to be touched — no
-manifest, no index file, no registered list of slugs. The topic list for a
-unit page is built by scanning that folder and sorting by `topicNumber`.
+To add a topic, add an MDX file to the appropriate unit folder with valid frontmatter. The topic list is built by scanning that folder and sorting by `topicNumber`. To add a new unit with no lessons yet, add it to the `UNITS` array in `lib/units.ts`.
 
-**To add a new unit** that doesn't have any content yet: add it to the
-`UNITS` array in `lib/units.ts`. It'll show up on the home page as
-"coming soon" until a `content/units/unit-N/` folder with at least one
-`.mdx` file exists for it.
+## MDX components
 
-## Custom MDX components
+Custom components are registered in `components/mdx/index.tsx`. If an MDX file uses a component that is not registered there, prerendering can fail with an MDX component-definition error. Register new custom components in the same change that introduces them.
 
-Registered in `components/mdx/index.tsx`. If a lesson file uses a tag that
-isn't registered there, MDX throws `Expected component X to be defined` at
-render time — this exact error broke a prior deploy. **Any time you add a
-new custom component, register it in that file in the same change.**
-
-| Component | Use |
+| Component | Purpose |
 |---|---|
-| `<Lightbulb>` | Builds the "why" behind a rule |
-| `<WorkedExample>` | A fully solved problem, step by step |
-| `<Mistake>` | A specific wrong-answer path, walked through and corrected |
-| `<Connects>` | Links to another topic/unit |
-| `<BondDiagram order={1\|2\|3} />` | Sigma/pi orbital overlap diagram |
-| `<GeometryDiagram shape="..." />` | VSEPR molecular geometry diagram — see `GeometryShape` type in the component file for valid shape names |
-| `<PhetSim src="..." title="..." />` | Embeds a PhET simulation. **`src` must be the direct runnable sim URL** (`phet.colorado.edu/sims/html/{id}/latest/{id}_en.html`), not the simulation's landing page |
+| `<Lightbulb>` | Explains the reasoning behind a rule |
+| `<WorkedExample>` | Step-by-step worked problem |
+| `<Mistake>` | Diagnoses and corrects a plausible wrong approach |
+| `<Connects>` | Links related topics |
+| `<BondDiagram>` | Sigma/pi orbital-overlap diagram |
+| `<GeometryDiagram>` | VSEPR molecular geometry |
+| `<PhetSim>` | Embeds a runnable PhET simulation |
+| `<LessonSection>` | Groups lesson sections |
+| `<QuickCheck>` | Short answer-check question |
+| `<ChemVisual>` / `<Unit3Visual>` | Chemistry visual explanations |
+| `<InteractiveLab>` / `<TopicLab>` | Learner-controlled interactive models |
 
-## Content depth standard
+For `<PhetSim>`, `src` must be the direct runnable simulation URL, not the simulation's landing page.
 
-Established on the 2.7 lesson — every future lesson should match this, not
-just cover the same topics:
+## Study and practice features
 
-1. **Derive before naming.** Build up to a rule from the underlying
-   principle (e.g. "electron domains repel" → work out *why* 4 domains
-   gives 109.5°) rather than stating the rule and showing one example of it.
-2. **Ramp examples from simple to AP-exam complexity.** More than one
-   worked example per subtopic, increasing in difficulty.
-3. **`<Mistake>` blocks walk through the wrong reasoning**, not just name
-   the mistake — show *why* the wrong answer seems plausible before showing
-   why it's wrong.
+- **Packet Companion:** searches printed MCQ and FRQ packets, maps questions to PDF pages, and displays worked solutions.
+- **FRQ workspace:** supports question-level and part-level worked guidance, including nested Roman-numeral subparts where present in the source.
+- **MCQ answer bank:** stores explicit answer letters and explanations.
+- **Interactive models:** learner-controlled chemistry models for selected topics.
+- **Reference tools:** glossary and equation sheet.
 
-## Known gaps / next steps
+## Answer-coverage audits
 
-- Units 1, 3–9 have no content files yet.
-- Unit 2 has only Topic 2.7 so far. Topics 2.1–2.6 still need lesson files
-  (video transcripts are being supplied as source material for these — see
-  project chat history for the workflow).
-- `generateStaticParams` is wired up but the project hasn't been built with
-  `next build` yet in this environment — run it locally and fix anything
-  that surfaces before deploying.
-- No practice-question bank, flashcards, or score tracking yet (sidebar nav
-  placeholders for these don't exist in this version — the original design
-  had "Soon" placeholders; re-add if wanted).
+The repository includes scripts that audit source PDF pages and the answer banks. The current structural audits report no identified FRQ question/part coverage gaps and no missing MCQ answer letters.
 
+Run the audits with Node:
 
-## Interactive chemistry models
+```bash
+node scripts/audit-frq-pdf-pages.mjs
+node scripts/audit-frq-solution-coverage.mjs
+node scripts/audit-mcq-pdf-pages.mjs
+node scripts/audit-mcq-solution-coverage.mjs
+```
 
-Lessons include learner-controlled chemistry models for selected topics in Units 1–5, including electrostatic relationships, molecular structure, gas behavior, reaction types, stoichiometry, titration, redox, and kinetics. Models are instructional simplifications; use the lesson explanation to understand their assumptions and limits.
+Coverage audits verify that questions and answers are mapped and displayed structurally; they do **not** independently prove every chemistry explanation is correct. When editing a solution, check the original PDF—including diagrams, spectra, tables, and graphs—and show enough reasoning for AP-style scoring.
+
+## Content-depth standard
+
+Lessons should build understanding, not only list facts:
+
+1. Derive rules from underlying principles before naming them.
+2. Progress from basic examples to AP-level applications.
+3. Explain why a common wrong approach is tempting and where it fails.
+4. Include diagrams, simulations, or interactive models when they clarify the chemistry.
+5. State assumptions and limitations for simplified models.
