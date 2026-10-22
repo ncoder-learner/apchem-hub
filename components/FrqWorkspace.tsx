@@ -535,8 +535,7 @@ type WorkedSolution = {
   concept: string;
 };
 
-const FRQ_VISUAL_REVIEW_KEYS = new Set([
-]);
+const FRQ_VISUAL_REVIEW_KEYS = new Set<string>();
 
 function needsSourceVisualReview(file: string, question: string, part: string): boolean {
   return FRQ_VISUAL_REVIEW_KEYS.has(`${file}:${question}${part ? `:${part}` : ""}`);
