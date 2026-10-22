@@ -31,6 +31,10 @@ const PACKET_PDF_PATHS: Record<string, string> = {
 };
 
 
+function packetQuestionLabel(questionNumber: string): string {
+  return questionNumber === "Unnumbered" ? "Unnumbered prompt" : `Question ${questionNumber}`;
+}
+
 export function PacketCompanionLookup() {
   const [unitId, setUnitId] = useState("1");
   const [packetId, setPacketId] = useState("");
@@ -44,6 +48,35 @@ export function PacketCompanionLookup() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showReaderMenu, setShowReaderMenu] = useState(true);
   const [showWorkedAnswer, setShowWorkedAnswer] = useState(false);
+  const [questionProgress, setQuestionProgress] = useState<Record<string, "attempted" | "review" | "mastered">>({});
+  const progressStorageKey = "apchem-packet-companion-progress-v1";
+
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem(progressStorageKey);
+      if (saved) setQuestionProgress(JSON.parse(saved) as Record<string, "attempted" | "review" | "mastered">);
+    } catch {
+      // Progress is a convenience; the study tool still works if browser storage is unavailable.
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(progressStorageKey, JSON.stringify(questionProgress));
+    } catch {
+      // Do not block studying when browser storage is disabled or full.
+    }
+  }, [questionProgress]);
+
+  function setQuestionStatus(status: "attempted" | "review" | "mastered" | "unmarked") {
+    if (!match) return;
+    setQuestionProgress((current) => {
+      const next = { ...current };
+      if (status === "unmarked") delete next[match.id];
+      else next[match.id] = status;
+      return next;
+    });
+  }
 
   const packets = useMemo(
     () => Array.from(new Map(PACKET_QUESTION_INDEX.filter((entry) => entry.unitId === Number(unitId) && entry.questionType === "mcq").map((entry) => [entry.packetId, entry.packetTitle] as const)).entries()),
@@ -51,7 +84,9 @@ export function PacketCompanionLookup() {
   );
 
   const packetEntries = useMemo(
-    () => PACKET_QUESTION_INDEX.filter((entry) => entry.unitId === Number(unitId) && entry.questionType === "mcq" && entry.packetId === packetId),
+    () => PACKET_QUESTION_INDEX
+      .filter((entry) => entry.unitId === Number(unitId) && entry.questionType === "mcq" && entry.packetId === packetId)
+      .sort((a, b) => a.questionNumber === "Unnumbered" ? -1 : b.questionNumber === "Unnumbered" ? 1 : Number(a.questionNumber) - Number(b.questionNumber)),
     [unitId, packetId],
   );
 
@@ -88,9 +123,14 @@ export function PacketCompanionLookup() {
 
   function changePacket(value: string) {
     setPacketId(value);
-    setQuestionNumber("1");
-    setPdfPage("1");
-    setPdfPageInput("1");
+    const firstEntry = PACKET_QUESTION_INDEX
+      .filter((entry) => entry.unitId === Number(unitId) && entry.questionType === "mcq" && entry.packetId === value)
+      .sort((a, b) => a.questionNumber === "Unnumbered" ? -1 : b.questionNumber === "Unnumbered" ? 1 : Number(a.questionNumber) - Number(b.questionNumber))[0];
+    const firstQuestion = firstEntry?.questionNumber ?? "1";
+    const firstPage = MCQ_PAGE_CANDIDATES[value]?.[firstQuestion] ?? 1;
+    setQuestionNumber(firstQuestion);
+    setPdfPage(String(firstPage));
+    setPdfPageInput(String(firstPage));
     setHintLevel(0);
     setShowWorkedAnswer(false);
     setPdfFile(null);
@@ -217,7 +257,7 @@ export function PacketCompanionLookup() {
                     <label className="mt-3 block text-sm font-semibold">Or choose a question
                       <select value={questionNumber} onChange={(event) => selectQuestion(event.target.value)} className="mt-1 w-full rounded-lg border border-border bg-bg px-3 py-2">
                         <option value="">Choose question</option>
-                        {packetEntries.map((entry) => <option key={entry.id} value={entry.questionNumber}>Question {entry.questionNumber}</option>)}
+                        {packetEntries.map((entry) => <option key={entry.id} value={entry.questionNumber}>{packetQuestionLabel(entry.questionNumber)}</option>)}
                       </select>
                     </label>
                     <div className="mt-3 grid grid-cols-2 gap-2">
@@ -226,7 +266,7 @@ export function PacketCompanionLookup() {
                     </div>
                     {match && (
                       <div className="mt-4 rounded-xl border border-red-200 bg-white p-3 font-serif italic text-sm leading-6 text-red-700">
-                        <p className="font-bold">Q{questionNumber} · {match.solution ? "Worked answer" : "Question help"}</p>
+                        <p className="font-bold">{questionNumber === "Unnumbered" ? "Unnumbered prompt" : "Q" + questionNumber} · {match.solution ? "Worked answer" : "Question help"}</p>
                         {match.solution ? <p className="mt-2">{match.solution}</p> : <><p className="mt-2 not-italic text-xs text-red-500">A verified final answer is not indexed for this question yet.</p>{hints.map((hint, index) => <p key={index} className="mt-2"><span className="font-bold">Hint {index + 1}:</span> {hint}</p>)}</>}
                       </div>
                     )}
@@ -236,7 +276,7 @@ export function PacketCompanionLookup() {
               {showWorkedAnswer && match && (
                 <div role="region" aria-label="Worked answer or question help" className="absolute right-4 top-4 z-30 max-h-[48%] w-[min(34rem,92%)] overflow-y-auto rounded-xl border-2 border-red-300 bg-white/95 px-5 py-4 text-red-700 shadow-2xl backdrop-blur-sm sm:px-8">
                   <div className="mx-auto max-w-4xl font-serif italic">
-                    <p className="text-sm font-bold not-italic text-red-800">{match.solution ? "Worked answer" : "Question help"} · Question {questionNumber}</p>
+                    <p className="text-sm font-bold not-italic text-red-800">{match.solution ? "Worked answer" : "Question help"} · {packetQuestionLabel(questionNumber)}</p>
                     {match.solution ? <p className="mt-3 whitespace-pre-wrap text-base leading-7">{match.solution}</p> : <><p className="mt-3 text-sm not-italic">A verified final answer is not indexed for this question yet. Use these staged hints while the answer is being verified.</p>{hints.map((hint, index) => <p key={index} className="mt-3 whitespace-pre-wrap text-base leading-7"><strong>Hint {index + 1}.</strong> {hint}</p>)}</>}
                     <p className="mt-3 text-xs not-italic text-red-500">Original study guidance, not an official College Board scoring guide.</p>
                   </div>
@@ -272,14 +312,14 @@ export function PacketCompanionLookup() {
               <>
                 <label htmlFor="packet-question-select" className="mt-4 block text-sm font-semibold">Jump to printed question</label>
                 <select id="packet-question-select" value={questionNumber} onChange={(event) => selectQuestion(event.target.value)} className="mt-2 min-h-12 w-full rounded-lg border border-border bg-card px-3 py-3 text-ink">
-                  {packetEntries.map((entry) => <option key={entry.id} value={entry.questionNumber}>Question {entry.questionNumber}{entry.topicNumber ? " · Topic " + entry.topicNumber : ""}</option>)}
+                  {packetEntries.map((entry) => <option key={entry.id} value={entry.questionNumber}>{packetQuestionLabel(entry.questionNumber)}{entry.topicNumber ? " · Topic " + entry.topicNumber : ""}</option>)}
                 </select>
                 <div className="mt-3 grid grid-cols-2 gap-2">
                   <button type="button" onClick={() => moveQuestion(-1)} disabled={packetEntries[0]?.questionNumber === questionNumber} className="min-h-10 rounded-lg border border-border px-3 py-2 text-sm font-semibold disabled:opacity-35">← Previous</button>
                   <button type="button" onClick={() => moveQuestion(1)} disabled={packetEntries[packetEntries.length - 1]?.questionNumber === questionNumber} className="min-h-10 rounded-lg border border-border px-3 py-2 text-sm font-semibold disabled:opacity-35">Next →</button>
                 </div>
                 <div className="mt-4 flex flex-wrap gap-1.5" aria-label="Jump to question">
-                  {packetEntries.map((entry) => <button key={entry.id} type="button" aria-label={"Go to question " + entry.questionNumber} aria-current={entry.questionNumber === questionNumber ? "true" : undefined} onClick={() => selectQuestion(entry.questionNumber)} className={"flex h-9 min-w-9 items-center justify-center rounded-md border px-2 text-xs font-semibold transition " + (entry.questionNumber === questionNumber ? "border-accent bg-accent-soft/30 text-accent" : "border-border text-ink-dim hover:border-accent/40 hover:text-ink")}>{entry.questionNumber}</button>)}
+                  {packetEntries.map((entry) => <button key={entry.id} type="button" aria-label={"Go to " + (entry.questionNumber === "Unnumbered" ? "unnumbered prompt" : "question " + entry.questionNumber) + (questionProgress[entry.id] ? ", status " + questionProgress[entry.id] : "")} aria-current={entry.questionNumber === questionNumber ? "true" : undefined} onClick={() => selectQuestion(entry.questionNumber)} title={questionProgress[entry.id] ? questionProgress[entry.id] : "Not marked"} className={"relative flex h-9 min-w-9 items-center justify-center rounded-md border px-2 text-xs font-semibold transition " + (entry.questionNumber === questionNumber ? "border-accent bg-accent-soft/30 text-accent" : "border-border text-ink-dim hover:border-accent/40 hover:text-ink")}>{entry.questionNumber === "Unnumbered" ? "Intro" : entry.questionNumber}{questionProgress[entry.id] && <span aria-hidden="true" className={"absolute -right-1 -top-1 h-2 w-2 rounded-full " + (questionProgress[entry.id] === "mastered" ? "bg-accent" : questionProgress[entry.id] === "review" ? "bg-amber" : "bg-ink-dim")} />}</button>)}
                 </div>
               </>
             ) : <p className="mt-3 text-sm leading-relaxed text-ink-dim">Choose a unit and packet to load its question list. The reader does not assume question numbers from a different packet.</p>}
@@ -292,8 +332,21 @@ export function PacketCompanionLookup() {
             </div>
             {match ? (
               <>
-                <h3 className="mt-2 text-base font-semibold">Question {match.questionNumber}</h3>
+                <h3 className="mt-2 text-base font-semibold">{packetQuestionLabel(match.questionNumber)}</h3>
                 <p className="mt-1 text-xs leading-relaxed text-ink-dim">{match.packetTitle} · Topics {match.topicRange.replace("-", "–")}</p>
+                <div className="mt-3 rounded-lg border border-border bg-bg/50 p-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="text-xs font-semibold">Your study progress</p>
+                    <span className="text-[11px] text-ink-dim">{Object.values(questionProgress).filter((status) => status === "mastered").length} mastered · {Object.values(questionProgress).filter((status) => status === "review").length} to review</span>
+                  </div>
+                  <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4 xl:grid-cols-2">
+                    <button type="button" onClick={() => setQuestionStatus("attempted")} aria-pressed={questionProgress[match.id] === "attempted"} className={"min-h-9 rounded-md border px-2 py-2 text-xs font-semibold " + (questionProgress[match.id] === "attempted" ? "border-accent bg-accent-soft/20 text-accent" : "border-border")}>Attempted</button>
+                    <button type="button" onClick={() => setQuestionStatus("review")} aria-pressed={questionProgress[match.id] === "review"} className={"min-h-9 rounded-md border px-2 py-2 text-xs font-semibold " + (questionProgress[match.id] === "review" ? "border-amber bg-amber/10 text-ink" : "border-border")}>Review again</button>
+                    <button type="button" onClick={() => setQuestionStatus("mastered")} aria-pressed={questionProgress[match.id] === "mastered"} className={"min-h-9 rounded-md border px-2 py-2 text-xs font-semibold " + (questionProgress[match.id] === "mastered" ? "border-accent bg-accent-soft/20 text-accent" : "border-border")}>Mastered</button>
+                    <button type="button" onClick={() => setQuestionStatus("unmarked")} className="min-h-9 rounded-md border border-border px-2 py-2 text-xs font-semibold text-ink-dim">Clear status</button>
+                  </div>
+                  <p className="mt-2 text-[11px] leading-relaxed text-ink-dim">Saved in this browser on this device. Mark a question mastered only after you can explain the reasoning without help.</p>
+                </div>
                 {hintLevel === 0 && <p className="mt-3 text-sm leading-relaxed text-ink-dim">{hints.length ? "Try the question in the PDF first. Reveal one hint at a time, then open the worked explanation if one is available." : "This question number is indexed, but question-specific help is not available yet. Use the linked lesson or official practice resources rather than relying on a guessed answer."}</p>}
                 {hints.slice(0, hintLevel).map((hint, index) => <div key={index} className="mt-3 rounded-lg border border-border bg-bg/60 p-3"><p className="text-[11px] font-bold uppercase tracking-wide text-accent">{index === 0 ? "Hint 1 · Concept" : index === 1 ? "Hint 2 · Strategy" : "Hint 3 · Next step"}</p><p className="mt-1 text-sm leading-relaxed">{hint}</p></div>)}
                 {match.solution && hintLevel > hints.length && <div className="mt-3 rounded-lg border border-accent/30 bg-accent-soft/15 p-3"><p className="text-xs font-bold uppercase tracking-wide text-accent">Worked explanation</p><p className="mt-2 whitespace-pre-line text-sm leading-relaxed">{match.solution}</p>{match.commonMistakes?.length ? <ul className="mt-3 list-disc space-y-1 pl-4 text-xs leading-relaxed">{match.commonMistakes.map((mistake) => <li key={mistake}>{mistake}</li>)}</ul> : null}</div>}
