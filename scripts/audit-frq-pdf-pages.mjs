@@ -57,10 +57,10 @@ for (const file of files) {
       }
       // Some worksheets place two lettered parts side-by-side on one printed line.
       // Detect every clearly spaced part marker on that line, not just the first one.
-      const partMatches = [
-        ...line.matchAll(/^\s{0,20}\(([a-i])\)[.)]?\s+\S/g),
-        ...line.matchAll(/\s{2,}\(([a-i])\)[.)]?\s+\S/g),
-      ];
+      const lineLeadingPart = line.match(/^\s{0,20}\(([a-i])\)[.)]?\s+\S/);
+      const partMatches = lineLeadingPart
+        ? [lineLeadingPart, ...line.matchAll(/\s{2,}\(([a-i])\)[.)]?\s+\S/g)]
+        : [];
       if (partMatches.length && activeQuestion !== null) {
         for (const partMatch of partMatches) {
           const part = partMatch[1].toLowerCase();
