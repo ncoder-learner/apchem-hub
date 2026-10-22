@@ -74,6 +74,7 @@ for (const file of files) {
           }
         }
       }
+      // Also recognize forms such as `(d) (iii)` printed on a single line.
       const sameLineNestedPart = line.match(/^\s{0,20}\(([a-h])\)[.)]?\s+\(([ivx]+)\)[.)]?\s+\S/i);
       if (sameLineNestedPart && activeQuestion !== null) {
         const part = `${sameLineNestedPart[1].toLowerCase()}(${sameLineNestedPart[2].toLowerCase()})`;
