@@ -66,18 +66,19 @@ for (const packet of audit) {
 
   for (const question of detectedQuestions) {
     const parts = [...detectedParts].filter((key) => key.startsWith(`${question}:`));
-    if (!solutionKeys.has(question) && parts.length === 0) {
+    const hasAnySolution = solutionKeys.has(question) || parts.some((partKey) =>
+      solutionKeys.has(partKey) || [...solutionKeys].some((key) => key.startsWith(`${partKey}(`)),
+    );
+    if (!hasAnySolution) {
       const label = `${packet.file} Q${question}`;
       missingQuestions.push(label);
       packetMissingQuestions.push(question);
     }
     for (const partKey of parts) {
-      // Some packets subdivide a lettered part into roman-numeral subparts (a(i), a(ii)).
-      // The PDF heading extractor currently records the parent letter only. Treat the
-      // parent as represented when a parent solution or at least one nested solution exists;
-      // report nested-key completeness separately as a limitation rather than a false gap.
+      // A whole-question solution covers the question at a high level; otherwise
+      // require a part-specific solution or at least one nested subpart solution.
       const hasNestedSolution = [...solutionKeys].some((key) => key.startsWith(`${partKey}(`));
-      if (!solutionKeys.has(partKey) && !hasNestedSolution) {
+      if (!solutionKeys.has(question) && !solutionKeys.has(partKey) && !hasNestedSolution) {
         const label = `${packet.file} Q${partKey.replace(":", "(")})`;
         missingParts.push(label);
         packetMissingParts.push(partKey.replace(":", "(") + ")");
@@ -111,7 +112,7 @@ const report = [
   `- Extracted lettered parts: ${detectedPartCount}`,
   `- Existing worked-solution entries: ${solutionCount}`,
   `- Entries missing a required solution field (prompt/steps/answer/concept): ${incompleteSolutionFields.length}`,
-  `- Missing whole-question answers where no parts were detected: ${missingQuestions.length}`,
+  `- Questions with no solution at any level: ${missingQuestions.length}`,
   `- Missing part-specific worked answers: ${missingParts.length}`,
   `- Potentially stale solution keys: ${untrackedSolutions.length}`,
   `- Total identified gaps: ${totalMissing}`,
@@ -124,7 +125,7 @@ const report = [
   "",
   ...(incompleteSolutionFields.length ? incompleteSolutionFields.map((item) => `- ${item}`) : ["None detected."]),
   "",
-  "## Missing whole-question answers",
+  "## Questions with no solution at any level",
   "",
   ...(missingQuestions.length ? missingQuestions.map((item) => `- ${item}`) : ["None detected by this automated pass."]),
   "",
