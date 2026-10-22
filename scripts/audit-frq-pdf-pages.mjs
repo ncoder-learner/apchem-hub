@@ -2,6 +2,7 @@ import { readdir, mkdir, writeFile } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import path from "node:path";
 
+// Re-render every source page in the workflow artifact so visual-dependent answer mappings can be reviewed.
 const directory = path.resolve("public/frq");
 const outputDirectory = path.resolve("frq-audit-output");
 await mkdir(outputDirectory, { recursive: true });
