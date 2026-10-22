@@ -6,69 +6,84 @@ slug: "6-7-bond-enthalpies"
 summary: "Estimate reaction enthalpy by comparing energy required to break bonds with energy released when new bonds form."
 ---
 
-Bond enthalpy estimates ΔH by tracking bonds broken and bonds formed in the gas phase. Breaking a bond requires energy, so it contributes a positive term. Forming a bond releases energy, so it contributes a negative term.
+# Bond enthalpies: estimating reaction energy
 
-<LessonSection title="1. Use the bond-energy accounting rule" description="Break old bonds, then form new bonds" defaultOpen>
+Bond enthalpy estimates the enthalpy change for a reaction by comparing the energy needed to break reactant bonds with the energy released when product bonds form. The method is an estimate because tabulated bond enthalpies are averages, usually for gaseous molecules.
 
-```text
-ΔH_rxn ≈ Σ D(bonds broken) − Σ D(bonds formed)
-```
+## 1. The accounting rule
 
-Count every bond according to the balanced reaction, including coefficients. First list the bonds in the reactants that must be broken; then list the bonds present in the products that form. The subtraction already accounts for energy released during bond formation.
+**ΔH_rxn ≈ ΣD(bonds broken) − ΣD(bonds formed)**
 
-<QuickCheck question="Breaking a C–H bond requires 413 kJ/mol. What sign does this contribution have in a bond-enthalpy estimate?" options={["Negative, because energy is released","Positive, because energy is required","Zero, because bonds are not substances","It depends on the reaction's overall ΔH"]} correctIndex={1} explanation="Bond breaking requires energy, so the sum of bond enthalpies for bonds broken is added as a positive quantity." />
+- Breaking a bond requires energy, so its contribution is positive.
+- Forming a bond releases energy, so its contribution is subtracted.
+- Count every bond using the balanced equation's coefficients.
 
-</LessonSection>
+Do not reverse the subtraction. A negative estimate means the energy released by forming product bonds exceeds the energy needed to break reactant bonds.
 
-<LessonSection title="2. Work a complete estimate" description="The result is approximate because tabulated values are averages">
+### Quick check
 
-<WorkedExample title="Worked example: bond accounting">
+Breaking a C–H bond requires 413 kJ/mol. What sign does this contribution have?
 
-Suppose a reaction breaks one X–X bond with D = 200 kJ/mol and one Y–Y bond with D = 150 kJ/mol, then forms two X–Y bonds each with D = 180 kJ/mol. Bonds broken require 200 + 150 = 350 kJ/mol. Bonds formed release 2(180) = 360 kJ/mol. Therefore ΔH ≈ 350 − 360 = **−10 kJ/mol**, an exothermic estimate.
+- A. Negative, because energy is released
+- B. Positive, because energy is required
+- C. Zero, because bonds are not substances
+- D. It depends on the overall reaction enthalpy
 
-</WorkedExample>
+**Answer: B.** Breaking a bond requires energy, so it contributes a positive value to the sum for bonds broken.
 
-<QuickCheck question="A reaction breaks bonds requiring 900 kJ/mol total and forms bonds releasing 1,150 kJ/mol total. What is the estimated ΔH?" options={["+2,050 kJ/mol","+250 kJ/mol","−250 kJ/mol","−2,050 kJ/mol"]} correctIndex={2} explanation="ΔH ≈ energy to break − energy released on formation = 900 − 1,150 = −250 kJ/mol." />
+## 2. Work a complete estimate
 
-</LessonSection>
+A reaction breaks one X–X bond with D = 200 kJ/mol and one Y–Y bond with D = 150 kJ/mol. It forms two X–Y bonds, each with D = 180 kJ/mol.
 
-<LessonSection title="3. Know the model's limits" description="Bond enthalpies are averages, not exact molecular measurements">
+1. Energy required to break bonds: 200 + 150 = 350 kJ/mol.
+2. Energy released when bonds form: 2(180) = 360 kJ/mol.
+3. Estimate: ΔH ≈ 350 − 360 = **−10 kJ/mol**.
 
-Bond enthalpies are average values for bonds in gaseous molecules. Their use gives an estimate, while standard enthalpies of formation are often more accurate for a specified substance and state. A common error is subtracting in the opposite order or forgetting that a product coefficient means multiple bonds form.
+The estimate is exothermic because forming the product bonds releases slightly more energy than breaking the reactant bonds requires.
 
-</LessonSection>
+### Quick check
 
-<LessonSection title="4. Count bond changes from structures" description="The formula is only as accurate as your bond inventory">
+A reaction breaks bonds requiring 900 kJ/mol total and forms bonds releasing 1,150 kJ/mol total. What is ΔH?
 
-The bond-enthalpy estimate compares bonds in reactants with bonds in products. Draw or inspect structures, list each bond type, and multiply its tabulated average energy by the number of bonds. Count every bond in the balanced reaction; a coefficient of 2 means counting that molecule's bonds twice.
+- A. +2,050 kJ/mol
+- B. +250 kJ/mol
+- C. −250 kJ/mol
+- D. −2,050 kJ/mol
 
-<WorkedExample title="Worked example: hydrogenation of ethene">
-For C₂H₄ + H₂→ C₂H₆, reactants contain one C=C, four C–H, and one H–H bond. The product contains one C–C and six C–H bonds. Cancel the four C–H bonds common to both sides, leaving one C=C and one H–H broken and one C–C and two C–H formed. Using illustrative average values 614, 436, 347, and 413 kJ·mol⁻¹ gives ΔH≈(614 + 436) - (347 + 2(413)) = - 123 kJ·mol⁻¹. Treat this as an estimate because bond values depend on environment.
+**Answer: C.** ΔH ≈ 900 − 1,150 = −250 kJ/mol.
 
-</WorkedExample>
+## 3. Count bond changes from structures
 
-A bond is not “broken” merely because its molecule is on the reactant side. Track which bonds disappear and which appear when connectivity changes.
+For the hydrogenation reaction C₂H₄(g) + H₂(g) → C₂H₆(g), the reactants contain one C=C bond, four C–H bonds, and one H–H bond. The product contains one C–C bond and six C–H bonds.
 
-<QuickCheck question="Why is ΔH from average bond enthalpies approximate?" options={["Energy is not conserved","Average bond enthalpies vary with molecular environment","Bond formation always absorbs energy","The balanced equation is unnecessary"]} correctIndex={1} explanation="Tabulated bond enthalpies are averages across different chemical environments, so they estimate rather than exactly reproduce reaction enthalpy." />
+Four C–H bonds appear on both sides and cancel from the accounting. The net changes are:
 
-</LessonSection>
+- Bonds broken: one C=C and one H–H.
+- Bonds formed: one C–C and two C–H.
 
+Using illustrative average values of 614, 436, 347, and 413 kJ/mol, respectively:
 
-<LessonSection title="5. Compare bond enthalpy estimates with formation-enthalpy data" description="Bond energies estimate gas-phase bond changes; standard formation enthalpies describe specified standard states">
+ΔH ≈ (614 + 436) − (347 + 2 × 413) = **−123 kJ/mol**.
 
-The bond-enthalpy method estimates ΔH by subtracting the energy released when product bonds form from the energy required to break reactant bonds: ΔH ≈ ΣD(bonds broken) − ΣD(bonds formed). It generally applies to gas-phase molecular bonds and uses average bond enthalpies. Formation-enthalpy calculations instead use standard enthalpies of formation for the actual substances and physical states in the balanced equation. When reliable formation data are supplied for all species, that method is usually more specific.
+This is an estimate, not an exact experimental value. Count bonds from molecular connectivity, not merely from the number of atoms. Double bonds and single bonds have different enthalpies.
 
-<WorkedExample title="Worked example: why state labels matter">
+## 4. Know the method's limits
 
-The combustion of hydrogen to form H₂O(g) and the combustion that forms H₂O(l) have different enthalpy changes because condensing water releases additional energy. A gas-phase bond-enthalpy estimate naturally corresponds to breaking and forming gas-phase molecular bonds; it does not automatically include the enthalpy released when water vapor condenses. If the target reaction specifies liquid water, the vaporization/condensation difference must be included or a state-specific formation-enthalpy calculation should be used.
+Average bond enthalpies are most useful for estimating gas-phase reactions involving molecular bonds. Their values vary with molecular environment, so they do not give an exact enthalpy for every reaction.
 
-</WorkedExample>
+Standard enthalpies of formation are usually more specific when reliable values are available for each substance in its stated physical state. For example, forming H₂O(l) has a different enthalpy change from forming H₂O(g), because condensation releases additional energy. A gas-phase bond-enthalpy estimate does not automatically include that phase change.
 
-When counting bonds, compare structural formulas rather than merely counting atoms. A double bond contains a different bond enthalpy from a single bond, and the average value is not exactly additive for every molecular environment. State the result as an estimate when using tabulated average bond enthalpies.
+### Quick check
 
-<QuickCheck question="Why can a bond-enthalpy estimate differ from a value calculated using standard enthalpies of formation?" options={["Bond enthalpies are average values and usually refer to gas-phase bonds, while formation values are state-specific","Bond enthalpies violate energy conservation","Formation enthalpies cannot be used for reactions","Bond enthalpies change the balanced equation"]} correctIndex={0} explanation="Bond enthalpies are averaged over molecular environments and are typically gas-phase quantities. Formation enthalpies account for the specified substances and states." />
+Why can a bond-enthalpy estimate differ from a calculation using standard enthalpies of formation?
 
-</LessonSection>
+- A. Bond enthalpies are averages and usually refer to gas-phase bonds, while formation values are state-specific.
+- B. Bond enthalpies violate energy conservation.
+- C. Formation enthalpies cannot be used for reactions.
+- D. Bond enthalpies change the balanced equation.
+
+**Answer: A.** The two methods use different data and assumptions; formation enthalpies account for specified substances and states.
+
 ## Readiness check
 
-Make a two-column bond inventory, count each bond using stoichiometric coefficients, and calculate broken minus formed.
+Before calculating, make a two-column inventory of bonds broken and bonds formed. Multiply each bond value by its count, apply stoichiometric coefficients, and calculate broken minus formed. State that the result is approximate when using average bond enthalpies.
